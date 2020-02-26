@@ -1,0 +1,225 @@
+page{
+	background: #f8f8f8;
+	padding-bottom: 50upx;
+}
+.hotelDetail{
+	padding-bottom: 70upx;
+}
+.hotelDetail_banner{
+	width: 750upx;
+	height: 563upx;
+}
+.screen-swiper{
+	width: 750upx;
+	height: 563upx;
+}
+.screen-swiper image{
+	width: 750upx;
+	height: 563upx;
+}
+.detail_intro{
+	width: 100%;
+	background: #ffffff;
+	margin-top: 20upx;
+	padding: 30upx;
+	box-sizing: border-box;
+}
+.detail_intro .top{
+	width: 690upx;
+	margin: 0 auto;
+}
+.detail_intro .top .first{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.detail_intro .top .first .l{
+	width: 460upx;
+	font-size: 30upx;
+	font-weight: bold;
+	color: #28282c;
+	overflow:hidden; 
+	text-overflow:ellipsis; 
+	white-space:nowrap;
+}
+.detail_intro .top .first .r{
+	font-size: 24upx;
+	color: #28282c;
+}
+.detail_intro .top .first .r text{
+	font-size: 24upx;
+	color: #f63a3e;
+}
+.detail_intro .top .first .r text text{
+	font-size: 34upx;
+	font-weight: bold;
+	color: #f63a3e;
+}
+.detail_intro .top .second{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10upx;
+}
+.detail_intro .top .second .l{
+	font-size: 24upx;
+	color: #28282c;
+	width: 500upx;
+	white-space: normal;
+}
+.detail_intro .top .second .r{
+	font-size: 20upx;
+	color: #7a7a7a;
+}
+.detail_intro .con{
+	width: 690upx;
+	margin: 0 auto;
+	min-height: 100upx;
+	background-color: #ffffff;
+	border-radius: 10upx;
+	border: solid 1px #ededed;
+	margin-top: 40upx;
+	padding: 30upx;
+	text-align: justify;
+	font-size: 28upx;
+	line-height: 38upx;
+	color: #28282c;
+	position: relative;
+}
+.detail_intro .con image{
+	width: 33upx;
+	height: 28upx;
+	background-color: #ffffff;
+	position: absolute;
+	padding: 5upx;
+	top: -15upx;
+}
+.detail_intro .tip{
+	width: 690upx;
+	margin: 0 auto;
+	margin-top: 10upx;
+	display: flex;
+	flex-wrap: wrap;
+}
+.detail_intro .tip text{
+	margin-left: 35upx;
+	font-size: 24upx;
+	font-weight: 300;
+	color: #7a7a7a;
+	margin-top: 10upx;
+}
+.house_type{
+	width: 750upx;
+	min-height: 100upx;
+	background-color: #ffffff;
+	margin-top: 20upx;
+	padding-bottom: 40upx;
+}
+.type_title{
+	width: 690upx;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	padding-top: 30upx;
+}
+.type_title text{
+	font-size: 30upx;
+	font-weight: bold;
+	color: #28282c;
+}
+.type_title .dot{
+	width: 20upx;
+	height: 20upx;
+	background-color: #ff6600;
+	color: #28282c;
+	margin-right: 15upx;
+}
+.house_type_p{
+	
+}
+.house_type_list{
+	width: 690upx;
+	margin: 0 auto;
+	border-bottom: 1px solid #e1e1e1;
+	padding-bottom: 20upx;
+	padding-top: 20upx;
+	display: flex;
+	/* justify-content: space-between; */
+}
+.house_type_list .up{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.house_type_list .up .l{
+	font-size: 28upx;
+	color: #28282c;
+	width: 440upx;
+	overflow:hidden; 
+	text-overflow:ellipsis; 
+	white-space:nowrap;
+}
+.house_type_list .up .r{
+	font-size: 24upx;
+	color: #28282c;
+	text-align: right;
+}
+.house_type_list .up .r text{
+	color: #f63a3e;
+}
+.house_type_list .up .r text text{
+	font-family: Arial-BoldMT;
+	font-size: 34upx;
+	color: #f63a3e;
+}
+.house_type_list .ud{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5upx;
+}
+.house_type_list .ud .l{
+	font-size: 24upx;
+	color: #666666;
+	width: 500upx;
+}
+.house_type_list .ud .l text{
+	font-size: 14upx;
+	vertical-align: super;
+	margin-right: 15upx;
+}
+.house_type_list .ud .r{
+	font-size: 20upx;
+	color: #7a7a7a;
+}
+.facilities{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 690upx;
+	margin: 0 auto;
+	margin-top: 20upx;
+}
+.facilities view{
+	font-size: 24upx;
+	color: #28282c;
+	display: flex;
+	align-items: center;
+	margin-right: 30upx;
+	height: 40upx
+}
+.facilities view text{
+	width: 12upx;
+	height: 12upx;
+	background: #28282c;
+	border-radius: 50%;
+	margin-right: 10upx;
+}
+.house_policy{
+	width: 690upx;
+	margin: 0 auto;
+	margin-top: 20upx;
+	font-size: 28upx;
+	color: #7a7a7a;
+}
+.cu-form-group {
+	padding: 1px 30upx 1upx 0;
+}

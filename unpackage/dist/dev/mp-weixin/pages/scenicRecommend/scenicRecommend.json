@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品推荐",
+  "navigationBarBackgroundColor": "#ff8532",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "uni-icons": "/plugins/components/uni-icons/uni-icons",
+    "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore",
+    "tui-nomore": "/plugins/thorui/components/nomore/nomore"
+  }
+}

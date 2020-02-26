@@ -1,0 +1,184 @@
+page {
+	background: #f8f8f8;
+}
+
+.search-form {}
+
+.round {
+	/* width:560px;
+	height:48px; */
+	background: rgba(255, 255, 255, 0.2);
+	/* opacity:0.2; */
+	/* border-radius:24px; */
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #FFFFFF;
+  /* font-size: 16px; */
+}
+
+.address {
+	margin: 0upx 12upx 0upx 20upx;
+	font-size: 28upx;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
+	line-height: 28upx;
+}
+
+.address-img {
+	width: 21upx;
+	height: 14upx;
+	/* margin-right: 42upx; */
+}
+
+.shu {
+	width: 1px;
+	height: 24upx;
+	background: rgba(255, 255, 255, 1);
+	margin: 0upx 18upx;
+}
+
+.list {
+	width: 690upx;
+	margin: 0 auto;
+	padding-top: 214upx;
+}
+
+.list_one {
+	width: 100%;
+	height: 256upx;
+	border-bottom: 1px solid #eaeaea;
+	margin-top: 30upx;
+	display: flex;
+}
+
+.list_one image {
+	width: 300upx;
+	height: 225upx;
+	border-radius: 10upx;
+}
+
+.list_one_r {
+	width: 367upx;
+	margin-left: 20upx;
+}
+
+.list_one_r .title {
+	width: 367upx;
+	text-align: justify;
+	font-size: 28upx;
+	font-weight: bold;
+	line-height: 36upx;
+	color: #28282c;
+	margin-top: 26upx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.list_one_r .intro {
+	font-size: 22upx;
+	line-height: 36upx;
+	color: #999999;
+	display: flex;
+	margin-top: 16upx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+.list_one_r .introb{
+	font-size: 22upx;
+	line-height: 36upx;
+	color: #999999;
+	display: flex;
+	align-items: center;
+	margin-top: 16upx;
+}
+.list_one_r .introb .l{
+	overflow:hidden; 
+	text-overflow:ellipsis; 
+	white-space:nowrap; 
+}
+.list_one_r .introb .r{
+	white-space:nowrap; 
+}
+.list_one_r .introb text{
+	display: inline-block;
+	min-width: 2upx;
+	height: 20upx;
+	background-color: #c1c1c1;
+	margin: 0 14upx 0 14upx;
+}
+.list_one_r .price {
+	font-size: 22upx;
+	color: #000;
+	margin-top: 10upx;
+	font-weight: 300;
+}
+
+.list_one_r .price .text {
+	color: #f50000;
+	font-weight: bold;
+}
+
+.list_one_r .price .price {
+	font-size: 36upx;
+	color: #f50000;
+	margin: 0 10upx 0 2upx;
+}
+
+.list_one_r .price .price-right {
+	font-size: 20upx;
+	font-family: PingFang SC;
+	font-weight: 500;
+	color: rgba(122, 122, 122, 1);
+	line-height: 36upx;
+	margin: 0 0upx 0 40upx;
+}
+
+.topbtn {
+	width: 100%;
+	overflow-x: scroll;
+	height: 114upx;
+	background-color: #ffffff;
+	position: fixed;
+	top: 100upx;
+	z-index: 1;
+	box-shadow: 0 0 15upx rgba(0, 0, 0, 0.05);
+}
+
+.playRecommend_nav {
+	width: max-content;
+	height: 114upx;
+	background-color: #ffffff;
+	/* position: fixed;
+	top: 100upx;
+	z-index: 1;
+	box-shadow: 0 0 15upx rgba(0, 0, 0, 0.05); */
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+	padding: 0 30upx;
+}
+
+.playRecommend_nav .nav {
+	width: 100upx;
+	height: 54upx;
+	line-height: 54upx;
+	background-color: #f1f1f1;
+	border-radius: 27upx;
+	font-size: 28upx;
+	color: #222222;
+	text-align: center;
+	margin-right: 39upx;
+}
+
+.nav_selected {
+	background-image: linear-gradient(235deg, #ff7112 0%, #ff8532 100%) !important;
+	color: #ffffff !important;
+}

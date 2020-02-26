@@ -1,0 +1,159 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/customizedList/customized",
+			"style": {
+				"navigationBarTitleText": "定制师列表"
+			}
+		},
+		{
+			"path": "pages/selectCity/selectCity",
+			"style": {
+				"navigationBarTitleText": "城市"
+			}
+		},
+		{
+			"path": "pages/studio/studio",
+			"style": {
+				"navigationBarTitleText": "我的工作室"
+			}
+		},
+		{
+			"path": "pages/scenicRecommend/scenicRecommend",
+			"style": {
+				"navigationBarTitleText": "商品推荐",
+				"navigationBarBackgroundColor": "#ff8532",
+				"navigationBarTextStyle": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/planDetail/planDetail",
+			"style": {
+				"navigationBarTitleText": "方案详情"
+			}
+		},
+		{
+			"path": "pages/details/homestayDetail/homestayDetail",
+			"style": {
+				"navigationBarTitleText": "民宿详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/hotelDetail/hotelDetail",
+			"style": {
+				"navigationBarTitleText": "酒店详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/otherDetail/otherDetail",
+			"style": {
+				"navigationBarTitleText": "其他详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/restaurantDetail/restaurantDetail",
+			"style": {
+				"navigationBarTitleText": "餐饮详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/scenicSpotDetail/scenicSpotDetail",
+			"style": {
+				"navigationBarTitleText": "景点详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/standardDetail/standardDetail",
+			"style": {
+				"navigationBarTitleText": "跟团游详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/specialtyDetail/specialtyDetail",
+			"style": {
+				"navigationBarTitleText": "特产详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/authorizations/authorizations",
+			"style": {
+				"navigationBarTitleText": "游米游"
+			}
+		},
+		{
+			"path": "pages/downloadapp/downloadapp",
+			"style": {
+				"navigationBarTitleText": "下载app"
+			}
+		},
+		{
+			"path": "pages/confirm/specialtyConfirm/specialtyConfirm",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/confirm/sceneConfirm/sceneConfirm",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/confirm/hotelConfirm/hotelConfirm",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/confirm/boutiquesConfirm/boutiquesConfirm",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/paySuccess/paySuccess",
+			"style": {
+				"navigationBarTitleText": "支付成功",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/payGoapp/payGoapp",
+			"style": {
+				"navigationBarTitleText": "预约成功",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/customizationList/customizationList",
+			"style": {
+				"navigationBarTitleText": "我的定制师列表"
+			}
+		}
+
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

@@ -1,0 +1,109 @@
+page{
+	background: #f8f8f8;
+}
+.specialtyConfirm{
+	padding-bottom: 70upx;
+}
+.resourceinfo{
+	width: 100%;
+	padding: 0 30upx 30upx 30upx;
+	background: #fff;
+	margin-top: 20upx;
+}
+.resourceinfo .title{
+	display: flex;
+	height: 100upx;
+	align-items: center;
+	border-bottom: 1px solid #e0e0e0;
+}
+.resourceinfo .title image{
+	width: 35upx;
+	height: 35upx;
+	margin-right: 20upx;
+}
+.resourceinfo .title text{
+	font-size: 30upx;
+	font-weight: bold;
+	color: #333333;
+}
+.resourceinfo .con{
+	margin-top: 50upx;
+}
+.resourceinfo .con .text{
+	
+}
+.resourceinfo .con .con1{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 30upx;
+}
+.resourceinfo .con .con1 .l{
+	display: flex;
+	align-items: center;
+	height: 52upx;
+}
+.resourceinfo .con .con1 .l input{
+	width: 80upx;
+	height: 50upx;
+	background-color: #f9f9f9;
+	border-radius: 7.5upx;
+	text-align: center;
+}
+.resourceinfo .con .con1 .r{
+	
+}
+.hotelinfo{
+	width: 100%;
+	padding: 0 30upx 50upx 30upx;
+	margin-top: 20upx;
+}
+.hotelinfo .title{
+	display: flex;
+	height: 100upx;
+	align-items: center;
+	border-bottom: 1px solid #e0e0e0;
+}
+.hotelinfo .title image{
+	width: 35upx;
+	height: 35upx;
+	margin-right: 20upx;
+}
+.hotelinfo .title text{
+	font-size: 30upx;
+	font-weight: bold;
+	color: #333333;
+}
+.hotelinfo .con{
+	margin-top: 30upx;
+	margin-bottom: 50upx;
+}
+.hotelinfo .con .text{
+	font-size: 28upx;
+}
+.hotelinfo .con .con1{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20upx;
+	font-size: 28upx;
+}
+.hotelinfo .con .con1 .l{
+	display: flex;
+	align-items: center;
+	height: 52upx;
+}
+.hotelinfo .con .con1 .l input{
+	width: 80upx;
+	height: 50upx;
+	background-color: #f9f9f9;
+	border-radius: 7.5upx;
+	text-align: center;
+	border: 1px solid #999;
+	margin: 0 10upx;
+}
+.hotelinfo .con .con2{
+	font-size: 24upx;
+	color: #666;
+	margin-top: 10upx;
+}

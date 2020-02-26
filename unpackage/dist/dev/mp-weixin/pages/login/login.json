@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "登录",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "tui-toast": "/plugins/thorui/components/extend/toast/toast"
+  }
+}

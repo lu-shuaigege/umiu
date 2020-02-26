@@ -1,0 +1,55 @@
+page{
+	background: #f8f8f8;
+}
+.resourceinfo{
+	width: 100%;
+	padding: 0 30upx 50upx 30upx;
+	background: #fff;
+	margin-top: 20upx;
+}
+.resourceinfo .title{
+	display: flex;
+	height: 100upx;
+	align-items: center;
+	border-bottom: 1px solid #e0e0e0;
+}
+.resourceinfo .title image{
+	width: 35upx;
+	height: 35upx;
+	margin-right: 20upx;
+}
+.resourceinfo .title text{
+	font-size: 30upx;
+	font-weight: bold;
+	color: #333333;
+}
+.resourceinfo .con{
+	margin-top: 50upx;
+}
+.resourceinfo .con .title1{
+	font-size: 32upx
+}
+.resourceinfo .con .text{
+	margin-top: 20upx;
+}
+.resourceinfo .con .con1{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20upx;
+}
+.resourceinfo .con .con1 .l{
+	display: flex;
+	align-items: center;
+	height: 52upx;
+}
+.resourceinfo .con .con1 .l input{
+	width: 80upx;
+	height: 50upx;
+	background-color: #f9f9f9;
+	border-radius: 7.5upx;
+	text-align: center;
+}
+.resourceinfo .con .con1 .r{
+	
+}

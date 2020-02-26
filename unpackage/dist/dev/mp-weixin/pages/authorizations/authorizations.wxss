@@ -1,0 +1,37 @@
+
+.users {
+	width: 100vw;
+	height: 100vh;
+	background-color: #e7f1f0;
+}
+.users-content {
+	width: 100vw;
+	height: 100vh;
+	background-color: #e7f1f0;
+	text-align: center;
+}
+.users-content-img {
+	width: 674rpx;
+	height: 674rpx;
+	margin: 30rpx auto 0rpx;
+}
+.users-content-btn {
+	width: 280rpx;
+	height: 78rpx;
+	background-color: #f16666;
+	border-radius: 39rpx;
+	text-align: center;
+	margin: 110rpx auto;
+	font-family: PingFang-SC-Medium;
+	font-size: 30rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0rpx;
+	color: #ffffff;
+	line-height: 78rpx;
+}
+.users-content-imglogo {
+	height: 65rpx;
+	width: 195rpx;
+}
+

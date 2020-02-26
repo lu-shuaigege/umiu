@@ -1,0 +1,65 @@
+page{
+	background: #f8f8f8;
+}
+.resourceinfo{
+	width: 100%;
+	padding: 0 30rpx 50rpx 30rpx;
+	background: #fff;
+	margin-top: 20rpx;
+}
+.resourceinfo .title{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	height: 100rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	border-bottom: 1px solid #e0e0e0;
+}
+.resourceinfo .title image{
+	width: 35rpx;
+	height: 35rpx;
+	margin-right: 20rpx;
+}
+.resourceinfo .title text{
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #333333;
+}
+.resourceinfo .con{
+	margin-top: 50rpx;
+}
+.resourceinfo .con .text{
+}
+.resourceinfo .con .con1{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	margin-top: 30rpx;
+}
+.resourceinfo .con .con1 .l{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	height: 52rpx;
+}
+.resourceinfo .con .con1 .l input{
+	width: 80rpx;
+	height: 50rpx;
+	background-color: #f9f9f9;
+	border-radius: 7.5rpx;
+	text-align: center;
+}
+.resourceinfo .con .con1 .r{
+}
+

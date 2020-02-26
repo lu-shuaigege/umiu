@@ -1,0 +1,33 @@
+page{
+	background: #FFFFFF;
+}
+.paySuccess{
+	text-align: center;
+}
+.paySuccess image{
+	width: 311rpx;
+	height: 210rpx;
+	margin-top: 80rpx;
+}
+.paySuccess .first{
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #28282c;
+	margin-top: 30rpx;
+}
+.paySuccess .second{
+	font-size: 24rpx;
+	color: #666666;
+	margin-top: 25rpx;
+}
+.paySuccess .third{
+	font-size: 30rpx;
+	color: #666666;
+	margin-top: 65rpx;
+}
+.paySuccess .third text{
+	font-size: 30rpx;
+	color: #ff6600;
+	text-decoration: underline;
+}
+

@@ -1,0 +1,116 @@
+page{
+	background: #FFFFFF;
+}
+.login{
+	text-align: center;
+}
+.login .logo{
+	width: 134upx;
+	height: 212upx;
+	margin-top: 50upx;
+	margin-bottom: 53upx;
+}
+.login input{
+	width: 690upx;
+	height: 90upx;
+	background-color: #f8f8f8;
+	border-radius: 45upx;
+	margin-top: 40upx;
+	text-align: left;
+	padding-left: 100upx;
+}
+.login .tel{
+	position: relative;
+	width: 690upx;
+	height: 90upx;
+	background-color: #f8f8f8;
+	margin-left: 30upx;
+	border-radius: 45upx;
+}
+.login .yzm button{
+	width: 300upx;
+	height: 90upx;
+	line-height: 90upx;
+	background: transparent;
+	border: none;
+	outline-style: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	color: #ff6600;
+	font-size: 28upx;
+	text-align: right;
+}
+.login .yzm .disabled{
+	color: #999;
+}
+.login .yzm .line{
+	width: 1px;
+	height: 40upx;
+	background: #ff6600;
+	position: absolute;
+	z-index: 1;
+	right: 250upx;
+	top: 25upx;
+}
+.login .tel image{
+	position: absolute;
+	width: 50upx;
+	height: 50upx;
+	z-index: 1;
+	top: 20upx;
+	left: 30upx;
+}
+.login .yzm{
+	position: relative;
+	width: 690upx;
+	height: 90upx;
+	background-color: #f8f8f8;
+	margin-left: 30upx;
+	border-radius: 45upx;
+}
+.login .yzm input{
+	width: 390upx;
+	height: 90upx;
+	background-color: #f8f8f8;
+	border-radius: 45upx;
+}
+.login .yzm image{
+	position: absolute;
+	width:50upx;
+	height: 50upx;
+	z-index: 1;
+	top: 20upx;
+	left: 30upx;
+}
+.login .submit{
+	width: 690upx;
+	height: 90upx;
+	line-height: 90upx;
+	background-image: linear-gradient(0deg, 
+		#ff6600 0%, 
+		#ff8532 100%);
+	border-radius: 45upx;
+	margin-top: 60upx;
+	font-size: 30upx;
+	color: #ffffff;
+}
+input::-webkit-input-placeholder {
+  color: #999;
+  font-weight: 300;
+  font-size: 28upx;
+}
+input::-moz-input-placeholder {
+	color: #999;
+	font-weight: 300;
+	font-size: 28upx;
+}
+input::-ms-input-placeholder {
+	color: #999;
+	font-weight: 300;
+	font-size: 28upx;
+}
+button::after {
+  border: none
+}

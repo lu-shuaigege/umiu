@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/customizedList/customized",
+    "pages/selectCity/selectCity",
+    "pages/studio/studio",
+    "pages/scenicRecommend/scenicRecommend",
+    "pages/planDetail/planDetail",
+    "pages/details/homestayDetail/homestayDetail",
+    "pages/details/hotelDetail/hotelDetail",
+    "pages/details/otherDetail/otherDetail",
+    "pages/details/restaurantDetail/restaurantDetail",
+    "pages/details/scenicSpotDetail/scenicSpotDetail",
+    "pages/details/standardDetail/standardDetail",
+    "pages/details/specialtyDetail/specialtyDetail",
+    "pages/login/login",
+    "pages/authorizations/authorizations",
+    "pages/downloadapp/downloadapp",
+    "pages/confirm/specialtyConfirm/specialtyConfirm",
+    "pages/confirm/sceneConfirm/sceneConfirm",
+    "pages/confirm/hotelConfirm/hotelConfirm",
+    "pages/confirm/boutiquesConfirm/boutiquesConfirm",
+    "pages/paySuccess/paySuccess",
+    "pages/payGoapp/payGoapp",
+    "pages/customizationList/customizationList"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap31.json"
+}

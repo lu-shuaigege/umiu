@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "城市",
+  "usingComponents": {
+    "tui-icon": "/plugins/thorui/components/icon/icon"
+  }
+}

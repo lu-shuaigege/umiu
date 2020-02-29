@@ -137,7 +137,7 @@ export default {
 			} else {
 				_this.child = _this.child.replace(/\&nbsp;/g, '');
 				uni.navigateTo({
-					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&$isDis={_this.isDis}`
+					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&isDis=${_this.isDis}`
 				});
 			}
 			uni.getSetting({
@@ -159,7 +159,15 @@ export default {
 		CheckboxChange(e) {
 			this.child = JSON.stringify(e.detail.value);
 		}
-	}
+	},
+	// 转发
+	// onShareAppMessage() {
+	// 	let _this = this;
+	// 	return {
+	// 		title: '酒店详情',
+	// 		path: `/pages/details/hotelDetail/hotelDetail?id=${_this.id}&isDis=${_this.isDis}`
+	// 	};
+	// }
 };
 </script>
 

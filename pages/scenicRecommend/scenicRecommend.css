@@ -4,6 +4,10 @@ page {
 
 .search-form {}
 
+.search_input {
+	padding-left: 30upx;
+}
+
 .round {
 	/* width:560px;
 	height:48px; */
@@ -12,9 +16,10 @@ page {
 	/* border-radius:24px; */
 }
 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #FFFFFF;
-  /* font-size: 16px; */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #FFFFFF;
+	/* font-size: 16px; */
 }
 
 .address {
@@ -91,7 +96,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 }
-.list_one_r .introb{
+
+.list_one_r .introb {
 	font-size: 22upx;
 	line-height: 36upx;
 	color: #999999;
@@ -99,21 +105,25 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 	align-items: center;
 	margin-top: 16upx;
 }
-.list_one_r .introb .l{
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-	white-space:nowrap; 
+
+.list_one_r .introb .l {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.list_one_r .introb .r{
-	white-space:nowrap; 
+
+.list_one_r .introb .r {
+	white-space: nowrap;
 }
-.list_one_r .introb text{
+
+.list_one_r .introb text {
 	display: inline-block;
 	min-width: 2upx;
 	height: 20upx;
 	background-color: #c1c1c1;
 	margin: 0 14upx 0 14upx;
 }
+
 .list_one_r .price {
 	font-size: 22upx;
 	color: #000;

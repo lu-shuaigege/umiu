@@ -2,6 +2,9 @@ page {
 	background: #f8f8f8;
 }
 .search-form {}
+.search_input {
+	padding-left: 30rpx;
+}
 .round {
 	/* width:560px;
 	height:48px; */
@@ -9,9 +12,10 @@ page {
 	/* opacity:0.2; */
 	/* border-radius:24px; */
 }
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #FFFFFF;
-  /* font-size: 16px; */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #FFFFFF;
+	/* font-size: 16px; */
 }
 .address {
 	margin: 0rpx 12rpx 0rpx 20rpx;
@@ -82,7 +86,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 }
-.list_one_r .introb{
+.list_one_r .introb {
 	font-size: 22rpx;
 	line-height: 36rpx;
 	color: #999999;
@@ -94,15 +98,15 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 	        align-items: center;
 	margin-top: 16rpx;
 }
-.list_one_r .introb .l{
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-	white-space:nowrap;
+.list_one_r .introb .l {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.list_one_r .introb .r{
-	white-space:nowrap;
+.list_one_r .introb .r {
+	white-space: nowrap;
 }
-.list_one_r .introb text{
+.list_one_r .introb text {
 	display: inline-block;
 	min-width: 2rpx;
 	height: 20rpx;

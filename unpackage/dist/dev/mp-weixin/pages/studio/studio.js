@@ -664,32 +664,32 @@ options) {
     switch (type) {
       case 'hotel':
         uni.navigateTo({
-          url: '/pages/details/hotelDetail/hotelDetail?id=' + id });
+          url: "/pages/details/hotelDetail/hotelDetail?id=".concat(id, "&isDis=1") });
 
         break;
       case 'repast':
         uni.navigateTo({
-          url: '/pages/details/restaurantDetail/restaurantDetail?id=' + id });
+          url: "/pages/details/restaurantDetail/restaurantDetail?id=".concat(id, "&isDis=1") });
 
         break;
       case 'sight':
         uni.navigateTo({
-          url: '/pages/details/scenicSpotDetail/scenicSpotDetail?id=' + id });
+          url: "/pages/details/scenicSpotDetail/scenicSpotDetail?id=".concat(id, "&isDis=1") });
 
         break;
       case 'homestay':
         uni.navigateTo({
-          url: '/pages/details/homestayDetail/homestayDetail?id=' + id });
+          url: "/pages/details/homestayDetail/homestayDetail?id=".concat(id, "&isDis=1") });
 
         break;
       case 'feature':
         uni.navigateTo({
-          url: '/pages/details/otherDetail/otherDetail?id=' + id });
+          url: "/pages/details/otherDetail/otherDetail?id=".concat(id, "&isDis=1") });
 
         break;
       case 'boutique':
         uni.navigateTo({
-          url: '/pages/details/standardDetail/standardDetail?id=' + id });
+          url: "/pages/details/standardDetail/standardDetail?id=".concat(id, "&isDis=1") });
 
         break;}
 

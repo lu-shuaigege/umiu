@@ -3,9 +3,9 @@
 		<view class="cu-bar search fixed" style="background: #ff8532;">
 			<view class="search-form round" style="background: rgba(255,255,255,0.2);">
 				<!-- 				<text class="cuIcon-search" style="color: #7A7A7A;"></text> -->
-				<view class="address" @click="gotocity()">{{ cityName }}</view>
+				<!-- <view class="address" @click="gotocity()">{{ cityName }}</view>
 				<image class="address-img" src="../../static/img/citydown.png" mode=""></image>
-				<view class="shu"></view>
+				<view class="shu"></view> -->
 				<input
 					class="search_input"
 					type="text"

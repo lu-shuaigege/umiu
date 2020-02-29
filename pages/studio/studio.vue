@@ -67,7 +67,7 @@
 					<view class="studioCenter-bottom-top-right" @click="gotoscenicRecommend()">查看更多</view>
 				</view>
 				<view class="studioCenter-bottom-bottom">
-					<view v-for="(item, index) of data.plays" :key="index" @click="toDetail(item.distributable_id, item.type)" class="studioCenter-bottom-bottom-item">
+					<view v-for="(item, index) of data.plays" :key="index" @click="toDetail(item.id, item.type)" class="studioCenter-bottom-bottom-item">
 						<image class="studioCenter-bottom-bottom-item-img" :src="item.cover_image" mode=""></image>
 						<view class="studioCenter-bottom-bottom-item-name">{{ item.title }}</view>
 						<view class="studioCenter-bottom-bottom-item-bottom">
@@ -343,7 +343,7 @@ export default {
 			})
 			.exec();
 	},
-	onShow(options){
+	onShow(options) {
 		wx.hideHomeButton();
 		this.id = options.id;
 		this.getDetail();
@@ -529,32 +529,32 @@ export default {
 			switch (type) {
 				case 'hotel':
 					uni.navigateTo({
-						url: '/pages/details/hotelDetail/hotelDetail?id=' + id
+						url: `/pages/details/hotelDetail/hotelDetail?id=${id}&isDis=1`
 					});
 					break;
 				case 'repast':
 					uni.navigateTo({
-						url: '/pages/details/restaurantDetail/restaurantDetail?id=' + id
+						url: `/pages/details/restaurantDetail/restaurantDetail?id=${id}&isDis=1`
 					});
 					break;
 				case 'sight':
 					uni.navigateTo({
-						url: '/pages/details/scenicSpotDetail/scenicSpotDetail?id=' + id
+						url: `/pages/details/scenicSpotDetail/scenicSpotDetail?id=${id}&isDis=1`
 					});
 					break;
 				case 'homestay':
 					uni.navigateTo({
-						url: '/pages/details/homestayDetail/homestayDetail?id=' + id
+						url: `/pages/details/homestayDetail/homestayDetail?id=${id}&isDis=1`
 					});
 					break;
 				case 'feature':
 					uni.navigateTo({
-						url: '/pages/details/otherDetail/otherDetail?id=' + id
+						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
 					});
 					break;
 				case 'boutique':
 					uni.navigateTo({
-						url: '/pages/details/standardDetail/standardDetail?id=' + id
+						url: `/pages/details/standardDetail/standardDetail?id=${id}&isDis=1`
 					});
 					break;
 			}

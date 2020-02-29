@@ -71,10 +71,10 @@ export default {
 			this.child[i].quantity2 = 1;
 			this.allprice = this.allprice + this.child[i].oneprice;
 		}
-		console.log(this.child);
 	},
 	methods: {
 		getDetail(id, type) {
+			console.log(this.isDis)
 			if (this.isDis == 1) {
 				distributionDetail(id, type).then(res => {
 					this.list = res.data;

@@ -208,8 +208,8 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], quantity1: 1, quantity2: 1, allprice: 0, isclick: true, child: [], type: '', isDis: 0 };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.type = options.type;this.getDetail(options.id, options.type);var arr = JSON.parse(options.child);for (var i = 0; i < arr.length; i++) {var arr1 = JSON.parse(arr[i]);this.child.push(arr1);}for (var _i = 0; _i < this.child.length; _i++) {this.child[_i].oneprice = this.child[_i].price;this.child[_i].quantity1 = 1;this.child[_i].quantity2 = 1;this.allprice = this.allprice + this.child[_i].oneprice;}console.log(this.child);}, methods: {
-    getDetail: function getDetail(id, type) {var _this = this;
+var _default = { components: {}, data: function data() {return { list: [], quantity1: 1, quantity2: 1, allprice: 0, isclick: true, child: [], type: '', isDis: 0 };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.type = options.type;this.getDetail(options.id, options.type);var arr = JSON.parse(options.child);for (var i = 0; i < arr.length; i++) {var arr1 = JSON.parse(arr[i]);this.child.push(arr1);}for (var _i = 0; _i < this.child.length; _i++) {this.child[_i].oneprice = this.child[_i].price;this.child[_i].quantity1 = 1;this.child[_i].quantity2 = 1;this.allprice = this.allprice + this.child[_i].oneprice;}}, methods: { getDetail: function getDetail(id, type) {var _this = this;
+      console.log(this.isDis);
       if (this.isDis == 1) {
         (0, _api.distributionDetail)(id, type).then(function (res) {
           _this.list = res.data;

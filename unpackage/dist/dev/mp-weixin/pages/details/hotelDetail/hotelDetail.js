@@ -315,7 +315,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 var _default = { components: {}, data: function data() {return { list: [], id: '', child: [], isDis: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
-    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;this.getDetail(options.id);}, methods: { getDetail: function getDetail(id) {var _this2 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'hotel').then(function (res) {_this2.list = res.data;});} else {(0, _api.sourcesDetail)(id, 'hotel').then(function (res) {_this2.list = res.data;});}}, tobuy: function tobuy() {var _this = this;if (!_this.child.length) {uni.showToast({ icon: 'none', title: '请选择套餐' });return;}if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/login/login?id=".concat(_this.id, "&isDis=").concat(_this.isDis) });} else {_this.child = _this.child.replace(/\&nbsp;/g, '');uni.navigateTo({ url: "/pages/confirm/hotelConfirm/hotelConfirm?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&$isDis={_this.isDis}") });}uni.getSetting({ success: function success(res) {// if (!res.authSetting['scope.userInfo']) {
+    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;this.getDetail(options.id);}, methods: { getDetail: function getDetail(id) {var _this2 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'hotel').then(function (res) {_this2.list = res.data;});} else {(0, _api.sourcesDetail)(id, 'hotel').then(function (res) {_this2.list = res.data;});}}, tobuy: function tobuy() {var _this = this;if (!_this.child.length) {uni.showToast({ icon: 'none', title: '请选择套餐' });return;}if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/login/login?id=".concat(_this.id, "&isDis=").concat(_this.isDis) });} else {_this.child = _this.child.replace(/\&nbsp;/g, '');uni.navigateTo({ url: "/pages/confirm/hotelConfirm/hotelConfirm?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&isDis=").concat(_this.isDis) });}uni.getSetting({ success: function success(res) {// if (!res.authSetting['scope.userInfo']) {
           // if (uni.getStorageSync('token')) {
           // 	uni.navigateTo({
           // 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
@@ -326,7 +326,15 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           // 		url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&$isDis={_this.isDis}`
           // 	});
           // }
-        } });}, CheckboxChange: function CheckboxChange(e) {this.child = JSON.stringify(e.detail.value);} } };exports.default = _default;
+        } });}, CheckboxChange: function CheckboxChange(e) {this.child = JSON.stringify(e.detail.value);} } // 转发
+  // onShareAppMessage() {
+  // 	let _this = this;
+  // 	return {
+  // 		title: '酒店详情',
+  // 		path: `/pages/details/hotelDetail/hotelDetail?id=${_this.id}&isDis=${_this.isDis}`
+  // 	};
+  // }
+};exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

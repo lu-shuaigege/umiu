@@ -49,7 +49,7 @@
 		{
 			"path": "pages/details/otherDetail/otherDetail",
 			"style": {
-				"navigationBarTitleText": "其他详情",
+				"navigationBarTitleText": "特产详情", //其他详情
 				"navigationBarBackgroundColor": "#FFFFFF"
 			}
 		},

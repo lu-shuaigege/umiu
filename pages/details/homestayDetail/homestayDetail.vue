@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail } from '@/http/api.js';
+import { sourcesDetail, distributionDetail ,bindfans} from '@/http/api.js';
 export default {
 	components: {},
 	data() {
@@ -89,7 +89,12 @@ export default {
 			list: [],
 			id: '',
 			child: [],
-			isDis: 0
+			isDis: 0,
+			uid: "",
+			isbuy: 0,
+			code: '',
+			openid: '',
+			userInfo: {},
 		};
 	},
 	onShow() {
@@ -101,15 +106,77 @@ export default {
 			this.isDis = currPage.data.isDis;
 			this.getDetail(this.id);
 		}
+		if (uni.getStorageSync('code')) {
+			this.code = uni.getStorageSync('code');
+		}
+		if (uni.getStorageSync('openid')) {
+			this.openid = uni.getStorageSync('openid');
+		}
+		if (uni.getStorageSync('userInfo')) {
+			this.userInfo = uni.getStorageSync('userInfo');
+		}
+		if (currPage.data.uid) {
+			this.uid = currPage.data.uid;
+			this.bindfans();
+		}
+		
 	},
 	onLoad(options) {
 		this.id = options.id;
 		if (options.isDis && options.isDis == 1) {
 			this.isDis = 1;
 		}
+		if (options.uid) {
+			this.uid = options.uid;
+		}
+		if (uni.getStorageSync('code')) {
+			this.code = uni.getStorageSync('code');
+		}
+		if (uni.getStorageSync('openid')) {
+			this.openid = uni.getStorageSync('openid');
+		}
+		if (uni.getStorageSync('userInfo')) {
+			this.userInfo = uni.getStorageSync('userInfo');
+		}
+		if (getCurrentPages().length == 1) {
+			wx.getSetting({
+				success: res => {
+					//判断是否授权，如果授权成功
+					if (res.authSetting['scope.userInfo']) {
+						//获取用户信息
+						wx.getUserInfo({
+							success: res => {
+								this.userInfo = res.userInfo;
+								uni.setStorageSync('userInfo', res.userInfo);
+								this.bindfans();
+								this.getDetail(this.id);
+							}
+						});
+					} else {
+						uni.navigateTo({
+							url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+						});
+						return;
+					}
+				}
+			});
+		}
 		this.getDetail(options.id);
 	},
 	methods: {
+		bindfans() {
+			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
+				// this.list = res.data;
+				console.log(res)
+				if (res.code == 0) {
+					// uni.showToast({
+					// 	icon: 'none',
+					// 	title: '绑定粉丝成功'
+					// });
+				}
+			});
+		},
+		
 		getDetail(id) {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'homestay').then(res => {

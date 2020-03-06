@@ -462,15 +462,15 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
       daysList: [], modal: false, dates: '', //格式化后日期
       currentDate: new Date(), date: '', lefticon: false, //左边按钮
       chooseStart: -1, today: '', team: '', //微信号弹框
-      modal1: false, isDis: 0, uid: 0, isbuy: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages(); // console.log(pages);
+      modal1: false, isDis: 0, uid: "", isbuy: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages(); // console.log(pages);
     var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis; // this.uid = currPage.data.uid;
       this.isbuy = currPage.data.isbuy;this.getDetail(this.id); // this.bindfans();
-    }if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {var _this2 = this;if (options.isDis && options.isDis == 1) {this.isDis = 1;this.distributable_id = options.id;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;} // console.log('detail' + this.uid);
-    if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
+    }if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {var _this2 = this;if (options.isDis && options.isDis == 1) {this.isDis = 1;this.distributable_id = options.id;}this.id = options.id;if (options.uid) {this.uid = options.uid;} // console.log('detail' + this.uid);
+    if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
           if (res.authSetting['scope.userInfo']) {//获取用户信息
-            wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;_this2.bindfans();_this2.getDetail(_this2.id);} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;}} });}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
-        if (res.code == 0) {// uni.showToast({
+            wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.bindfans();_this2.getDetail(_this2.id);} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;}} });}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+        console.log(res);if (res.code == 0) {// uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
           // });
@@ -478,8 +478,22 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
     chooseItem: function chooseItem(item) {var _this3 = this;if (item.travel_date > this.today && item.price > 0) {this.chooseStart = item.id;this.team = item;setTimeout(function () {_this3.hide();}, 500);}}, //进入工作室
     toUpload: function toUpload() {this.modal1 = true;}, //关闭微信号弹框
     closewc: function closewc() {this.modal1 = false;}, //复制微信号
-    copy: function copy(data) {wx.setClipboardData({ data: data, success: function success(res) {wx.getClipboardData({ success: function success(res) {wx.hideLoading();uni.showToast({ icon: 'none', title: '微信号复制成功，去添加好友吧' });} });} });}, getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'boutique').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {_this4.list = res.data;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];});}}, //获取日历&&价格
-    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {
+    copy: function copy(data) {wx.setClipboardData({ data: data, success: function success(res) {wx.getClipboardData({ success: function success(res) {wx.hideLoading();uni.showToast({ icon: 'none', title: '微信号复制成功，去添加好友吧' });} });} });}, getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'boutique').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {
+          _this4.list = res.data;
+          _this4.chooseStart = _this4.list.teams[0].id;
+          _this4.team = _this4.list.teams[0];
+        });
+      }
+    },
+    //获取日历&&价格
+    getTeams: function getTeams(id) {var _this5 = this;
+      (0, _api.boutiquesTeams)(id, this.date).then(function (res) {
+        _this5.daysList = res.data;
+        if (_this5.daysList[0].week_zh == '周日') {
+          _this5.daysList.unshift();
+        } else if (_this5.daysList[0].week_zh == '周一') {
+          _this5.daysList.unshift({});
+        } else if (_this5.daysList[0].week_zh == '周二') {
           _this5.daysList.unshift({}, {});
         } else if (_this5.daysList[0].week_zh == '周三') {
           _this5.daysList.unshift({}, {}, {});

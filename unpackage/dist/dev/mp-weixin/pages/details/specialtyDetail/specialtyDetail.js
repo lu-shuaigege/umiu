@@ -212,8 +212,74 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then(__webpack_require__.bind(null, /*! @/plugins/gaoyia-parse/parse.vue */ 242));};var _default = { components: { uParse: uParse }, data: function data() {return { list: [], id: '', isDis: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
-    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;this.getDetail(options.id);}, methods: { getDetail: function getDetail(id) {var _this2 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'specialty').then(function (res) {_this2.list = res.data;});} else {(0, _api.sourcesDetail)(id, 'specialty').then(function (res) {_this2.list = res.data;});}
+var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then(__webpack_require__.bind(null, /*! @/plugins/gaoyia-parse/parse.vue */ 242));};var _default = { components: { uParse: uParse }, data: function data() {return { list: [], id: '', isDis: 0, uid: "", isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
+    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}
+  },
+  onLoad: function onLoad(options) {var _this2 = this;
+    if (options.isDis && options.isDis == 1) {
+      this.isDis = 1;
+    }
+    this.id = options.id;
+    if (options.uid) {
+      this.uid = options.uid;
+    }
+    if (uni.getStorageSync('code')) {
+      this.code = uni.getStorageSync('code');
+    }
+    if (uni.getStorageSync('openid')) {
+      this.openid = uni.getStorageSync('openid');
+    }
+    if (uni.getStorageSync('userInfo')) {
+      this.userInfo = uni.getStorageSync('userInfo');
+    }
+    if (getCurrentPages().length == 1) {
+      wx.getSetting({
+        success: function success(res) {
+          //判断是否授权，如果授权成功
+          if (res.authSetting['scope.userInfo']) {
+            //获取用户信息
+            wx.getUserInfo({
+              success: function success(res) {
+                _this2.userInfo = res.userInfo;
+                uni.setStorageSync('userInfo', res.userInfo);
+                _this2.bindfans();
+                _this2.getDetail(_this2.id);
+              } });
+
+          } else {
+            uni.navigateTo({
+              url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });
+
+            return;
+          }
+        } });
+
+    }
+    this.getDetail(options.id);
+  },
+  methods: {
+    bindfans: function bindfans() {
+      (0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
+        // this.list = res.data;
+        console.log(res);
+        if (res.code == 0) {
+          // uni.showToast({
+          // 	icon: 'none',
+          // 	title: '绑定粉丝成功'
+          // });
+        }
+      });
+    },
+    getDetail: function getDetail(id) {var _this3 = this;
+      if (this.isDis == 1) {
+        (0, _api.distributionDetail)(id, 'specialty').then(function (res) {
+          _this3.list = res.data;
+        });
+      } else {
+        (0, _api.sourcesDetail)(id, 'specialty').then(function (res) {
+          _this3.list = res.data;
+        });
+      }
     },
     tobuy: function tobuy() {
       var _this = this;

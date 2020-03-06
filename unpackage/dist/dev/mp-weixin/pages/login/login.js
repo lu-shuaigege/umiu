@@ -248,6 +248,7 @@ var tuiToast = function tuiToast() {return __webpack_require__.e(/*! import() | 
                     uni.getUserInfo({
                       success: function success(infoRes) {
                         that.userInfo = infoRes.userInfo;
+                        uni.setStorageSync('userInfo', infoRes.userInfo);
                         that.login();
                       } });
 
@@ -350,7 +351,7 @@ var tuiToast = function tuiToast() {return __webpack_require__.e(/*! import() | 
           isDis: _this2.isDis,
           uid: _this2.uid });
 
-        console.log(_this2.id);
+        console.log("id" + _this2.id);
         wx.navigateBack({
           //返回
           delta: 1 });

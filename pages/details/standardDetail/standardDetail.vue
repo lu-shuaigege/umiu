@@ -252,7 +252,7 @@ export default {
 			//微信号弹框
 			modal1: false,
 			isDis: 0,
-			uid: 0,
+			uid: "",
 			isbuy: 0
 		};
 	},
@@ -269,10 +269,20 @@ export default {
 			this.getDetail(this.id);
 			// this.bindfans();
 		}
+		if (uni.getStorageSync('code')) {
+			this.code = uni.getStorageSync('code');
+		}
+		if (uni.getStorageSync('openid')) {
+			this.openid = uni.getStorageSync('openid');
+		}
+		if (uni.getStorageSync('userInfo')) {
+			this.userInfo = uni.getStorageSync('userInfo');
+		}
 		if (currPage.data.uid) {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
+		
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -280,7 +290,6 @@ export default {
 			this.distributable_id = options.id;
 		}
 		this.id = options.id;
-		console.log(options.id);
 		if (options.uid) {
 			this.uid = options.uid;
 		}
@@ -291,6 +300,9 @@ export default {
 		if (uni.getStorageSync('openid')) {
 			this.openid = uni.getStorageSync('openid');
 		}
+		if (uni.getStorageSync('userInfo')) {
+			this.userInfo = uni.getStorageSync('userInfo');
+		}
 		if (getCurrentPages().length == 1) {
 			wx.getSetting({
 				success: res => {
@@ -300,6 +312,7 @@ export default {
 						wx.getUserInfo({
 							success: res => {
 								this.userInfo = res.userInfo;
+								uni.setStorageSync('userInfo', res.userInfo);
 								this.bindfans();
 								this.getDetail(this.id);
 							}
@@ -319,6 +332,7 @@ export default {
 		bindfans() {
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
+				console.log(res)
 				if (res.code == 0) {
 					// uni.showToast({
 					// 	icon: 'none',

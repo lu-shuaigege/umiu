@@ -113,6 +113,7 @@ export default {
 										uni.getUserInfo({
 											success: function(infoRes) {
 												that.userInfo = infoRes.userInfo;
+												uni.setStorageSync('userInfo', infoRes.userInfo);
 												that.login();
 											}
 										});
@@ -215,7 +216,7 @@ export default {
 					isDis: this.isDis,
 					uid: this.uid
 				});
-				console.log(this.id);
+				console.log("id"+this.id);
 				wx.navigateBack({
 					//返回
 					delta: 1

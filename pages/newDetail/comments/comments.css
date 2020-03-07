@@ -1,0 +1,114 @@
+page{
+	background-color: #ffffff;
+}
+.comments{
+    width: 750upx;
+    background-color: #ffffff;
+    /* margin-top: 20upx; */
+    margin-bottom: 30upx;
+  }
+  .comments .title{
+    font-size: 30upx;
+    font-weight: bold;
+    color: #28282c;
+    width: 690upx;
+    margin: 0 auto;
+    padding-top: 30upx;
+  }
+  .comments .title text{
+    font-size: 24upx;
+    font-weight: 400;
+    color: #999999;
+  	margin-left: 10upx;
+  }
+  .comments .title text{
+    font-size: 24upx;
+    font-weight: 400;
+    color: #999999;
+  }
+  .comments_list{
+    width: 690upx;
+    margin: 0 auto;
+  }
+  .comments_list .listone{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 37.5upx;
+    margin-bottom: 22upx;
+  }
+  .comments_list .listone .headimage{
+    width: 60upx;
+    height: 60upx;
+    border-radius: 50%;
+    border: solid 2upx rgba(255, 102, 0, 0.5);
+  }
+  .comments_list .listone .con{
+    width: 508upx;
+  }
+  .comments_list .listone .con .p{
+    display: flex;
+  }
+  .comments_list .listone .con .p .name{
+    font-size: 26upx;
+    max-width: 338upx;
+    font-weight: bold;
+    color: #28282c;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap;
+  }
+  .comments_list .listone .con .p .time{
+    font-size: 22upx;
+    font-weight: 300;
+    color: #999999;
+    margin-left: 20upx;
+  }
+  .comments_list .listone .con .comment{
+    font-size: 28upx;
+    font-weight: 300;
+    line-height: 42upx;
+    color: #666666;
+    margin-top: 15upx;
+  }
+  .comments_list .listone .vote{
+    display: flex;
+  }
+  .comments_list .listone .vote image{
+    width: 34upx;
+    height: 34upx;
+  }
+  .comments_list .listone .vote view{
+    font-size: 22upx;
+    color: #28282c;
+    margin-left: 9upx;
+  }
+  .listone_iner{
+    width: 562upx;
+    background-color: #f8f8f8;
+    border-radius: 8upx;
+    margin-left: 83upx;
+    padding: 8upx 21upx;
+  }
+  .listone_inerp{
+    margin-top: 30upx;
+  }
+  .listone_inerp .listone .headimage{
+    width: 40upx;
+    height: 40upx;
+    border-radius: 50%;
+    border: solid 2upx rgba(255, 102, 0, 0.5);
+  }
+  .listone_inerp .listone .con{
+    width: 412upx;
+  }
+  .listone_inerp .listone .con .p .name{
+    max-width: 240upx;
+  }
+  .none{
+    width: 100%;
+    text-align: center;
+  }
+  .none image{
+    width: 262upx;
+    margin-top: 75upx;
+  }

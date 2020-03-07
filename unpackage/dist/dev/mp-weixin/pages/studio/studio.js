@@ -357,376 +357,391 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = __webpack_require__(/*! @/http/api.js */ 21);var _components$data$onSh;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 196));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 203));};var _default = (_components$data$onSh = {
-
-
-
-  components: {
-    tuiLoadmore: tuiLoadmore,
-    tuiNomore: tuiNomore },
-
-  data: function data() {
-    return {
-      id: '', //详情id
-      openid: '',
-      topnocontent: false, //是否有我的定制师
-      pagea: 1,
-      pageb: 1,
-      pagec: 1,
-      paged: 1,
-      loadding: false,
-      pullUpOn: true,
-      studioBottomActive: 1, //按钮选中状态
+var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 228));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 235));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
+      openid: '', topnocontent: false, //是否有我的定制师
+      pagea: 1, pageb: 1, pagec: 1, paged: 1, loadding: false, pullUpOn: true, studioBottomActive: 1, //按钮选中状态
       answer: '', //回答
       fixTop: '', //区域离顶部的高度
       scrollTop: 0, //滑动条离顶部的距离
-      studioBottomList: [
-      {
-        id: 1,
-        img: '../../static/img/video.png',
-        title: '短视频' },
-
-      // {
+      studioBottomList: [{ id: 1, img: '../../static/img/video.png', title: '短视频' }, // {
       // 	id: 2,
       // 	img: '../../static/img/camera.png',
       // 	title: '直播'
       // },
-      {
-        id: 3,
-        img: '../../static/img/people.png',
-        title: '我的圈子' },
-
-      {
-        id: 4,
-        img: '../../static/img/city.png',
-        title: '攻略游记' },
-
-      {
-        id: 5,
-        img: '../../static/img/speak.png',
-        title: '问答' }],
-
-
-      // 问答
-      dialogue: [],
-      // 短视频
-      video: [],
-      // 直播
-      live: [
-      {
-        id: 1,
-        img: '../../static/img/livea.jpg',
-        status: 0 },
-
-      {
-        id: 2,
-        img: '../../static/img/liveb.jpg',
-        status: 1 },
-
-      {
-        id: 3,
-        img: '../../static/img/livec.jpg',
-        status: 2 },
-
-      {
-        id: 4,
-        img: '../../static/img/lived.jpg',
-        status: 1 }],
-
-
-      // 攻略游记
-      travels: [],
-      // 我的圈子推荐
-      recommendStudiotop: [],
-      // 我的圈子
-      recommendStudio: [],
-      data: {
-        user: {
-          id: 0,
-          supplier_id: 0,
-          username: '',
-          truename: '',
-          mobile: '',
-          avatar: '',
-          nickname: '',
-          sex: 2,
-          wx_number: '',
-          profile: '',
-          rating: '',
-          cover_image: '',
-          role: '',
-          role_zh: '',
-          role_type: '',
-          is_admin: 0 },
-
-        trade_number: 0,
-        visitor_number: 0,
-        service_number: 0,
-        play_number: 0,
-        plays: [] } };
-
-
-  },
-  onShow: function onShow() {
-    wx.hideHomeButton();
-  },
-  onPageScroll: function onPageScroll(res) {var _this = this;
-    wx.createSelectorQuery().
-    select('.studioBottom-top').
-    boundingClientRect(function (rect) {
-      _this.fixTop = rect.top;
-    }).
-    exec();
-  } }, _defineProperty(_components$data$onSh, "onShow", function onShow(
-options) {
-  wx.hideHomeButton();
-  this.id = options.id;
-  this.getDetail();
-}), _defineProperty(_components$data$onSh, "onLoad", function onLoad(
-options) {
-  this.id = options.id;
-  // this.getList();
-  if (options.id) {
-    uni.setStorageSync('studio', options.id);
-  }
-  if (uni.getStorageSync('studio')) {
-    this.id = uni.getStorageSync('studio');
-  } else {
-    this.topnocontent = true;
-  }
-  if (uni.getStorageSync('openid')) {
-    this.openid = uni.getStorageSync('openid');
-  } else {
-    this.authorizations();
-  }
-  this.getDetail();
-  this.videos();
-  this.circle();
-  this.circles(true);
-  this.travelsfn();
-  this.questions();
-}), _defineProperty(_components$data$onSh, "methods",
-{
-  authorizations: function authorizations() {
-    uni.navigateTo({
-      url: "/pages/authorizations/authorizations?id=".concat(this.id) });
-
-  },
-  gotoStudio: function gotoStudio(friend_id) {
-    uni.navigateTo({
-      url: '/pages/studio/studio?id=' + friend_id });
-
-  },
-  tel: function tel() {
-    wx.makePhoneCall({
-      phoneNumber: this.data.user.mobile });
-
-  },
-  gotolife: function gotolife() {
-    wx.pageScrollTo({
-      scrollTop: 820,
-      duration: 300 });
-
-  },
-  // 用户信息
-  getDetail: function getDetail() {var _this2 = this;
-    (0, _api.usersStudio)(this.id, this.openid).then(function (res) {
-      _this2.data = res.data;
-    });
-  },
-  // 短视频
-  videos: function videos() {var _this3 = this;
-    (0, _api.videos)(this.pagea, this.id).then(function (res) {
-      // console.log(res);
-      // this.video = res.data.data;
-      // if (!this.pullUpOn) return;
-      _this3.loadding = true;
-      if (res.data.data.length == 0) {
-        _this3.loadding = false;
-        _this3.pullUpOn = false;
-        return;
-      }
-      if (res.data.data.length !== 0) {
-        _this3.loadding = false;
-        _this3.pullUpOn = false;
-        _this3.video = _this3.video.concat(res.data.data);
-        _this3.pagea++;
-        return;
-      }
-      // this.video = this.video.concat(res.data.data);
-      // this.pagea++;
-    });
-  },
-  //我的圈子推荐
-  circles: function circles(recommend) {var _this4 = this;
-    (0, _api.circles)(this.id, recommend).then(function (res) {
-      _this4.recommendStudiotop = res.data.slice(0, 1);
-    });
-  },
-  // 我的圈子
-  circle: function circle() {var _this5 = this;
-    (0, _api.circle)(this.pageb, this.id).then(function (res) {
-      // if (!this.pullUpOn) return;
-      _this5.loadding = true;
-      if (res.data.data.length == 0) {
-        _this5.loadding = false;
-        _this5.pullUpOn = false;
-        return;
-      }
-      if (res.data.data.length !== 0) {
-        _this5.loadding = false;
-        _this5.pullUpOn = false;
-        _this5.recommendStudio = _this5.recommendStudio.concat(res.data.data);
-        _this5.pageb++;
-        return;
-      }
-      // this.recommendStudio = this.recommendStudio.concat(res.data.data);
-      // this.pageb++;
-    });
-  },
-  travelsfn: function travelsfn() {var _this6 = this;
-    (0, _api.travels)(this.pagec, this.id).then(function (res) {
-      // console.log(res);
-      // let _this = this;
-      // this.travels = res.data.data;
-
-      _this6.loadding = true;
-      if (res.data.data.length == 0) {
-        _this6.loadding = false;
-        _this6.pullUpOn = false;
-        return;
-      }
-      if (res.data.data.length !== 0) {
-        _this6.loadding = false;
-        _this6.pullUpOn = false;
-        var travelsarr = res.data.data;
-        for (var i = 0; i < travelsarr.length; i++) {
-          for (var y = 0; y < travelsarr[i].content.length; y++) {
-            if (travelsarr[i].content[y].indexOf('http') != -1) {
-              travelsarr[i].content.splice(y, 1);
-            }
-          }
+      { id: 3, img: '../../static/img/people.png', title: '我的圈子' }, { id: 4, img: '../../static/img/city.png', title: '攻略游记' }, { id: 5, img: '../../static/img/speak.png', title: '问答' }], // 问答
+      dialogue: [], // 短视频
+      video: [], // 直播
+      live: [{ id: 1, img: '../../static/img/livea.jpg', status: 0 }, { id: 2, img: '../../static/img/liveb.jpg', status: 1 }, { id: 3, img: '../../static/img/livec.jpg', status: 2 }, { id: 4, img: '../../static/img/lived.jpg', status: 1 }], // 攻略游记
+      travels: [], // 我的圈子推荐
+      recommendStudiotop: [], // 我的圈子
+      recommendStudio: [], data: { user: { id: 0, supplier_id: 0, username: '', truename: '', mobile: '', avatar: '', nickname: '', sex: 2, wx_number: '', profile: '', rating: '', cover_image: '', role: '', role_zh: '', role_type: '', is_admin: 0 }, trade_number: 0, visitor_number: 0, service_number: 0, play_number: 0, plays: [] } };}, onShow: function onShow() {wx.hideHomeButton();}, onPageScroll: function onPageScroll(res) {var _this = this;wx.createSelectorQuery().select('.studioBottom-top').boundingClientRect(function (rect) {_this.fixTop = rect.top;}).exec();}, onLoad: function onLoad(options) {this.id = options.id; // this.getList();
+    if (options.id) {uni.setStorageSync('studio', options.id);}if (uni.getStorageSync('studio')) {this.id = uni.getStorageSync('studio');} else {this.topnocontent = true;}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');} else {console.log(1111111);this.authorizations();}this.getDetail();this.videos();this.circle();this.circles(true);this.travelsfn();this.questions();}, methods: { authorizations: function authorizations() {console.log(22222);uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id) });}, gotoStudio: function gotoStudio(friend_id) {uni.navigateTo({ url: '/pages/studio/studio?id=' + friend_id });}, tel: function tel() {wx.makePhoneCall({ phoneNumber: this.data.user.mobile });}, gotolife: function gotolife() {wx.pageScrollTo({ scrollTop: 820, duration: 300 });}, // 用户信息
+    getDetail: function getDetail() {var _this2 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this2.data = res.data;});}, // 短视频
+    videos: function videos() {var _this3 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {// console.log(res);
+        // this.video = res.data.data;
+        // if (!this.pullUpOn) return;
+        _this3.loadding = true;if (res.data.data.length == 0) {_this3.loadding = false;_this3.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this3.loadding = false;_this3.pullUpOn = false;_this3.video = _this3.video.concat(res.data.data);_this3.pagea++;return;} // this.video = this.video.concat(res.data.data);
+        // this.pagea++;
+      });}, //我的圈子推荐
+    circles: function circles(recommend) {var _this4 = this;(0, _api.circles)(this.id, recommend).then(function (res) {_this4.recommendStudiotop = res.data.slice(0, 1);});}, // 我的圈子
+    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {// if (!this.pullUpOn) return;
+        _this5.loadding = true;if (res.data.data.length == 0) {_this5.loadding = false;_this5.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this5.loadding = false;_this5.pullUpOn = false;_this5.recommendStudio = _this5.recommendStudio.concat(res.data.data);_this5.pageb++;return;} // this.recommendStudio = this.recommendStudio.concat(res.data.data);
+        // this.pageb++;
+      });}, travelsfn: function travelsfn() {var _this6 = this;(0, _api.travels)(this.pagec, this.id).then(function (res) {// console.log(res);
+        // let _this = this;
+        // this.travels = res.data.data;
+        _this6.loadding = true;if (res.data.data.length == 0) {_this6.loadding = false;_this6.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this6.loadding = false;_this6.pullUpOn = false;var travelsarr = res.data.data;for (var i = 0; i < travelsarr.length; i++) {for (var y = 0; y < travelsarr[i].content.length; y++) {if (travelsarr[i].content[y].indexOf('http') != -1) {travelsarr[i].content.splice(y, 1);}}}_this6.travels = _this6.travels.concat(travelsarr);_this6.pagec++;return;} // this.recommendStudio = this.recommendStudio.concat(res.data.data);
+        // this.pageb++;
+      });}, // 问答
+    questions: function questions() {var _this7 = this;(0, _api.questions)(this.paged, this.id).then(function (res) {// console.log(res);
+        // this.dialogue = res.data.data;
+        _this7.loadding = true;if (res.data.data.length == 0) {
+          _this7.loadding = false;
+          _this7.pullUpOn = false;
+          return;
         }
-        _this6.travels = _this6.travels.concat(travelsarr);
-        _this6.pagec++;
-        return;
+        if (res.data.data.length !== 0) {
+          _this7.loadding = false;
+          _this7.pullUpOn = false;
+          _this7.dialogue = _this7.dialogue.concat(res.data.data);
+          _this7.paged++;
+          return;
+        }
+        // this.dialogue = this.dialogue.concat(res.data.data);
+        // this.paged++;
+      });
+    },
+    studioActive: function studioActive(active) {
+      this.studioBottomActive = active;
+      if (active == 1) {
+        this.pagea = 1;
+        this.video = [];
+        this.videos();
       }
-      // this.recommendStudio = this.recommendStudio.concat(res.data.data);
-      // this.pageb++;
-    });
-  },
-  // 问答
-  questions: function questions() {var _this7 = this;
-    (0, _api.questions)(this.paged, this.id).then(function (res) {
-      // console.log(res);
-      // this.dialogue = res.data.data;
-      _this7.loadding = true;
-      if (res.data.data.length == 0) {
-        _this7.loadding = false;
-        _this7.pullUpOn = false;
-        return;
+      if (active == 3) {
+        this.pageb = 1;
+        this.recommendStudio = [];
+        this.circle();
       }
-      if (res.data.data.length !== 0) {
-        _this7.loadding = false;
-        _this7.pullUpOn = false;
-        _this7.dialogue = _this7.dialogue.concat(res.data.data);
-        _this7.paged++;
-        return;
+      if (active == 4) {
+        this.pagec = 1;
+        this.travels = [];
+        this.travelsfn();
       }
-      // this.dialogue = this.dialogue.concat(res.data.data);
-      // this.paged++;
-    });
-  },
-  studioActive: function studioActive(active) {
-    this.studioBottomActive = active;
-    if (active == 1) {
-      this.pagea = 1;
-      this.video = [];
-      this.videos();
-    }
-    if (active == 3) {
-      this.pageb = 1;
-      this.recommendStudio = [];
-      this.circle();
-    }
-    if (active == 4) {
-      this.pagec = 1;
-      this.travels = [];
-      this.travelsfn();
-    }
-    if (active == 5) {
-      this.paged = 1;
-      this.dialogue = [];
-      this.questions();
-    }
-  },
-  toDetail: function toDetail(id, type) {
-    switch (type) {
-      case 'hotel':
-        uni.navigateTo({
-          url: "/pages/details/hotelDetail/hotelDetail?id=".concat(id, "&isDis=1") });
+      if (active == 5) {
+        this.paged = 1;
+        this.dialogue = [];
+        this.questions();
+      }
+    },
+    toDetail: function toDetail(id, type) {
+      switch (type) {
+        case 'hotel':
+          uni.navigateTo({
+            url: '/pages/details/hotelDetail/hotelDetail?id=' + id });
 
-        break;
-      case 'repast':
-        uni.navigateTo({
-          url: "/pages/details/restaurantDetail/restaurantDetail?id=".concat(id, "&isDis=1") });
+          break;
+        case 'repast':
+          uni.navigateTo({
+            url: '/pages/details/restaurantDetail/restaurantDetail?id=' + id });
 
-        break;
-      case 'sight':
-        uni.navigateTo({
-          url: "/pages/details/scenicSpotDetail/scenicSpotDetail?id=".concat(id, "&isDis=1") });
+          break;
+        case 'sight':
+          uni.navigateTo({
+            url: '/pages/details/scenicSpotDetail/scenicSpotDetail?id=' + id });
 
-        break;
-      case 'homestay':
-        uni.navigateTo({
-          url: "/pages/details/homestayDetail/homestayDetail?id=".concat(id, "&isDis=1") });
+          break;
+        case 'homestay':
+          uni.navigateTo({
+            url: '/pages/details/homestayDetail/homestayDetail?id=' + id });
 
-        break;
-      case 'feature':
-        uni.navigateTo({
-          url: "/pages/details/otherDetail/otherDetail?id=".concat(id, "&isDis=1") });
+          break;
+        case 'feature':
+          uni.navigateTo({
+            url: '/pages/details/otherDetail/otherDetail?id=' + id });
 
-        break;
-      case 'boutique':
-        uni.navigateTo({
-          url: "/pages/details/standardDetail/standardDetail?id=".concat(id, "&isDis=1") });
+          break;
+        case 'boutique':
+          uni.navigateTo({
+            url: '/pages/details/standardDetail/standardDetail?id=' + id });
 
-        break;}
+          break;}
 
-  },
-  gotoscenicRecommend: function gotoscenicRecommend() {
-    uni.navigateTo({
-      url: '/pages/scenicRecommend/scenicRecommend?id=' + this.id });
+    },
+    gotoscenicRecommend: function gotoscenicRecommend() {
+      uni.navigateTo({
+        url: '/pages/scenicRecommend/scenicRecommend?id=' + this.id });
 
-  } }), _defineProperty(_components$data$onSh, "onReachBottom",
+    },
+    //短视频详情
+    toVodeo: function toVodeo(id) {
+      uni.navigateTo({
+        url: '/pages/newDetail/videodetails/videodetails?id=' + id });
 
+    },
+    //游记详情
+    toTraval: function toTraval(id) {
+      uni.navigateTo({
+        url: '/pages/newDetail/traveldetails/traveldetails?id=' + id });
 
-function onReachBottom() {var _this8 = this;
-  setTimeout(function () {
-    if (_this8.studioBottomActive == 1) {
-      _this8.loadding = false;
-      _this8.pullUpOn = false;
-      _this8.videos();
-    }
-    if (_this8.studioBottomActive == 3) {
-      _this8.loadding = false;
-      _this8.pullUpOn = false;
-      _this8.circle();
-    }
-    if (_this8.studioBottomActive == 4) {
-      _this8.loadding = false;
-      _this8.pullUpOn = false;
-      _this8.travelsfn();
-    }
-    if (_this8.studioBottomActive == 5) {
-      _this8.loadding = false;
-      _this8.pullUpOn = false;
-      _this8.questions();
-    }
-  }, 1000);
+    },
+    //问答详情
+    toQuestion: function toQuestion(id) {
+      uni.navigateTo({
+        url: '/pages/newDetail/questionsdetails/questionsdetails?id=' + id });
 
-  // this.getList();
-}), _components$data$onSh);exports.default = _default;
+    } },
+
+  // 页面上拉触底事件的处理函数
+  onReachBottom: function onReachBottom() {var _this8 = this;
+    setTimeout(function () {
+      if (_this8.studioBottomActive == 1) {
+        _this8.loadding = false;
+        _this8.pullUpOn = false;
+        _this8.videos();
+      }
+      if (_this8.studioBottomActive == 3) {
+        _this8.loadding = false;
+        _this8.pullUpOn = false;
+        _this8.circle();
+      }
+      if (_this8.studioBottomActive == 4) {
+        _this8.loadding = false;
+        _this8.pullUpOn = false;
+        _this8.travelsfn();
+      }
+      if (_this8.studioBottomActive == 5) {
+        _this8.loadding = false;
+        _this8.pullUpOn = false;
+        _this8.questions();
+      }
+    }, 1000);
+
+    // this.getList();
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

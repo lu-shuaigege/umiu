@@ -147,6 +147,30 @@
 			"style": {
 				"navigationBarTitleText": "我的定制师列表"
 			}
+		},
+		{
+			"path": "pages/newDetail/traveldetails/traveldetails",
+			"style": {
+				"navigationBarTitleText": "攻略游记详情"
+			}
+		},
+		{
+			"path": "pages/newDetail/videodetails/videodetails",
+			"style": {
+				"navigationBarTitleText": "短视频详情"
+			}
+		},
+		{
+			"path": "pages/newDetail/comments/comments",
+			"style": {
+				"navigationBarTitleText": "全部评论"
+			}
+		},
+		{
+			"path": "pages/newDetail/questionsdetails/questionsdetails",
+			"style": {
+				"navigationBarTitleText": "问答详情"
+			}
 		}
 
 	],

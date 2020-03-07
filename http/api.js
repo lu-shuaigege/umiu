@@ -379,3 +379,45 @@ export function resourcesOrders(id, team_id, quantity, type, child, contact, con
 		data: data
 	})
 }
+
+
+
+//游记攻略-详情
+export function travelsDetail(id) {
+	return http({
+		url: "/api/travels/"+id+"?w=800"
+	})
+}
+
+//短视频-详情
+export function shortvideos(id) {
+	return http({
+		url: "/api/short-videos/"+id
+	})
+}
+//评论列表
+export function comments(page,type,id) {
+	return http({
+		url: "/api/"+type+"/"+id+"/comments",
+		data: {
+			page: page
+		}
+	})
+}
+//问题-详情
+export function questionDetail(id) {
+	return http({
+		url: "/api/questions/"+id
+	})
+}
+//问题-详情
+export function questionAnswers(page,order,id) {
+	return http({
+		url: "/api/questions/"+id+"/answers",
+		data: {
+			page: page,
+			per_page: 10,
+			order:order
+		}
+	})
+}

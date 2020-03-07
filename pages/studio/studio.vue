@@ -67,7 +67,7 @@
 					<view class="studioCenter-bottom-top-right" @click="gotoscenicRecommend()">查看更多</view>
 				</view>
 				<view class="studioCenter-bottom-bottom">
-					<view v-for="(item, index) of data.plays" :key="index" @click="toDetail(item.id, item.type)" class="studioCenter-bottom-bottom-item">
+					<view v-for="(item, index) of data.plays" :key="index" @click="toDetail(item.distributable_id, item.type)" class="studioCenter-bottom-bottom-item">
 						<image class="studioCenter-bottom-bottom-item-img" :src="item.cover_image" mode=""></image>
 						<view class="studioCenter-bottom-bottom-item-name">{{ item.title }}</view>
 						<view class="studioCenter-bottom-bottom-item-bottom">
@@ -132,7 +132,7 @@
 				</view>
 				<!-- 攻略游记 -->
 				<view class="studioBottom-bottom-travels" v-show="studioBottomActive == 4">
-					<view class="studioBottom-bottom-travels-list" v-for="(item, index) of travels" :key="index">
+					<view class="studioBottom-bottom-travels-list" v-for="(item, index) of travels" :key="index" @click="toTraval(item.id)">
 						<image class="studioBottom-bottom-travels-list-left" :src="item.cover_image" mode=""></image>
 						<view class="studioBottom-bottom-travels-list-right">
 							<view class="studioBottom-bottom-travels-list-right-title">{{ item.title }}</view>
@@ -163,7 +163,7 @@
 				</view>
 				<!-- 短视频 -->
 				<view class="studioBottom-bottom-video" v-show="studioBottomActive == 1">
-					<view :key="index" class="studioBottom-bottom-video-list" v-for="(item, index) in video">
+					<view :key="index" class="studioBottom-bottom-video-list" v-for="(item, index) in video" @click="toVodeo(item.id)">
 						<view class="studioBottom-bottom-video-list-top">
 							<image class="studioBottom-bottom-video-list-top-img" :src="item.cover_image" mode="widthFix"></image>
 							<!-- <video class="studioBottom-bottom-video-list-top-img" :src="item.video" mode="widthFix" objectFit="contain" controls></video> -->
@@ -185,7 +185,7 @@
 				</view>
 				<!-- 问答 -->
 				<view class="studioBottom-bottom-dialogue" v-show="studioBottomActive == 5">
-					<view class="studioBottom-bottom-dialogue-list" v-for="(item, index) of dialogue" :key="index">
+					<view class="studioBottom-bottom-dialogue-list" v-for="(item, index) of dialogue" :key="index" @click="toQuestion(item.id)">
 						<view class="dialogue-list-top">
 							<image class="dialogue-list-top-left" :src="item.author.avatar" mode=""></image>
 							<view class="dialogue-list-top-right">
@@ -343,11 +343,6 @@ export default {
 			})
 			.exec();
 	},
-	onShow(options) {
-		wx.hideHomeButton();
-		this.id = options.id;
-		this.getDetail();
-	},
 	onLoad(options) {
 		this.id = options.id;
 		// this.getList();
@@ -362,6 +357,7 @@ export default {
 		if (uni.getStorageSync('openid')) {
 			this.openid = uni.getStorageSync('openid');
 		} else {
+			console.log(1111111);
 			this.authorizations();
 		}
 		this.getDetail();
@@ -373,6 +369,7 @@ export default {
 	},
 	methods: {
 		authorizations() {
+			console.log(22222);
 			uni.navigateTo({
 				url: `/pages/authorizations/authorizations?id=${this.id}`
 			});
@@ -529,32 +526,32 @@ export default {
 			switch (type) {
 				case 'hotel':
 					uni.navigateTo({
-						url: `/pages/details/hotelDetail/hotelDetail?id=${id}&isDis=1`
+						url: '/pages/details/hotelDetail/hotelDetail?id=' + id
 					});
 					break;
 				case 'repast':
 					uni.navigateTo({
-						url: `/pages/details/restaurantDetail/restaurantDetail?id=${id}&isDis=1`
+						url: '/pages/details/restaurantDetail/restaurantDetail?id=' + id
 					});
 					break;
 				case 'sight':
 					uni.navigateTo({
-						url: `/pages/details/scenicSpotDetail/scenicSpotDetail?id=${id}&isDis=1`
+						url: '/pages/details/scenicSpotDetail/scenicSpotDetail?id=' + id
 					});
 					break;
 				case 'homestay':
 					uni.navigateTo({
-						url: `/pages/details/homestayDetail/homestayDetail?id=${id}&isDis=1`
+						url: '/pages/details/homestayDetail/homestayDetail?id=' + id
 					});
 					break;
 				case 'feature':
 					uni.navigateTo({
-						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
+						url: '/pages/details/otherDetail/otherDetail?id=' + id
 					});
 					break;
 				case 'boutique':
 					uni.navigateTo({
-						url: `/pages/details/standardDetail/standardDetail?id=${id}&isDis=1`
+						url: '/pages/details/standardDetail/standardDetail?id=' + id
 					});
 					break;
 			}
@@ -562,6 +559,24 @@ export default {
 		gotoscenicRecommend() {
 			uni.navigateTo({
 				url: '/pages/scenicRecommend/scenicRecommend?id=' + this.id
+			});
+		},
+		//短视频详情
+		toVodeo(id){
+			uni.navigateTo({
+				url: '/pages/newDetail/videodetails/videodetails?id=' + id
+			});
+		},
+		//游记详情
+		toTraval(id){
+			uni.navigateTo({
+				url: '/pages/newDetail/traveldetails/traveldetails?id=' + id
+			});
+		},
+		//问答详情
+		toQuestion(id){
+			uni.navigateTo({
+				url: '/pages/newDetail/questionsdetails/questionsdetails?id=' + id
 			});
 		}
 	},

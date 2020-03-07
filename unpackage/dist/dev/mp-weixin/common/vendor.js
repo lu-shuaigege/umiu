@@ -8258,7 +8258,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 //////////////////////////////////////////////////////////新建
 //筛选条件接口-定制师列表
 function users() {
@@ -8640,6 +8640,48 @@ function resourcesOrders(id, team_id, quantity, type, child, contact, contact_ph
 
 }
 
+
+
+//游记攻略-详情
+function travelsDetail(id) {
+  return (0, _request.default)({
+    url: "/api/travels/" + id + "?w=800" });
+
+}
+
+//短视频-详情
+function shortvideos(id) {
+  return (0, _request.default)({
+    url: "/api/short-videos/" + id });
+
+}
+//评论列表
+function comments(page, type, id) {
+  return (0, _request.default)({
+    url: "/api/" + type + "/" + id + "/comments",
+    data: {
+      page: page } });
+
+
+}
+//问题-详情
+function questionDetail(id) {
+  return (0, _request.default)({
+    url: "/api/questions/" + id });
+
+}
+//问题-详情
+function questionAnswers(page, order, id) {
+  return (0, _request.default)({
+    url: "/api/questions/" + id + "/answers",
+    data: {
+      page: page,
+      per_page: 10,
+      order: order } });
+
+
+}
+
 /***/ }),
 
 /***/ 22:
@@ -8700,7 +8742,7 @@ $http;exports.default = _default;
 
 /***/ }),
 
-/***/ 222:
+/***/ 254:
 /*!********************************************************************!*\
   !*** F:/object/uni-app/umiu/plugins/components/uni-icons/icons.js ***!
   \********************************************************************/
@@ -8806,19 +8848,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 230:
+/***/ 262:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 231);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 263);
 
 
 /***/ }),
 
-/***/ 231:
+/***/ 263:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8849,7 +8891,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 232);
+module.exports = __webpack_require__(/*! ./runtime */ 264);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8866,7 +8908,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 232:
+/***/ 264:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -9598,7 +9640,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 247:
+/***/ 279:
 /*!*********************************************************************!*\
   !*** F:/object/uni-app/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
   \*********************************************************************/
@@ -9620,8 +9662,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 248));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 249));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 280));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 281));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9870,7 +9912,7 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 248:
+/***/ 280:
 /*!*********************************************************************!*\
   !*** F:/object/uni-app/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
   \*********************************************************************/
@@ -10089,7 +10131,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 249:
+/***/ 281:
 /*!**********************************************************************!*\
   !*** F:/object/uni-app/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
   \**********************************************************************/
@@ -12337,7 +12379,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/videodetails/videodetails": { "navigationBarTitleText": "短视频详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

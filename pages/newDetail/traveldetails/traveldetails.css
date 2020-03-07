@@ -1,0 +1,319 @@
+.traveldetails{
+    background-color: #f8f8f8;
+  }
+  .traveldetails_top{
+    width: 750upx;
+    height: 120upx;
+    background-color: #ffffff;
+    padding: 0 30upx;
+    display: flex;
+    align-items: center;
+  }
+  .traveldetails_top image{
+    width: 80upx;
+    height: 80upx;
+    border: solid 2upx rgba(255, 102, 0, 0.5);
+    border-radius: 50%;
+  }
+  .traveldetails_top .title{
+    font-size: 30upx;
+    color: #28282c;
+    margin-left: 20upx;
+  }
+  .cover_image{
+    width: 750upx;
+    position: relative;
+  }
+  .cover_image .bg{
+    width: 750upx;
+  }
+  .cover_image .location{
+    position: absolute;
+    bottom: 60upx;
+    min-width: 129upx;
+    height: 48upx;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 24upx;
+    display: flex;
+    align-items: center;
+    margin-left: 30upx;
+    padding: 0 15upx;
+  }
+  .cover_image .location image{
+    width: 25upx;
+    height: 31upx;
+    margin-right: 15upx;
+  }
+  .cover_image .location text{
+    font-size: 28upx;
+    color: #ffffff;
+    display: inline-block;
+    max-width: 113upx;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap; 
+  }
+  .content_title_top{
+    width: 100%;
+    border-radius: 30upx 30upx 0 0;
+    margin-top: -33upx;
+    position: absolute;
+    height: 38upx;
+    background: #ffffff;
+
+  }
+  .content_title{
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 22upx;
+  }
+  .content_title .title{
+    font-size: 34upx;
+    height: 75upx;
+    font-weight: bold;
+    color: #28282c;
+    width: 690upx;
+    margin: 0 auto;
+    line-height: 75upx;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap; 
+  }
+  .content_title .gonglue{
+    width: 690upx;
+    margin: 0 auto;
+  }
+  .content_title .gonglue .up{
+    display: flex;
+    align-items: center;
+    height: 60upx;
+  }
+  .content_title .gonglue .up .one{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    line-height: 75upx;
+  }
+  .content_title .gonglue .up .one image{
+    width: 30upx;
+    height: 24upx;
+    margin-right: 8upx;
+  }
+  .content_title .gonglue .up .one text{
+    font-size: 24upx;
+    font-weight: 300;
+    color: #666666;
+    margin-right: 8upx;
+    display:inline-block;
+    width: 98upx; 
+  }
+  .content_title .gonglue .up .one view{
+    font-size: 26upx;
+    width: 188upx;
+    color: #28282c;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap;
+  }
+
+  .content{
+    width: 100%;
+    background: #ffffff;
+    font-size: 28upx;
+    color: #28282c;
+  }
+  .content .con{
+    width: 690upx;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30upx 0;
+    font-size: 28upx;
+    color: #28282c;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  .content .con image{
+    width: 100%;
+    margin-top: 22upx;
+  }
+  .content .bottom{
+    width: 690upx;
+    height: 75upx;
+    line-height: 75upx;
+    margin: 0 auto;
+    font-size: 22upx;
+    color: #999999;
+  }
+  .under{
+    width: 750upx;
+    height: 100upx;
+    background-color: #ffffff;
+    box-shadow: 0 -4upx 10upx 0.2upx
+      rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .under_p{
+    width: 608upx;
+    height: 47upx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .under_p .one{
+    width: 105upx;
+    height: 47upx;
+    position: relative;
+  }
+  .under_p .one image{
+    width: 34upx;
+    height: 34upx;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .under_p .one .con{
+    width: 60upx;
+    height: 26upx;
+    line-height: 26upx;
+    background-color: #ffefe5;
+    border-radius: 13upx;
+    font-size: 22upx;
+    font-weight: 300;
+    color: #ff6600;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .under_p .one .con .c{
+    position: relative;
+  }
+  .under_p .one .con .c text{
+    position: absolute;
+    top: 0;
+    right: 4upx;
+    line-height: 15upx;
+  }
+  .under_p .line{
+    min-width: 1px;
+    height: 40upx;
+    background-color: #e1e1e1;
+  }
+  .comments{
+    width: 750upx;
+    min-height: 650upx;
+    background-color: #ffffff;
+    margin-top: 20upx;
+  }
+  .comments .title{
+    font-size: 30upx;
+    font-weight: bold;
+    color: #28282c;
+    width: 690upx;
+    margin: 0 auto;
+    padding-top: 30upx;
+  }
+  .comments .title text{
+    font-size: 24upx;
+    font-weight: 400;
+    color: #999999;
+	margin-left: 10upx;
+  }
+  .comments_list{
+    width: 690upx;
+    margin: 0 auto;
+  }
+  .comments_list .listone{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 38upx;
+    margin-bottom: 22upx;
+  }
+  .comments_list .listone .headimage{
+    width: 60upx;
+    height: 60upx;
+    border-radius: 50%;
+    border: solid 2upx rgba(255, 102, 0, 0.5);
+  }
+  .comments_list .listone .con{
+    width: 508upx;
+  }
+  .comments_list .listone .con .p{
+    display: flex;
+  }
+  .comments_list .listone .con .p .name{
+    font-size: 26upx;
+    max-width: 338upx;
+    font-weight: bold;
+    color: #28282c;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap;
+  }
+  .comments_list .listone .con .p .time{
+    font-size: 22upx;
+    font-weight: 300;
+    color: #999999;
+    margin-left: 20upx;
+  }
+  .comments_list .listone .con .comment{
+    font-size: 28upx;
+    font-weight: 300;
+    line-height: 42upx;
+    color: #666666;
+    margin-top: 15upx;
+  }
+  .comments_list .listone .vote{
+    display: flex;
+	align-items: center;
+	height: 38upx;
+  }
+  .comments_list .listone .vote image{
+    width: 34upx;
+    height: 34upx;
+  }
+  .comments_list .listone .vote view{
+    font-size: 22upx;
+    color: #28282c;
+    margin-left: 9upx;
+  }
+  .listone_iner{
+    width: 562upx;
+    background-color: #f8f8f8;
+    border-radius: 8upx;
+    margin-left: 83upx;
+    padding: 8upx 21upx;
+  }
+  .listone_inerp{
+    margin-top: 30upx;
+  }
+  .listone_inerp .listone .headimage{
+    width: 40upx;
+    height: 40upx;
+    border-radius: 50%;
+    border: solid 2upx rgba(255, 102, 0, 0.5);
+  }
+  .listone_inerp .listone .con{
+    width: 412upx;
+  }
+  .listone_inerp .listone .con .p .name{
+    max-width: 240upx;
+  }
+  .none{
+    width: 100%;
+    text-align: center;
+  }
+  .none image{
+    width: 262upx;
+	height: 304upx;
+    margin-top: 75upx;
+  }
+  .lookall{
+	  font-size:28upx;
+	  color: #999;
+	  text-align: center;
+	  margin-top: 40upx;
+  }

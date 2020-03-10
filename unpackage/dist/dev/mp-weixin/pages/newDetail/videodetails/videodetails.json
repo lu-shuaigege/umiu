@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "短视频详情",
+  "usingComponents": {
+    "cmd-progress": "/plugins/cmd-progress/cmd-progress",
+    "tui-drawer": "/plugins/thorui/components/drawer/drawer",
+    "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore",
+    "tui-nomore": "/plugins/thorui/components/nomore/nomore"
+  }
+}

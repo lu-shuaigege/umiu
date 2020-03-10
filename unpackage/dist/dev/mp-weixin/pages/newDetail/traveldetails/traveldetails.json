@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "攻略游记详情",
+  "usingComponents": {
+    "u-parse": "/plugins/gaoyia-parse/parse"
+  }
+}

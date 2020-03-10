@@ -21,7 +21,11 @@
     "pages/confirm/boutiquesConfirm/boutiquesConfirm",
     "pages/paySuccess/paySuccess",
     "pages/payGoapp/payGoapp",
-    "pages/customizationList/customizationList"
+    "pages/customizationList/customizationList",
+    "pages/newDetail/traveldetails/traveldetails",
+    "pages/newDetail/videodetails/videodetails",
+    "pages/newDetail/comments/comments",
+    "pages/newDetail/questionsdetails/questionsdetails"
   ],
   "subPackages": [],
   "window": {

@@ -586,7 +586,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 196));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 203));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
+var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 228));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 235));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
       openid: '', topnocontent: false, //是否有我的定制师
       pagea: 1, pageb: 1, pagec: 1, paged: 1, loadding: false, pullUpOn: true, studioBottomActive: 1, //按钮选中状态
       answer: '', //回答
@@ -603,34 +603,117 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
       live: [{ id: 1, img: '../../static/img/livea.jpg', status: 0 }, { id: 2, img: '../../static/img/liveb.jpg', status: 1 }, { id: 3, img: '../../static/img/livec.jpg', status: 2 }, { id: 4, img: '../../static/img/lived.jpg', status: 1 }], // 攻略游记
       travels: [], // 我的圈子推荐
       recommendStudiotop: [], // 我的圈子
-      recommendStudio: [], data: { user: { id: 0, supplier_id: 0, username: '', truename: '', mobile: '', avatar: '', nickname: '', sex: 2, wx_number: '', profile: '', rating: '', cover_image: '', role: '', role_zh: '', role_type: '', is_admin: 0 }, trade_number: 0, visitor_number: 0, service_number: 0, play_number: 0, plays: [] } };}, onShow: function onShow() {wx.hideHomeButton();}, onPageScroll: function onPageScroll(res) {var _this = this;wx.createSelectorQuery().select('.studioBottom-top').boundingClientRect(function (rect) {_this.fixTop = rect.top;}).exec();}, onLoad: function onLoad(options) {this.id = options.id; // this.getList();
-    if (options.id) {uni.setStorageSync('studio', options.id);}if (uni.getStorageSync('studio')) {this.id = uni.getStorageSync('studio');} else {this.topnocontent = true;}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');} else {console.log(1111111);this.authorizations();}this.getDetail();this.videos();this.circle();this.circles(true);this.travelsfn();this.questions();}, methods: { authorizations: function authorizations() {console.log(22222);uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id) });}, gotoStudio: function gotoStudio(friend_id) {uni.navigateTo({ url: '/pages/studio/studio?id=' + friend_id });}, tel: function tel() {wx.makePhoneCall({ phoneNumber: this.data.user.mobile });}, gotolife: function gotolife() {wx.pageScrollTo({ scrollTop: 820, duration: 300 });}, // 用户信息
-    getDetail: function getDetail() {var _this2 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this2.data = res.data;});}, // 短视频
-    videos: function videos() {var _this3 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {// console.log(res);
+      recommendStudio: [], data: { user: { id: 0, supplier_id: 0, username: '', truename: '', mobile: '', avatar: '', nickname: '', sex: 2, wx_number: '', profile: '', rating: '', cover_image: '', role: '', role_zh: '', role_type: '', is_admin: 0 }, trade_number: 0, visitor_number: 0, service_number: 0, play_number: 0, plays: [], isDis: 0, uid: '', code: '', openid: '', userInfo: {} } };}, onShow: function onShow() {var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
+    wx.hideHomeButton();if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onPageScroll: function onPageScroll(res) {var _this = this;wx.createSelectorQuery().select('.studioBottom-top').boundingClientRect(function (rect) {_this.fixTop = rect.top;}).exec();}, onLoad: function onLoad(options) {var _this2 = this;this.id = options.id; // this.getList();
+    if (options.id) {uni.setStorageSync('studio', options.id);}if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('studio')) {this.id = uni.getStorageSync('studio');} else {this.topnocontent = true;}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
+          if (res.authSetting['scope.userInfo']) {//获取用户信息
+            wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.bindfans();_this2.getDetail();return;} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;}} });} else {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
+          if (res.authSetting['scope.userInfo']) {//获取用户信息
+            wx.getUserInfo({ success: function success(res) {console.log(res);_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.getDetail();} });} else {_this2.authorizations();return;}} });} // if (uni.getStorageSync('openid')) {
+    // 	this.openid = uni.getStorageSync('openid');
+    // } else {
+    // 	this.authorizations();
+    // }
+    this.getDetail();this.videos();this.circle();this.circles(true);this.travelsfn();this.questions();}, methods: { authorizations: function authorizations() {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id) });}, gotoStudio: function gotoStudio(friend_id) {uni.navigateTo({ url: '/pages/studio/studio?id=' + friend_id });}, tel: function tel() {wx.makePhoneCall({ phoneNumber: this.data.user.mobile });}, gotolife: function gotolife() {wx.pageScrollTo({ scrollTop: 820, duration: 300 });}, bindfans: function bindfans() {(0, _api.bindfans)('', this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+        console.log(res);if (res.code == 0) {// uni.showToast({
+          // 	icon: 'none',
+          // 	title: '绑定粉丝成功'
+          // });
+        }});}, // 用户信息
+    getDetail: function getDetail() {var _this3 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this3.data = res.data;});}, // 短视频
+    videos: function videos() {var _this4 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {// console.log(res);
         // this.video = res.data.data;
         // if (!this.pullUpOn) return;
-        _this3.loadding = true;if (res.data.data.length == 0) {_this3.loadding = false;_this3.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this3.loadding = false;_this3.pullUpOn = false;_this3.video = _this3.video.concat(res.data.data);_this3.pagea++;return;} // this.video = this.video.concat(res.data.data);
+        _this4.loadding = true;if (res.data.data.length == 0) {
+          _this4.loadding = false;
+          _this4.pullUpOn = false;
+          return;
+        }
+        if (res.data.data.length !== 0) {
+          _this4.loadding = false;
+          _this4.pullUpOn = false;
+          _this4.video = _this4.video.concat(res.data.data);
+          _this4.pagea++;
+          return;
+        }
+        // this.video = this.video.concat(res.data.data);
         // this.pagea++;
-      });}, //我的圈子推荐
-    circles: function circles(recommend) {var _this4 = this;(0, _api.circles)(this.id, recommend).then(function (res) {_this4.recommendStudiotop = res.data.slice(0, 1);});}, // 我的圈子
-    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {// if (!this.pullUpOn) return;
-        _this5.loadding = true;if (res.data.data.length == 0) {_this5.loadding = false;_this5.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this5.loadding = false;_this5.pullUpOn = false;_this5.recommendStudio = _this5.recommendStudio.concat(res.data.data);_this5.pageb++;return;} // this.recommendStudio = this.recommendStudio.concat(res.data.data);
+      });
+    },
+    //我的圈子推荐
+    circles: function circles(recommend) {var _this5 = this;
+      (0, _api.circles)(this.id, recommend).then(function (res) {
+        _this5.recommendStudiotop = res.data.slice(0, 1);
+      });
+    },
+    // 我的圈子
+    circle: function circle() {var _this6 = this;
+      (0, _api.circle)(this.pageb, this.id).then(function (res) {
+        // if (!this.pullUpOn) return;
+        _this6.loadding = true;
+        if (res.data.data.length == 0) {
+          _this6.loadding = false;
+          _this6.pullUpOn = false;
+          return;
+        }
+        if (res.data.data.length !== 0) {
+          _this6.loadding = false;
+          _this6.pullUpOn = false;
+          _this6.recommendStudio = _this6.recommendStudio.concat(res.data.data);
+          _this6.pageb++;
+          return;
+        }
+        // this.recommendStudio = this.recommendStudio.concat(res.data.data);
         // this.pageb++;
-      });}, travelsfn: function travelsfn() {var _this6 = this;(0, _api.travels)(this.pagec, this.id).then(function (res) {// console.log(res);
+      });
+    },
+    travelsfn: function travelsfn() {var _this7 = this;
+      (0, _api.travels)(this.pagec, this.id).then(function (res) {
+        // console.log(res);
         // let _this = this;
         // this.travels = res.data.data;
-        _this6.loadding = true;if (res.data.data.length == 0) {_this6.loadding = false;_this6.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this6.loadding = false;_this6.pullUpOn = false;var travelsarr = res.data.data;for (var i = 0; i < travelsarr.length; i++) {for (var y = 0; y < travelsarr[i].content.length; y++) {if (travelsarr[i].content[y].indexOf('http') != -1) {travelsarr[i].content.splice(y, 1);}}}_this6.travels = _this6.travels.concat(travelsarr);_this6.pagec++;return;} // this.recommendStudio = this.recommendStudio.concat(res.data.data);
-        // this.pageb++;
-      });}, // 问答
-    questions: function questions() {var _this7 = this;(0, _api.questions)(this.paged, this.id).then(function (res) {// console.log(res);
-        // this.dialogue = res.data.data;
-        _this7.loadding = true;if (res.data.data.length == 0) {_this7.loadding = false;_this7.pullUpOn = false;return;
+
+        _this7.loadding = true;
+        if (res.data.data.length == 0) {
+          _this7.loadding = false;
+          _this7.pullUpOn = false;
+          return;
         }
         if (res.data.data.length !== 0) {
           _this7.loadding = false;
           _this7.pullUpOn = false;
-          _this7.dialogue = _this7.dialogue.concat(res.data.data);
-          _this7.paged++;
+          var travelsarr = res.data.data;
+          for (var i = 0; i < travelsarr.length; i++) {
+            for (var y = 0; y < travelsarr[i].content.length; y++) {
+              if (travelsarr[i].content[y].indexOf('http') != -1) {
+                travelsarr[i].content.splice(y, 1);
+              }
+            }
+          }
+          _this7.travels = _this7.travels.concat(travelsarr);
+          _this7.pagec++;
+          return;
+        }
+        // this.recommendStudio = this.recommendStudio.concat(res.data.data);
+        // this.pageb++;
+      });
+    },
+    // 问答
+    questions: function questions() {var _this8 = this;
+      (0, _api.questions)(this.paged, this.id).then(function (res) {
+        // console.log(res);
+        // this.dialogue = res.data.data;
+        _this8.loadding = true;
+        if (res.data.data.length == 0) {
+          _this8.loadding = false;
+          _this8.pullUpOn = false;
+          return;
+        }
+        if (res.data.data.length !== 0) {
+          _this8.loadding = false;
+          _this8.pullUpOn = false;
+          _this8.dialogue = _this8.dialogue.concat(res.data.data);
+          _this8.paged++;
           return;
         }
         // this.dialogue = this.dialogue.concat(res.data.data);
@@ -719,27 +802,27 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
     } },
 
   // 页面上拉触底事件的处理函数
-  onReachBottom: function onReachBottom() {var _this8 = this;
+  onReachBottom: function onReachBottom() {var _this9 = this;
     setTimeout(function () {
-      if (_this8.studioBottomActive == 1) {
-        _this8.loadding = false;
-        _this8.pullUpOn = false;
-        _this8.videos();
+      if (_this9.studioBottomActive == 1) {
+        _this9.loadding = false;
+        _this9.pullUpOn = false;
+        _this9.videos();
       }
-      if (_this8.studioBottomActive == 3) {
-        _this8.loadding = false;
-        _this8.pullUpOn = false;
-        _this8.circle();
+      if (_this9.studioBottomActive == 3) {
+        _this9.loadding = false;
+        _this9.pullUpOn = false;
+        _this9.circle();
       }
-      if (_this8.studioBottomActive == 4) {
-        _this8.loadding = false;
-        _this8.pullUpOn = false;
-        _this8.travelsfn();
+      if (_this9.studioBottomActive == 4) {
+        _this9.loadding = false;
+        _this9.pullUpOn = false;
+        _this9.travelsfn();
       }
-      if (_this8.studioBottomActive == 5) {
-        _this8.loadding = false;
-        _this8.pullUpOn = false;
-        _this8.questions();
+      if (_this9.studioBottomActive == 5) {
+        _this9.loadding = false;
+        _this9.pullUpOn = false;
+        _this9.questions();
       }
     }, 1000);
 

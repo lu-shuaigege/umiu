@@ -62,12 +62,12 @@
 				<view class="studioCenter-top-bottom"><view class="studioCenter-top-bottom-btn" @click="gotolife">走进TA的生活</view></view>
 			</view>
 			<view class="studioCenter-bottom">
-				<view class="studioCenter-bottom-top">
+				<view class="studioCenter-bottom-top" @click="gotoscenicRecommend()">
 					<view class="studioCenter-bottom-top-left">
 						<image src="../../static/img/shop.png" class="shop-icon" mode=""></image>
 						<view class="shop-title">进入我的小店</view>
 					</view>
-					<view class="studioCenter-bottom-top-right" @click="gotoscenicRecommend()">查看更多</view>
+					<view class="studioCenter-bottom-top-right">查看更多</view>
 				</view>
 				<view class="studioCenter-bottom-bottom">
 					<view v-for="(item, index) of data.plays" :key="index" @click="toDetail(item.distributable_id, item.type)" class="studioCenter-bottom-bottom-item">
@@ -225,7 +225,7 @@
 	</view>
 </template>
 <script>
-import { usersStudio, videos, circles, circle, questions, travels } from '@/http/api.js';
+import { usersStudio, videos, circles, circle, questions, travels, bindfans } from '@/http/api.js';
 import tuiLoadmore from '@/plugins/thorui/components/loadmore/loadmore.vue';
 import tuiNomore from '@/plugins/thorui/components/nomore/nomore';
 export default {
@@ -331,12 +331,32 @@ export default {
 				visitor_number: 0,
 				service_number: 0,
 				play_number: 0,
-				plays: []
+				plays: [],
+				isDis: 0,
+				uid: '',
+				code: '',
+				openid: '',
+				userInfo: {}
 			}
 		};
 	},
 	onShow() {
+		const pages = getCurrentPages();
+		const currPage = pages[pages.length - 1]; // 当前页
 		wx.hideHomeButton();
+		if (uni.getStorageSync('code')) {
+			this.code = uni.getStorageSync('code');
+		}
+		if (uni.getStorageSync('openid')) {
+			this.openid = uni.getStorageSync('openid');
+		}
+		if (uni.getStorageSync('userInfo')) {
+			this.userInfo = uni.getStorageSync('userInfo');
+		}
+		if (currPage.data.uid) {
+			this.uid = currPage.data.uid;
+			this.bindfans();
+		}
 	},
 	onPageScroll(res) {
 		wx.createSelectorQuery()
@@ -352,17 +372,68 @@ export default {
 		if (options.id) {
 			uni.setStorageSync('studio', options.id);
 		}
+		if (options.isDis && options.isDis == 1) {
+			this.isDis = 1;
+		}
+		if (options.uid) {
+			this.uid = options.uid;
+		}
 		if (uni.getStorageSync('studio')) {
 			this.id = uni.getStorageSync('studio');
 		} else {
 			this.topnocontent = true;
 		}
-		if (uni.getStorageSync('openid')) {
-			this.openid = uni.getStorageSync('openid');
+		if (getCurrentPages().length == 1) {
+			wx.getSetting({
+				success: res => {
+					//判断是否授权，如果授权成功
+					if (res.authSetting['scope.userInfo']) {
+						//获取用户信息
+						wx.getUserInfo({
+							success: res => {
+								this.userInfo = res.userInfo;
+								uni.setStorageSync('userInfo', res.userInfo);
+								this.bindfans();
+								this.getDetail();
+								return;
+							}
+						});
+					} else {
+						uni.navigateTo({
+							url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+						});
+						return;
+					}
+				}
+			});
 		} else {
-			console.log(1111111);
-			this.authorizations();
+			wx.getSetting({
+				success: res => {
+					//判断是否授权，如果授权成功
+					if (res.authSetting['scope.userInfo']) {
+						//获取用户信息
+						wx.getUserInfo({
+							success: res => {
+								console.log(res);
+								this.userInfo = res.userInfo;
+								uni.setStorageSync('userInfo', res.userInfo);
+								this.getDetail();
+							}
+						});
+					} else {
+						this.authorizations();
+						return;
+					}
+				}
+			});
 		}
+
+		// if (uni.getStorageSync('openid')) {
+		// 	this.openid = uni.getStorageSync('openid');
+		// } else {
+		// 	this.authorizations();
+		// }
+
 		this.getDetail();
 		this.videos();
 		this.circle();
@@ -372,7 +443,6 @@ export default {
 	},
 	methods: {
 		authorizations() {
-			console.log(22222);
 			uni.navigateTo({
 				url: `/pages/authorizations/authorizations?id=${this.id}`
 			});
@@ -393,6 +463,19 @@ export default {
 				duration: 300
 			});
 		},
+		bindfans() {
+			bindfans('', this.uid, this.code, this.openid, this.userInfo).then(res => {
+				// this.list = res.data;
+				console.log(res);
+				if (res.code == 0) {
+					// uni.showToast({
+					// 	icon: 'none',
+					// 	title: '绑定粉丝成功'
+					// });
+				}
+			});
+		},
+
 		// 用户信息
 		getDetail() {
 			usersStudio(this.id, this.openid).then(res => {

@@ -212,7 +212,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then(__webpack_require__.bind(null, /*! @/plugins/gaoyia-parse/parse.vue */ 274));};var _default = { components: { uParse: uParse }, data: function data() {return { list: [], id: '', isDis: 0, uid: "", isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
+var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then(__webpack_require__.bind(null, /*! @/plugins/gaoyia-parse/parse.vue */ 242));};var _default = { components: { uParse: uParse }, data: function data() {return { list: [], id: '', isDis: 0, uid: "", isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}
   },
   onLoad: function onLoad(options) {var _this2 = this;

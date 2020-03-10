@@ -100,7 +100,7 @@ export function loginPassword(mobile, password, userInfo, openid, code) {
 }
 
 //获取资源列表
-export function getResources(id, page, type, keywords, city_code, destination_code) {
+export function getResources(id, page, type, keywords, city_code, destination_code, client) {
 	let data = {}
 	if (id) {
 		data["id"] = id
@@ -122,6 +122,9 @@ export function getResources(id, page, type, keywords, city_code, destination_co
 	}
 	if (destination_code) {
 		data["destination_code"] = destination_code
+	}
+	if (client) {
+		data["client"] = client
 	}
 	return http({
 		url: `/api/users/${id}/distributions`,
@@ -385,20 +388,20 @@ export function resourcesOrders(id, team_id, quantity, type, child, contact, con
 //游记攻略-详情
 export function travelsDetail(id) {
 	return http({
-		url: "/api/travels/"+id+"?w=800"
+		url: "/api/travels/" + id + "?w=800"
 	})
 }
 
 //短视频-详情
 export function shortvideos(id) {
 	return http({
-		url: "/api/short-videos/"+id
+		url: "/api/short-videos/" + id
 	})
 }
 //评论列表
-export function comments(page,type,id) {
+export function comments(page, type, id) {
 	return http({
-		url: "/api/"+type+"/"+id+"/comments",
+		url: "/api/" + type + "/" + id + "/comments",
 		data: {
 			page: page
 		}
@@ -407,17 +410,17 @@ export function comments(page,type,id) {
 //问题-详情
 export function questionDetail(id) {
 	return http({
-		url: "/api/questions/"+id
+		url: "/api/questions/" + id
 	})
 }
 //问题-详情
-export function questionAnswers(page,order,id) {
+export function questionAnswers(page, order, id) {
 	return http({
-		url: "/api/questions/"+id+"/answers",
+		url: "/api/questions/" + id + "/answers",
 		data: {
 			page: page,
 			per_page: 10,
-			order:order
+			order: order
 		}
 	})
 }

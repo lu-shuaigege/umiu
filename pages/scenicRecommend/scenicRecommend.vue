@@ -137,14 +137,13 @@ export default {
 				city_Code = this.cityCode;
 				destination_code = '';
 			}
-			// let city_Name=this.cityName
-			// if(this.cityName=="区域"){
-			// 	city_Name=""
-			// }else{
-			// 	city_Name=this.cityName
-			// }
-
-			getResources(this.id, this.page, this.type, this.keywords, city_Code, destination_code).then(res => {
+			let client = '';
+			if (this.type == 'feature') {
+				client = 'wx-mini-program';
+			} else {
+				client = '';
+			}
+			getResources(this.id, this.page, this.type, this.keywords, city_Code, destination_code, client).then(res => {
 				if (!this.pullUpOn) return;
 				this.loadding = true;
 				if (res.data.data.length == 0) {

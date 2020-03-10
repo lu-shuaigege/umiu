@@ -208,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function uniIcons() {return Promise.all(/*! import() | plugins/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/plugins/components/uni-icons/uni-icons.vue */ 249));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 228));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 235));};var _default =
+var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function uniIcons() {return Promise.all(/*! import() | plugins/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/plugins/components/uni-icons/uni-icons.vue */ 217));};var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 196));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 203));};var _default =
 {
   components: {
     uniIcons: uniIcons,
@@ -272,14 +272,13 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
         city_Code = this.cityCode;
         destination_code = '';
       }
-      // let city_Name=this.cityName
-      // if(this.cityName=="区域"){
-      // 	city_Name=""
-      // }else{
-      // 	city_Name=this.cityName
-      // }
-
-      (0, _api.getResources)(this.id, this.page, this.type, this.keywords, city_Code, destination_code).then(function (res) {
+      var client = '';
+      if (this.type == 'feature') {
+        client = 'wx-mini-program';
+      } else {
+        client = '';
+      }
+      (0, _api.getResources)(this.id, this.page, this.type, this.keywords, city_Code, destination_code, client).then(function (res) {
         if (!_this.pullUpOn) return;
         _this.loadding = true;
         if (res.data.data.length == 0) {

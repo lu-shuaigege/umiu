@@ -233,6 +233,14 @@
 	font-weight: bold;
 	color: rgba(40, 40, 44, 1);
 	line-height: 30upx;
+	display: flex;
+	align-items: center;
+}
+
+.shop-icon {
+	width: 35upx;
+	height: 32upx;
+	margin-right: 10upx;
 }
 
 .studioCenter-bottom-top-right {
@@ -971,7 +979,7 @@
 	width: 100% !important;
 	height: 100%;
 } */
-.topnocontent{
+.topnocontent {
 	width: 100vw;
 	height: 100vh;
 	background: #FFFFFF;

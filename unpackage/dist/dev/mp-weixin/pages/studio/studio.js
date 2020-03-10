@@ -357,6 +357,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
@@ -580,7 +583,10 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 228));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 235));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
+//
+//
+//
+var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 196));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 203));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
       openid: '', topnocontent: false, //是否有我的定制师
       pagea: 1, pageb: 1, pagec: 1, paged: 1, loadding: false, pullUpOn: true, studioBottomActive: 1, //按钮选中状态
       answer: '', //回答
@@ -618,10 +624,7 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
       });}, // 问答
     questions: function questions() {var _this7 = this;(0, _api.questions)(this.paged, this.id).then(function (res) {// console.log(res);
         // this.dialogue = res.data.data;
-        _this7.loadding = true;if (res.data.data.length == 0) {
-          _this7.loadding = false;
-          _this7.pullUpOn = false;
-          return;
+        _this7.loadding = true;if (res.data.data.length == 0) {_this7.loadding = false;_this7.pullUpOn = false;return;
         }
         if (res.data.data.length !== 0) {
           _this7.loadding = false;

@@ -63,7 +63,10 @@
 			</view>
 			<view class="studioCenter-bottom">
 				<view class="studioCenter-bottom-top">
-					<view class="studioCenter-bottom-top-left">商品推荐</view>
+					<view class="studioCenter-bottom-top-left">
+						<image src="../../static/img/shop.png" class="shop-icon" mode=""></image>
+						<view class="shop-title">进入我的小店</view>
+					</view>
 					<view class="studioCenter-bottom-top-right" @click="gotoscenicRecommend()">查看更多</view>
 				</view>
 				<view class="studioCenter-bottom-bottom">
@@ -562,19 +565,19 @@ export default {
 			});
 		},
 		//短视频详情
-		toVodeo(id){
+		toVodeo(id) {
 			uni.navigateTo({
 				url: '/pages/newDetail/videodetails/videodetails?id=' + id
 			});
 		},
 		//游记详情
-		toTraval(id){
+		toTraval(id) {
 			uni.navigateTo({
 				url: '/pages/newDetail/traveldetails/traveldetails?id=' + id
 			});
 		},
 		//问答详情
-		toQuestion(id){
+		toQuestion(id) {
 			uni.navigateTo({
 				url: '/pages/newDetail/questionsdetails/questionsdetails?id=' + id
 			});

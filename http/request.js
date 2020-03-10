@@ -24,10 +24,10 @@ var $http = function(options) {
 					// reject(res.data);
 				}
 				if (res.data.code !== 0) {
-					uni.showToast({
-						icon: 'none',
-						title: res.msg
-					});
+					// uni.showToast({
+					// 	icon: 'none',
+					// 	title: res.msg
+					// });
 					// reject(res.data);
 				}
 				resolve(res.data);

@@ -194,7 +194,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], quantity: '1', allprice: '', isclick: true, team: '', isDis: 0, uid: 0 };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}var pages = getCurrentPages();var prevPage = pages[pages.length - 2]; //上一个页面
+var _default = { components: {}, data: function data() {return { list: [], quantity: '1', allprice: '', isclick: true, team: '', isDis: 0, uid: '' };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}var pages = getCurrentPages();var prevPage = pages[pages.length - 2]; //上一个页面
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
     prevPage.setData({ // isDis: this.isDis,
       isbuy: 1 });this.getDetail(options.id);this.team = JSON.parse(options.team);this.allprice = this.team.price;
@@ -214,7 +214,7 @@ var _default = { components: {}, data: function data() {return { list: [], quant
     gopay: function gopay(id) {var _this2 = this;
       if (this.isDis == 1) {
         this.isclick = false;
-        (0, _api.distributionsOrders)(id, this.team.id, this.quantity, 'boutique').then(function (res) {
+        (0, _api.distributionsOrders)(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid).then(function (res) {
           if (res.code !== 0) {
             uni.showToast({
               icon: 'none',
@@ -241,7 +241,7 @@ var _default = { components: {}, data: function data() {return { list: [], quant
         });
       } else {
         this.isclick = false;
-        (0, _api.boutiquesOrders)(id, this.team.id, this.quantity, 'boutique').then(function (res) {
+        (0, _api.boutiquesOrders)(id, this.team.id, this.quantity, this.uid).then(function (res) {
           if (res.code !== 0) {
             uni.showToast({
               icon: 'none',

@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7751,7 +7751,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7772,14 +7772,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7855,7 +7855,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8537,7 +8537,7 @@ function payWechat(id, openid) {
 
 }
 //资源特产-下单
-function sourcesOrders(id, type, quantity, contact, contact_phone, contact_address) {
+function sourcesOrders(id, type, quantity, contact, contact_phone, contact_address, sharer_id) {
   return (0, _request.default)({
     url: "/api/resources/" + id + "/orders?type=" + type,
     method: 'POST',
@@ -8545,45 +8545,49 @@ function sourcesOrders(id, type, quantity, contact, contact_phone, contact_addre
       quantity: quantity,
       contact: contact,
       contact_phone: contact_phone,
-      contact_address: contact_address } });
+      contact_address: contact_address,
+      sharer_id: sharer_id } });
 
 
 }
 //资源-下单
-function sourcesOrdersa(id, type, quantity) {
+function sourcesOrdersa(id, type, quantity, sharer_id) {
   return (0, _request.default)({
     url: "/api/resources/" + id + "/orders?type=" + type,
     method: 'POST',
     data: {
-      quantity: quantity } });
+      quantity: quantity,
+      sharer_id: sharer_id } });
 
 
 }
 //资源酒店-下单
-function sourcesOrdersb(id, type, child) {
+function sourcesOrdersb(id, type, child, sharer_id) {
   return (0, _request.default)({
     url: "/api/resources/" + id + "/orders?type=" + type,
     method: 'POST',
     data: {
-      child: child } });
+      child: child,
+      sharer_id: sharer_id } });
 
 
 }
 
 //资源线路-下单-普通标品
-function boutiquesOrders(id, team_id, quantity) {
+function boutiquesOrders(id, team_id, quantity, sharer_id) {
   return (0, _request.default)({
     url: "/api/boutiques/" + id + "/orders",
     method: 'POST',
     data: {
       team_id: team_id,
-      quantity: quantity } });
+      quantity: quantity,
+      sharer_id: sharer_id } });
 
 
 }
 
 //资源-下单-分销
-function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address) {
+function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
   var data = {};
   if (team_id) {
     data['team_id'] = team_id;
@@ -8605,6 +8609,9 @@ function distributionsOrders(id, team_id, quantity, type, child, contact, contac
   }
   if (contact_address) {
     data['contact_address'] = contact_address;
+  }
+  if (sharer_id) {
+    data['sharer_id'] = sharer_id;
   }
   return (0, _request.default)({
     url: "/api/distributions/".concat(id, "/orders?type=").concat(type),
@@ -8613,7 +8620,7 @@ function distributionsOrders(id, team_id, quantity, type, child, contact, contac
 
 }
 //资源-下单-普通资源
-function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address) {
+function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
   var data = {};
   if (team_id) {
     data['team_id'] = team_id;
@@ -8635,6 +8642,9 @@ function resourcesOrders(id, team_id, quantity, type, child, contact, contact_ph
   }
   if (contact_address) {
     data['contact_address'] = contact_address;
+  }
+  if (sharer_id) {
+    data['sharer_id'] = sharer_id;
   }
   return (0, _request.default)({
     url: "/api/resources/".concat(id, "/orders?type=").concat(type),
@@ -8695,8 +8705,8 @@ function questionAnswers(page, order, id) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
-// var baseUrl = 'https://umiu.dev.zhangxinkeji.com';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // var baseUrl = 'https://admin.umu888.com';
+var baseUrl = 'https://umiu.dev.zhangxinkeji.com';
 
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {

@@ -30,6 +30,21 @@
 				<text v-for="item in list.tags" :key="item">#{{ item }}#</text>
 			</view>
 		</view>
+		<view class="guideDetail_info">
+			<view class="guideDetail_info_con">
+				<view class="guideDetail_info_con_l">
+					<image class="img" :src="list.distributor.avatar" mode=""></image>
+					<view class="first">
+						<text class="name">{{ list.distributor.truename || list.distributor.nickname }}</text>
+						<view class="title">
+							<image src="/static/img/clockinSuccess_icon.png" mode=""></image>
+							<text>{{ list.distributor.role_zh }}</text>
+						</view>
+					</view>
+				</view>
+				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
+			</view>
+		</view>
 		<view class="house_type">
 			<view v-for="item in list.exts" :key="item">
 				<view class="type_title">
@@ -44,7 +59,7 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail,bindfans } from '@/http/api.js';
+import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
 export default {
 	components: {},
 	data() {
@@ -52,11 +67,12 @@ export default {
 			list: [],
 			id: '',
 			isDis: 0,
-			uid: "",
+			uid: '',
+			user_id: '', //现在的用户id
 			isbuy: 0,
 			code: '',
 			openid: '',
-			userInfo: {},
+			userInfo: {}
 		};
 	},
 	onShow() {
@@ -82,7 +98,6 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
-		
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -128,9 +143,10 @@ export default {
 	},
 	methods: {
 		bindfans() {
+			console.log(this.uid);
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
-				console.log(res)
+				console.log(res);
 				if (res.code == 0) {
 					// uni.showToast({
 					// 	icon: 'none',
@@ -150,6 +166,22 @@ export default {
 				});
 			}
 		},
+		//进入工作室
+		toUpload(id) {
+			// if (this.isDis == 1 && this.uid) {
+			// 	this.user_id = this.list.distributor.id;
+			// }
+			// if (this.isDis != 1 && this.uid) {
+			// 	this.user_id = this.list.author.id;
+			// }
+			// if (!this.uid) {
+			// 	this.user_id = id;
+			// }
+			this.user_id = id;
+			uni.navigateTo({
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+			});
+		},
 		tobuy() {
 			let _this = this;
 			if (!uni.getStorageSync('token')) {
@@ -159,7 +191,7 @@ export default {
 			} else {
 				console.log(_this.id);
 				uni.navigateTo({
-					url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=feature&isDis=${_this.isDis}`
+					url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=feature&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

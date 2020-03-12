@@ -30,6 +30,21 @@
 				<text v-for="item in list.tags" :key="item">#{{ item }}#</text>
 			</view>
 		</view>
+		<view class="guideDetail_info">
+			<view class="guideDetail_info_con">
+				<view class="guideDetail_info_con_l">
+					<image class="img" :src="list.distributor.avatar" mode=""></image>
+					<view class="first">
+						<text class="name">{{ list.distributor.truename || list.distributor.nickname }}</text>
+						<view class="title">
+							<image src="/static/img/clockinSuccess_icon.png" mode=""></image>
+							<text>{{ list.distributor.role_zh }}</text>
+						</view>
+					</view>
+				</view>
+				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
+			</view>
+		</view>
 		<view class="house_type">
 			<view class="type_title">
 				<text class="dot"></text>
@@ -81,7 +96,7 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail ,bindfans} from '@/http/api.js';
+import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
 export default {
 	components: {},
 	data() {
@@ -89,12 +104,13 @@ export default {
 			list: [],
 			id: '',
 			child: [],
-			isDis: 0,
-			uid: "",
+			isDis: 0, //是否是分销过来的
+			uid: '', //分享过来的用户id
+			user_id: '', //现在的用户id
 			isbuy: 0,
 			code: '',
 			openid: '',
-			userInfo: {},
+			userInfo: {}
 		};
 	},
 	onShow() {
@@ -119,7 +135,6 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
-		
 	},
 	onLoad(options) {
 		this.id = options.id;
@@ -167,7 +182,7 @@ export default {
 		bindfans() {
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
-				console.log(res)
+				console.log(res);
 				if (res.code == 0) {
 					// uni.showToast({
 					// 	icon: 'none',
@@ -176,7 +191,7 @@ export default {
 				}
 			});
 		},
-		
+
 		getDetail(id) {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'homestay').then(res => {
@@ -187,6 +202,22 @@ export default {
 					this.list = res.data;
 				});
 			}
+		},
+		//进入工作室
+		toUpload(id) {
+			// if (this.isDis == 1 && this.uid) {
+			// 	this.user_id = this.list.distributor.id;
+			// }
+			// if (this.isDis != 1 && this.uid) {
+			// 	this.user_id = this.list.author.id;
+			// }
+			// if (!this.uid) {
+			// 	this.user_id = id;
+			// }
+			this.user_id = id;
+			uni.navigateTo({
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+			});
 		},
 		tobuy() {
 			let _this = this;
@@ -204,7 +235,7 @@ export default {
 			} else {
 				_this.child = _this.child.replace(/\&nbsp;/g, '');
 				uni.navigateTo({
-					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}`
+					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

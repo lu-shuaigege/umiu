@@ -59,7 +59,8 @@ export default {
 			allprice: '',
 			isclick: true,
 			type: '',
-			isDis: 0
+			isDis: 0,
+			uid: ''
 		};
 	},
 	onShow() {
@@ -68,6 +69,9 @@ export default {
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
 			this.isDis = 1;
+		}
+		if (options.uid) {
+			this.uid = options.uid;
 		}
 		this.type = options.type;
 		this.getDetail(options.id, options.type);
@@ -119,7 +123,7 @@ export default {
 			}
 			if (this.isDis == 1) {
 				this.isclick = false;
-				distributionsOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address).then(res => {
+				distributionsOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address,this.uid).then(res => {
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -145,7 +149,7 @@ export default {
 				});
 			} else {
 				this.isclick = false;
-				resourcesOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address).then(res => {
+				resourcesOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address,this.uid).then(res => {
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',

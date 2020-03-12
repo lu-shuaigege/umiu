@@ -48,7 +48,8 @@ export default {
 			isclick: true,
 			child: [],
 			type: '',
-			isDis: 0
+			isDis: 0,
+			uid: ''
 		};
 	},
 	onShow() {
@@ -57,6 +58,9 @@ export default {
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
 			this.isDis = 1;
+		}
+		if (options.uid) {
+			this.uid = options.uid;
 		}
 		this.type = options.type;
 		this.getDetail(options.id, options.type);
@@ -74,7 +78,7 @@ export default {
 	},
 	methods: {
 		getDetail(id, type) {
-			console.log(this.isDis)
+			console.log(this.isDis);
 			if (this.isDis == 1) {
 				distributionDetail(id, type).then(res => {
 					this.list = res.data;
@@ -88,7 +92,7 @@ export default {
 		gopay(id, type) {
 			if (this.isDis == 1) {
 				this.isclick = false;
-				distributionsOrders(id, '', '', type, this.child).then(res => {
+				distributionsOrders(id, '', '', type, this.child, '', '', '', this.uid).then(res => {
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -114,7 +118,7 @@ export default {
 				});
 			} else {
 				this.isclick = false;
-				resourcesOrders(id, '', '', type, this.child).then(res => {
+				resourcesOrders(id, '', '', type, this.child, '', '', '', this.uid).then(res => {
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',

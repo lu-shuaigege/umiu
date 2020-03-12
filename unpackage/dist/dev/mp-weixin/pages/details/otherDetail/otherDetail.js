@@ -179,6 +179,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
@@ -224,26 +239,26 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], id: '', isDis: 0, uid: "", isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
-    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;console.log(this.id);this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {var _this2 = this;if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;if (options.uid) {this.uid = options.uid;
-    }
-    if (uni.getStorageSync('code')) {
-      this.code = uni.getStorageSync('code');
-    }
-    if (uni.getStorageSync('openid')) {
-      this.openid = uni.getStorageSync('openid');
-    }
-    if (uni.getStorageSync('userInfo')) {
-      this.userInfo = uni.getStorageSync('userInfo');
-    }
-    if (getCurrentPages().length == 1) {
-      wx.getSetting({
-        success: function success(res) {
-          //判断是否授权，如果授权成功
-          if (res.authSetting['scope.userInfo']) {
-            //获取用户信息
-            wx.getUserInfo({
-              success: function success(res) {
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { components: {}, data: function data() {return { list: [], id: '', isDis: 0, uid: '', user_id: '', //现在的用户id
+      isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
+    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;console.log(this.id);this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {var _this2 = this;if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
+          if (res.authSetting['scope.userInfo']) {//获取用户信息
+            wx.getUserInfo({ success: function success(res) {
                 _this2.userInfo = res.userInfo;
                 uni.setStorageSync('userInfo', res.userInfo);
                 _this2.bindfans();
@@ -263,6 +278,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
   },
   methods: {
     bindfans: function bindfans() {
+      console.log(this.uid);
       (0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
         // this.list = res.data;
         console.log(res);
@@ -285,6 +301,22 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
         });
       }
     },
+    //进入工作室
+    toUpload: function toUpload(id) {
+      // if (this.isDis == 1 && this.uid) {
+      // 	this.user_id = this.list.distributor.id;
+      // }
+      // if (this.isDis != 1 && this.uid) {
+      // 	this.user_id = this.list.author.id;
+      // }
+      // if (!this.uid) {
+      // 	this.user_id = id;
+      // }
+      this.user_id = id;
+      uni.navigateTo({
+        url: "/pages/studio/studio?id=".concat(this.user_id, "&isDis=").concat(this.isDis) });
+
+    },
     tobuy: function tobuy() {
       var _this = this;
       if (!uni.getStorageSync('token')) {
@@ -294,7 +326,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
       } else {
         console.log(_this.id);
         uni.navigateTo({
-          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=feature&isDis=").concat(_this.isDis) });
+          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=feature&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
 
       }
       uni.getSetting({

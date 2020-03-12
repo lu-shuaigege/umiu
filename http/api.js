@@ -277,7 +277,7 @@ export function payWechat(id, openid) {
 	})
 }
 //资源特产-下单
-export function sourcesOrders(id, type, quantity, contact, contact_phone, contact_address) {
+export function sourcesOrders(id, type, quantity, contact, contact_phone, contact_address, sharer_id) {
 	return http({
 		url: "/api/resources/" + id + "/orders?type=" + type,
 		method: 'POST',
@@ -285,45 +285,49 @@ export function sourcesOrders(id, type, quantity, contact, contact_phone, contac
 			quantity: quantity,
 			contact: contact,
 			contact_phone: contact_phone,
-			contact_address: contact_address
+			contact_address: contact_address,
+			sharer_id: sharer_id
 		}
 	})
 }
 //资源-下单
-export function sourcesOrdersa(id, type, quantity) {
+export function sourcesOrdersa(id, type, quantity, sharer_id) {
 	return http({
 		url: "/api/resources/" + id + "/orders?type=" + type,
 		method: 'POST',
 		data: {
-			quantity: quantity
+			quantity: quantity,
+			sharer_id: sharer_id
 		}
 	})
 }
 //资源酒店-下单
-export function sourcesOrdersb(id, type, child) {
+export function sourcesOrdersb(id, type, child, sharer_id) {
 	return http({
 		url: "/api/resources/" + id + "/orders?type=" + type,
 		method: 'POST',
 		data: {
-			child: child
+			child: child,
+			sharer_id: sharer_id
 		}
 	})
 }
 
 //资源线路-下单-普通标品
-export function boutiquesOrders(id, team_id, quantity) {
+export function boutiquesOrders(id, team_id, quantity, sharer_id) {
 	return http({
 		url: "/api/boutiques/" + id + "/orders",
 		method: 'POST',
 		data: {
 			team_id: team_id,
-			quantity: quantity
+			quantity: quantity,
+			sharer_id: sharer_id
 		}
 	})
 }
 
 //资源-下单-分销
-export function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address) {
+export function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
 	let data = {}
 	if (team_id) {
 		data['team_id'] = team_id
@@ -345,6 +349,9 @@ export function distributionsOrders(id, team_id, quantity, type, child, contact,
 	}
 	if (contact_address) {
 		data['contact_address'] = contact_address
+	}
+	if (sharer_id) {
+		data['sharer_id'] = sharer_id
 	}
 	return http({
 		url: `/api/distributions/${id}/orders?type=${type}`,
@@ -353,7 +360,7 @@ export function distributionsOrders(id, team_id, quantity, type, child, contact,
 	})
 }
 //资源-下单-普通资源
-export function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address) {
+export function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,sharer_id) {
 	let data = {}
 	if (team_id) {
 		data['team_id'] = team_id
@@ -375,6 +382,9 @@ export function resourcesOrders(id, team_id, quantity, type, child, contact, con
 	}
 	if (contact_address) {
 		data['contact_address'] = contact_address
+	}
+	if (sharer_id) {
+		data['sharer_id'] = sharer_id
 	}
 	return http({
 		url: `/api/resources/${id}/orders?type=${type}`,

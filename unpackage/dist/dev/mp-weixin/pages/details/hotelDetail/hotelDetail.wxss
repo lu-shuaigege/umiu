@@ -1,34 +1,34 @@
-page{
+page {
 	background: #f8f8f8;
 	padding-bottom: 50rpx;
 }
-.hotelDetail{
+.hotelDetail {
 	padding-bottom: 70rpx;
 }
-.hotelDetail_banner{
+.hotelDetail_banner {
 	width: 750rpx;
 	height: 563rpx;
 }
-.screen-swiper{
+.screen-swiper {
 	width: 750rpx;
 	height: 563rpx;
 }
-.screen-swiper image{
+.screen-swiper image {
 	width: 750rpx;
 	height: 563rpx;
 }
-.detail_intro{
+.detail_intro {
 	width: 100%;
 	background: #ffffff;
 	margin-top: 20rpx;
 	padding: 30rpx;
 	box-sizing: border-box;
 }
-.detail_intro .top{
+.detail_intro .top {
 	width: 690rpx;
 	margin: 0 auto;
 }
-.detail_intro .top .first{
+.detail_intro .top .first {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -39,29 +39,29 @@ page{
 	-webkit-align-items: center;
 	        align-items: center;
 }
-.detail_intro .top .first .l{
+.detail_intro .top .first .l {
 	width: 460rpx;
 	font-size: 30rpx;
 	font-weight: bold;
 	color: #28282c;
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.detail_intro .top .first .r{
+.detail_intro .top .first .r {
 	font-size: 24rpx;
 	color: #28282c;
 }
-.detail_intro .top .first .r text{
+.detail_intro .top .first .r text {
 	font-size: 24rpx;
 	color: #f63a3e;
 }
-.detail_intro .top .first .r text text{
+.detail_intro .top .first .r text text {
 	font-size: 34rpx;
 	font-weight: bold;
 	color: #f63a3e;
 }
-.detail_intro .top .second{
+.detail_intro .top .second {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -70,17 +70,17 @@ page{
 	        justify-content: space-between;
 	margin-top: 10rpx;
 }
-.detail_intro .top .second .l{
+.detail_intro .top .second .l {
 	font-size: 24rpx;
 	color: #28282c;
 	width: 500rpx;
 	white-space: normal;
 }
-.detail_intro .top .second .r{
+.detail_intro .top .second .r {
 	font-size: 20rpx;
 	color: #7a7a7a;
 }
-.detail_intro .con{
+.detail_intro .con {
 	width: 690rpx;
 	margin: 0 auto;
 	min-height: 100rpx;
@@ -95,7 +95,7 @@ page{
 	color: #28282c;
 	position: relative;
 }
-.detail_intro .con image{
+.detail_intro .con image {
 	width: 33rpx;
 	height: 28rpx;
 	background-color: #ffffff;
@@ -103,7 +103,7 @@ page{
 	padding: 5rpx;
 	top: -15rpx;
 }
-.detail_intro .tip{
+.detail_intro .tip {
 	width: 690rpx;
 	margin: 0 auto;
 	margin-top: 10rpx;
@@ -113,21 +113,97 @@ page{
 	-webkit-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
-.detail_intro .tip text{
+.guideDetail_info {
+	width: 750rpx;
+	height: 150rpx;
+	background-color: #ffffff;
+	margin-top: 20rpx;
+}
+.guideDetail_info_con {
+	width: 690rpx;
+	height: 150rpx;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.guideDetail_info_con_l {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.guideDetail_info_con_l .img {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+}
+.guideDetail_info_con_l .first {
+	margin-left: 20rpx;
+}
+.guideDetail_info_con_l .first .name {
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #28282c;
+}
+.guideDetail_info_con_l .first .title {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	margin-top: 10rpx;
+}
+.guideDetail_info_con_l .first image {
+	width: 30rpx;
+	height: 30rpx;
+}
+.guideDetail_info_con_l .first text {
+	font-size: 26rpx;
+	font-weight: bold;
+	color: #fca62a;
+	margin-left: 5rpx;
+}
+.guideDetail_info_con .button {
+	width: 151rpx;
+	height: 49rpx;
+	background-image: -webkit-linear-gradient(215deg,
+		#ff7112 0%,
+		#ff8532 100%);
+	background-image: linear-gradient(235deg,
+		#ff7112 0%,
+		#ff8532 100%);
+	border-radius: 24rpx;
+	padding: 0;
+	font-size: 24rpx;
+	line-height: 49rpx;
+	color: #ffffff;
+	text-align: center;
+}
+.detail_intro .tip text {
 	margin-left: 35rpx;
 	font-size: 24rpx;
 	font-weight: 300;
 	color: #7a7a7a;
 	margin-top: 10rpx;
 }
-.house_type{
+.house_type {
 	width: 750rpx;
 	min-height: 100rpx;
 	background-color: #ffffff;
 	margin-top: 20rpx;
 	padding-bottom: 40rpx;
 }
-.type_title{
+.type_title {
 	width: 690rpx;
 	margin: 0 auto;
 	display: -webkit-box;
@@ -138,21 +214,20 @@ page{
 	        align-items: center;
 	padding-top: 30rpx;
 }
-.type_title text{
+.type_title text {
 	font-size: 30rpx;
 	font-weight: bold;
 	color: #28282c;
 }
-.type_title .dot{
+.type_title .dot {
 	width: 20rpx;
 	height: 20rpx;
 	background-color: #ff6600;
 	color: #28282c;
 	margin-right: 15rpx;
 }
-.house_type_p{
-}
-.house_type_list{
+.house_type_p {}
+.house_type_list {
 	width: 690rpx;
 	margin: 0 auto;
 	border-bottom: 1px solid #e1e1e1;
@@ -163,7 +238,7 @@ page{
 	display: flex;
 	/* justify-content: space-between; */
 }
-.house_type_list .up{
+.house_type_list .up {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -174,28 +249,28 @@ page{
 	-webkit-align-items: center;
 	        align-items: center;
 }
-.house_type_list .up .l{
+.house_type_list .up .l {
 	font-size: 28rpx;
 	color: #28282c;
 	width: 440rpx;
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.house_type_list .up .r{
+.house_type_list .up .r {
 	font-size: 24rpx;
 	color: #28282c;
 	text-align: right;
 }
-.house_type_list .up .r text{
+.house_type_list .up .r text {
 	color: #f63a3e;
 }
-.house_type_list .up .r text text{
+.house_type_list .up .r text text {
 	font-family: Arial-BoldMT;
 	font-size: 34rpx;
 	color: #f63a3e;
 }
-.house_type_list .ud{
+.house_type_list .ud {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -204,21 +279,21 @@ page{
 	        justify-content: space-between;
 	margin-top: 5rpx;
 }
-.house_type_list .ud .l{
+.house_type_list .ud .l {
 	font-size: 24rpx;
 	color: #666666;
 	width: 500rpx;
 }
-.house_type_list .ud .l text{
+.house_type_list .ud .l text {
 	font-size: 14rpx;
 	vertical-align: super;
 	margin-right: 15rpx;
 }
-.house_type_list .ud .r{
+.house_type_list .ud .r {
 	font-size: 20rpx;
 	color: #7a7a7a;
 }
-.facilities{
+.facilities {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -231,7 +306,7 @@ page{
 	margin: 0 auto;
 	margin-top: 20rpx;
 }
-.facilities view{
+.facilities view {
 	font-size: 24rpx;
 	color: #28282c;
 	display: -webkit-box;
@@ -243,14 +318,14 @@ page{
 	margin-right: 30rpx;
 	height: 40rpx
 }
-.facilities view text{
+.facilities view text {
 	width: 12rpx;
 	height: 12rpx;
 	background: #28282c;
 	border-radius: 50%;
 	margin-right: 10rpx;
 }
-.house_policy{
+.house_policy {
 	width: 690rpx;
 	margin: 0 auto;
 	margin-top: 20rpx;

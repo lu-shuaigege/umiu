@@ -360,7 +360,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
 //
 //
 //
@@ -609,7 +611,7 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
           if (res.authSetting['scope.userInfo']) {//获取用户信息
             wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.bindfans();_this2.getDetail();return;} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;}} });} else {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
           if (res.authSetting['scope.userInfo']) {//获取用户信息
-            wx.getUserInfo({ success: function success(res) {console.log(res);_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.getDetail();} });} else {_this2.authorizations();return;}} });} // if (uni.getStorageSync('openid')) {
+            wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.getDetail();} });} else {_this2.authorizations();return;}} });} // if (uni.getStorageSync('openid')) {
     // 	this.openid = uni.getStorageSync('openid');
     // } else {
     // 	this.authorizations();
@@ -624,9 +626,7 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
     videos: function videos() {var _this4 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {// console.log(res);
         // this.video = res.data.data;
         // if (!this.pullUpOn) return;
-        _this4.loadding = true;if (res.data.data.length == 0) {
-          _this4.loadding = false;
-          _this4.pullUpOn = false;
+        _this4.loadding = true;if (res.data.data.length == 0) {_this4.loadding = false;_this4.pullUpOn = false;
           return;
         }
         if (res.data.data.length !== 0) {
@@ -747,32 +747,32 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
       switch (type) {
         case 'hotel':
           uni.navigateTo({
-            url: '/pages/details/hotelDetail/hotelDetail?id=' + id });
+            url: "/pages/details/hotelDetail/hotelDetail?id=".concat(id, "&isDis=1") });
 
           break;
         case 'repast':
           uni.navigateTo({
-            url: '/pages/details/restaurantDetail/restaurantDetail?id=' + id });
+            url: "/pages/details/restaurantDetail/restaurantDetail?id=".concat(id, "&isDis=1") });
 
           break;
         case 'sight':
           uni.navigateTo({
-            url: '/pages/details/scenicSpotDetail/scenicSpotDetail?id=' + id });
+            url: "/pages/details/scenicSpotDetail/scenicSpotDetail?id=".concat(id, "&isDis=1") });
 
           break;
         case 'homestay':
           uni.navigateTo({
-            url: '/pages/details/homestayDetail/homestayDetail?id=' + id });
+            url: "/pages/details/homestayDetail/homestayDetail?id=".concat(id, "&isDis=1") });
 
           break;
         case 'feature':
           uni.navigateTo({
-            url: '/pages/details/otherDetail/otherDetail?id=' + id });
+            url: "/pages/details/otherDetail/otherDetail?id=".concat(id, "&isDis=1") });
 
           break;
         case 'boutique':
           uni.navigateTo({
-            url: '/pages/details/standardDetail/standardDetail?id=' + id });
+            url: "/pages/details/standardDetail/standardDetail?id=".concat(id, "&isDis=1") });
 
           break;}
 

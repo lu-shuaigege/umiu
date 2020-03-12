@@ -30,6 +30,21 @@
 				<text v-for="item in list.tags" :key="item">#{{ item }}#</text>
 			</view>
 		</view>
+		<view class="guideDetail_info">
+			<view class="guideDetail_info_con">
+				<view class="guideDetail_info_con_l">
+					<image class="img" :src="list.distributor.avatar" mode=""></image>
+					<view class="first">
+						<text class="name">{{ list.distributor.truename || list.distributor.nickname }}</text>
+						<view class="title">
+							<image src="/static/img/clockinSuccess_icon.png" mode=""></image>
+							<text>{{ list.distributor.role_zh }}</text>
+						</view>
+					</view>
+				</view>
+				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
+			</view>
+		</view>
 		<view class="house_type">
 			<view class="type_title">
 				<text class="dot"></text>
@@ -91,6 +106,7 @@ export default {
 			child: [],
 			isDis: 0,
 			uid: '',
+			user_id: '', //现在的用户id
 			isbuy: 0,
 			code: '',
 			openid: '',
@@ -186,6 +202,22 @@ export default {
 				});
 			}
 		},
+		//进入工作室
+		toUpload(id) {
+			// if (this.isDis == 1 && this.uid) {
+			// 	this.user_id = this.list.distributor.id;
+			// }
+			// if (this.isDis != 1 && this.uid) {
+			// 	this.user_id = this.list.author.id;
+			// }
+			// if (!this.uid) {
+			// 	this.user_id = id;
+			// }
+			this.user_id = id;
+			uni.navigateTo({
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+			});
+		},
 		tobuy() {
 			let _this = this;
 			if (!_this.child.length) {
@@ -202,7 +234,7 @@ export default {
 			} else {
 				_this.child = _this.child.replace(/\&nbsp;/g, '');
 				uni.navigateTo({
-					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&isDis=${_this.isDis}`
+					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

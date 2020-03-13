@@ -157,11 +157,11 @@ export default {
 		},
 		getDetail(id) {
 			if (this.isDis == 1) {
-				distributionDetail(id, 'feature').then(res => {
+				distributionDetail(id, 'specialty').then(res => {
 					this.list = res.data;
 				});
 			} else {
-				sourcesDetail(id, 'feature').then(res => {
+				sourcesDetail(id, 'specialty').then(res => {
 					this.list = res.data;
 				});
 			}
@@ -191,7 +191,7 @@ export default {
 			} else {
 				console.log(_this.id);
 				uni.navigateTo({
-					url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=feature&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({
@@ -204,7 +204,7 @@ export default {
 					// } else {
 					// 	console.log(_this.id);
 					// 	uni.navigateTo({
-					// 		url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=feature&isDis=${_this.isDis}`
+					// 		url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}`
 					// 	});
 					// }
 				}

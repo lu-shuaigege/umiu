@@ -292,11 +292,11 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
     },
     getDetail: function getDetail(id) {var _this3 = this;
       if (this.isDis == 1) {
-        (0, _api.distributionDetail)(id, 'feature').then(function (res) {
+        (0, _api.distributionDetail)(id, 'specialty').then(function (res) {
           _this3.list = res.data;
         });
       } else {
-        (0, _api.sourcesDetail)(id, 'feature').then(function (res) {
+        (0, _api.sourcesDetail)(id, 'specialty').then(function (res) {
           _this3.list = res.data;
         });
       }
@@ -326,7 +326,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
       } else {
         console.log(_this.id);
         uni.navigateTo({
-          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=feature&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=specialty&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
 
       }
       uni.getSetting({
@@ -339,7 +339,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           // } else {
           // 	console.log(_this.id);
           // 	uni.navigateTo({
-          // 		url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=feature&isDis=${_this.isDis}`
+          // 		url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}`
           // 	});
           // }
         } });

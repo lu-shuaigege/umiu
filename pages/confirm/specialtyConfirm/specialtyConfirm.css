@@ -1,98 +1,120 @@
-page{
+page {
 	background: #f8f8f8;
 }
-.resourceinfo{
+
+.resourceinfo {
 	width: 100%;
 	padding: 0 30upx 50upx 30upx;
 	background: #fff;
 	margin-top: 20upx;
 }
-.resourceinfo .title{
+
+.resourceinfo .title {
 	display: flex;
 	height: 100upx;
 	align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 }
-.resourceinfo .title image{
+
+.resourceinfo .title image {
 	width: 35upx;
 	height: 35upx;
 	margin-right: 20upx;
 }
-.resourceinfo .title text{
+
+.resourceinfo .title text {
 	font-size: 30upx;
 	font-weight: bold;
 	color: #333333;
 }
-.resourceinfo .con{
+
+.resourceinfo .con {
 	margin-top: 50upx;
 }
-.resourceinfo .con .text{
-	
-}
-.resourceinfo .con .con1{
+
+.resourceinfo .con .text {}
+
+.resourceinfo .con .con1 {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 30upx;
 }
-.resourceinfo .con .con1 .l{
+
+.resourceinfo .con .con1 .l {
 	display: flex;
 	align-items: center;
 	height: 52upx;
 }
-.resourceinfo .con .con1 .l input{
+
+.resourceinfo .con .con1 .l input {
 	width: 80upx;
 	height: 50upx;
 	background-color: #f9f9f9;
 	border-radius: 7.5upx;
 	text-align: center;
 }
-.resourceinfo .con .con1 .r{
-	
-}
-.contactinfo{
+
+.resourceinfo .con .con1 .r {}
+
+.contactinfo {
 	width: 100%;
 	padding: 0 30upx 20upx 30upx;
 	background: #fff;
 	margin-top: 20upx;
 }
-.contactinfo .title{
+
+.contactinfo .title {
 	display: flex;
 	height: 100upx;
 	align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 }
-.contactinfo_info:first-child{
+
+.contactinfo_info:first-child {
 	margin-top: 30upx;
 }
-.contactinfo_info:last-child{
+
+.contactinfo_info:last-child {
 	border: none;
+	height: 100%;
 }
-.contactinfo .title image{
+
+.contactinfo_info:last-child .inputAdress {
+	height: 100upx;
+	padding-top: 30upx;
+}
+
+.contactinfo .title image {
 	width: 35upx;
 	height: 35upx;
 	margin-right: 20upx;
 }
-.contactinfo .title text{
+
+.contactinfo .title text {
 	font-size: 30upx;
 	font-weight: bold;
 	color: #333333;
 }
-.contactinfo_info{
+
+.contactinfo_info {
 	display: flex;
 	height: 100upx;
 	align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 }
-.contactinfo_info text{
+
+.contactinfo_info text {
 	display: inline-block;
 	width: 160upx;
 }
-.contactinfo_info input{
+
+.contactinfo_info input {
 	width: 400upx;
 	height: 99upx;
 }
-.placeho{
+
+.placeho {
 	font-size: 24upx;
 	color: #cacaca;
 }

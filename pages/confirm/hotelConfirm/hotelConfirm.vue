@@ -49,7 +49,8 @@ export default {
 			child: [],
 			type: '',
 			isDis: 0,
-			uid: ''
+			uid: '',
+			downbtn: false
 		};
 	},
 	onShow() {
@@ -90,9 +91,13 @@ export default {
 			}
 		},
 		gopay(id, type) {
+			if (this.downbtn) {
+				return;
+			}
 			if (this.isDis == 1) {
 				this.isclick = false;
 				distributionsOrders(id, '', '', type, this.child, '', '', '', this.uid).then(res => {
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -119,6 +124,7 @@ export default {
 			} else {
 				this.isclick = false;
 				resourcesOrders(id, '', '', type, this.child, '', '', '', this.uid).then(res => {
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',

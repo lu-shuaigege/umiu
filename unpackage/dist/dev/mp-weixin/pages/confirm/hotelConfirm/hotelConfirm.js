@@ -208,7 +208,8 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], quantity1: 1, quantity2: 1, allprice: 0, isclick: true, child: [], type: '', isDis: 0, uid: '' };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}this.type = options.type;this.getDetail(options.id, options.type);var arr = JSON.parse(options.child);for (var i = 0; i < arr.length; i++) {var arr1 = JSON.parse(arr[i]);this.child.push(arr1);}for (var _i = 0; _i < this.child.length; _i++) {this.child[_i].oneprice = this.child[_i].price;this.child[_i].quantity1 = 1;this.child[_i].quantity2 = 1;this.allprice = this.allprice + this.child[_i].oneprice;
+var _default = { components: {}, data: function data() {return { list: [], quantity1: 1, quantity2: 1, allprice: 0, isclick: true, child: [], type: '', isDis: 0, uid: '', downbtn: false };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}this.type = options.type;this.getDetail(options.id, options.type);var arr = JSON.parse(options.child);for (var i = 0; i < arr.length; i++) {var arr1 = JSON.parse(arr[i]);this.child.push(arr1);}for (var _i = 0; _i < this.child.length; _i++) {this.child[_i].oneprice = this.child[_i].price;this.child[_i].quantity1 = 1;this.child[_i].quantity2 = 1;
+      this.allprice = this.allprice + this.child[_i].oneprice;
     }
   },
   methods: {
@@ -225,9 +226,13 @@ var _default = { components: {}, data: function data() {return { list: [], quant
       }
     },
     gopay: function gopay(id, type) {var _this2 = this;
+      if (this.downbtn) {
+        return;
+      }
       if (this.isDis == 1) {
         this.isclick = false;
         (0, _api.distributionsOrders)(id, '', '', type, this.child, '', '', '', this.uid).then(function (res) {
+          _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({
               icon: 'none',
@@ -254,6 +259,7 @@ var _default = { components: {}, data: function data() {return { list: [], quant
       } else {
         this.isclick = false;
         (0, _api.resourcesOrders)(id, '', '', type, this.child, '', '', '', this.uid).then(function (res) {
+          _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({
               icon: 'none',

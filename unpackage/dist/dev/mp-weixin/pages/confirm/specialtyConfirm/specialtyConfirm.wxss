@@ -1,13 +1,13 @@
-page{
+page {
 	background: #f8f8f8;
 }
-.resourceinfo{
+.resourceinfo {
 	width: 100%;
 	padding: 0 30rpx 50rpx 30rpx;
 	background: #fff;
 	margin-top: 20rpx;
 }
-.resourceinfo .title{
+.resourceinfo .title {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -17,22 +17,21 @@ page{
 	        align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 }
-.resourceinfo .title image{
+.resourceinfo .title image {
 	width: 35rpx;
 	height: 35rpx;
 	margin-right: 20rpx;
 }
-.resourceinfo .title text{
+.resourceinfo .title text {
 	font-size: 30rpx;
 	font-weight: bold;
 	color: #333333;
 }
-.resourceinfo .con{
+.resourceinfo .con {
 	margin-top: 50rpx;
 }
-.resourceinfo .con .text{
-}
-.resourceinfo .con .con1{
+.resourceinfo .con .text {}
+.resourceinfo .con .con1 {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -44,7 +43,7 @@ page{
 	        align-items: center;
 	margin-top: 30rpx;
 }
-.resourceinfo .con .con1 .l{
+.resourceinfo .con .con1 .l {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -53,22 +52,21 @@ page{
 	        align-items: center;
 	height: 52rpx;
 }
-.resourceinfo .con .con1 .l input{
+.resourceinfo .con .con1 .l input {
 	width: 80rpx;
 	height: 50rpx;
 	background-color: #f9f9f9;
 	border-radius: 7.5rpx;
 	text-align: center;
 }
-.resourceinfo .con .con1 .r{
-}
-.contactinfo{
+.resourceinfo .con .con1 .r {}
+.contactinfo {
 	width: 100%;
 	padding: 0 30rpx 20rpx 30rpx;
 	background: #fff;
 	margin-top: 20rpx;
 }
-.contactinfo .title{
+.contactinfo .title {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -78,23 +76,28 @@ page{
 	        align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 }
-.contactinfo_info:first-child{
+.contactinfo_info:first-child {
 	margin-top: 30rpx;
 }
-.contactinfo_info:last-child{
+.contactinfo_info:last-child {
 	border: none;
+	height: 100%;
 }
-.contactinfo .title image{
+.contactinfo_info:last-child .inputAdress {
+	height: 100rpx;
+	padding-top: 30rpx;
+}
+.contactinfo .title image {
 	width: 35rpx;
 	height: 35rpx;
 	margin-right: 20rpx;
 }
-.contactinfo .title text{
+.contactinfo .title text {
 	font-size: 30rpx;
 	font-weight: bold;
 	color: #333333;
 }
-.contactinfo_info{
+.contactinfo_info {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -104,15 +107,15 @@ page{
 	        align-items: center;
 	border-bottom: 1px solid #e0e0e0;
 }
-.contactinfo_info text{
+.contactinfo_info text {
 	display: inline-block;
 	width: 160rpx;
 }
-.contactinfo_info input{
+.contactinfo_info input {
 	width: 400rpx;
 	height: 99rpx;
 }
-.placeho{
+.placeho {
 	font-size: 24rpx;
 	color: #cacaca;
 }

@@ -40,7 +40,8 @@ export default {
 			isclick: true,
 			team: '',
 			isDis: 0,
-			uid: ''
+			uid: '',
+			downbtn: false
 		};
 	},
 	onShow() {
@@ -77,9 +78,13 @@ export default {
 			}
 		},
 		gopay(id) {
+			if (this.downbtn) {
+				return;
+			}
 			if (this.isDis == 1) {
 				this.isclick = false;
 				distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid).then(res => {
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -107,6 +112,7 @@ export default {
 			} else {
 				this.isclick = false;
 				boutiquesOrders(id, this.team.id, this.quantity, this.uid).then(res => {
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',

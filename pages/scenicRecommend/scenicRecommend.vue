@@ -50,8 +50,8 @@
 						<text class="price-right">门市价:￥{{ item.price }}</text>
 					</view> -->
 					<view class="price">
-						<text v-if="type != 'feature'">门市价:</text>
-						<text v-if="type == 'feature'">售卖价:</text>
+						<text v-if="type != 'specialty'">门市价:</text>
+						<text v-if="type == 'specialty'">售卖价:</text>
 						<text class="text">￥</text>
 						<text class="price">{{ item.price }}</text>
 						<!-- 门市价:
@@ -91,7 +91,7 @@ export default {
 			loadding: false,
 			pullUpOn: true,
 			isSelected: 5,
-			type: 'feature'
+			type: 'specialty'
 		};
 	},
 	onShow() {
@@ -138,7 +138,7 @@ export default {
 				destination_code = '';
 			}
 			let client = '';
-			if (this.type == 'feature') {
+			if (this.type == 'specialty') {
 				client = 'wx-mini-program';
 			} else {
 				client = '';
@@ -194,7 +194,7 @@ export default {
 						url: `/pages/details/homestayDetail/homestayDetail?id=${id}&isDis=1`
 					});
 					break;
-				case 'feature':
+				case 'specialty':
 					uni.navigateTo({
 						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
 					});
@@ -204,11 +204,11 @@ export default {
 						url: `/pages/details/standardDetail/standardDetail?id=${id}&isDis=1`
 					});
 					break;
-				case 'specialty':
-					uni.navigateTo({
-						url: `/pages/details/specialtyDetail/specialtyDetail?id=${id}&isDis=1`
-					});
-					break;
+				// case 'specialty':
+				// 	uni.navigateTo({
+				// 		url: `/pages/details/specialtyDetail/specialtyDetail?id=${id}&isDis=1`
+				// 	});
+				// 	break;
 			}
 		},
 		navSelect(index) {
@@ -230,14 +230,14 @@ export default {
 				this.type = 'homestay';
 			}
 			if (index === 5) {
-				this.type = 'feature';
+				this.type = 'specialty';
 			}
 			if (index === 6) {
 				this.type = 'boutique';
 			}
-			if (index === 7) {
-				this.type = 'specialty';
-			}
+			// if (index === 7) {
+			// 	this.type = 'specialty';
+			// }
 			this.getList(this.keywords, this.cityCode);
 		}
 	},

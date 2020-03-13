@@ -32,7 +32,7 @@
 			</view>
 			<view class="contactinfo_info">
 				<text>收货地址</text>
-				<input type="text" value="" placeholder="请填写商品产地" placeholder-class="placeho" @input="inputAdress" />
+				<textarea type="text" value="" placeholder="请填写收货地址" placeholder-class="placeho" @input="inputAdress" class="inputAdress" />
 			</view>
 		</view>
 		<view class="confirm_bottom">
@@ -60,7 +60,8 @@ export default {
 			isclick: true,
 			type: '',
 			isDis: 0,
-			uid: ''
+			uid: '',
+			downbtn: false
 		};
 	},
 	onShow() {
@@ -91,6 +92,9 @@ export default {
 			}
 		},
 		gopay(id, type) {
+			if (this.downbtn) {
+				return;
+			}
 			if (!this.contact) {
 				uni.showToast({
 					icon: 'none',
@@ -123,7 +127,8 @@ export default {
 			}
 			if (this.isDis == 1) {
 				this.isclick = false;
-				distributionsOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address,this.uid).then(res => {
+				distributionsOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address, this.uid).then(res => {
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -149,7 +154,8 @@ export default {
 				});
 			} else {
 				this.isclick = false;
-				resourcesOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address,this.uid).then(res => {
+				resourcesOrders(id, '', this.quantity, type, '', this.contact, this.contact_phone, this.contact_address, this.uid).then(res => {
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',

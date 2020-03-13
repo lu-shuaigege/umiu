@@ -226,7 +226,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
       loadding: false,
       pullUpOn: true,
       isSelected: 5,
-      type: 'feature' };
+      type: 'specialty' };
 
   },
   onShow: function onShow() {
@@ -273,7 +273,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
         destination_code = '';
       }
       var client = '';
-      if (this.type == 'feature') {
+      if (this.type == 'specialty') {
         client = 'wx-mini-program';
       } else {
         client = '';
@@ -329,7 +329,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
             url: "/pages/details/homestayDetail/homestayDetail?id=".concat(id, "&isDis=1") });
 
           break;
-        case 'feature':
+        case 'specialty':
           uni.navigateTo({
             url: "/pages/details/otherDetail/otherDetail?id=".concat(id, "&isDis=1") });
 
@@ -339,12 +339,12 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
             url: "/pages/details/standardDetail/standardDetail?id=".concat(id, "&isDis=1") });
 
           break;
-        case 'specialty':
-          uni.navigateTo({
-            url: "/pages/details/specialtyDetail/specialtyDetail?id=".concat(id, "&isDis=1") });
-
-          break;}
-
+        // case 'specialty':
+        // 	uni.navigateTo({
+        // 		url: `/pages/details/specialtyDetail/specialtyDetail?id=${id}&isDis=1`
+        // 	});
+        // 	break;
+      }
     },
     navSelect: function navSelect(index) {
       this.page = 1;
@@ -365,14 +365,14 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
         this.type = 'homestay';
       }
       if (index === 5) {
-        this.type = 'feature';
+        this.type = 'specialty';
       }
       if (index === 6) {
         this.type = 'boutique';
       }
-      if (index === 7) {
-        this.type = 'specialty';
-      }
+      // if (index === 7) {
+      // 	this.type = 'specialty';
+      // }
       this.getList(this.keywords, this.cityCode);
     } },
 

@@ -194,7 +194,8 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], quantity: '1', allprice: '', isclick: true, type: '', isDis: 0, uid: '' };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}this.type = options.type;this.getDetail(options.id, options.type);}, methods: { getDetail: function getDetail(id, type) {var _this = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, type).then(function (res) {
+var _default = { components: {}, data: function data() {return { list: [], quantity: '1', allprice: '', isclick: true, type: '', isDis: 0, uid: '', downbtn: false };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}this.type = options.type;this.getDetail(options.id, options.type);}, methods: { getDetail: function getDetail(id, type) {var _this = this;if (this.isDis == 1) {
+        (0, _api.distributionDetail)(id, type).then(function (res) {
           _this.list = res.data;
           _this.allprice = _this.list.price;
         });
@@ -206,9 +207,13 @@ var _default = { components: {}, data: function data() {return { list: [], quant
       }
     },
     gopay: function gopay(id, type) {var _this2 = this;
+      if (this.downbtn) {
+        return;
+      }
       if (this.isDis == 1) {
         this.isclick = false;
         (0, _api.distributionsOrders)(id, '', this.quantity, type, '', '', '', '', this.uid).then(function (res) {
+          _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({
               icon: 'none',
@@ -235,6 +240,7 @@ var _default = { components: {}, data: function data() {return { list: [], quant
       } else {
         this.isclick = false;
         (0, _api.resourcesOrders)(id, '', this.quantity, type, '', '', '', '', this.uid).then(function (res) {
+          _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({
               icon: 'none',

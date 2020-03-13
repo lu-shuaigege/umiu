@@ -273,8 +273,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 104));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
 //
 //
 //
@@ -462,7 +466,8 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
       daysList: [], modal: false, dates: '', //格式化后日期
       currentDate: new Date(), date: '', lefticon: false, //左边按钮
       chooseStart: -1, today: '', team: '', //微信号弹框
-      modal1: false, isDis: 0, uid: "", isbuy: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages(); // console.log(pages);
+      modal1: false, isDis: 0, uid: "", user_id: '', //现在的用户id
+      isbuy: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages(); // console.log(pages);
     var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis; // this.uid = currPage.data.uid;
       this.isbuy = currPage.data.isbuy;this.getDetail(this.id); // this.bindfans();
@@ -476,28 +481,42 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
           // });
         }});}, //选择套餐
     chooseItem: function chooseItem(item) {var _this3 = this;if (item.travel_date > this.today && item.price > 0) {this.chooseStart = item.id;this.team = item;setTimeout(function () {_this3.hide();}, 500);}}, //进入工作室
-    toUpload: function toUpload() {this.modal1 = true;}, //关闭微信号弹框
-    closewc: function closewc() {this.modal1 = false;}, //复制微信号
-    copy: function copy(data) {wx.setClipboardData({ data: data, success: function success(res) {wx.getClipboardData({ success: function success(res) {wx.hideLoading();uni.showToast({ icon: 'none', title: '微信号复制成功，去添加好友吧' });} });} });}, getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'boutique').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {
-          _this4.list = res.data;
-          _this4.chooseStart = _this4.list.teams[0].id;
-          _this4.team = _this4.list.teams[0];
-        });
-      }
-    },
-    //获取日历&&价格
-    getTeams: function getTeams(id) {var _this5 = this;
-      (0, _api.boutiquesTeams)(id, this.date).then(function (res) {
-        _this5.daysList = res.data;
-        if (_this5.daysList[0].week_zh == '周日') {
-          _this5.daysList.unshift();
-        } else if (_this5.daysList[0].week_zh == '周一') {
-          _this5.daysList.unshift({});
-        } else if (_this5.daysList[0].week_zh == '周二') {
-          _this5.daysList.unshift({}, {});
-        } else if (_this5.daysList[0].week_zh == '周三') {
-          _this5.daysList.unshift({}, {}, {});
-        } else if (_this5.daysList[0].week_zh == '周四') {
+    toUpload: function toUpload(id) {// if (this.isDis == 1 && this.uid) {
+      // 	this.user_id = this.list.distributor.id;
+      // }
+      // if (this.isDis != 1 && this.uid) {
+      // 	this.user_id = this.list.author.id;
+      // }
+      // if (!this.uid) {
+      // 	this.user_id = id;
+      // }
+      this.user_id = id;uni.navigateTo({ url: "/pages/studio/studio?id=".concat(this.user_id, "&isDis=").concat(this.isDis) });}, // //进入工作室
+    // toUpload() {
+    // 	this.modal1 = true;
+    // },
+    // //关闭微信号弹框
+    // closewc() {
+    // 	this.modal1 = false;
+    // },
+    // //复制微信号
+    // copy(data) {
+    // 	wx.setClipboardData({
+    // 		data: data,
+    // 		success(res) {
+    // 			wx.getClipboardData({
+    // 				success(res) {
+    // 					wx.hideLoading();
+    // 					uni.showToast({
+    // 						icon: 'none',
+    // 						title: '微信号复制成功，去添加好友吧'
+    // 					});
+    // 				}
+    // 			});
+    // 		}
+    // 	});
+    // },
+    getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'boutique').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {_this4.list = res.data;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];});}}, //获取日历&&价格
+    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {_this5.daysList.unshift({}, {});} else if (_this5.daysList[0].week_zh == '周三') {_this5.daysList.unshift({}, {}, {});} else if (_this5.daysList[0].week_zh == '周四') {
           _this5.daysList.unshift({}, {}, {}, {});
         } else if (_this5.daysList[0].week_zh == '周五') {
           _this5.daysList.unshift({}, {}, {}, {}, {});

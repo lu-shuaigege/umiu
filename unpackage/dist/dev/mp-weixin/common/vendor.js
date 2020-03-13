@@ -8705,8 +8705,8 @@ function questionAnswers(page, order, id) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // var baseUrl = 'https://admin.umu888.com';
-var baseUrl = 'https://umiu.dev.zhangxinkeji.com';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
+// var baseUrl = 'https://umiu.dev.zhangxinkeji.com';
 
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {

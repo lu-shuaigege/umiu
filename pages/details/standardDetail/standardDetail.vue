@@ -54,16 +54,17 @@
 		<view class="guideDetail_info">
 			<view class="guideDetail_info_con">
 				<view class="guideDetail_info_con_l">
-					<image class="img" :src="list.author.avatar" mode=""></image>
+					<image class="img" :src="list.distributor.avatar" mode=""></image>
 					<view class="first">
-						<text class="name">{{ list.author.truename || list.author.nickname }}</text>
+						<text class="name">{{ list.distributor.truename || list.distributor.nickname }}</text>
 						<view class="title">
 							<image src="/static/img/clockinSuccess_icon.png" mode=""></image>
-							<text>{{ list.author.role_zh }}</text>
+							<text>{{ list.distributor.role_zh }}</text>
 						</view>
 					</view>
 				</view>
-				<view class="button" @click="toUpload()">进入工作室</view>
+				<!-- <view class="button" @click="toUpload()">进入工作室</view> -->
+				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
 			</view>
 		</view>
 		<view class="standardDetail_con">
@@ -163,7 +164,8 @@
 				</view>
 			</view>
 		</tui-modal>
-		<view class="wc1">
+		<!-- 复制微信号弹框 -->
+		<!-- <view class="wc1">
 			<tui-modal :show="modal1" @cancel="hide1" :custom="true">
 				<view class="wechatnum">
 					<image class="wechatnum_bg" src="/static/img/wechat_bg.png" mode=""></image>
@@ -176,7 +178,7 @@
 					</view>
 				</view>
 			</tui-modal>
-		</view>
+		</view> -->
 		<view class="tobuy" @click="tobuy()">立即购买</view>
 	</view>
 </template>
@@ -253,6 +255,7 @@ export default {
 			modal1: false,
 			isDis: 0,
 			uid: "",
+			user_id: '', //现在的用户id
 			isbuy: 0
 		};
 	},
@@ -353,30 +356,46 @@ export default {
 			}
 		},
 		//进入工作室
-		toUpload() {
-			this.modal1 = true;
-		},
-		//关闭微信号弹框
-		closewc() {
-			this.modal1 = false;
-		},
-		//复制微信号
-		copy(data) {
-			wx.setClipboardData({
-				data: data,
-				success(res) {
-					wx.getClipboardData({
-						success(res) {
-							wx.hideLoading();
-							uni.showToast({
-								icon: 'none',
-								title: '微信号复制成功，去添加好友吧'
-							});
-						}
-					});
-				}
+		toUpload(id) {
+			// if (this.isDis == 1 && this.uid) {
+			// 	this.user_id = this.list.distributor.id;
+			// }
+			// if (this.isDis != 1 && this.uid) {
+			// 	this.user_id = this.list.author.id;
+			// }
+			// if (!this.uid) {
+			// 	this.user_id = id;
+			// }
+			this.user_id = id;
+			uni.navigateTo({
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
 			});
 		},
+		// //进入工作室
+		// toUpload() {
+		// 	this.modal1 = true;
+		// },
+		// //关闭微信号弹框
+		// closewc() {
+		// 	this.modal1 = false;
+		// },
+		// //复制微信号
+		// copy(data) {
+		// 	wx.setClipboardData({
+		// 		data: data,
+		// 		success(res) {
+		// 			wx.getClipboardData({
+		// 				success(res) {
+		// 					wx.hideLoading();
+		// 					uni.showToast({
+		// 						icon: 'none',
+		// 						title: '微信号复制成功，去添加好友吧'
+		// 					});
+		// 				}
+		// 			});
+		// 		}
+		// 	});
+		// },
 		getDetail(id) {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'boutique').then(res => {

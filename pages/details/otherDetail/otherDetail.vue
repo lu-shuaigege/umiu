@@ -45,7 +45,7 @@
 				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
 			</view>
 		</view>
-		<view class="house_type">
+		<view class="house_type" v-if="list.exts.length > 0">
 			<view v-for="item in list.exts" :key="item">
 				<view class="type_title">
 					<text class="dot"></text>

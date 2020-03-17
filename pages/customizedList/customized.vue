@@ -120,30 +120,6 @@ export default {
 	onLoad(options) {
 		this.getConfig();
 		this.getList();
-		// if (!uni.getStorageSync('token')) {
-		// 	// uni.navigateTo({
-		// 	// 	url: '/pages/login/login'
-		// 	// });
-		// 	console.log(11111)
-		// 	wx.getSetting({
-		// 		success: res => {
-		// 			//判断是否授权，如果授权成功
-		// 			if (res.authSetting['scope.userInfo']) {
-		// 				//获取用户信息
-		// 				wx.getUserInfo({
-		// 					success: res => {
-		// 						this.userInfo = res.userInfo;
-		// 					}
-		// 				});
-		// 			} else {
-		// 				uni.navigateTo({
-		// 					url: '/pages/authorizations/authorizations'
-		// 				});
-		// 				return;
-		// 			}
-		// 		}
-		// 	});
-		// }
 	},
 	methods: {
 		getList() {

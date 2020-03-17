@@ -147,20 +147,19 @@
 			"style": {
 				"navigationBarTitleText": "我的定制师列表"
 			}
-		}
-		,
+		},
 		{
 			"path": "pages/newDetail/traveldetails/traveldetails",
 			"style": {
 				"navigationBarTitleText": "攻略游记详情"
 			}
 		},
-		{
-			"path": "pages/newDetail/videodetails/videodetails",
-			"style": {
-				"navigationBarTitleText": "短视频详情"
-			}
-		},
+		// {
+		// 	"path": "pages/newDetail/videodetails/videodetails",
+		// 	"style": {
+		// 		"navigationBarTitleText": "短视频详情"
+		// 	}
+		// },
 		{
 			"path": "pages/newDetail/comments/comments",
 			"style": {
@@ -180,5 +179,12 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+
+	"plugins": {
+		"live-player-plugin": {
+			"version": "1.0.2", // 注意填写该直播组件最新版本号，微信开发者工具调试时可获取最新版本号
+			"provider": "wx2b03c6e691cd7370" // 必须填该直播组件appid，该示例值即为直播组件appid
+		}
 	}
 }

@@ -218,7 +218,6 @@
 				</view>
 			</view>
 		</view>
-		<view class="topnocontent" v-show="topnocontent">暂时还没有我的定制师</view>
 		<!--加载loadding-->
 		<tui-loadmore :visible="loadding"></tui-loadmore>
 		<tui-nomore :visible="!pullUpOn"></tui-nomore>
@@ -379,10 +378,11 @@ export default {
 		if (options.uid) {
 			this.uid = options.uid;
 		}
-		if (uni.getStorageSync('studio')) {
-			this.id = uni.getStorageSync('studio');
-		} else {
-			this.topnocontent = true;
+		if (uni.getStorageSync('code')) {
+			this.code = uni.getStorageSync('code');
+		}
+		if (uni.getStorageSync('openid')) {
+			this.openid = uni.getStorageSync('openid');
 		}
 		if (getCurrentPages().length == 1) {
 			wx.getSetting({
@@ -427,7 +427,6 @@ export default {
 				}
 			});
 		}
-
 		// if (uni.getStorageSync('openid')) {
 		// 	this.openid = uni.getStorageSync('openid');
 		// } else {

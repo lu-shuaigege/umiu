@@ -360,7 +360,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
@@ -587,8 +586,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-//
-var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 228));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 235));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
+var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/loadmore/loadmore.vue */ 220));};var tuiNomore = function tuiNomore() {return __webpack_require__.e(/*! import() | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then(__webpack_require__.bind(null, /*! @/plugins/thorui/components/nomore/nomore */ 227));};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
       openid: '', topnocontent: false, //是否有我的定制师
       pagea: 1, pageb: 1, pagec: 1, paged: 1, loadding: false, pullUpOn: true, studioBottomActive: 1, //按钮选中状态
       answer: '', //回答
@@ -607,7 +605,7 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
       recommendStudiotop: [], // 我的圈子
       recommendStudio: [], data: { user: { id: 0, supplier_id: 0, username: '', truename: '', mobile: '', avatar: '', nickname: '', sex: 2, wx_number: '', profile: '', rating: '', cover_image: '', role: '', role_zh: '', role_type: '', is_admin: 0 }, trade_number: 0, visitor_number: 0, service_number: 0, play_number: 0, plays: [], isDis: 0, uid: '', code: '', openid: '', userInfo: {} } };}, onShow: function onShow() {var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
     wx.hideHomeButton();if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onPageScroll: function onPageScroll(res) {var _this = this;wx.createSelectorQuery().select('.studioBottom-top').boundingClientRect(function (rect) {_this.fixTop = rect.top;}).exec();}, onLoad: function onLoad(options) {var _this2 = this;this.id = options.id; // this.getList();
-    if (options.id) {uni.setStorageSync('studio', options.id);}if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('studio')) {this.id = uni.getStorageSync('studio');} else {this.topnocontent = true;}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
+    if (options.id) {uni.setStorageSync('studio', options.id);}if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
           if (res.authSetting['scope.userInfo']) {//获取用户信息
             wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.bindfans();_this2.getDetail();return;} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;}} });} else {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
           if (res.authSetting['scope.userInfo']) {//获取用户信息
@@ -626,7 +624,8 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
     videos: function videos() {var _this4 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {// console.log(res);
         // this.video = res.data.data;
         // if (!this.pullUpOn) return;
-        _this4.loadding = true;if (res.data.data.length == 0) {_this4.loadding = false;_this4.pullUpOn = false;
+        _this4.loadding = true;if (res.data.data.length == 0) {_this4.loadding = false;
+          _this4.pullUpOn = false;
           return;
         }
         if (res.data.data.length !== 0) {

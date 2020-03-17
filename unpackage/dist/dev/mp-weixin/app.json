@@ -23,7 +23,6 @@
     "pages/payGoapp/payGoapp",
     "pages/customizationList/customizationList",
     "pages/newDetail/traveldetails/traveldetails",
-    "pages/newDetail/videodetails/videodetails",
     "pages/newDetail/comments/comments",
     "pages/newDetail/questionsdetails/questionsdetails"
   ],
@@ -34,6 +33,5 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap28.json"
+  "usingComponents": {}
 }

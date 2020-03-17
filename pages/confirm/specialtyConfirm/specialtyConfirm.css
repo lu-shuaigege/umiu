@@ -82,7 +82,9 @@ page {
 
 .contactinfo_info:last-child .inputAdress {
 	height: 100upx;
-	padding-top: 30upx;
+	padding-top: 35upx;
+	padding-left: 2upx;
+
 }
 
 .contactinfo .title image {

@@ -14,7 +14,7 @@
 					<view class="l">{{ list.address }}</view>
 				</view>
 				<view class="third">
-					<view class="l">{{ list.exts[0].field }}/{{ list.exts[0].value }}</view>
+					<view class="l" v-if="list.exts.length > 0">{{ list.exts[0].field }}/{{ list.exts[0].value }}</view>
 					<view class="r">
 						售卖价:
 						<text>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail ,bindfans} from '@/http/api.js';
+import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
 import uParse from '@/plugins/gaoyia-parse/parse.vue';
 export default {
 	components: {
@@ -64,7 +64,7 @@ export default {
 			list: [],
 			id: '',
 			isDis: 0,
-			uid: "",
+			uid: '',
 			user_id: '', //现在的用户id
 			isbuy: 0,
 			code: '',
@@ -94,7 +94,6 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
-		
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -137,12 +136,13 @@ export default {
 			});
 		}
 		this.getDetail(options.id);
+		
 	},
 	methods: {
 		bindfans() {
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
-				console.log(res)
+				console.log(res);
 				if (res.code == 0) {
 					// uni.showToast({
 					// 	icon: 'none',

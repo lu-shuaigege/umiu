@@ -10,31 +10,25 @@
 				<view class="studioTop-bottom-top">
 					<image class="studioTop-bottom-top-left" :src="data.user.avatar" mode=""></image>
 					<view class="studioTop-bottom-top-right">
-						<view class="studioTop-bottom-top-right-phone" @click="tel">
-							<image class="studioTop-bottom-top-right-phone-img" src="../../static/img/phone.png" mode=""></image>
+						<view class="studioTop-bottom-top-right-top">
+							<view class="studioTop-bottom-top-right-top-left">
+								<view class="studioTop-bottom-top-right-title">
+									<view class="studioTop-bottom-top-name">{{ data.user.nickname }}</view>
+									<image v-if="data.user.sex == 1" class="studioTop-bottom-top-sex" src="/static/img/customized_manicon.png" mode=""></image>
+									<image v-if="data.user.sex == 2" class="studioTop-bottom-top-sex" src="/static/img/customized_womanicon.png" mode=""></image>
+								</view>
+								<view class="studioTop-bottom-top-right-top-left-bottom">
+									<view class="serve_num">{{ data.user.rating }}</view>
+									<view class="role_zh">{{ data.user.role_zh }}</view>
+								</view>
+							</view>
+
+							<view class="studioTop-bottom-top-right-phone" @click="tel">
+								<image class="studioTop-bottom-top-right-phone-img" src="../../static/img/phone.png" mode=""></image>
+							</view>
 						</view>
-						<view class="studioTop-bottom-top-right-title">
-							<view class="studioTop-bottom-top-name">{{ data.user.nickname }}</view>
-							<image v-if="data.user.sex == 1" class="studioTop-bottom-top-sex" src="/static/img/customized_manicon.png" mode=""></image>
-							<image v-if="data.user.sex == 2" class="studioTop-bottom-top-sex" src="/static/img/customized_womanicon.png" mode=""></image>
-						</view>
+
 						<view class="studioTop-bottom-top-right-word">{{ data.user.profile }}</view>
-					</view>
-				</view>
-				<view class="studioTop-bottom-bottom">
-					<view class="studioTop-bottom-bottom-left">
-						电话:
-						<view class="studioTop-bottom-bottom-left-content">{{ data.user.mobile }}</view>
-					</view>
-					<view class="studioTop-bottom-bottom-shua"></view>
-					<view class="studioTop-bottom-bottom-left">
-						我的评分:
-						<view class="studioTop-bottom-bottom-left-content">{{ data.user.rating }}</view>
-					</view>
-					<view class="studioTop-bottom-bottom-shub"></view>
-					<view class="studioTop-bottom-bottom-left">
-						我的身份:
-						<view class="studioTop-bottom-bottom-left-content">{{ data.user.role_zh }}</view>
 					</view>
 				</view>
 			</view>

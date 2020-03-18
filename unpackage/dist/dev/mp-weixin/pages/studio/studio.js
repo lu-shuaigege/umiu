@@ -354,19 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -620,11 +608,17 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
           // 	title: '绑定粉丝成功'
           // });
         }});}, // 用户信息
-    getDetail: function getDetail() {var _this3 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this3.data = res.data;});}, // 短视频
-    videos: function videos() {var _this4 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {// console.log(res);
+    getDetail: function getDetail() {var _this3 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this3.data = res.data;});
+    },
+    // 短视频
+    videos: function videos() {var _this4 = this;
+      (0, _api.videos)(this.pagea, this.id).then(function (res) {
+        // console.log(res);
         // this.video = res.data.data;
         // if (!this.pullUpOn) return;
-        _this4.loadding = true;if (res.data.data.length == 0) {_this4.loadding = false;
+        _this4.loadding = true;
+        if (res.data.data.length == 0) {
+          _this4.loadding = false;
           _this4.pullUpOn = false;
           return;
         }

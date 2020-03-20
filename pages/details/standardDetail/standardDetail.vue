@@ -54,7 +54,8 @@
 		<view class="guideDetail_info">
 			<view class="guideDetail_info_con">
 				<view class="guideDetail_info_con_l">
-					<image class="img" :src="list.distributor.avatar" mode=""></image>
+					<image class="img" v-if="list.distributor.avatar" :src="list.distributor.avatar" mode=""></image>
+					<image class="img" v-if="!list.distributor.avatar" src="../../../static/img/header_img.png" mode=""></image>
 					<view class="first">
 						<text class="name">{{ list.distributor.truename || list.distributor.nickname }}</text>
 						<view class="title">

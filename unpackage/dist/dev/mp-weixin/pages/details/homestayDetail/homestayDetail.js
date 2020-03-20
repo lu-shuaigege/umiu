@@ -247,7 +247,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
 //
 //
 //
@@ -365,8 +367,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
       // if (!this.uid) {
       // 	this.user_id = id;
       // }
-      this.user_id = id;
-      uni.navigateTo({
+      this.user_id = id;uni.navigateTo({
         url: "/pages/studio/studio?id=".concat(this.user_id, "&isDis=").concat(this.isDis) });
 
     },

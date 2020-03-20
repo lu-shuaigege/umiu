@@ -247,7 +247,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
 //
 //
 //
@@ -354,8 +356,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           // 	title: '绑定粉丝成功'
           // });
         }});}, getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'hotel').then(function (res) {_this3.list = res.data;});} else {(0, _api.sourcesDetail)(id, 'hotel').then(function (res) {_this3.list = res.data;});}}, //进入工作室
-    toUpload: function toUpload(id) {
-      // if (this.isDis == 1 && this.uid) {
+    toUpload: function toUpload(id) {// if (this.isDis == 1 && this.uid) {
       // 	this.user_id = this.list.distributor.id;
       // }
       // if (this.isDis != 1 && this.uid) {

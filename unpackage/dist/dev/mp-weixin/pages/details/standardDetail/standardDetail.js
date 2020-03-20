@@ -275,8 +275,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 104));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
 //
 //
 //
@@ -516,8 +518,7 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
     // 	});
     // },
     getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'boutique').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {_this4.list = res.data;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];});}}, //获取日历&&价格
-    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {_this5.daysList.unshift({}, {});} else if (_this5.daysList[0].week_zh == '周三') {_this5.daysList.unshift({}, {}, {});} else if (_this5.daysList[0].week_zh == '周四') {
-          _this5.daysList.unshift({}, {}, {}, {});
+    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {_this5.daysList.unshift({}, {});} else if (_this5.daysList[0].week_zh == '周三') {_this5.daysList.unshift({}, {}, {});} else if (_this5.daysList[0].week_zh == '周四') {_this5.daysList.unshift({}, {}, {}, {});
         } else if (_this5.daysList[0].week_zh == '周五') {
           _this5.daysList.unshift({}, {}, {}, {}, {});
         } else if (_this5.daysList[0].week_zh == '周六') {

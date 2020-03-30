@@ -25,7 +25,8 @@
 		<view class="guideList_list">
 			<view class="list_one" v-for="item in list" :key="item" @click="toDetail(item.id)">
 				<view class="score">4.9</view>
-				<image class="list_one_img" :src="item.avatar" mode=""></image>
+				<image class="list_one_img" v-if="item.avatar" :src="item.avatar" mode=""></image>
+				<image class="list_one_img" v-if="!item.avatar" src="../../static/img/header_img.png" mode=""></image>
 				<view class="list_one_r">
 					<view class="first">
 						<text class="name">{{ item.nickname }}</text>
@@ -120,6 +121,22 @@ export default {
 	onLoad(options) {
 		this.getConfig();
 		this.getList();
+		switch (uni.getSystemInfoSync().platform) {
+			case 'android':
+				console.log('运行Android上');
+
+				break;
+
+			case 'ios':
+				console.log('运行iOS上');
+
+				break;
+
+			default:
+				console.log('运行在开发者工具上');
+
+				break;
+		}
 	},
 	methods: {
 		getList() {

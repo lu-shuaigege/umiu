@@ -276,8 +276,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 104));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -468,7 +502,7 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
       daysList: [], modal: false, dates: '', //格式化后日期
       currentDate: new Date(), date: '', lefticon: false, //左边按钮
       chooseStart: -1, today: '', team: '', //微信号弹框
-      modal1: false, isDis: 0, uid: "", user_id: '', //现在的用户id
+      modal1: false, isDis: 0, uid: '', user_id: '', //现在的用户id
       isbuy: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages(); // console.log(pages);
     var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis; // this.uid = currPage.data.uid;
@@ -518,27 +552,9 @@ var uParse = function uParse() {return Promise.all(/*! import() | plugins/gaoyia
     // 	});
     // },
     getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'boutique').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {_this4.list = res.data;_this4.chooseStart = _this4.list.teams[0].id;_this4.team = _this4.list.teams[0];});}}, //获取日历&&价格
-    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {_this5.daysList.unshift({}, {});} else if (_this5.daysList[0].week_zh == '周三') {_this5.daysList.unshift({}, {}, {});} else if (_this5.daysList[0].week_zh == '周四') {_this5.daysList.unshift({}, {}, {}, {});
-        } else if (_this5.daysList[0].week_zh == '周五') {
-          _this5.daysList.unshift({}, {}, {}, {}, {});
-        } else if (_this5.daysList[0].week_zh == '周六') {
-          _this5.daysList.unshift({}, {}, {}, {}, {}, {});
-        }
-      });
-    },
-    // 隐藏日历
-    hide: function hide() {
-      this.modal = false;
-      this.currentDate = new Date();
-    },
-    // 显示日历
-    show: function show() {
-      this.modal = true;
-      this.dates = this.currentDate.setMonth(this.currentDate.getMonth());
-      this.times(this.dates);
-      this.getTeams(this.id);
-    },
-    // 获取时间
+    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {_this5.daysList.unshift({}, {});} else if (_this5.daysList[0].week_zh == '周三') {_this5.daysList.unshift({}, {}, {});} else if (_this5.daysList[0].week_zh == '周四') {_this5.daysList.unshift({}, {}, {}, {});} else if (_this5.daysList[0].week_zh == '周五') {_this5.daysList.unshift({}, {}, {}, {}, {});} else if (_this5.daysList[0].week_zh == '周六') {_this5.daysList.unshift({}, {}, {}, {}, {}, {});}});}, // 隐藏日历
+    hide: function hide() {this.modal = false;this.currentDate = new Date();}, // 显示日历
+    show: function show() {this.modal = true;this.dates = this.currentDate.setMonth(this.currentDate.getMonth());this.times(this.dates);this.getTeams(this.id);}, // 获取时间
     times: function times(dates) {
       this.dates = new Date(dates);
       this.today = (0, _index.default)().format('YYYY-MM-DD');

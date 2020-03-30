@@ -195,21 +195,6 @@ export default {
 					url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
-			uni.getSetting({
-				success(res) {
-					// if (!res.authSetting['scope.userInfo']) {
-					// if (uni.getStorageSync('token')) {
-					// 	uni.navigateTo({
-					// 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
-					// 	});
-					// } else {
-					// 	console.log(_this.id);
-					// 	uni.navigateTo({
-					// 		url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}`
-					// 	});
-					// }
-				}
-			});
 		}
 	}
 };

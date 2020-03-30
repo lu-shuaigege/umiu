@@ -8,7 +8,8 @@
 			</view>
 			<view class="studioTop-bottom">
 				<view class="studioTop-bottom-top">
-					<image class="studioTop-bottom-top-left" :src="data.user.avatar" mode=""></image>
+					<image class="studioTop-bottom-top-left" v-if="data.user.avatar" :src="data.user.avatar" mode=""></image>
+					<image class="studioTop-bottom-top-left" v-if="!data.user.avatar" src="../../static/img/header_img.png" mode=""></image>
 					<view class="studioTop-bottom-top-right">
 						<view class="studioTop-bottom-top-right-top">
 							<view class="studioTop-bottom-top-right-top-left">

@@ -60,7 +60,7 @@
 	        align-items: center;
 }
 .studioTop-bottom-top-right-top-left {
-	width: 200rpx;
+	/* width: 200upx; */
 }
 .studioTop-bottom-top-right-top-left-bottom {
 	display: -webkit-box;
@@ -120,11 +120,17 @@
 	        align-items: flex-end;
 }
 .studioTop-bottom-top-name {
+	max-width: 400rpx;
 	font-size: 30rpx;
 	font-family: PingFang SC;
 	font-weight: bold;
 	color: rgba(40, 40, 44, 1);
-	line-height: 30rpx;
+	line-height: 35rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 .studioTop-bottom-top-sex {
 	width: 24rpx;

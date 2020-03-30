@@ -330,21 +330,6 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=specialty&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
 
       }
-      uni.getSetting({
-        success: function success(res) {
-          // if (!res.authSetting['scope.userInfo']) {
-          // if (uni.getStorageSync('token')) {
-          // 	uni.navigateTo({
-          // 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
-          // 	});
-          // } else {
-          // 	console.log(_this.id);
-          // 	uni.navigateTo({
-          // 		url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}`
-          // 	});
-          // }
-        } });
-
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

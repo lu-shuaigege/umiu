@@ -1,39 +1,46 @@
-page{
+page {
 	background: #f8f8f8;
 	padding-bottom: 20upx;
 }
-.standardDetail{
+
+.standardDetail {
 	padding-bottom: 100upx;
 }
-.standardDetail_banner{
+
+.standardDetail_banner {
 	width: 750upx;
 	height: 563upx;
 }
-.screen-swiper{
+
+.screen-swiper {
 	width: 750upx;
 	height: 563upx;
 }
-.screen-swiper image{
+
+.screen-swiper image {
 	width: 750upx;
 	height: 563upx;
 }
-.standardDetail_top{
-	width:750upx;
+
+.standardDetail_top {
+	width: 750upx;
 	/* height:462upx; */
-	background:rgba(255,255,255,1);
+	background: rgba(255, 255, 255, 1);
 	padding-bottom: 20upx;
 	margin-top: 20upx;
 }
-.standardDetail_top .name{
-	font-size:30upx;
-	font-weight:bold;
-	color:rgba(40,40,44,1);
+
+.standardDetail_top .name {
+	font-size: 30upx;
+	font-weight: bold;
+	color: rgba(40, 40, 44, 1);
 	width: 690upx;
 	margin: 0 auto;
 	padding-top: 30upx;
 	text-align: justify;
 }
-.standardDetail_top .days{
+
+.standardDetail_top .days {
 	width: 690upx;
 	margin: 0 auto;
 	margin-top: 20upx;
@@ -43,156 +50,178 @@ page{
 	color: #666666;
 	font-weight: 300;
 }
-.standardDetail_top .days .destination{
+
+.standardDetail_top .days .destination {
 	width: 280upx;
-	overflow:hidden; 
-	text-overflow:ellipsis; 
-	white-space:nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
-.standardDetail_top .days text{
-	width:2upx;
-	height:24upx;
-	background:rgba(193,193,193,1);
+
+.standardDetail_top .days text {
+	width: 2upx;
+	height: 24upx;
+	background: rgba(193, 193, 193, 1);
 	/* margin: 0 30upx; */
 }
-.standardDetail_top .total{
+
+.standardDetail_top .total {
 	margin-top: 20upx;
 	margin-left: 30upx;
-	width:150upx;
-	height:48upx;
+	width: 150upx;
+	height: 48upx;
 	line-height: 48upx;
-	background:rgba(255,102,0,0.1);
-	border-radius:8upx;
-	font-size:24upx;
-	color:rgba(255,102,0,1);
+	background: rgba(255, 102, 0, 0.1);
+	border-radius: 8upx;
+	font-size: 24upx;
+	color: rgba(255, 102, 0, 1);
 	text-align: center;
 }
-.standardDetail_top .price{
+
+.standardDetail_top .price {
 	width: 690upx;
 	margin: 0 auto;
 	margin-top: 20upx;
 	display: flex;
 	align-items: center;
 }
-.standardDetail_top .price .l{
+
+.standardDetail_top .price .l {
 	display: flex;
 	align-items: center;
 }
-.standardDetail_top .price .l .l{
+
+.standardDetail_top .price .l .l {
 	font-size: 24upx;
 	color: #282828;
 }
-.standardDetail_top .price .l .r{
+
+.standardDetail_top .price .l .r {
 	font-size: 20upx;
 	color: #7A7A7A;
 	display: flex;
 	align-items: center;
 }
-.standardDetail_top .price .l .r text{
+
+.standardDetail_top .price .l .r text {
 	font-size: 24upx;
 	color: #F63A3E;
 }
-.standardDetail_top .price .l .r text text{
+
+.standardDetail_top .price .l .r text text {
 	font-size: 34upx;
 	color: #F63A3E;
 	margin-right: 5upx;
 }
-.standardDetail_top .price .r{
+
+.standardDetail_top .price .r {
 	font-size: 24upx;
 	color: #999999;
-	font-weight:500;
+	font-weight: 500;
 	margin-left: 30upx;
 }
-.setmeal{
-	width:750upx;
-	height:150upx;
-	background:rgba(248,248,248,1);
+
+.setmeal {
+	width: 750upx;
+	height: 150upx;
+	background: rgba(248, 248, 248, 1);
 	margin-top: 20upx;
 	display: flex;
 }
-.setmeal_l{
-	width:129upx;
-	height:150upx;
-	background:rgba(248,248,248,1);
+
+.setmeal_l {
+	width: 129upx;
+	height: 150upx;
+	background: rgba(248, 248, 248, 1);
 	display: flex;
 	position: relative;
 	align-items: center;
 }
-.setmeal_l view{
-	width:120upx;
-	height:150upx;
-	background:rgba(248,248,248,1);
+
+.setmeal_l view {
+	width: 120upx;
+	height: 150upx;
+	background: rgba(248, 248, 248, 1);
 	z-index: 1;
 	text-align: center;
 	padding-top: 25upx;
 }
-.setmeal_l view text{
+
+.setmeal_l view text {
 	display: block;
 	width: 60upx;
 	height: 35upx;
 	margin: 0 auto;
 	margin-top: 10upx;
-	font-size:30upx;
-	color:#666;
+	font-size: 30upx;
+	color: #666;
 }
-.setmeal_l .yinying{
-	width:18upx;
-	height:142upx;
-	background:rgba(225,225,225,1);
-	opacity:0.4;
-	border-radius:50%;
+
+.setmeal_l .yinying {
+	width: 18upx;
+	height: 142upx;
+	background: rgba(225, 225, 225, 1);
+	opacity: 0.4;
+	border-radius: 50%;
 	margin-left: -9upx;
 	z-index: 0;
 	box-shadow: 0 0 25upx rgba(0, 0, 0, 0.2);
 }
-.setmeal_r{
+
+.setmeal_r {
 	width: 600upx;
-	height:150upx;
+	height: 150upx;
 	margin-left: 10upx;
 	overflow-x: scroll;
 	display: flex;
 	flex-wrap: nowrap;
 }
-.setmeal_r .one{
-	height:150upx;
+
+.setmeal_r .one {
+	height: 150upx;
 	margin-left: 20upx;
 	display: inline-block;
 	display: flex;
 	align-items: center;
 }
-.one_p{
-	width:160upx;
-	height:120upx;
-	background:rgba(248,248,248,1);
-	border:1px solid rgba(225,225,225,1);
-	border-radius:8upx;
+
+.one_p {
+	width: 160upx;
+	height: 120upx;
+	background: rgba(248, 248, 248, 1);
+	border: 1px solid rgba(225, 225, 225, 1);
+	border-radius: 8upx;
 }
-.one_p .up{
-	font-size:24upx;
-	color:rgba(153,153,153,1);
+
+.one_p .up {
+	font-size: 24upx;
+	color: rgba(153, 153, 153, 1);
 	text-align: center;
 	margin-top: 20upx;
 }
-.one_p .ud{
-	font-size:28upx;
-	color:rgba(102,102,102,1);
+
+.one_p .ud {
+	font-size: 28upx;
+	color: rgba(102, 102, 102, 1);
 	text-align: center;
 	margin-top: 5upx;
 }
-.one_p .more{
-	font-size:24upx;
-	color:rgba(153,153,153,1);
+
+.one_p .more {
+	font-size: 24upx;
+	color: rgba(153, 153, 153, 1);
 	text-align: center;
 	margin-top: 40upx;
 }
 
-.guideDetail_info{
+.guideDetail_info {
 	width: 750upx;
 	height: 150upx;
 	background-color: #ffffff;
 	margin-top: 20upx;
 }
-.guideDetail_info_con{
+
+.guideDetail_info_con {
 	width: 690upx;
 	height: 150upx;
 	margin: 0 auto;
@@ -200,44 +229,51 @@ page{
 	justify-content: space-between;
 	align-items: center;
 }
-.guideDetail_info_con_l{
+
+.guideDetail_info_con_l {
 	display: flex;
 	align-items: center;
 }
-.guideDetail_info_con_l .img{
+
+.guideDetail_info_con_l .img {
 	width: 100upx;
 	height: 100upx;
 	border-radius: 50%;
 }
-.guideDetail_info_con_l .first{
+
+.guideDetail_info_con_l .first {
 	margin-left: 20upx;
 }
-.guideDetail_info_con_l .first .name{
+
+.guideDetail_info_con_l .first .name {
 	font-size: 30upx;
 	font-weight: bold;
 	color: #28282c;
 }
-.guideDetail_info_con_l .first .title{
+
+.guideDetail_info_con_l .first .title {
 	display: flex;
 	align-items: center;
 	margin-top: 10upx;
 }
-.guideDetail_info_con_l .first image{
+
+.guideDetail_info_con_l .first image {
 	width: 30upx;
 	height: 30upx;
 }
-.guideDetail_info_con_l .first text{
+
+.guideDetail_info_con_l .first text {
 	font-size: 26upx;
 	font-weight: bold;
 	color: #fca62a;
 	margin-left: 5upx;
 }
 
-.guideDetail_info_con .button{
+.guideDetail_info_con .button {
 	width: 151upx;
 	height: 49upx;
-	background-image: linear-gradient(235deg, 
-		#ff7112 0%, 
+	background-image: linear-gradient(235deg,
+		#ff7112 0%,
 		#ff8532 100%);
 	border-radius: 24upx;
 	padding: 0;
@@ -246,88 +282,109 @@ page{
 	color: #ffffff;
 	text-align: center;
 }
-.standardDetail_con{
+
+.standardDetail_con {
 	margin-top: 20upx;
 }
-.tabbody{
+
+.tabbody {
 	padding: 30upx;
 	margin-top: 20upx;
 	background: #ffffff;
 }
-.tabbody image{
+
+.tabbody image {
 	width: 100%;
 }
-#item1{
+
+#item1 {
 	margin: 0;
 	word-wrap: break-word;
 }
-#item4{
+
+#item1 image {
+	width: 100%;
+}
+
+#item4 {
 	background: #f8f8f8;
 }
-.tabbody_title{
-	font-size:30upx;
-	font-weight:bold;
-	color:rgba(51,51,51,1);
+
+.tabbody_title {
+	font-size: 30upx;
+	font-weight: bold;
+	color: rgba(51, 51, 51, 1);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.tabbody_title text{
-	width:60upx;
-	height:1px;
-	background:rgba(221,221,221,1);
+
+.tabbody_title text {
+	width: 60upx;
+	height: 1px;
+	background: rgba(221, 221, 221, 1);
 	margin: 0 30upx;
 }
-.tabbody1_con{
+
+.tabbody1_con {
 	margin-top: 20upx;
 }
-.tabbody1_con .title{
+
+.tabbody1_con .title {
 	display: flex;
 	align-items: center;
 }
-.tabbody1_con .title .t1{
-	font-size:48upx;
-	color:rgba(51,51,51,1);
+
+.tabbody1_con .title .t1 {
+	font-size: 48upx;
+	color: rgba(51, 51, 51, 1);
 }
-.tabbody1_con .title .t2{
-	font-size:28upx;
-	color:rgba(51,51,51,1);
+
+.tabbody1_con .title .t2 {
+	font-size: 28upx;
+	color: rgba(51, 51, 51, 1);
 	margin-left: 20upx;
 }
-.tabbody1_con .con{
+
+.tabbody1_con .con {
 	display: flex;
 }
-.tabbody1_con .con .l{
+
+.tabbody1_con .con .l {
 	width: 1px;
 	background: #e1e1e1;
 	margin: 0 56upx 0 30upx;
 }
-.tabbody1_con .con .r{
+
+.tabbody1_con .con .r {
 	width: 590upx;
 	font-size: 26upx;
 	color: #666;
 	text-align: justify;
 }
-.tabbody1_con .con .r image{
+
+.tabbody1_con .con .r image {
 	width: 100%;
 	margin-top: 10upx;
 }
-.tabbody_con{
+
+.tabbody_con {
 	margin-top: 30upx;
-	font-size:26upx;
-	color:#666666 !important;
+	font-size: 26upx;
+	color: #666666 !important;
 }
-.tabbody_con text{
+
+.tabbody_con text {
 	font-size: 28upx;
 	/* height: 30upx; */
-	color:#333;
+	color: #333;
 	margin: 20upx 0;
 	display: block;
 }
 
 
 /* 日历 */
-.tui-modal-box{
+.tui-modal-box {
 	width: 690upx !important;
 	top: 45% !important;
 	min-height: 600upx;
@@ -335,24 +392,28 @@ page{
 	padding-top: 20upx;
 	padding-bottom: 30upx;
 }
-.calendar_title{
+
+.calendar_title {
 	text-align: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin-top: 20upx;
 }
-.calendar_title image{
+
+.calendar_title image {
 	width: 57rpx;
 	height: 57rpx;
 	padding: 20rpx;
 }
-.calendar_title text{
+
+.calendar_title text {
 	font-size: 38upx;
 	font-weight: 500;
 	color: #333;
 }
-.calendar_week{
+
+.calendar_week {
 	width: 676upx;
 	margin: 0 auto;
 	display: flex;
@@ -362,19 +423,22 @@ page{
 	margin-top: 30upx;
 	margin-bottom: 10upx;
 }
-.calendar_week view{
+
+.calendar_week view {
 	width: 80upx;
 	height: 40upx;
 	margin: 8upx;
 	text-align: center;
 }
-.calendar_days{
+
+.calendar_days {
 	width: 676upx;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
 }
-.calendar_days .dayone{
+
+.calendar_days .dayone {
 	width: 80upx;
 	height: 86upx;
 	margin: 8upx;
@@ -383,14 +447,16 @@ page{
 	flex-wrap: wrap;
 	/* align-items: center; */
 }
-.calendar_days .dayone .day{
+
+.calendar_days .dayone .day {
 	color: #666;
 	font-size: 28upx;
 	width: 80upx;
 	height: 25upx;
 	padding-top: 14upx;
 }
-.calendar_days .dayone .price{
+
+.calendar_days .dayone .price {
 	color: #999999;
 	font-weight: 300;
 	font-size: 20upx;
@@ -398,26 +464,33 @@ page{
 	height: 25upx;
 	margin-top: 5upx;
 }
-.calendar_days .dayone .price text{
+
+.calendar_days .dayone .price text {
 	margin-right: 5upx;
 }
-.colorc1{
+
+.colorc1 {
 	color: #c1c1c1 !important;
 }
-.color6{
+
+.color6 {
 	color: #666;
 }
-.sbgFF6600{
+
+.sbgFF6600 {
 	background: #FF6600;
 	color: #fff;
 	border-radius: 4px;
 }
-.sbgFF6600 .day{
+
+.sbgFF6600 .day {
 	color: #fff !important;
 }
-.sbgFF6600 .price{
+
+.sbgFF6600 .price {
 	color: #fff !important;
 }
-.borderFF6600{
+
+.borderFF6600 {
 	border: 1px solid #FF6600;
 }

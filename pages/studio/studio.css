@@ -61,7 +61,7 @@
 }
 
 .studioTop-bottom-top-right-top-left {
-	width: 200upx;
+	/* width: 200upx; */
 }
 
 .studioTop-bottom-top-right-top-left-bottom {
@@ -120,11 +120,17 @@
 }
 
 .studioTop-bottom-top-name {
+	max-width: 400upx;
 	font-size: 30upx;
 	font-family: PingFang SC;
 	font-weight: bold;
 	color: rgba(40, 40, 44, 1);
-	line-height: 30upx;
+	line-height: 35upx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .studioTop-bottom-top-sex {

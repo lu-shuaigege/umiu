@@ -51,7 +51,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="guideDetail_info">
+		<!-- <view class="guideDetail_info" v-if="isDis != 0"> -->
+		<view class="guideDetail_info"> 
 			<view class="guideDetail_info_con">
 				<view class="guideDetail_info_con_l">
 					<image class="img" v-if="list.distributor.avatar" :src="list.distributor.avatar" mode=""></image>
@@ -68,6 +69,22 @@
 				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
 			</view>
 		</view>
+		<!-- <view class="guideDetail_info" v-if="isDis == 0">
+			<view class="guideDetail_info_con">
+				<view class="guideDetail_info_con_l">
+					<image class="img" v-if="list.author.avatar" :src="list.author.avatar" mode=""></image>
+					<image class="img" v-if="!list.author.avatar" src="../../../static/img/header_img.png" mode=""></image>
+					<view class="first">
+						<text class="name">{{ list.author.truename || list.author.nickname }}</text>
+						<view class="title">
+							<image src="/static/img/clockinSuccess_icon.png" mode=""></image>
+							<text>{{ list.author.role_zh }}</text>
+						</view>
+					</view>
+				</view>
+				<view class="button" @click="toUpload(list.author.id)">进入工作室</view>
+			</view>
+		</view> -->
 		<view class="standardDetail_con">
 			<luBarTabNav :tabList="tabList" :barFixed="barFixed" :barHeight="barHeight" :barTop="barTop" :barId="barId" ref="barTabNav">
 				<view id="item1" class="tabbody"><u-parse :content="list.feature" @preview="preview" @navigate="navigate" /></view>
@@ -255,7 +272,7 @@ export default {
 			//微信号弹框
 			modal1: false,
 			isDis: 0,
-			uid: "",
+			uid: '',
 			user_id: '', //现在的用户id
 			isbuy: 0
 		};
@@ -286,7 +303,6 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
-		
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -336,7 +352,7 @@ export default {
 		bindfans() {
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
-				console.log(res)
+				console.log(res);
 				if (res.code == 0) {
 					// uni.showToast({
 					// 	icon: 'none',

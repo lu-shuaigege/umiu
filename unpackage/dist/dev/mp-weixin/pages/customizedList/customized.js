@@ -234,7 +234,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
 //
 //
 //
@@ -313,8 +315,23 @@ var tuiLoadmore = function tuiLoadmore() {return __webpack_require__.e(/*! impor
       sex: [], goodat_type: [], //参数选择
       checkSort: true, sorts: 'rating desc', goodat_typeSelected: [], sexSelected: '', lowPrice: '', highPrice: '', isSelected: -1, //标签切换
       isActive: true, cityName: '区域', cityCode: '', page: 1, loadding: false, pullUpOn: true };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; //当前页面
-    this.cityName = currPage.data.cityName;this.cityCode = currPage.data.cityCode;if (this.cityName !== '区域') {this.list = [];this.page = 1;this.pullUpOn = true;this.getList();}}, onLoad: function onLoad(options) {this.getConfig();this.getList();}, methods: { getList: function getList() {var _this = this;(0, _api.getCustomizers)(this.page, this.cityCode, this.sexSelected, this.goodat_typeSelected.toString(), this.sorts).then(function (res) {if (!_this.pullUpOn) return;_this.loadding = true;if (res.data.data.length == 0) {_this.loadding = false;_this.pullUpOn = false;return;}if (res.data.current_page == res.data.last_page) {_this.loadding = false;_this.pullUpOn = false;_this.list = _this.list.concat(res.data.data);_this.page = _this.page + 1;return;}_this.list = _this.list.concat(res.data.data);_this.page = _this.page + 1;});}, //筛选条件接口
-    getConfig: function getConfig() {var _this2 = this;(0, _api.getcustomDesignerselct)().then(function (res) {res.data.forEach(function (item, index) {if (item.key == 'sex') {_this2.sex = item.value;}if (item.key == 'goodat-type') {_this2.goodat_type = item.value;}});});},
+    this.cityName = currPage.data.cityName;this.cityCode = currPage.data.cityCode;if (this.cityName !== '区域') {this.list = [];this.page = 1;this.pullUpOn = true;this.getList();}}, onLoad: function onLoad(options) {this.getConfig();this.getList();switch (uni.getSystemInfoSync().platform) {case 'android':console.log('运行Android上');break;case 'ios':console.log('运行iOS上');break;default:console.log('运行在开发者工具上');break;}}, methods: { getList: function getList() {var _this = this;(0, _api.getCustomizers)(this.page, this.cityCode, this.sexSelected, this.goodat_typeSelected.toString(), this.sorts).then(function (res) {if (!_this.pullUpOn) return;_this.loadding = true;if (res.data.data.length == 0) {_this.loadding = false;_this.pullUpOn = false;return;}if (res.data.current_page == res.data.last_page) {_this.loadding = false;_this.pullUpOn = false;_this.list = _this.list.concat(res.data.data);_this.page = _this.page + 1;return;}_this.list = _this.list.concat(res.data.data);
+        _this.page = _this.page + 1;
+      });
+    },
+    //筛选条件接口
+    getConfig: function getConfig() {var _this2 = this;
+      (0, _api.getcustomDesignerselct)().then(function (res) {
+        res.data.forEach(function (item, index) {
+          if (item.key == 'sex') {
+            _this2.sex = item.value;
+          }
+          if (item.key == 'goodat-type') {
+            _this2.goodat_type = item.value;
+          }
+        });
+      });
+    },
     //性别参数选择
     checkSex: function checkSex(item) {
       this.sexSelected = item;

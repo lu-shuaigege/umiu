@@ -54,6 +54,7 @@ textarea::-webkit-input-placeholder {
 	width: 300rpx;
 	height: 225rpx;
 	border-radius: 10rpx;
+	background: #f3f3f3;
 }
 .list_one_r {
 	width: 367rpx;

@@ -34,7 +34,8 @@
 
 		<view class="list">
 			<view class="list_one" v-for="item in list" :key="item" @click="toDetail(item.id, item.type)">
-				<image :src="item.cover_image" mode=""></image>
+				<image v-if="item.cover_image" :src="item.cover_image" mode=""></image>
+				<image v-if="!item.cover_image" src="../../static/img/noTopcontent.png" mode=""></image>
 				<view class="list_one_r">
 					<view class="title">{{ item.title }}</view>
 					<view class="intro">{{ item.description }}</view>
@@ -139,7 +140,7 @@ export default {
 			}
 			let client = '';
 			if (this.type == 'specialty') {
-				client = 'wx-mini-program';
+				client = 'wx-mini-program-0320-1';
 			} else {
 				client = '';
 			}

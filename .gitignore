@@ -5,6 +5,7 @@ dist
 /dist
 /package-lock.json
 unpackage
+/unpackage
 
 # local env files
 .env.local

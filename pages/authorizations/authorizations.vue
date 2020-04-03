@@ -27,72 +27,9 @@ export default {
 	onLoad(options) {
 		// this.getConfig();
 		this.id = options.id;
-		console.log(this.id)
+		console.log(this.id);
 	},
 	methods: {
-		// wxGetUserInfo() {
-		// 	let that = this;
-		// 	uni.login({
-		// 		provider: 'weixin',
-		// 		success: function(loginRes) {
-		// 			that.code = loginRes.code;
-		// 			uni.setStorageSync('code', loginRes.code);
-		// 			uni.request({
-		// 				url: that.openidUrl,
-		// 				data: {
-		// 					appid: that.APP_ID,
-		// 					secret: that.APP_SECRET,
-		// 					js_code: loginRes.code,
-		// 					grant_type: 'authorization_code'
-		// 				},
-		// 				method: 'GET',
-		// 				success: function(res) {
-		// 					that.openid = res.data.openid;
-		// 					uni.setStorageSync('openid', res.data.openid);
-		// 					wx.getSetting({
-		// 						success(res) {
-		// 							if (res.authSetting['scope.userInfo']) {
-		// 								wx.getUserInfo({
-		// 									success: function(infoRes) {
-		// 										that.userInfo = infoRes.userInfo;
-		// 										that.login();
-		// 									}
-		// 								});
-		// 							}
-		// 						}
-		// 					});
-		// 				}
-		// 			});
-		// 		}
-		// 	});
-		// },
-		// wxGetUserInfo() {
-		// 	let that = this;
-		// 	uni.login({
-		// 		provider: 'weixin',
-		// 		success: function(loginRes) {
-		// 			that.code = loginRes.code;
-		// 			getOpenid(loginRes.code).then(res => {
-		// 				if (res.code == 0) {
-		// 					that.openid = res.data;
-		// 					uni.setStorageSync('openid', res.data.openid);
-		// 					uni.getSetting({
-		// 						success(res) {
-		// 							if (res.authSetting['scope.userInfo']) {
-		// 								uni.getUserInfo({
-		// 									success: function(infoRes) {
-		// 										that.userInfo = infoRes.userInfo;
-		// 										that.login();
-		// 									}
-		// 								});
-		// 							}
-		// 						}
-		// 					});
-		// 				}
-		// 			});
-		// 		}
-		// 	});
-		// },
 		//获取用户信息
 		getConfig() {
 			let that = this;
@@ -122,57 +59,8 @@ export default {
 							});
 						}
 					});
-					// uni.request({
-					// 	url: that.openidUrl,
-					// 	data: {
-					// 		appid: that.APP_ID,
-					// 		secret: that.APP_SECRET,
-					// 		js_code: loginRes.code,
-					// 		grant_type: 'authorization_code'
-					// 	},
-					// 	method: 'GET',
-					// 	success: function(res) {
-					// 		that.openid = res.data.openid;
-					// 		uni.setStorageSync('openid', res.data.openid);
-					// 		uni.navigateTo({
-					// 			url: '/pages/details/standardDetail/standardDetail?id=' + that.id
-					// 		});
-					// 		wx.getSetting({
-					// 			success(res) {
-					// 				if (res.authSetting['scope.userInfo']) {
-					// 					wx.getUserInfo({
-					// 						success: function(infoRes) {
-					// 							that.userInfo = infoRes.userInfo;
-					// 							uni.setStorageSync('userInfo', infoRes.userInfo);
-					// 						}
-					// 					});
-					// 				}
-					// 			}
-					// 		});
-					// 	}
-					// });
 				}
 			});
-
-			// wx.getSetting({
-			// 	success(res) {
-			// 		if (res.authSetting['scope.userInfo']) {
-			// 			wx.getUserInfo({
-			// 				success: function(infoRes) {
-			// 					that.userInfo = infoRes.userInfo;
-			// 				}
-			// 			});
-			// 		}
-			// 	}
-			// });
-			// users().then(res => {
-			// 	// console.log(res);
-			// 	if(res.msg=="success"){
-			// 		uni.navigateTo({
-			// 			url: '/pages/customizedList/customized'
-			// 		});
-			// 	}
-			// });
 		}
 	}
 };

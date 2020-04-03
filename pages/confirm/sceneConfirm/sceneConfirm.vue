@@ -144,7 +144,16 @@ export default {
 					});
 				},
 				fail: function(err) {
+					uni.showToast({
+						icon: 'none',
+						title: '支付失败'
+					});
 					console.log('fail:' + JSON.stringify(err));
+					setTimeout(() => {
+						uni.redirectTo({
+							url: '/pages/my/myIndex/myIndex'
+						});
+					}, 1000);
 				}
 			});
 		},

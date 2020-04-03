@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}
+Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {return;}var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}
 
 var _toString = Object.prototype.toString;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -241,9 +241,11 @@ var promiseInterceptor = {
 
 
 var SYNC_API_RE =
-/^\$|restoreGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64/;
+/^\$|sendNativeEvent|restoreGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64/;
 
 var CONTEXT_API_RE = /^create|Manager$/;
+
+var ASYNC_API = ['createBLEConnection'];
 
 var CALLBACK_API_RE = /^on/;
 
@@ -251,7 +253,7 @@ function isContextApi(name) {
   return CONTEXT_API_RE.test(name);
 }
 function isSyncApi(name) {
-  return SYNC_API_RE.test(name);
+  return SYNC_API_RE.test(name) && ASYNC_API.indexOf(name) === -1;
 }
 
 function isCallbackApi(name) {
@@ -276,6 +278,19 @@ function shouldPromise(name) {
   return true;
 }
 
+/* eslint-disable no-extend-native */
+if (!Promise.prototype.finally) {
+  Promise.prototype.finally = function (callback) {
+    var promise = this.constructor;
+    return this.then(
+    function (value) {return promise.resolve(callback()).then(function () {return value;});},
+    function (reason) {return promise.resolve(callback()).then(function () {
+        throw reason;
+      });});
+
+  };
+}
+
 function promisify(name, api) {
   if (!shouldPromise(name)) {
     return api;
@@ -289,18 +304,6 @@ function promisify(name, api) {
         success: resolve,
         fail: reject })].concat(
       params));
-      /* eslint-disable no-extend-native */
-      if (!Promise.prototype.finally) {
-        Promise.prototype.finally = function (callback) {
-          var promise = this.constructor;
-          return this.then(
-          function (value) {return promise.resolve(callback()).then(function () {return value;});},
-          function (reason) {return promise.resolve(callback()).then(function () {
-              throw reason;
-            });});
-
-        };
-      }
     })));
   };
 }
@@ -1553,16 +1556,16 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 104:
-/*!*****************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/dayjs/index.js ***!
-  \*****************************************************/
+/*!*********************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 105));
 var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 106));
-var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 107));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 107));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
 
 var L = 'en'; // global locale
 var Ls = {}; // global loaded locale
@@ -1980,9 +1983,9 @@ dayjs;exports.default = _default;
 /***/ }),
 
 /***/ 105:
-/*!********************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/dayjs/constant.js ***!
-  \********************************************************/
+/*!************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2021,14 +2024,14 @@ var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{
 /***/ }),
 
 /***/ 106:
-/*!*****************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/dayjs/utils.js ***!
-  \*****************************************************/
+/*!*********************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 105));function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 105));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 var padStart = function padStart(string, length, pad) {
   var s = String(string);
@@ -2084,9 +2087,9 @@ var isUndefined = function isUndefined(s) {return s === undefined;};var _default
 /***/ }),
 
 /***/ 107:
-/*!*********************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/dayjs/locale/en.js ***!
-  \*********************************************************/
+/*!*************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2134,7 +2137,15 @@ function normalizeComponent (
 
   // fixed by xxxxxx auto components
   if (components) {
-    options.components = Object.assign(components, options.components || {})
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
   }
   // fixed by xxxxxx renderjs
   if (renderjs) {
@@ -8251,14 +8262,14 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 21:
-/*!******************************************!*\
-  !*** F:/object/uni-app/umiu/http/api.js ***!
-  \******************************************/
+/*!**********************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/http/api.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 //////////////////////////////////////////////////////////新建
 //筛选条件接口-定制师列表
 function users() {
@@ -8587,7 +8598,8 @@ function boutiquesOrders(id, team_id, quantity, sharer_id) {
 }
 
 //资源-下单-分销
-function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
+function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,
+sharer_id) {
   var data = {};
   if (team_id) {
     data['team_id'] = team_id;
@@ -8694,19 +8706,38 @@ function questionAnswers(page, order, id) {
 
 
 }
+//个人中心
+function userInfo() {
+  return (0, _request.default)({
+    url: "/api/users/me" });
+
+}
+//旅游订单
+function travelOrders(data) {
+  return (0, _request.default)({
+    url: "/api/users/orders",
+    data: data });
+
+}
+//旅游订单
+function ordersDetail(data) {
+  return (0, _request.default)({
+    url: "/api/orders/".concat(data.id) });
+
+}
 
 /***/ }),
 
 /***/ 22:
-/*!**********************************************!*\
-  !*** F:/object/uni-app/umiu/http/request.js ***!
-  \**********************************************/
+/*!**************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/http/request.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
-// var baseUrl = 'https://umiu.dev.zhangxinkeji.com';
+// var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
 
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {
@@ -8754,10 +8785,10 @@ $http;exports.default = _default;
 
 /***/ }),
 
-/***/ 246:
-/*!********************************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/components/uni-icons/icons.js ***!
-  \********************************************************************/
+/***/ 278:
+/*!************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8860,19 +8891,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 254:
+/***/ 286:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 255);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 287);
 
 
 /***/ }),
 
-/***/ 255:
+/***/ 287:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8903,7 +8934,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 256);
+module.exports = __webpack_require__(/*! ./runtime */ 288);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8920,7 +8951,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 256:
+/***/ 288:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -9652,10 +9683,41 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 271:
-/*!*********************************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
-  \*********************************************************************/
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 303:
+/*!*************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9674,8 +9736,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 272));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 273));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 304));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 305));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9924,10 +9986,10 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 272:
-/*!*********************************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
-  \*********************************************************************/
+/***/ 304:
+/*!*************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10143,10 +10205,10 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 273:
-/*!**********************************************************************!*\
-  !*** F:/object/uni-app/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
-  \**********************************************************************/
+/***/ 305:
+/*!**************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10310,41 +10372,10 @@ HTMLParser;exports.default = _default;
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ 31:
-/*!************************************************!*\
-  !*** F:/object/uni-app/umiu/static/js/city.js ***!
-  \************************************************/
+/*!****************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/static/js/city.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11474,9 +11505,9 @@ module.exports = {
 /***/ }),
 
 /***/ 4:
-/*!*****************************************!*\
-  !*** F:/object/uni-app/umiu/pages.json ***!
-  \*****************************************/
+/*!*********************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12379,26 +12410,26 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26420200313001","_inBundle":false,"_integrity":"sha512-7dPuazTiDmUyRcw+WW+UlWGKH0eeCUB+p0P4pJVKEHjpdXnXgvDQCSdJk764NH99TfsUycnuxecP5oHckVa88g==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26420200313001.tgz","_shasum":"a006e329e033cd412accfa635f8933dbb822a9c3","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"b1fdbafab5dd4673cff64188a5203d0c947e4f50","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26420200313001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26820200330001","_inBundle":false,"_integrity":"sha512-Qzo5LcBl+abS7DvpyTXBYW2VVYHVcHBewduQecjn/gbzAn9e90aOVn02/2VZ82wV6TBiDXbGyloXojOY3InzWA==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26820200330001.tgz","_shasum":"880c5c5a4920bb35e9cf691eeb7427a7bf67ffd7","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"57ef7f7b5b6164a74ec425ff12f9fe0a1147841a","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26820200330001"};
 
 /***/ }),
 
 /***/ 7:
-/*!**********************************************************!*\
-  !*** F:/object/uni-app/umiu/pages.json?{"type":"style"} ***!
-  \**********************************************************/
+/*!**************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "我的旅游订单" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "我的特产订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "待支付订单" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!*********************************************************!*\
-  !*** F:/object/uni-app/umiu/pages.json?{"type":"stat"} ***!
-  \*********************************************************/
+/*!*************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"stat"} ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

@@ -479,9 +479,6 @@ export default {
 		// 短视频
 		videos() {
 			videos(this.pagea, this.id).then(res => {
-				// console.log(res);
-				// this.video = res.data.data;
-				// if (!this.pullUpOn) return;
 				this.loadding = true;
 				if (res.data.data.length == 0) {
 					this.loadding = false;
@@ -495,8 +492,6 @@ export default {
 					this.pagea++;
 					return;
 				}
-				// this.video = this.video.concat(res.data.data);
-				// this.pagea++;
 			});
 		},
 		//我的圈子推荐
@@ -508,7 +503,6 @@ export default {
 		// 我的圈子
 		circle() {
 			circle(this.pageb, this.id).then(res => {
-				// if (!this.pullUpOn) return;
 				this.loadding = true;
 				if (res.data.data.length == 0) {
 					this.loadding = false;
@@ -522,16 +516,10 @@ export default {
 					this.pageb++;
 					return;
 				}
-				// this.recommendStudio = this.recommendStudio.concat(res.data.data);
-				// this.pageb++;
 			});
 		},
 		travelsfn() {
 			travels(this.pagec, this.id).then(res => {
-				// console.log(res);
-				// let _this = this;
-				// this.travels = res.data.data;
-
 				this.loadding = true;
 				if (res.data.data.length == 0) {
 					this.loadding = false;
@@ -553,15 +541,11 @@ export default {
 					this.pagec++;
 					return;
 				}
-				// this.recommendStudio = this.recommendStudio.concat(res.data.data);
-				// this.pageb++;
 			});
 		},
 		// 问答
 		questions() {
 			questions(this.paged, this.id).then(res => {
-				// console.log(res);
-				// this.dialogue = res.data.data;
 				this.loadding = true;
 				if (res.data.data.length == 0) {
 					this.loadding = false;
@@ -575,8 +559,6 @@ export default {
 					this.paged++;
 					return;
 				}
-				// this.dialogue = this.dialogue.concat(res.data.data);
-				// this.paged++;
 			});
 		},
 		studioActive(active) {
@@ -684,8 +666,6 @@ export default {
 				this.questions();
 			}
 		}, 1000);
-
-		// this.getList();
 	}
 };
 </script>

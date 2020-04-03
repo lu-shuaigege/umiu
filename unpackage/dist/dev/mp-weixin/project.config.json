@@ -38,10 +38,24 @@
 			"current": -1,
 			"list": [
 				{
+					"id": 0,
+					"name": "pages/my/myorder/travelOrder/orderDetail/resourcesOrder",
+					"pathName": "pages/my/myorder/travelOrder/orderDetail/resourcesOrder",
+					"query": "id=138",
+					"scene": null
+				},
+				{
 					"id": -1,
-					"name": "pages/details/standardDetail/standardDetail",
-					"pathName": "pages/details/standardDetail/standardDetail",
-					"query": "id=88",
+					"name": "pages/my/myorder/travelOrder/orderList/orderList",
+					"pathName": "pages/my/myorder/travelOrder/orderList/orderList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/myIndex/myIndex",
+					"pathName": "pages/my/myIndex/myIndex",
+					"query": "",
 					"scene": null
 				}
 			]

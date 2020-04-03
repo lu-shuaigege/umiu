@@ -327,7 +327,8 @@ export function boutiquesOrders(id, team_id, quantity, sharer_id) {
 }
 
 //资源-下单-分销
-export function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
+export function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,
+	sharer_id) {
 	let data = {}
 	if (team_id) {
 		data['team_id'] = team_id
@@ -360,7 +361,7 @@ export function distributionsOrders(id, team_id, quantity, type, child, contact,
 	})
 }
 //资源-下单-普通资源
-export function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,sharer_id) {
+export function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
 	let data = {}
 	if (team_id) {
 		data['team_id'] = team_id
@@ -432,5 +433,24 @@ export function questionAnswers(page, order, id) {
 			per_page: 10,
 			order: order
 		}
+	})
+}
+//个人中心
+export function userInfo() {
+	return http({
+		url: "/api/users/me",
+	})
+}
+//旅游订单
+export function travelOrders(data) {
+	return http({
+		url: "/api/users/orders",
+		data:data
+	})
+}
+//旅游订单
+export function ordersDetail(data) {
+	return http({
+		url: `/api/orders/${data.id}`,
 	})
 }

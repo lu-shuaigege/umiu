@@ -171,6 +171,30 @@
 			"style": {
 				"navigationBarTitleText": "问答详情"
 			}
+		},
+		{
+			"path": "pages/my/myIndex/myIndex",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/my/myorder/travelOrder/orderList/orderList",
+			"style": {
+				"navigationBarTitleText": "我的旅游订单"
+			}
+		},
+		{
+			"path": "pages/my/myorder/specialtyOrder/orderList/orderList",
+			"style": {
+				"navigationBarTitleText": "我的特产订单"
+			}
+		},
+		{
+			"path": "pages/my/myorder/travelOrder/orderDetail/resourcesOrder",
+			"style": {
+				"navigationBarTitleText": "待支付订单"
+			}
 		}
 
 	],

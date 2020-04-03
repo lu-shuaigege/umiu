@@ -188,13 +188,26 @@ export default {
 				timeStamp: data.timeStamp,
 				paySign: data.paySign,
 				success: function(res) {
+					uni.showToast({
+						icon: 'none',
+						title: '支付成功'
+					});
 					console.log('success:' + JSON.stringify(res));
 					uni.redirectTo({
 						url: '/pages/paySuccess/paySuccess?amount=' + that.amount
 					});
 				},
 				fail: function(err) {
+					uni.showToast({
+						icon: 'none',
+						title: '支付失败'
+					});
 					console.log('fail:' + JSON.stringify(err));
+					setTimeout(() => {
+						uni.redirectTo({
+							url: '/pages/my/myIndex/myIndex'
+						});
+					}, 1000);
 				}
 			});
 		},

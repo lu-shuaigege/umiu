@@ -24,7 +24,11 @@
     "pages/customizationList/customizationList",
     "pages/newDetail/traveldetails/traveldetails",
     "pages/newDetail/comments/comments",
-    "pages/newDetail/questionsdetails/questionsdetails"
+    "pages/newDetail/questionsdetails/questionsdetails",
+    "pages/my/myIndex/myIndex",
+    "pages/my/myorder/travelOrder/orderList/orderList",
+    "pages/my/myorder/specialtyOrder/orderList/orderList",
+    "pages/my/myorder/travelOrder/orderDetail/resourcesOrder"
   ],
   "subPackages": [],
   "window": {
@@ -33,6 +37,5 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap97.json"
+  "usingComponents": {}
 }

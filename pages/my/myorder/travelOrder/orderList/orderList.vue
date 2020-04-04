@@ -127,9 +127,6 @@ export default {
 			uni.navigateTo({
 				url: `/pages/my/myorder/travelOrder/orderDetail/resourcesOrder?id=${id}`
 			});
-			// if (status_zh == '待支付') {
-
-			// }
 		},
 
 		// 页面上拉触底事件的处理函数

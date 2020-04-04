@@ -247,7 +247,7 @@ var CONTEXT_API_RE = /^create|Manager$/;
 
 var ASYNC_API = ['createBLEConnection'];
 
-var CALLBACK_API_RE = /^on/;
+var CALLBACK_API_RE = /^on|^off/;
 
 function isContextApi(name) {
   return CONTEXT_API_RE.test(name);
@@ -8269,7 +8269,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 //////////////////////////////////////////////////////////新建
 //筛选条件接口-定制师列表
 function users() {
@@ -8712,17 +8712,24 @@ function userInfo() {
     url: "/api/users/me" });
 
 }
-//旅游订单
+//订单列表
 function travelOrders(data) {
   return (0, _request.default)({
     url: "/api/users/orders",
     data: data });
 
 }
-//旅游订单
+//订单详情
 function ordersDetail(data) {
   return (0, _request.default)({
     url: "/api/orders/".concat(data.id) });
+
+}
+//取消订单
+function ordersCancel(data) {
+  return (0, _request.default)({
+    url: "/api/orders/".concat(data.id, "/cancel"),
+    method: 'PUT' });
 
 }
 
@@ -8785,7 +8792,7 @@ $http;exports.default = _default;
 
 /***/ }),
 
-/***/ 278:
+/***/ 284:
 /*!************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
   \************************************************************************/
@@ -8891,19 +8898,19 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 286:
+/***/ 292:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 287);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 293);
 
 
 /***/ }),
 
-/***/ 287:
+/***/ 293:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8934,7 +8941,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 288);
+module.exports = __webpack_require__(/*! ./runtime */ 294);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8951,7 +8958,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 288:
+/***/ 294:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -9714,7 +9721,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 303:
+/***/ 309:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
   \*************************************************************************/
@@ -9736,8 +9743,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 304));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 305));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 310));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 311));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9983,392 +9990,6 @@ function html2json(html, customHandler, imageProp, host) {
 }var _default =
 
 html2json;exports.default = _default;
-
-/***/ }),
-
-/***/ 304:
-/*!*************************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // HTML 支持的数学符号
-function strNumDiscode(str) {
-  str = str.replace(/&forall;|&#8704;|&#x2200;/g, '∀');
-  str = str.replace(/&part;|&#8706;|&#x2202;/g, '∂');
-  str = str.replace(/&exist;|&#8707;|&#x2203;/g, '∃');
-  str = str.replace(/&empty;|&#8709;|&#x2205;/g, '∅');
-  str = str.replace(/&nabla;|&#8711;|&#x2207;/g, '∇');
-  str = str.replace(/&isin;|&#8712;|&#x2208;/g, '∈');
-  str = str.replace(/&notin;|&#8713;|&#x2209;/g, '∉');
-  str = str.replace(/&ni;|&#8715;|&#x220b;/g, '∋');
-  str = str.replace(/&prod;|&#8719;|&#x220f;/g, '∏');
-  str = str.replace(/&sum;|&#8721;|&#x2211;/g, '∑');
-  str = str.replace(/&minus;|&#8722;|&#x2212;/g, '−');
-  str = str.replace(/&lowast;|&#8727;|&#x2217;/g, '∗');
-  str = str.replace(/&radic;|&#8730;|&#x221a;/g, '√');
-  str = str.replace(/&prop;|&#8733;|&#x221d;/g, '∝');
-  str = str.replace(/&infin;|&#8734;|&#x221e;/g, '∞');
-  str = str.replace(/&ang;|&#8736;|&#x2220;/g, '∠');
-  str = str.replace(/&and;|&#8743;|&#x2227;/g, '∧');
-  str = str.replace(/&or;|&#8744;|&#x2228;/g, '∨');
-  str = str.replace(/&cap;|&#8745;|&#x2229;/g, '∩');
-  str = str.replace(/&cup;|&#8746;|&#x222a;/g, '∪');
-  str = str.replace(/&int;|&#8747;|&#x222b;/g, '∫');
-  str = str.replace(/&there4;|&#8756;|&#x2234;/g, '∴');
-  str = str.replace(/&sim;|&#8764;|&#x223c;/g, '∼');
-  str = str.replace(/&cong;|&#8773;|&#x2245;/g, '≅');
-  str = str.replace(/&asymp;|&#8776;|&#x2248;/g, '≈');
-  str = str.replace(/&ne;|&#8800;|&#x2260;/g, '≠');
-  str = str.replace(/&le;|&#8804;|&#x2264;/g, '≤');
-  str = str.replace(/&ge;|&#8805;|&#x2265;/g, '≥');
-  str = str.replace(/&sub;|&#8834;|&#x2282;/g, '⊂');
-  str = str.replace(/&sup;|&#8835;|&#x2283;/g, '⊃');
-  str = str.replace(/&nsub;|&#8836;|&#x2284;/g, '⊄');
-  str = str.replace(/&sube;|&#8838;|&#x2286;/g, '⊆');
-  str = str.replace(/&supe;|&#8839;|&#x2287;/g, '⊇');
-  str = str.replace(/&oplus;|&#8853;|&#x2295;/g, '⊕');
-  str = str.replace(/&otimes;|&#8855;|&#x2297;/g, '⊗');
-  str = str.replace(/&perp;|&#8869;|&#x22a5;/g, '⊥');
-  str = str.replace(/&sdot;|&#8901;|&#x22c5;/g, '⋅');
-  return str;
-}
-
-// HTML 支持的希腊字母
-function strGreeceDiscode(str) {
-  str = str.replace(/&Alpha;|&#913;|&#x391;/g, 'Α');
-  str = str.replace(/&Beta;|&#914;|&#x392;/g, 'Β');
-  str = str.replace(/&Gamma;|&#915;|&#x393;/g, 'Γ');
-  str = str.replace(/&Delta;|&#916;|&#x394;/g, 'Δ');
-  str = str.replace(/&Epsilon;|&#917;|&#x395;/g, 'Ε');
-  str = str.replace(/&Zeta;|&#918;|&#x396;/g, 'Ζ');
-  str = str.replace(/&Eta;|&#919;|&#x397;/g, 'Η');
-  str = str.replace(/&Theta;|&#920;|&#x398;/g, 'Θ');
-  str = str.replace(/&Iota;|&#921;|&#x399;/g, 'Ι');
-  str = str.replace(/&Kappa;|&#922;|&#x39a;/g, 'Κ');
-  str = str.replace(/&Lambda;|&#923;|&#x39b;/g, 'Λ');
-  str = str.replace(/&Mu;|&#924;|&#x39c;/g, 'Μ');
-  str = str.replace(/&Nu;|&#925;|&#x39d;/g, 'Ν');
-  str = str.replace(/&Xi;|&#925;|&#x39d;/g, 'Ν');
-  str = str.replace(/&Omicron;|&#927;|&#x39f;/g, 'Ο');
-  str = str.replace(/&Pi;|&#928;|&#x3a0;/g, 'Π');
-  str = str.replace(/&Rho;|&#929;|&#x3a1;/g, 'Ρ');
-  str = str.replace(/&Sigma;|&#931;|&#x3a3;/g, 'Σ');
-  str = str.replace(/&Tau;|&#932;|&#x3a4;/g, 'Τ');
-  str = str.replace(/&Upsilon;|&#933;|&#x3a5;/g, 'Υ');
-  str = str.replace(/&Phi;|&#934;|&#x3a6;/g, 'Φ');
-  str = str.replace(/&Chi;|&#935;|&#x3a7;/g, 'Χ');
-  str = str.replace(/&Psi;|&#936;|&#x3a8;/g, 'Ψ');
-  str = str.replace(/&Omega;|&#937;|&#x3a9;/g, 'Ω');
-
-  str = str.replace(/&alpha;|&#945;|&#x3b1;/g, 'α');
-  str = str.replace(/&beta;|&#946;|&#x3b2;/g, 'β');
-  str = str.replace(/&gamma;|&#947;|&#x3b3;/g, 'γ');
-  str = str.replace(/&delta;|&#948;|&#x3b4;/g, 'δ');
-  str = str.replace(/&epsilon;|&#949;|&#x3b5;/g, 'ε');
-  str = str.replace(/&zeta;|&#950;|&#x3b6;/g, 'ζ');
-  str = str.replace(/&eta;|&#951;|&#x3b7;/g, 'η');
-  str = str.replace(/&theta;|&#952;|&#x3b8;/g, 'θ');
-  str = str.replace(/&iota;|&#953;|&#x3b9;/g, 'ι');
-  str = str.replace(/&kappa;|&#954;|&#x3ba;/g, 'κ');
-  str = str.replace(/&lambda;|&#955;|&#x3bb;/g, 'λ');
-  str = str.replace(/&mu;|&#956;|&#x3bc;/g, 'μ');
-  str = str.replace(/&nu;|&#957;|&#x3bd;/g, 'ν');
-  str = str.replace(/&xi;|&#958;|&#x3be;/g, 'ξ');
-  str = str.replace(/&omicron;|&#959;|&#x3bf;/g, 'ο');
-  str = str.replace(/&pi;|&#960;|&#x3c0;/g, 'π');
-  str = str.replace(/&rho;|&#961;|&#x3c1;/g, 'ρ');
-  str = str.replace(/&sigmaf;|&#962;|&#x3c2;/g, 'ς');
-  str = str.replace(/&sigma;|&#963;|&#x3c3;/g, 'σ');
-  str = str.replace(/&tau;|&#964;|&#x3c4;/g, 'τ');
-  str = str.replace(/&upsilon;|&#965;|&#x3c5;/g, 'υ');
-  str = str.replace(/&phi;|&#966;|&#x3c6;/g, 'φ');
-  str = str.replace(/&chi;|&#967;|&#x3c7;/g, 'χ');
-  str = str.replace(/&psi;|&#968;|&#x3c8;/g, 'ψ');
-  str = str.replace(/&omega;|&#969;|&#x3c9;/g, 'ω');
-  str = str.replace(/&thetasym;|&#977;|&#x3d1;/g, 'ϑ');
-  str = str.replace(/&upsih;|&#978;|&#x3d2;/g, 'ϒ');
-  str = str.replace(/&piv;|&#982;|&#x3d6;/g, 'ϖ');
-  str = str.replace(/&middot;|&#183;|&#xb7;/g, '·');
-  return str;
-}
-
-function strcharacterDiscode(str) {
-  // 加入常用解析
-
-  // str = str.replace(/&nbsp;|&#32;|&#x20;/g, "&nbsp;");
-  // str = str.replace(/&ensp;|&#8194;|&#x2002;/g, '&ensp;');
-  // str = str.replace(/&#12288;|&#x3000;/g, '<span class=\'spaceshow\'>　</span>');
-  // str = str.replace(/&emsp;|&#8195;|&#x2003;/g, '&emsp;');
-  // str = str.replace(/&quot;|&#34;|&#x22;/g, "\"");
-  // str = str.replace(/&apos;|&#39;|&#x27;/g, "&apos;");
-  // str = str.replace(/&acute;|&#180;|&#xB4;/g, "´");
-  // str = str.replace(/&times;|&#215;|&#xD7;/g, "×");
-  // str = str.replace(/&divide;|&#247;|&#xF7;/g, "÷");
-  // str = str.replace(/&amp;|&#38;|&#x26;/g, '&amp;');
-  // str = str.replace(/&lt;|&#60;|&#x3c;/g, '&lt;');
-  // str = str.replace(/&gt;|&#62;|&#x3e;/g, '&gt;');
-
-
-
-
-  str = str.replace(/&nbsp;|&#32;|&#x20;/g, "<span class='spaceshow'> </span>");
-  str = str.replace(/&ensp;|&#8194;|&#x2002;/g, '<span class=\'spaceshow\'> </span>');
-  str = str.replace(/&#12288;|&#x3000;/g, '<span class=\'spaceshow\'>　</span>');
-  str = str.replace(/&emsp;|&#8195;|&#x2003;/g, '<span class=\'spaceshow\'> </span>');
-  str = str.replace(/&quot;|&#34;|&#x22;/g, "\"");
-  str = str.replace(/&quot;|&#39;|&#x27;/g, "'");
-  str = str.replace(/&acute;|&#180;|&#xB4;/g, "´");
-  str = str.replace(/&times;|&#215;|&#xD7;/g, "×");
-  str = str.replace(/&divide;|&#247;|&#xF7;/g, "÷");
-  str = str.replace(/&amp;|&#38;|&#x26;/g, '&');
-  str = str.replace(/&lt;|&#60;|&#x3c;/g, '<');
-  str = str.replace(/&gt;|&#62;|&#x3e;/g, '>');
-  return str;
-}
-
-// HTML 支持的其他实体
-function strOtherDiscode(str) {
-  str = str.replace(/&OElig;|&#338;|&#x152;/g, 'Œ');
-  str = str.replace(/&oelig;|&#339;|&#x153;/g, 'œ');
-  str = str.replace(/&Scaron;|&#352;|&#x160;/g, 'Š');
-  str = str.replace(/&scaron;|&#353;|&#x161;/g, 'š');
-  str = str.replace(/&Yuml;|&#376;|&#x178;/g, 'Ÿ');
-  str = str.replace(/&fnof;|&#402;|&#x192;/g, 'ƒ');
-  str = str.replace(/&circ;|&#710;|&#x2c6;/g, 'ˆ');
-  str = str.replace(/&tilde;|&#732;|&#x2dc;/g, '˜');
-  str = str.replace(/&thinsp;|$#8201;|&#x2009;/g, '<span class=\'spaceshow\'> </span>');
-  str = str.replace(/&zwnj;|&#8204;|&#x200C;/g, '<span class=\'spaceshow\'>‌</span>');
-  str = str.replace(/&zwj;|$#8205;|&#x200D;/g, '<span class=\'spaceshow\'>‍</span>');
-  str = str.replace(/&lrm;|$#8206;|&#x200E;/g, '<span class=\'spaceshow\'>‎</span>');
-  str = str.replace(/&rlm;|&#8207;|&#x200F;/g, '<span class=\'spaceshow\'>‏</span>');
-  str = str.replace(/&ndash;|&#8211;|&#x2013;/g, '–');
-  str = str.replace(/&mdash;|&#8212;|&#x2014;/g, '—');
-  str = str.replace(/&lsquo;|&#8216;|&#x2018;/g, '‘');
-  str = str.replace(/&rsquo;|&#8217;|&#x2019;/g, '’');
-  str = str.replace(/&sbquo;|&#8218;|&#x201a;/g, '‚');
-  str = str.replace(/&ldquo;|&#8220;|&#x201c;/g, '“');
-  str = str.replace(/&rdquo;|&#8221;|&#x201d;/g, '”');
-  str = str.replace(/&bdquo;|&#8222;|&#x201e;/g, '„');
-  str = str.replace(/&dagger;|&#8224;|&#x2020;/g, '†');
-  str = str.replace(/&Dagger;|&#8225;|&#x2021;/g, '‡');
-  str = str.replace(/&bull;|&#8226;|&#x2022;/g, '•');
-  str = str.replace(/&hellip;|&#8230;|&#x2026;/g, '…');
-  str = str.replace(/&permil;|&#8240;|&#x2030;/g, '‰');
-  str = str.replace(/&prime;|&#8242;|&#x2032;/g, '′');
-  str = str.replace(/&Prime;|&#8243;|&#x2033;/g, '″');
-  str = str.replace(/&lsaquo;|&#8249;|&#x2039;/g, '‹');
-  str = str.replace(/&rsaquo;|&#8250;|&#x203a;/g, '›');
-  str = str.replace(/&oline;|&#8254;|&#x203e;/g, '‾');
-  str = str.replace(/&euro;|&#8364;|&#x20ac;/g, '€');
-  str = str.replace(/&trade;|&#8482;|&#x2122;/g, '™');
-  str = str.replace(/&larr;|&#8592;|&#x2190;/g, '←');
-  str = str.replace(/&uarr;|&#8593;|&#x2191;/g, '↑');
-  str = str.replace(/&rarr;|&#8594;|&#x2192;/g, '→');
-  str = str.replace(/&darr;|&#8595;|&#x2193;/g, '↓');
-  str = str.replace(/&harr;|&#8596;|&#x2194;/g, '↔');
-  str = str.replace(/&crarr;|&#8629;|&#x21b5;/g, '↵');
-  str = str.replace(/&lceil;|&#8968;|&#x2308;/g, '⌈');
-  str = str.replace(/&rceil;|&#8969;|&#x2309;/g, '⌉');
-  str = str.replace(/&lfloor;|&#8970;|&#x230a;/g, '⌊');
-  str = str.replace(/&rfloor;|&#8971;|&#x230b;/g, '⌋');
-  str = str.replace(/&loz;|&#9674;|&#x25ca;/g, '◊');
-  str = str.replace(/&spades;|&#9824;|&#x2660;/g, '♠');
-  str = str.replace(/&clubs;|&#9827;|&#x2663;/g, '♣');
-  str = str.replace(/&hearts;|&#9829;|&#x2665;/g, '♥');
-  str = str.replace(/&diams;|&#9830;|&#x2666;/g, '♦');
-  return str;
-}
-
-function strDiscode(str) {
-  str = strNumDiscode(str);
-  str = strGreeceDiscode(str);
-  str = strcharacterDiscode(str);
-  str = strOtherDiscode(str);
-  return str;
-}
-
-function urlToHttpUrl(url, domain) {
-  if (/^\/\//.test(url)) {
-    return "https:".concat(url);
-  } else if (/^\//.test(url)) {
-    return "https://".concat(domain).concat(url);
-  }
-  return url;
-}var _default =
-
-{
-  strDiscode: strDiscode,
-  urlToHttpUrl: urlToHttpUrl };exports.default = _default;
-
-/***/ }),
-
-/***/ 305:
-/*!**************************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      *
-                                                                                                      * htmlParser改造自: https://github.com/blowsie/Pure-JavaScript-HTML5-Parser
-                                                                                                      *
-                                                                                                      * author: Di (微信小程序开发工程师)
-                                                                                                      * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
-                                                                                                      *               垂直微信小程序开发交流社区
-                                                                                                      *
-                                                                                                      * github地址: https://github.com/icindy/wxParse
-                                                                                                      *
-                                                                                                      * for: 微信小程序富文本解析
-                                                                                                      * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
-                                                                                                      */
-// Regular Expressions for parsing tags and attributes
-
-var startTag = /^<([-A-Za-z0-9_]+)((?:\s+[a-zA-Z0-9_:][-a-zA-Z0-9_:.]*(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/;
-var endTag = /^<\/([-A-Za-z0-9_]+)[^>]*>/;
-var attr = /([a-zA-Z0-9_:][-a-zA-Z0-9_:.]*)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/g;
-
-function makeMap(str) {
-  var obj = {};
-  var items = str.split(',');
-  for (var i = 0; i < items.length; i += 1) {obj[items[i]] = true;}
-  return obj;
-}
-
-// Empty Elements - HTML 5
-var empty = makeMap('area,base,basefont,br,col,frame,hr,img,input,link,meta,param,embed,command,keygen,source,track,wbr');
-
-// Block Elements - HTML 5
-var block = makeMap('address,code,article,applet,aside,audio,blockquote,button,canvas,center,dd,del,dir,div,dl,dt,fieldset,figcaption,figure,footer,form,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,iframe,ins,isindex,li,map,menu,noframes,noscript,object,ol,output,p,pre,section,script,table,tbody,td,tfoot,th,thead,tr,ul,video');
-
-// Inline Elements - HTML 5
-var inline = makeMap('a,abbr,acronym,applet,b,basefont,bdo,big,br,button,cite,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,textarea,tt,u,var');
-
-// Elements that you can, intentionally, leave open
-// (and which close themselves)
-var closeSelf = makeMap('colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr');
-
-// Attributes that have their values filled in disabled="disabled"
-var fillAttrs = makeMap('checked,compact,declare,defer,disabled,ismap,multiple,nohref,noresize,noshade,nowrap,readonly,selected');
-
-function HTMLParser(html, handler) {
-  var index;
-  var chars;
-  var match;
-  var last = html;
-  var stack = [];
-
-  stack.last = function () {return stack[stack.length - 1];};
-
-  function parseEndTag(tag, tagName) {
-    // If no tag name is provided, clean shop
-    var pos;
-    if (!tagName) {
-      pos = 0;
-    } else {
-      // Find the closest opened tag of the same type
-      tagName = tagName.toLowerCase();
-      for (pos = stack.length - 1; pos >= 0; pos -= 1) {
-        if (stack[pos] === tagName) break;
-      }
-    }
-    if (pos >= 0) {
-      // Close all the open elements, up the stack
-      for (var i = stack.length - 1; i >= pos; i -= 1) {
-        if (handler.end) handler.end(stack[i]);
-      }
-
-      // Remove the open elements from the stack
-      stack.length = pos;
-    }
-  }
-
-  function parseStartTag(tag, tagName, rest, unary) {
-    tagName = tagName.toLowerCase();
-
-    if (block[tagName]) {
-      while (stack.last() && inline[stack.last()]) {
-        parseEndTag('', stack.last());
-      }
-    }
-
-    if (closeSelf[tagName] && stack.last() === tagName) {
-      parseEndTag('', tagName);
-    }
-
-    unary = empty[tagName] || !!unary;
-
-    if (!unary) stack.push(tagName);
-
-    if (handler.start) {
-      var attrs = [];
-
-      rest.replace(attr, function genAttr(matches, name) {
-        var value = arguments[2] || arguments[3] || arguments[4] || (fillAttrs[name] ? name : '');
-
-        attrs.push({
-          name: name,
-          value: value,
-          escaped: value.replace(/(^|[^\\])"/g, '$1\\"') // "
-        });
-      });
-
-      if (handler.start) {
-        handler.start(tagName, attrs, unary);
-      }
-    }
-  }
-
-  while (html) {
-    chars = true;
-
-    if (html.indexOf('</') === 0) {
-      match = html.match(endTag);
-
-      if (match) {
-        html = html.substring(match[0].length);
-        match[0].replace(endTag, parseEndTag);
-        chars = false;
-      }
-
-      // start tag
-    } else if (html.indexOf('<') === 0) {
-      match = html.match(startTag);
-
-      if (match) {
-        html = html.substring(match[0].length);
-        match[0].replace(startTag, parseStartTag);
-        chars = false;
-      }
-    }
-
-    if (chars) {
-      index = html.indexOf('<');
-      var text = '';
-      while (index === 0) {
-        text += '<';
-        html = html.substring(1);
-        index = html.indexOf('<');
-      }
-      text += index < 0 ? html : html.substring(0, index);
-      html = index < 0 ? '' : html.substring(index);
-
-      if (handler.chars) handler.chars(text);
-    }
-
-    if (html === last) throw new Error("Parse Error: ".concat(html));
-    last = html;
-  }
-
-  // Clean up any remaining tags
-  parseEndTag();
-}var _default =
-
-HTMLParser;exports.default = _default;
 
 /***/ }),
 
@@ -11504,6 +11125,392 @@ module.exports = {
 
 /***/ }),
 
+/***/ 310:
+/*!*************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // HTML 支持的数学符号
+function strNumDiscode(str) {
+  str = str.replace(/&forall;|&#8704;|&#x2200;/g, '∀');
+  str = str.replace(/&part;|&#8706;|&#x2202;/g, '∂');
+  str = str.replace(/&exist;|&#8707;|&#x2203;/g, '∃');
+  str = str.replace(/&empty;|&#8709;|&#x2205;/g, '∅');
+  str = str.replace(/&nabla;|&#8711;|&#x2207;/g, '∇');
+  str = str.replace(/&isin;|&#8712;|&#x2208;/g, '∈');
+  str = str.replace(/&notin;|&#8713;|&#x2209;/g, '∉');
+  str = str.replace(/&ni;|&#8715;|&#x220b;/g, '∋');
+  str = str.replace(/&prod;|&#8719;|&#x220f;/g, '∏');
+  str = str.replace(/&sum;|&#8721;|&#x2211;/g, '∑');
+  str = str.replace(/&minus;|&#8722;|&#x2212;/g, '−');
+  str = str.replace(/&lowast;|&#8727;|&#x2217;/g, '∗');
+  str = str.replace(/&radic;|&#8730;|&#x221a;/g, '√');
+  str = str.replace(/&prop;|&#8733;|&#x221d;/g, '∝');
+  str = str.replace(/&infin;|&#8734;|&#x221e;/g, '∞');
+  str = str.replace(/&ang;|&#8736;|&#x2220;/g, '∠');
+  str = str.replace(/&and;|&#8743;|&#x2227;/g, '∧');
+  str = str.replace(/&or;|&#8744;|&#x2228;/g, '∨');
+  str = str.replace(/&cap;|&#8745;|&#x2229;/g, '∩');
+  str = str.replace(/&cup;|&#8746;|&#x222a;/g, '∪');
+  str = str.replace(/&int;|&#8747;|&#x222b;/g, '∫');
+  str = str.replace(/&there4;|&#8756;|&#x2234;/g, '∴');
+  str = str.replace(/&sim;|&#8764;|&#x223c;/g, '∼');
+  str = str.replace(/&cong;|&#8773;|&#x2245;/g, '≅');
+  str = str.replace(/&asymp;|&#8776;|&#x2248;/g, '≈');
+  str = str.replace(/&ne;|&#8800;|&#x2260;/g, '≠');
+  str = str.replace(/&le;|&#8804;|&#x2264;/g, '≤');
+  str = str.replace(/&ge;|&#8805;|&#x2265;/g, '≥');
+  str = str.replace(/&sub;|&#8834;|&#x2282;/g, '⊂');
+  str = str.replace(/&sup;|&#8835;|&#x2283;/g, '⊃');
+  str = str.replace(/&nsub;|&#8836;|&#x2284;/g, '⊄');
+  str = str.replace(/&sube;|&#8838;|&#x2286;/g, '⊆');
+  str = str.replace(/&supe;|&#8839;|&#x2287;/g, '⊇');
+  str = str.replace(/&oplus;|&#8853;|&#x2295;/g, '⊕');
+  str = str.replace(/&otimes;|&#8855;|&#x2297;/g, '⊗');
+  str = str.replace(/&perp;|&#8869;|&#x22a5;/g, '⊥');
+  str = str.replace(/&sdot;|&#8901;|&#x22c5;/g, '⋅');
+  return str;
+}
+
+// HTML 支持的希腊字母
+function strGreeceDiscode(str) {
+  str = str.replace(/&Alpha;|&#913;|&#x391;/g, 'Α');
+  str = str.replace(/&Beta;|&#914;|&#x392;/g, 'Β');
+  str = str.replace(/&Gamma;|&#915;|&#x393;/g, 'Γ');
+  str = str.replace(/&Delta;|&#916;|&#x394;/g, 'Δ');
+  str = str.replace(/&Epsilon;|&#917;|&#x395;/g, 'Ε');
+  str = str.replace(/&Zeta;|&#918;|&#x396;/g, 'Ζ');
+  str = str.replace(/&Eta;|&#919;|&#x397;/g, 'Η');
+  str = str.replace(/&Theta;|&#920;|&#x398;/g, 'Θ');
+  str = str.replace(/&Iota;|&#921;|&#x399;/g, 'Ι');
+  str = str.replace(/&Kappa;|&#922;|&#x39a;/g, 'Κ');
+  str = str.replace(/&Lambda;|&#923;|&#x39b;/g, 'Λ');
+  str = str.replace(/&Mu;|&#924;|&#x39c;/g, 'Μ');
+  str = str.replace(/&Nu;|&#925;|&#x39d;/g, 'Ν');
+  str = str.replace(/&Xi;|&#925;|&#x39d;/g, 'Ν');
+  str = str.replace(/&Omicron;|&#927;|&#x39f;/g, 'Ο');
+  str = str.replace(/&Pi;|&#928;|&#x3a0;/g, 'Π');
+  str = str.replace(/&Rho;|&#929;|&#x3a1;/g, 'Ρ');
+  str = str.replace(/&Sigma;|&#931;|&#x3a3;/g, 'Σ');
+  str = str.replace(/&Tau;|&#932;|&#x3a4;/g, 'Τ');
+  str = str.replace(/&Upsilon;|&#933;|&#x3a5;/g, 'Υ');
+  str = str.replace(/&Phi;|&#934;|&#x3a6;/g, 'Φ');
+  str = str.replace(/&Chi;|&#935;|&#x3a7;/g, 'Χ');
+  str = str.replace(/&Psi;|&#936;|&#x3a8;/g, 'Ψ');
+  str = str.replace(/&Omega;|&#937;|&#x3a9;/g, 'Ω');
+
+  str = str.replace(/&alpha;|&#945;|&#x3b1;/g, 'α');
+  str = str.replace(/&beta;|&#946;|&#x3b2;/g, 'β');
+  str = str.replace(/&gamma;|&#947;|&#x3b3;/g, 'γ');
+  str = str.replace(/&delta;|&#948;|&#x3b4;/g, 'δ');
+  str = str.replace(/&epsilon;|&#949;|&#x3b5;/g, 'ε');
+  str = str.replace(/&zeta;|&#950;|&#x3b6;/g, 'ζ');
+  str = str.replace(/&eta;|&#951;|&#x3b7;/g, 'η');
+  str = str.replace(/&theta;|&#952;|&#x3b8;/g, 'θ');
+  str = str.replace(/&iota;|&#953;|&#x3b9;/g, 'ι');
+  str = str.replace(/&kappa;|&#954;|&#x3ba;/g, 'κ');
+  str = str.replace(/&lambda;|&#955;|&#x3bb;/g, 'λ');
+  str = str.replace(/&mu;|&#956;|&#x3bc;/g, 'μ');
+  str = str.replace(/&nu;|&#957;|&#x3bd;/g, 'ν');
+  str = str.replace(/&xi;|&#958;|&#x3be;/g, 'ξ');
+  str = str.replace(/&omicron;|&#959;|&#x3bf;/g, 'ο');
+  str = str.replace(/&pi;|&#960;|&#x3c0;/g, 'π');
+  str = str.replace(/&rho;|&#961;|&#x3c1;/g, 'ρ');
+  str = str.replace(/&sigmaf;|&#962;|&#x3c2;/g, 'ς');
+  str = str.replace(/&sigma;|&#963;|&#x3c3;/g, 'σ');
+  str = str.replace(/&tau;|&#964;|&#x3c4;/g, 'τ');
+  str = str.replace(/&upsilon;|&#965;|&#x3c5;/g, 'υ');
+  str = str.replace(/&phi;|&#966;|&#x3c6;/g, 'φ');
+  str = str.replace(/&chi;|&#967;|&#x3c7;/g, 'χ');
+  str = str.replace(/&psi;|&#968;|&#x3c8;/g, 'ψ');
+  str = str.replace(/&omega;|&#969;|&#x3c9;/g, 'ω');
+  str = str.replace(/&thetasym;|&#977;|&#x3d1;/g, 'ϑ');
+  str = str.replace(/&upsih;|&#978;|&#x3d2;/g, 'ϒ');
+  str = str.replace(/&piv;|&#982;|&#x3d6;/g, 'ϖ');
+  str = str.replace(/&middot;|&#183;|&#xb7;/g, '·');
+  return str;
+}
+
+function strcharacterDiscode(str) {
+  // 加入常用解析
+
+  // str = str.replace(/&nbsp;|&#32;|&#x20;/g, "&nbsp;");
+  // str = str.replace(/&ensp;|&#8194;|&#x2002;/g, '&ensp;');
+  // str = str.replace(/&#12288;|&#x3000;/g, '<span class=\'spaceshow\'>　</span>');
+  // str = str.replace(/&emsp;|&#8195;|&#x2003;/g, '&emsp;');
+  // str = str.replace(/&quot;|&#34;|&#x22;/g, "\"");
+  // str = str.replace(/&apos;|&#39;|&#x27;/g, "&apos;");
+  // str = str.replace(/&acute;|&#180;|&#xB4;/g, "´");
+  // str = str.replace(/&times;|&#215;|&#xD7;/g, "×");
+  // str = str.replace(/&divide;|&#247;|&#xF7;/g, "÷");
+  // str = str.replace(/&amp;|&#38;|&#x26;/g, '&amp;');
+  // str = str.replace(/&lt;|&#60;|&#x3c;/g, '&lt;');
+  // str = str.replace(/&gt;|&#62;|&#x3e;/g, '&gt;');
+
+
+
+
+  str = str.replace(/&nbsp;|&#32;|&#x20;/g, "<span class='spaceshow'> </span>");
+  str = str.replace(/&ensp;|&#8194;|&#x2002;/g, '<span class=\'spaceshow\'> </span>');
+  str = str.replace(/&#12288;|&#x3000;/g, '<span class=\'spaceshow\'>　</span>');
+  str = str.replace(/&emsp;|&#8195;|&#x2003;/g, '<span class=\'spaceshow\'> </span>');
+  str = str.replace(/&quot;|&#34;|&#x22;/g, "\"");
+  str = str.replace(/&quot;|&#39;|&#x27;/g, "'");
+  str = str.replace(/&acute;|&#180;|&#xB4;/g, "´");
+  str = str.replace(/&times;|&#215;|&#xD7;/g, "×");
+  str = str.replace(/&divide;|&#247;|&#xF7;/g, "÷");
+  str = str.replace(/&amp;|&#38;|&#x26;/g, '&');
+  str = str.replace(/&lt;|&#60;|&#x3c;/g, '<');
+  str = str.replace(/&gt;|&#62;|&#x3e;/g, '>');
+  return str;
+}
+
+// HTML 支持的其他实体
+function strOtherDiscode(str) {
+  str = str.replace(/&OElig;|&#338;|&#x152;/g, 'Œ');
+  str = str.replace(/&oelig;|&#339;|&#x153;/g, 'œ');
+  str = str.replace(/&Scaron;|&#352;|&#x160;/g, 'Š');
+  str = str.replace(/&scaron;|&#353;|&#x161;/g, 'š');
+  str = str.replace(/&Yuml;|&#376;|&#x178;/g, 'Ÿ');
+  str = str.replace(/&fnof;|&#402;|&#x192;/g, 'ƒ');
+  str = str.replace(/&circ;|&#710;|&#x2c6;/g, 'ˆ');
+  str = str.replace(/&tilde;|&#732;|&#x2dc;/g, '˜');
+  str = str.replace(/&thinsp;|$#8201;|&#x2009;/g, '<span class=\'spaceshow\'> </span>');
+  str = str.replace(/&zwnj;|&#8204;|&#x200C;/g, '<span class=\'spaceshow\'>‌</span>');
+  str = str.replace(/&zwj;|$#8205;|&#x200D;/g, '<span class=\'spaceshow\'>‍</span>');
+  str = str.replace(/&lrm;|$#8206;|&#x200E;/g, '<span class=\'spaceshow\'>‎</span>');
+  str = str.replace(/&rlm;|&#8207;|&#x200F;/g, '<span class=\'spaceshow\'>‏</span>');
+  str = str.replace(/&ndash;|&#8211;|&#x2013;/g, '–');
+  str = str.replace(/&mdash;|&#8212;|&#x2014;/g, '—');
+  str = str.replace(/&lsquo;|&#8216;|&#x2018;/g, '‘');
+  str = str.replace(/&rsquo;|&#8217;|&#x2019;/g, '’');
+  str = str.replace(/&sbquo;|&#8218;|&#x201a;/g, '‚');
+  str = str.replace(/&ldquo;|&#8220;|&#x201c;/g, '“');
+  str = str.replace(/&rdquo;|&#8221;|&#x201d;/g, '”');
+  str = str.replace(/&bdquo;|&#8222;|&#x201e;/g, '„');
+  str = str.replace(/&dagger;|&#8224;|&#x2020;/g, '†');
+  str = str.replace(/&Dagger;|&#8225;|&#x2021;/g, '‡');
+  str = str.replace(/&bull;|&#8226;|&#x2022;/g, '•');
+  str = str.replace(/&hellip;|&#8230;|&#x2026;/g, '…');
+  str = str.replace(/&permil;|&#8240;|&#x2030;/g, '‰');
+  str = str.replace(/&prime;|&#8242;|&#x2032;/g, '′');
+  str = str.replace(/&Prime;|&#8243;|&#x2033;/g, '″');
+  str = str.replace(/&lsaquo;|&#8249;|&#x2039;/g, '‹');
+  str = str.replace(/&rsaquo;|&#8250;|&#x203a;/g, '›');
+  str = str.replace(/&oline;|&#8254;|&#x203e;/g, '‾');
+  str = str.replace(/&euro;|&#8364;|&#x20ac;/g, '€');
+  str = str.replace(/&trade;|&#8482;|&#x2122;/g, '™');
+  str = str.replace(/&larr;|&#8592;|&#x2190;/g, '←');
+  str = str.replace(/&uarr;|&#8593;|&#x2191;/g, '↑');
+  str = str.replace(/&rarr;|&#8594;|&#x2192;/g, '→');
+  str = str.replace(/&darr;|&#8595;|&#x2193;/g, '↓');
+  str = str.replace(/&harr;|&#8596;|&#x2194;/g, '↔');
+  str = str.replace(/&crarr;|&#8629;|&#x21b5;/g, '↵');
+  str = str.replace(/&lceil;|&#8968;|&#x2308;/g, '⌈');
+  str = str.replace(/&rceil;|&#8969;|&#x2309;/g, '⌉');
+  str = str.replace(/&lfloor;|&#8970;|&#x230a;/g, '⌊');
+  str = str.replace(/&rfloor;|&#8971;|&#x230b;/g, '⌋');
+  str = str.replace(/&loz;|&#9674;|&#x25ca;/g, '◊');
+  str = str.replace(/&spades;|&#9824;|&#x2660;/g, '♠');
+  str = str.replace(/&clubs;|&#9827;|&#x2663;/g, '♣');
+  str = str.replace(/&hearts;|&#9829;|&#x2665;/g, '♥');
+  str = str.replace(/&diams;|&#9830;|&#x2666;/g, '♦');
+  return str;
+}
+
+function strDiscode(str) {
+  str = strNumDiscode(str);
+  str = strGreeceDiscode(str);
+  str = strcharacterDiscode(str);
+  str = strOtherDiscode(str);
+  return str;
+}
+
+function urlToHttpUrl(url, domain) {
+  if (/^\/\//.test(url)) {
+    return "https:".concat(url);
+  } else if (/^\//.test(url)) {
+    return "https://".concat(domain).concat(url);
+  }
+  return url;
+}var _default =
+
+{
+  strDiscode: strDiscode,
+  urlToHttpUrl: urlToHttpUrl };exports.default = _default;
+
+/***/ }),
+
+/***/ 311:
+/*!**************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      *
+                                                                                                      * htmlParser改造自: https://github.com/blowsie/Pure-JavaScript-HTML5-Parser
+                                                                                                      *
+                                                                                                      * author: Di (微信小程序开发工程师)
+                                                                                                      * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
+                                                                                                      *               垂直微信小程序开发交流社区
+                                                                                                      *
+                                                                                                      * github地址: https://github.com/icindy/wxParse
+                                                                                                      *
+                                                                                                      * for: 微信小程序富文本解析
+                                                                                                      * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
+                                                                                                      */
+// Regular Expressions for parsing tags and attributes
+
+var startTag = /^<([-A-Za-z0-9_]+)((?:\s+[a-zA-Z0-9_:][-a-zA-Z0-9_:.]*(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/;
+var endTag = /^<\/([-A-Za-z0-9_]+)[^>]*>/;
+var attr = /([a-zA-Z0-9_:][-a-zA-Z0-9_:.]*)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/g;
+
+function makeMap(str) {
+  var obj = {};
+  var items = str.split(',');
+  for (var i = 0; i < items.length; i += 1) {obj[items[i]] = true;}
+  return obj;
+}
+
+// Empty Elements - HTML 5
+var empty = makeMap('area,base,basefont,br,col,frame,hr,img,input,link,meta,param,embed,command,keygen,source,track,wbr');
+
+// Block Elements - HTML 5
+var block = makeMap('address,code,article,applet,aside,audio,blockquote,button,canvas,center,dd,del,dir,div,dl,dt,fieldset,figcaption,figure,footer,form,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,iframe,ins,isindex,li,map,menu,noframes,noscript,object,ol,output,p,pre,section,script,table,tbody,td,tfoot,th,thead,tr,ul,video');
+
+// Inline Elements - HTML 5
+var inline = makeMap('a,abbr,acronym,applet,b,basefont,bdo,big,br,button,cite,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,textarea,tt,u,var');
+
+// Elements that you can, intentionally, leave open
+// (and which close themselves)
+var closeSelf = makeMap('colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr');
+
+// Attributes that have their values filled in disabled="disabled"
+var fillAttrs = makeMap('checked,compact,declare,defer,disabled,ismap,multiple,nohref,noresize,noshade,nowrap,readonly,selected');
+
+function HTMLParser(html, handler) {
+  var index;
+  var chars;
+  var match;
+  var last = html;
+  var stack = [];
+
+  stack.last = function () {return stack[stack.length - 1];};
+
+  function parseEndTag(tag, tagName) {
+    // If no tag name is provided, clean shop
+    var pos;
+    if (!tagName) {
+      pos = 0;
+    } else {
+      // Find the closest opened tag of the same type
+      tagName = tagName.toLowerCase();
+      for (pos = stack.length - 1; pos >= 0; pos -= 1) {
+        if (stack[pos] === tagName) break;
+      }
+    }
+    if (pos >= 0) {
+      // Close all the open elements, up the stack
+      for (var i = stack.length - 1; i >= pos; i -= 1) {
+        if (handler.end) handler.end(stack[i]);
+      }
+
+      // Remove the open elements from the stack
+      stack.length = pos;
+    }
+  }
+
+  function parseStartTag(tag, tagName, rest, unary) {
+    tagName = tagName.toLowerCase();
+
+    if (block[tagName]) {
+      while (stack.last() && inline[stack.last()]) {
+        parseEndTag('', stack.last());
+      }
+    }
+
+    if (closeSelf[tagName] && stack.last() === tagName) {
+      parseEndTag('', tagName);
+    }
+
+    unary = empty[tagName] || !!unary;
+
+    if (!unary) stack.push(tagName);
+
+    if (handler.start) {
+      var attrs = [];
+
+      rest.replace(attr, function genAttr(matches, name) {
+        var value = arguments[2] || arguments[3] || arguments[4] || (fillAttrs[name] ? name : '');
+
+        attrs.push({
+          name: name,
+          value: value,
+          escaped: value.replace(/(^|[^\\])"/g, '$1\\"') // "
+        });
+      });
+
+      if (handler.start) {
+        handler.start(tagName, attrs, unary);
+      }
+    }
+  }
+
+  while (html) {
+    chars = true;
+
+    if (html.indexOf('</') === 0) {
+      match = html.match(endTag);
+
+      if (match) {
+        html = html.substring(match[0].length);
+        match[0].replace(endTag, parseEndTag);
+        chars = false;
+      }
+
+      // start tag
+    } else if (html.indexOf('<') === 0) {
+      match = html.match(startTag);
+
+      if (match) {
+        html = html.substring(match[0].length);
+        match[0].replace(startTag, parseStartTag);
+        chars = false;
+      }
+    }
+
+    if (chars) {
+      index = html.indexOf('<');
+      var text = '';
+      while (index === 0) {
+        text += '<';
+        html = html.substring(1);
+        index = html.indexOf('<');
+      }
+      text += index < 0 ? html : html.substring(0, index);
+      html = index < 0 ? '' : html.substring(index);
+
+      if (handler.chars) handler.chars(text);
+    }
+
+    if (html === last) throw new Error("Parse Error: ".concat(html));
+    last = html;
+  }
+
+  // Clean up any remaining tags
+  parseEndTag();
+}var _default =
+
+HTMLParser;exports.default = _default;
+
+/***/ }),
+
 /***/ 4:
 /*!*********************************************!*\
   !*** F:/object/uni-app/游米游/umiu/pages.json ***!
@@ -12410,7 +12417,7 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26820200330001","_inBundle":false,"_integrity":"sha512-Qzo5LcBl+abS7DvpyTXBYW2VVYHVcHBewduQecjn/gbzAn9e90aOVn02/2VZ82wV6TBiDXbGyloXojOY3InzWA==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26820200330001.tgz","_shasum":"880c5c5a4920bb35e9cf691eeb7427a7bf67ffd7","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"57ef7f7b5b6164a74ec425ff12f9fe0a1147841a","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26820200330001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26920200402001","_inBundle":false,"_integrity":"sha512-Mdhd/IRuUMHWPj3TtWrBb0kghRBA0YiO2L2THMFvhCTfQDSoSq1vwOdAx5n/8fIORAvG0uVQoYl73xeVFZML5A==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26920200402001.tgz","_shasum":"5f66f5dc252ac00c6064857dee8251ee51aa2391","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"bfdbb7b3000599679ef8cb29a969e6bd447b00c7","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26920200402001"};
 
 /***/ }),
 
@@ -12422,7 +12429,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "我的旅游订单" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "我的特产订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "待支付订单" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

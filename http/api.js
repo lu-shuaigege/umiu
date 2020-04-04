@@ -441,16 +441,23 @@ export function userInfo() {
 		url: "/api/users/me",
 	})
 }
-//旅游订单
+//订单列表
 export function travelOrders(data) {
 	return http({
 		url: "/api/users/orders",
-		data:data
+		data: data
 	})
 }
-//旅游订单
+//订单详情
 export function ordersDetail(data) {
 	return http({
 		url: `/api/orders/${data.id}`,
+	})
+}
+//取消订单
+export function ordersCancel(data) {
+	return http({
+		url: `/api/orders/${data.id}/cancel`,
+		method: 'PUT',
 	})
 }

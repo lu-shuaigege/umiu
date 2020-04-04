@@ -27,8 +27,9 @@
     "pages/newDetail/questionsdetails/questionsdetails",
     "pages/my/myIndex/myIndex",
     "pages/my/myorder/travelOrder/orderList/orderList",
+    "pages/my/myorder/travelOrder/orderDetail/resourcesOrder",
     "pages/my/myorder/specialtyOrder/orderList/orderList",
-    "pages/my/myorder/travelOrder/orderDetail/resourcesOrder"
+    "pages/my/myorder/specialtyOrder/orderDetail/orderDetail"
   ],
   "subPackages": [],
   "window": {

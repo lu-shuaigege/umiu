@@ -7,7 +7,7 @@
 			</view>
 		</view>
 		<view class="orderlist">
-			<view class="orderlist_item" v-for="(item, index) in orderList" :key="index">
+			<view class="orderlist_item" v-for="(item, index) in orderList" :key="index"  @click="orderDetail(item.id, item.status_zh, item.type_zh)">
 				<view class="orderlist_item_bottom">
 					<view class="orderlist_item_bottom_top">
 						<view class="orderlist_item_bottom_top_left">订单号：{{ item.number || '' }}</view>
@@ -104,11 +104,15 @@ export default {
 					this.loadding = false;
 					this.pullUpOn = false;
 					this.orderList = this.orderList.concat(res.data.data);
-					console.log(this.orderList);
 					this.pagea++;
 					return;
 				}
 				// this.data = res.data;
+			});
+		},
+		orderDetail(id, status_zh, type_zh) {
+			uni.navigateTo({
+				url: `/pages/my/myorder/specialtyOrder/orderDetail/orderDetail?id=${id}`
 			});
 		},
 		// 页面上拉触底事件的处理函数

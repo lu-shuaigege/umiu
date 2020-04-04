@@ -88,25 +88,32 @@
 		</view>
 		<!-- 订单支付按钮 -->
 		<view class="orderbottom" v-if="data.status_zh == '待支付'">
-			<view class="orderbottom_left">取消订单</view>
+			<view class="orderbottom_left" @click="ordersCancel()">取消订单</view>
 			<view class="orderbottom_right" @click="gopay()">立即支付</view>
 		</view>
-		<view class="orderbottomno" v-if="data.status_zh == '预约中'">取消预约</view>
+		<view class="orderbottomno" v-if="data.status_zh == '预约中'" @click="ordersCancel()">取消预约</view>
+		<!-- 确认提示框 -->
+		<popupok :show="show" v-on:isokfn="isok"></popupok>
 	</view>
 </template>
 
 <script>
-import { ordersDetail, payWechat } from '@/http/api.js';
+import { ordersDetail, payWechat, ordersCancel } from '@/http/api.js';
+import popupok from '@/pages/components/popupok/popupok.vue';
 export default {
 	data() {
 		return {
 			id: 0,
 			active: 1,
+			show: false,
 			data: {},
 			isclick: true,
 			min: 60,
 			miao: 0
 		};
+	},
+	components: {
+		popupok
 	},
 	onShow() {
 		wx.hideHomeButton();
@@ -116,6 +123,25 @@ export default {
 		this.ordersDetail();
 	},
 	methods: {
+		isok(isokfn) {
+			console.log(isokfn);
+			if (!isokfn) {
+				this.show = isokfn;
+			} else {
+				ordersCancel({ id: this.data.id }).then(res => {
+					this.show = false;
+					uni.showToast({
+						icon: 'none',
+						title: '订单已取消'
+					});
+					setTimeout(() => {
+						uni.redirectTo({
+							url: '/pages/my/myIndex/myIndex'
+						});
+					}, 1000);
+				});
+			}
+		},
 		tel() {
 			wx.makePhoneCall({
 				phoneNumber: this.data.seller.mobile
@@ -220,6 +246,9 @@ export default {
 					}, 1000);
 				}
 			});
+		},
+		ordersCancel() {
+			this.show = true;
 		}
 	}
 };

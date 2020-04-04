@@ -181,19 +181,25 @@
 		{
 			"path": "pages/my/myorder/travelOrder/orderList/orderList",
 			"style": {
-				"navigationBarTitleText": "我的旅游订单"
-			}
-		},
-		{
-			"path": "pages/my/myorder/specialtyOrder/orderList/orderList",
-			"style": {
-				"navigationBarTitleText": "我的特产订单"
+				"navigationBarTitleText": "旅游订单"
 			}
 		},
 		{
 			"path": "pages/my/myorder/travelOrder/orderDetail/resourcesOrder",
 			"style": {
-				"navigationBarTitleText": "待支付订单"
+				"navigationBarTitleText": "订单详情"
+			}
+		},
+		{
+			"path": "pages/my/myorder/specialtyOrder/orderList/orderList",
+			"style": {
+				"navigationBarTitleText": "特产订单"
+			}
+		},
+		{
+			"path": "pages/my/myorder/specialtyOrder/orderDetail/orderDetail",
+			"style": {
+				"navigationBarTitleText": "订单详情"
 			}
 		}
 

@@ -69,8 +69,41 @@ page {
 
 .detail_intro .top .second {
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	margin-top: 10upx;
+}
+
+.detail_intro .top .second .labela {
+	height: 36rpx;
+	background-color: #FFEFE5;
+	border-radius: 18rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	padding: 0upx 16upx;
+	box-sizing: border-box;
+	text-align: center;
+	margin-right: 15upx;
+}
+
+.detail_intro .top .second .labelb {
+	height: 36rpx;
+	background-color: #e5f2ff;
+	border-radius: 18rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36rpx;
+	letter-spacing: 0rpx;
+	color: #0084ff;
+	padding: 0upx 16upx;
+	box-sizing: border-box;
+	text-align: center;
 }
 
 .detail_intro .top .second .l {
@@ -200,8 +233,68 @@ page {
 	min-height: 100upx;
 	background-color: #ffffff;
 	margin-top: 20upx;
+	padding-top: 1upx;
 	padding-bottom: 40upx;
 }
+
+/* 套餐选择 */
+.orderDetail {
+	width: 690rpx;
+	height: 60rpx;
+	background-color: #FFEFE5;
+	margin: 30upx auto 0upx;
+	display: flex;
+	align-items: center;
+	padding: 12upx 30upx;
+	box-sizing: border-box;
+}
+
+.orderDetail_left {
+	width: 392upx;
+	display: flex;
+	align-items: center;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	border-right: 1px solid #ff6600;
+}
+
+.orderDetail_left_heng {
+	margin: 0upx 20upx;
+}
+
+.orderDetail_left_all {
+	font-family: PingFang-SC-Regular;
+	font-size: 20rpx;
+	line-height: 24rpx;
+	font-weight: normal;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	margin-left: 20upx;
+}
+
+.orderDetail_right {
+	width: 267upx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+
+.orderDetail_right_center {
+	margin: 0upx 20upx;
+}
+
 
 .type_title {
 	width: 690upx;
@@ -315,6 +408,29 @@ page {
 	margin-right: 10upx;
 }
 
+.facilitiesa {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 690upx;
+	margin: 0 auto;
+	margin-top: 20upx;
+}
+
+.facilitiesa_bottom {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 0rpx;
+}
+
+.facilitiesa_bottom view {
+	font-size: 28upx;
+	margin-right: 0rpx;
+}
+
 .house_policy {
 	width: 690upx;
 	margin: 0 auto;
@@ -325,4 +441,160 @@ page {
 
 .cu-form-group {
 	padding: 1px 30upx 1upx 0;
+}
+
+.guideDetail_schedule {
+	width: 750upx;
+	min-height: 750upx;
+	background-color: #ffffff;
+	margin-top: 20upx;
+	/* margin-bottom: 150upx; */
+}
+
+.guideDetail_schedule_title {
+	width: 690upx;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	padding-top: 28upx;
+}
+
+.guideDetail_schedule_title text {
+	font-size: 30upx;
+	font-weight: bold;
+	color: #28282c;
+}
+
+.guideDetail_schedule_title .line {
+	width: 6upx;
+	height: 32upx;
+	background-color: #ff6600;
+	border-radius: 3upx;
+	margin-right: 10upx;
+}
+
+/* 日历 */
+.tui-modal-box {
+	width: 690upx !important;
+	top: 45% !important;
+	min-height: 600upx;
+	border-radius: 4px;
+	padding-top: 20upx;
+	padding-bottom: 30upx;
+}
+
+.calendar_title {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20upx;
+}
+
+.calendar_title image {
+	width: 57rpx;
+	height: 57rpx;
+	padding: 20rpx;
+}
+
+.calendar_title text {
+	font-size: 38upx;
+	font-weight: 500;
+	color: #333;
+}
+
+.calendar_week {
+	width: 676upx;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	font-size: 24upx;
+	color: #999;
+	margin-top: 30upx;
+	margin-bottom: 10upx;
+}
+
+.calendar_week view {
+	width: 80upx;
+	height: 40upx;
+	margin: 8upx;
+	text-align: center;
+}
+
+.calendar_days {
+	width: 676upx;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.calendar_days .dayone {
+	width: 96upx;
+	height: 86upx;
+	margin: 8upx 0;
+	padding: 0 8upx;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	/* align-items: center; */
+}
+
+.calendar_days .dayone .day {
+	color: #666;
+	font-size: 28upx;
+	width: 80upx;
+	height: 25upx;
+	margin-top: 14upx;
+}
+
+.calendar_days .dayone .price {
+	color: #999999;
+	font-weight: 300;
+	font-size: 20upx;
+	width: 80upx;
+	height: 25upx;
+}
+
+.calendar_days .dayone .price text {
+	margin-right: 5upx;
+}
+
+.colorc1 {
+	color: #c1c1c1 !important;
+}
+
+.color6 {
+	color: #666;
+}
+
+.sbgFF6600 {
+	background: #FF6600;
+	color: #fff;
+	border-radius: 4px 0 0 4px;
+}
+
+.sbgFF6600 .day {
+	color: #fff !important;
+}
+
+.sbgFF6600 .price {
+	color: #fff !important;
+}
+
+.ebgFF6600 {
+	background: #FF6600;
+	color: #fff;
+	border-radius: 0 4px 4px 0;
+}
+
+.ebgFF6600 .day {
+	color: #fff !important;
+}
+
+.ebgFF6600 .price {
+	color: #fff !important;
+}
+
+.bgFFEFE5 {
+	background: #FFEFE5;
 }

@@ -23,12 +23,11 @@
 			<view class="playRecommend_nav">
 				<view class="nav" :class="isSelected === 5 ? 'nav_selected' : ''" @click="navSelect(5)">特产</view>
 				<view class="nav" :class="isSelected === 6 ? 'nav_selected' : ''" @click="navSelect(6)">跟团</view>
+				<view class="nav" :class="isSelected === 7 ? 'nav_selected' : ''" @click="navSelect(7)">周边</view>
 				<view class="nav" :class="isSelected === 1 ? 'nav_selected' : ''" @click="navSelect(1)">酒店</view>
 				<view class="nav" :class="isSelected === 2 ? 'nav_selected' : ''" @click="navSelect(2)">景点</view>
 				<view class="nav" :class="isSelected === 3 ? 'nav_selected' : ''" @click="navSelect(3)">餐饮</view>
 				<view class="nav" :class="isSelected === 4 ? 'nav_selected' : ''" @click="navSelect(4)">民宿</view>
-				<!-- <view class="nav" :class="isSelected === 5 ? 'nav_selected' : ''" @click="navSelect(5)">特色</view> -->
-				<!-- <view class="nav" :class="isSelected === 7 ? 'nav_selected' : ''" @click="navSelect(7)">特产</view> -->
 			</view>
 		</view>
 
@@ -200,9 +199,14 @@ export default {
 						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
 					});
 					break;
-				case 'boutique':
+				case 'tour-group':
 					uni.navigateTo({
 						url: `/pages/details/standardDetail/standardDetail?id=${id}&isDis=1`
+					});
+					break;
+				case 'tour-surround':
+					uni.navigateTo({
+						url: `/pages/details/surround/surround?id=${id}&isDis=1`
 					});
 					break;
 				// case 'specialty':
@@ -234,11 +238,12 @@ export default {
 				this.type = 'specialty';
 			}
 			if (index === 6) {
-				this.type = 'boutique';
+				// this.type = 'boutique';
+				this.type = 'tour-group';
 			}
-			// if (index === 7) {
-			// 	this.type = 'specialty';
-			// }
+			if (index === 7) {
+				this.type = 'tour-surround';
+			}
 			this.getList(this.keywords, this.cityCode);
 		}
 	},

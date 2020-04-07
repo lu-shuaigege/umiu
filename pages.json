@@ -47,6 +47,13 @@
 			}
 		},
 		{
+			"path": "pages/details/check/check",
+			"style": {
+				"navigationBarTitleText": "入住条件",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
 			"path": "pages/details/otherDetail/otherDetail",
 			"style": {
 				"navigationBarTitleText": "特产详情", //其他详情
@@ -71,6 +78,13 @@
 			"path": "pages/details/standardDetail/standardDetail",
 			"style": {
 				"navigationBarTitleText": "跟团游详情",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/details/surround/surround",
+			"style": {
+				"navigationBarTitleText": "周边游详情",
 				"navigationBarBackgroundColor": "#FFFFFF"
 			}
 		},

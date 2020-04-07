@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1552,553 +1552,6 @@ wx.createComponent = createComponent;
 var uni$1 = uni;var _default =
 
 uni$1;exports.default = _default;
-
-/***/ }),
-
-/***/ 104:
-/*!*********************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 105));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 106));
-var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 107));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
-
-var L = 'en'; // global locale
-var Ls = {}; // global loaded locale
-Ls[L] = _en.default;
-
-var isDayjs = function isDayjs(d) {return d instanceof Dayjs;}; // eslint-disable-line no-use-before-define
-
-var parseLocale = function parseLocale(preset, object, isLocal) {
-  var l;
-  if (!preset) return L;
-  if (typeof preset === 'string') {
-    if (Ls[preset]) {
-      l = preset;
-    }
-    if (object) {
-      Ls[preset] = object;
-      l = preset;
-    }
-  } else {var
-    name = preset.name;
-    Ls[name] = preset;
-    l = name;
-  }
-  if (!isLocal) L = l;
-  return l;
-};
-
-var dayjs = function dayjs(date, c, pl) {
-  if (isDayjs(date)) {
-    return date.clone();
-  }
-  // eslint-disable-next-line no-nested-ternary
-  var cfg = c ? typeof c === 'string' ? { format: c, pl: pl } : c : {};
-  cfg.date = date;
-  return new Dayjs(cfg); // eslint-disable-line no-use-before-define
-};
-
-var wrapper = function wrapper(date, instance) {return (
-    dayjs(date, {
-      locale: instance.$L,
-      utc: instance.$u,
-      $offset: instance.$offset // todo: refactor; do not use this.$offset in you code
-    }));};
-
-var Utils = _utils.default; // for plugin use
-Utils.l = parseLocale;
-Utils.i = isDayjs;
-Utils.w = wrapper;
-
-var parseDate = function parseDate(cfg) {var
-  date = cfg.date,utc = cfg.utc;
-  if (date === null) return new Date(NaN); // null is invalid
-  if (Utils.u(date)) return new Date(); // today
-  if (date instanceof Date) return new Date(date);
-  if (typeof date === 'string' && !/Z$/i.test(date)) {
-    var d = date.match(C.REGEX_PARSE);
-    if (d) {
-      if (utc) {
-        return new Date(Date.UTC(d[1], d[2] - 1, d[3] ||
-        1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0));
-      }
-      return new Date(d[1], d[2] - 1, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0);
-    }
-  }
-
-  return new Date(date); // everything else
-};var
-
-Dayjs = /*#__PURE__*/function () {
-  function Dayjs(cfg) {_classCallCheck(this, Dayjs);
-    this.$L = this.$L || parseLocale(cfg.locale, null, true);
-    this.parse(cfg); // for plugin
-  }_createClass(Dayjs, [{ key: "parse", value: function parse(
-
-    cfg) {
-      this.$d = parseDate(cfg);
-      this.init();
-    } }, { key: "init", value: function init()
-
-    {var
-      $d = this.$d;
-      this.$y = $d.getFullYear();
-      this.$M = $d.getMonth();
-      this.$D = $d.getDate();
-      this.$W = $d.getDay();
-      this.$H = $d.getHours();
-      this.$m = $d.getMinutes();
-      this.$s = $d.getSeconds();
-      this.$ms = $d.getMilliseconds();
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-  }, { key: "$utils", value: function $utils() {
-      return Utils;
-    } }, { key: "isValid", value: function isValid()
-
-    {
-      return !(this.$d.toString() === C.INVALID_DATE_STRING);
-    } }, { key: "isSame", value: function isSame(
-
-    that, units) {
-      var other = dayjs(that);
-      return this.startOf(units) <= other && other <= this.endOf(units);
-    } }, { key: "isAfter", value: function isAfter(
-
-    that, units) {
-      return dayjs(that) < this.startOf(units);
-    } }, { key: "isBefore", value: function isBefore(
-
-    that, units) {
-      return this.endOf(units) < dayjs(that);
-    } }, { key: "$g", value: function $g(
-
-    input, get, set) {
-      if (Utils.u(input)) return this[get];
-      return this.set(set, input);
-    } }, { key: "year", value: function year(
-
-    input) {
-      return this.$g(input, '$y', C.Y);
-    } }, { key: "month", value: function month(
-
-    input) {
-      return this.$g(input, '$M', C.M);
-    } }, { key: "day", value: function day(
-
-    input) {
-      return this.$g(input, '$W', C.D);
-    } }, { key: "date", value: function date(
-
-    input) {
-      return this.$g(input, '$D', C.DATE);
-    } }, { key: "hour", value: function hour(
-
-    input) {
-      return this.$g(input, '$H', C.H);
-    } }, { key: "minute", value: function minute(
-
-    input) {
-      return this.$g(input, '$m', C.MIN);
-    } }, { key: "second", value: function second(
-
-    input) {
-      return this.$g(input, '$s', C.S);
-    } }, { key: "millisecond", value: function millisecond(
-
-    input) {
-      return this.$g(input, '$ms', C.MS);
-    } }, { key: "unix", value: function unix()
-
-    {
-      return Math.floor(this.valueOf() / 1000);
-    } }, { key: "valueOf", value: function valueOf()
-
-    {
-      // timezone(hour) * 60 * 60 * 1000 => ms
-      return this.$d.getTime();
-    } }, { key: "startOf", value: function startOf(
-
-    units, _startOf) {var _this = this; // startOf -> endOf
-      var isStartOf = !Utils.u(_startOf) ? _startOf : true;
-      var unit = Utils.p(units);
-      var instanceFactory = function instanceFactory(d, m) {
-        var ins = Utils.w(_this.$u ?
-        Date.UTC(_this.$y, m, d) : new Date(_this.$y, m, d), _this);
-        return isStartOf ? ins : ins.endOf(C.D);
-      };
-      var instanceFactorySet = function instanceFactorySet(method, slice) {
-        var argumentStart = [0, 0, 0, 0];
-        var argumentEnd = [23, 59, 59, 999];
-        return Utils.w(_this.toDate()[method].apply( // eslint-disable-line prefer-spread
-        _this.toDate(),
-        (isStartOf ? argumentStart : argumentEnd).slice(slice)),
-        _this);
-      };var
-      $W = this.$W,$M = this.$M,$D = this.$D;
-      var utcPad = "set".concat(this.$u ? 'UTC' : '');
-      switch (unit) {
-        case C.Y:
-          return isStartOf ? instanceFactory(1, 0) :
-          instanceFactory(31, 11);
-        case C.M:
-          return isStartOf ? instanceFactory(1, $M) :
-          instanceFactory(0, $M + 1);
-        case C.W:{
-            var weekStart = this.$locale().weekStart || 0;
-            var gap = ($W < weekStart ? $W + 7 : $W) - weekStart;
-            return instanceFactory(isStartOf ? $D - gap : $D + (6 - gap), $M);
-          }
-        case C.D:
-        case C.DATE:
-          return instanceFactorySet("".concat(utcPad, "Hours"), 0);
-        case C.H:
-          return instanceFactorySet("".concat(utcPad, "Minutes"), 1);
-        case C.MIN:
-          return instanceFactorySet("".concat(utcPad, "Seconds"), 2);
-        case C.S:
-          return instanceFactorySet("".concat(utcPad, "Milliseconds"), 3);
-        default:
-          return this.clone();}
-
-    } }, { key: "endOf", value: function endOf(
-
-    arg) {
-      return this.startOf(arg, false);
-    } }, { key: "$set", value: function $set(
-
-    units, int) {var _C$D$C$DATE$C$M$C$Y$C; // private set
-      var unit = Utils.p(units);
-      var utcPad = "set".concat(this.$u ? 'UTC' : '');
-      var name = (_C$D$C$DATE$C$M$C$Y$C = {}, _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.D, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.DATE, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.M, "".concat(utcPad, "Month")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.Y, "".concat(utcPad, "FullYear")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.H, "".concat(utcPad, "Hours")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.MIN, "".concat(utcPad, "Minutes")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.S, "".concat(utcPad, "Seconds")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.MS, "".concat(utcPad, "Milliseconds")), _C$D$C$DATE$C$M$C$Y$C)[
-      unit];
-      var arg = unit === C.D ? this.$D + (int - this.$W) : int;
-
-      if (unit === C.M || unit === C.Y) {
-        // clone is for badMutable plugin
-        var date = this.clone().set(C.DATE, 1);
-        date.$d[name](arg);
-        date.init();
-        this.$d = date.set(C.DATE, Math.min(this.$D, date.daysInMonth())).toDate();
-      } else if (name) this.$d[name](arg);
-
-      this.init();
-      return this;
-    } }, { key: "set", value: function set(
-
-    string, int) {
-      return this.clone().$set(string, int);
-    } }, { key: "get", value: function get(
-
-    unit) {
-      return this[Utils.p(unit)]();
-    } }, { key: "add", value: function add(
-
-    number, units) {var _this2 = this,_C$MIN$C$H$C$S$unit;
-      number = Number(number); // eslint-disable-line no-param-reassign
-      var unit = Utils.p(units);
-      var instanceFactorySet = function instanceFactorySet(n) {
-        var d = dayjs(_this2);
-        return Utils.w(d.date(d.date() + Math.round(n * number)), _this2);
-      };
-      if (unit === C.M) {
-        return this.set(C.M, this.$M + number);
-      }
-      if (unit === C.Y) {
-        return this.set(C.Y, this.$y + number);
-      }
-      if (unit === C.D) {
-        return instanceFactorySet(1);
-      }
-      if (unit === C.W) {
-        return instanceFactorySet(7);
-      }
-      var step = (_C$MIN$C$H$C$S$unit = {}, _defineProperty(_C$MIN$C$H$C$S$unit,
-      C.MIN, C.MILLISECONDS_A_MINUTE), _defineProperty(_C$MIN$C$H$C$S$unit,
-      C.H, C.MILLISECONDS_A_HOUR), _defineProperty(_C$MIN$C$H$C$S$unit,
-      C.S, C.MILLISECONDS_A_SECOND), _C$MIN$C$H$C$S$unit)[
-      unit] || 1; // ms
-
-      var nextTimeStamp = this.$d.getTime() + number * step;
-      return Utils.w(nextTimeStamp, this);
-    } }, { key: "subtract", value: function subtract(
-
-    number, string) {
-      return this.add(number * -1, string);
-    } }, { key: "format", value: function format(
-
-    formatStr) {var _this3 = this;
-      if (!this.isValid()) return C.INVALID_DATE_STRING;
-
-      var str = formatStr || C.FORMAT_DEFAULT;
-      var zoneStr = Utils.z(this);
-      var locale = this.$locale();var
-      $H = this.$H,$m = this.$m,$M = this.$M;var
-
-      weekdays =
-      locale.weekdays,months = locale.months,meridiem = locale.meridiem;
-      var getShort = function getShort(arr, index, full, length) {return (
-          arr && (arr[index] || arr(_this3, str)) || full[index].substr(0, length));};
-
-      var get$H = function get$H(num) {return (
-          Utils.s($H % 12 || 12, num, '0'));};
-
-
-      var meridiemFunc = meridiem || function (hour, minute, isLowercase) {
-        var m = hour < 12 ? 'AM' : 'PM';
-        return isLowercase ? m.toLowerCase() : m;
-      };
-
-      var matches = {
-        YY: String(this.$y).slice(-2),
-        YYYY: this.$y,
-        M: $M + 1,
-        MM: Utils.s($M + 1, 2, '0'),
-        MMM: getShort(locale.monthsShort, $M, months, 3),
-        MMMM: months[$M] || months(this, str),
-        D: this.$D,
-        DD: Utils.s(this.$D, 2, '0'),
-        d: String(this.$W),
-        dd: getShort(locale.weekdaysMin, this.$W, weekdays, 2),
-        ddd: getShort(locale.weekdaysShort, this.$W, weekdays, 3),
-        dddd: weekdays[this.$W],
-        H: String($H),
-        HH: Utils.s($H, 2, '0'),
-        h: get$H(1),
-        hh: get$H(2),
-        a: meridiemFunc($H, $m, true),
-        A: meridiemFunc($H, $m, false),
-        m: String($m),
-        mm: Utils.s($m, 2, '0'),
-        s: String(this.$s),
-        ss: Utils.s(this.$s, 2, '0'),
-        SSS: Utils.s(this.$ms, 3, '0'),
-        Z: zoneStr // 'ZZ' logic below
-      };
-
-      return str.replace(C.REGEX_FORMAT, function (match, $1) {return $1 || matches[match] || zoneStr.replace(':', '');}); // 'ZZ'
-    } }, { key: "utcOffset", value: function utcOffset()
-
-    {
-      // Because a bug at FF24, we're rounding the timezone offset around 15 minutes
-      // https://github.com/moment/moment/pull/1871
-      return -Math.round(this.$d.getTimezoneOffset() / 15) * 15;
-    } }, { key: "diff", value: function diff(
-
-    input, units, float) {var _C$Y$C$M$C$Q$C$W$C$D$;
-      var unit = Utils.p(units);
-      var that = dayjs(input);
-      var zoneDelta = (that.utcOffset() - this.utcOffset()) * C.MILLISECONDS_A_MINUTE;
-      var diff = this - that;
-      var result = Utils.m(this, that);
-
-      result = (_C$Y$C$M$C$Q$C$W$C$D$ = {}, _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.Y, result / 12), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.M, result), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.Q, result / 3), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.W, (diff - zoneDelta) / C.MILLISECONDS_A_WEEK), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.D, (diff - zoneDelta) / C.MILLISECONDS_A_DAY), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.H, diff / C.MILLISECONDS_A_HOUR), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.MIN, diff / C.MILLISECONDS_A_MINUTE), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.S, diff / C.MILLISECONDS_A_SECOND), _C$Y$C$M$C$Q$C$W$C$D$)[
-      unit] || diff; // milliseconds
-
-      return float ? result : Utils.a(result);
-    } }, { key: "daysInMonth", value: function daysInMonth()
-
-    {
-      return this.endOf(C.M).$D;
-    } }, { key: "$locale", value: function $locale()
-
-    {// get locale object
-      return Ls[this.$L];
-    } }, { key: "locale", value: function locale(
-
-    preset, object) {
-      if (!preset) return this.$L;
-      var that = this.clone();
-      var nextLocaleName = parseLocale(preset, object, true);
-      if (nextLocaleName) that.$L = nextLocaleName;
-      return that;
-    } }, { key: "clone", value: function clone()
-
-    {
-      return Utils.w(this.$d, this);
-    } }, { key: "toDate", value: function toDate()
-
-    {
-      return new Date(this.valueOf());
-    } }, { key: "toJSON", value: function toJSON()
-
-    {
-      return this.isValid() ? this.toISOString() : null;
-    } }, { key: "toISOString", value: function toISOString()
-
-    {
-      // ie 8 return
-      // new Dayjs(this.valueOf() + this.$d.getTimezoneOffset() * 60000)
-      // .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
-      return this.$d.toISOString();
-    } }, { key: "toString", value: function toString()
-
-    {
-      return this.$d.toUTCString();
-    } }]);return Dayjs;}();
-
-
-dayjs.prototype = Dayjs.prototype;
-
-dayjs.extend = function (plugin, option) {
-  plugin(option, Dayjs, dayjs);
-  return dayjs;
-};
-
-dayjs.locale = parseLocale;
-
-dayjs.isDayjs = isDayjs;
-
-dayjs.unix = function (timestamp) {return (
-    dayjs(timestamp * 1e3));};
-
-
-dayjs.en = Ls[L];
-dayjs.Ls = Ls;var _default =
-
-dayjs;exports.default = _default;
-
-/***/ }),
-
-/***/ 105:
-/*!************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.REGEX_FORMAT = exports.REGEX_PARSE = exports.INVALID_DATE_STRING = exports.FORMAT_DEFAULT = exports.DATE = exports.Y = exports.Q = exports.M = exports.W = exports.D = exports.H = exports.MIN = exports.S = exports.MS = exports.MILLISECONDS_A_WEEK = exports.MILLISECONDS_A_DAY = exports.MILLISECONDS_A_HOUR = exports.MILLISECONDS_A_MINUTE = exports.MILLISECONDS_A_SECOND = exports.SECONDS_A_WEEK = exports.SECONDS_A_DAY = exports.SECONDS_A_HOUR = exports.SECONDS_A_MINUTE = void 0;var SECONDS_A_MINUTE = 60;exports.SECONDS_A_MINUTE = SECONDS_A_MINUTE;
-var SECONDS_A_HOUR = SECONDS_A_MINUTE * 60;exports.SECONDS_A_HOUR = SECONDS_A_HOUR;
-var SECONDS_A_DAY = SECONDS_A_HOUR * 24;exports.SECONDS_A_DAY = SECONDS_A_DAY;
-var SECONDS_A_WEEK = SECONDS_A_DAY * 7;exports.SECONDS_A_WEEK = SECONDS_A_WEEK;
-
-var MILLISECONDS_A_SECOND = 1e3;exports.MILLISECONDS_A_SECOND = MILLISECONDS_A_SECOND;
-var MILLISECONDS_A_MINUTE = SECONDS_A_MINUTE * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_MINUTE = MILLISECONDS_A_MINUTE;
-var MILLISECONDS_A_HOUR = SECONDS_A_HOUR * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_HOUR = MILLISECONDS_A_HOUR;
-var MILLISECONDS_A_DAY = SECONDS_A_DAY * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_DAY = MILLISECONDS_A_DAY;
-var MILLISECONDS_A_WEEK = SECONDS_A_WEEK * MILLISECONDS_A_SECOND;
-
-// English locales
-exports.MILLISECONDS_A_WEEK = MILLISECONDS_A_WEEK;var MS = 'millisecond';exports.MS = MS;
-var S = 'second';exports.S = S;
-var MIN = 'minute';exports.MIN = MIN;
-var H = 'hour';exports.H = H;
-var D = 'day';exports.D = D;
-var W = 'week';exports.W = W;
-var M = 'month';exports.M = M;
-var Q = 'quarter';exports.Q = Q;
-var Y = 'year';exports.Y = Y;
-var DATE = 'date';exports.DATE = DATE;
-
-var FORMAT_DEFAULT = 'YYYY-MM-DDTHH:mm:ssZ';exports.FORMAT_DEFAULT = FORMAT_DEFAULT;
-
-var INVALID_DATE_STRING = 'Invalid Date';
-
-// regex
-exports.INVALID_DATE_STRING = INVALID_DATE_STRING;var REGEX_PARSE = /^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/;exports.REGEX_PARSE = REGEX_PARSE;
-var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g;exports.REGEX_FORMAT = REGEX_FORMAT;
-
-/***/ }),
-
-/***/ 106:
-/*!*********************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 105));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
-
-var padStart = function padStart(string, length, pad) {
-  var s = String(string);
-  if (!s || s.length >= length) return string;
-  return "".concat(Array(length + 1 - s.length).join(pad)).concat(string);
-};
-
-var padZoneStr = function padZoneStr(instance) {
-  var negMinuts = -instance.utcOffset();
-  var minutes = Math.abs(negMinuts);
-  var hourOffset = Math.floor(minutes / 60);
-  var minuteOffset = minutes % 60;
-  return "".concat(negMinuts <= 0 ? '+' : '-').concat(padStart(hourOffset, 2, '0'), ":").concat(padStart(minuteOffset, 2, '0'));
-};
-
-var monthDiff = function monthDiff(a, b) {
-  // function from moment.js in order to keep the same result
-  var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month());
-  var anchor = a.clone().add(wholeMonthDiff, C.M);
-  var c = b - anchor < 0;
-  var anchor2 = a.clone().add(wholeMonthDiff + (c ? -1 : 1), C.M);
-  return Number(-(wholeMonthDiff + (b - anchor) / (c ? anchor - anchor2 :
-  anchor2 - anchor)) || 0);
-};
-
-var absFloor = function absFloor(n) {return n < 0 ? Math.ceil(n) || 0 : Math.floor(n);};
-
-var prettyUnit = function prettyUnit(u) {
-  var special = {
-    M: C.M,
-    y: C.Y,
-    w: C.W,
-    d: C.D,
-    h: C.H,
-    m: C.MIN,
-    s: C.S,
-    ms: C.MS,
-    Q: C.Q };
-
-  return special[u] || String(u || '').toLowerCase().replace(/s$/, '');
-};
-
-var isUndefined = function isUndefined(s) {return s === undefined;};var _default =
-
-{
-  s: padStart,
-  z: padZoneStr,
-  m: monthDiff,
-  a: absFloor,
-  p: prettyUnit,
-  u: isUndefined };exports.default = _default;
-
-/***/ }),
-
-/***/ 107:
-/*!*************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // We don't need weekdaysShort, weekdaysMin, monthsShort in en.js locale
-var _default = {
-  name: 'en',
-  weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-  months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_') };exports.default = _default;
 
 /***/ }),
 
@@ -7763,7 +7216,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7784,14 +7237,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7867,7 +7320,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8269,7 +7722,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.guidesSchedules = guidesSchedules;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 //////////////////////////////////////////////////////////新建
 //筛选条件接口-定制师列表
 function users() {
@@ -8369,13 +7822,22 @@ function loginPassword(mobile, password, userInfo, openid, code) {
 
 
 }
+//预约导游-导游档期（月视图）
+function guidesSchedules(id, month) {
+  return (0, _request.default)({
+    url: "/api/guides/" + id + "/schedules",
+    data: {
+      month: month } });
+
+
+}
 
 //获取资源列表
 function getResources(id, page, type, keywords, city_code, destination_code, client) {
   var data = {};
-  if (id) {
-    data["id"] = id;
-  }
+  // if (id) {
+  // 	data["id"] = id
+  // }
   if (page) {
     data["page"] = page;
   }
@@ -8745,7 +8207,7 @@ function ordersCancel(data) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
 // var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
-
+// var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {
     var _header = {
@@ -8792,7 +8254,38 @@ $http;exports.default = _default;
 
 /***/ }),
 
-/***/ 284:
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 307:
 /*!************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
   \************************************************************************/
@@ -8895,1101 +8388,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   'closefill': "\uE589",
   'sound': "\uE590",
   'scan': "\uE612" };exports.default = _default;
-
-/***/ }),
-
-/***/ 292:
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! regenerator-runtime */ 293);
-
-
-/***/ }),
-
-/***/ 293:
-/*!************************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() {
-  return this || (typeof self === "object" && self);
-})() || Function("return this")();
-
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
-
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-module.exports = __webpack_require__(/*! ./runtime */ 294);
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
-  }
-}
-
-
-/***/ }),
-
-/***/ 294:
-/*!*****************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-!(function(global) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  var inModule = typeof module === "object";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    if (inModule) {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
-  }
-
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  runtime.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() {
-    return this || (typeof self === "object" && self);
-  })() || Function("return this")()
-);
-
-
-/***/ }),
-
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 309:
-/*!*************************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 310));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 311));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
-                                                                                                                                                                 * html2Json 改造来自: https://github.com/Jxck/html2json
-                                                                                                                                                                 *
-                                                                                                                                                                 *
-                                                                                                                                                                 * author: Di (微信小程序开发工程师)
-                                                                                                                                                                 * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
-                                                                                                                                                                 *               垂直微信小程序开发交流社区
-                                                                                                                                                                 *
-                                                                                                                                                                 * github地址: https://github.com/icindy/wxParse
-                                                                                                                                                                 *
-                                                                                                                                                                 * for: 微信小程序富文本解析
-                                                                                                                                                                 * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
-                                                                                                                                                                 */function makeMap(str) {var obj = {};var items = str.split(',');for (var i = 0; i < items.length; i += 1) {obj[items[i]] = true;}return obj;} // Block Elements - HTML 5
-var block = makeMap('br,code,address,article,applet,aside,audio,blockquote,button,canvas,center,dd,del,dir,div,dl,dt,fieldset,figcaption,figure,footer,form,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,iframe,ins,isindex,li,map,menu,noframes,noscript,object,ol,output,p,pre,section,script,table,tbody,td,tfoot,th,thead,tr,ul,video'); // Inline Elements - HTML 5
-var inline = makeMap('a,abbr,acronym,applet,b,basefont,bdo,big,button,cite,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,textarea,tt,u,var');
-// Elements that you can, intentionally, leave open
-// (and which close themselves)
-var closeSelf = makeMap('colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr');
-
-function removeDOCTYPE(html) {
-  var isDocument = /<body.*>([^]*)<\/body>/.test(html);
-  return isDocument ? RegExp.$1 : html;
-}
-
-function trimHtml(html) {
-  return html.
-  replace(/<!--.*?-->/gi, '').
-  replace(/\/\*.*?\*\//gi, '').
-  replace(/[ ]+</gi, '<').
-  replace(/<script[^]*<\/script>/gi, '').
-  replace(/<style[^]*<\/style>/gi, '');
-}
-
-function getScreenInfo() {
-  var screen = {};
-  wx.getSystemInfo({
-    success: function success(res) {
-      screen.width = res.windowWidth;
-      screen.height = res.windowHeight;
-    } });
-
-  return screen;
-}
-
-function html2json(html, customHandler, imageProp, host) {
-  // 处理字符串
-  html = removeDOCTYPE(html);
-  html = trimHtml(html);
-  html = _wxDiscode.default.strDiscode(html);
-  // 生成node节点
-  var bufArray = [];
-  var results = {
-    nodes: [],
-    imageUrls: [] };
-
-
-  var screen = getScreenInfo();
-  function Node(tag) {
-    this.node = 'element';
-    this.tag = tag;
-
-    this.$screen = screen;
-  }
-
-  (0, _htmlparser.default)(html, {
-    start: function start(tag, attrs, unary) {
-      // node for this element
-      var node = new Node(tag);
-
-      if (bufArray.length !== 0) {
-        var parent = bufArray[0];
-        if (parent.nodes === undefined) {
-          parent.nodes = [];
-        }
-      }
-
-      if (block[tag]) {
-        node.tagType = 'block';
-      } else if (inline[tag]) {
-        node.tagType = 'inline';
-      } else if (closeSelf[tag]) {
-        node.tagType = 'closeSelf';
-      }
-
-      node.attr = attrs.reduce(function (pre, attr) {var
-        name = attr.name;var
-        value = attr.value;
-        if (name === 'class') {
-          node.classStr = value;
-        }
-        // has multi attibutes
-        // make it array of attribute
-        if (name === 'style') {
-          node.styleStr = value;
-        }
-        if (value.match(/ /)) {
-          value = value.split(' ');
-        }
-
-        // if attr already exists
-        // merge it
-        if (pre[name]) {
-          if (Array.isArray(pre[name])) {
-            // already array, push to last
-            pre[name].push(value);
-          } else {
-            // single value, make it array
-            pre[name] = [pre[name], value];
-          }
-        } else {
-          // not exist, put it
-          pre[name] = value;
-        }
-
-        return pre;
-      }, {});
-
-      // 优化样式相关属性
-      if (node.classStr) {
-        node.classStr += " ".concat(node.tag);
-      } else {
-        node.classStr = node.tag;
-      }
-      if (node.tagType === 'inline') {
-        node.classStr += ' inline';
-      }
-
-      // 对img添加额外数据
-      if (node.tag === 'img') {
-        var imgUrl = node.attr.src;
-        imgUrl = _wxDiscode.default.urlToHttpUrl(imgUrl, imageProp.domain);
-        Object.assign(node.attr, imageProp, {
-          src: imgUrl || '' });
-
-        if (imgUrl) {
-          results.imageUrls.push(imgUrl);
-        }
-      }
-
-      // 处理a标签属性
-      if (node.tag === 'a') {
-        node.attr.href = node.attr.href || '';
-      }
-
-      // 处理font标签样式属性
-      if (node.tag === 'font') {
-        var fontSize = [
-        'x-small',
-        'small',
-        'medium',
-        'large',
-        'x-large',
-        'xx-large',
-        '-webkit-xxx-large'];
-
-        var styleAttrs = {
-          color: 'color',
-          face: 'font-family',
-          size: 'font-size' };
-
-        if (!node.styleStr) node.styleStr = '';
-        Object.keys(styleAttrs).forEach(function (key) {
-          if (node.attr[key]) {
-            var value = key === 'size' ? fontSize[node.attr[key] - 1] : node.attr[key];
-            node.styleStr += "".concat(styleAttrs[key], ": ").concat(value, ";");
-          }
-        });
-      }
-
-      // 临时记录source资源
-      if (node.tag === 'source') {
-        results.source = node.attr.src;
-      }
-
-      if (customHandler.start) {
-        customHandler.start(node, results);
-      }
-
-      if (unary) {
-        // if this tag doesn't have end tag
-        // like <img src="hoge.png"/>
-        // add to parents
-        var _parent = bufArray[0] || results;
-        if (_parent.nodes === undefined) {
-          _parent.nodes = [];
-        }
-        _parent.nodes.push(node);
-      } else {
-        bufArray.unshift(node);
-      }
-    },
-    end: function end(tag) {
-      // merge into parent tag
-      var node = bufArray.shift();
-      if (node.tag !== tag) {
-        console.error('invalid state: mismatch end tag');
-      }
-
-      // 当有缓存source资源时于于video补上src资源
-      if (node.tag === 'video' && results.source) {
-        node.attr.src = results.source;
-        delete results.source;
-      }
-
-      if (customHandler.end) {
-        customHandler.end(node, results);
-      }
-
-      if (bufArray.length === 0) {
-        results.nodes.push(node);
-      } else {
-        var parent = bufArray[0];
-        if (!parent.nodes) {
-          parent.nodes = [];
-        }
-        parent.nodes.push(node);
-      }
-    },
-    chars: function chars(text) {
-      if (!text.trim()) return;
-
-      var node = {
-        node: 'text',
-        text: text };
-
-
-      if (customHandler.chars) {
-        customHandler.chars(node, results);
-      }
-
-      if (bufArray.length === 0) {
-        results.nodes.push(node);
-      } else {
-        var parent = bufArray[0];
-        if (parent.nodes === undefined) {
-          parent.nodes = [];
-        }
-        parent.nodes.push(node);
-      }
-    } });
-
-
-  return results;
-}var _default =
-
-html2json;exports.default = _default;
 
 /***/ }),
 
@@ -11125,7 +9523,279 @@ module.exports = {
 
 /***/ }),
 
-/***/ 310:
+/***/ 329:
+/*!*************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 330));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 331));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+                                                                                                                                                                 * html2Json 改造来自: https://github.com/Jxck/html2json
+                                                                                                                                                                 *
+                                                                                                                                                                 *
+                                                                                                                                                                 * author: Di (微信小程序开发工程师)
+                                                                                                                                                                 * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
+                                                                                                                                                                 *               垂直微信小程序开发交流社区
+                                                                                                                                                                 *
+                                                                                                                                                                 * github地址: https://github.com/icindy/wxParse
+                                                                                                                                                                 *
+                                                                                                                                                                 * for: 微信小程序富文本解析
+                                                                                                                                                                 * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
+                                                                                                                                                                 */function makeMap(str) {var obj = {};var items = str.split(',');for (var i = 0; i < items.length; i += 1) {obj[items[i]] = true;}return obj;} // Block Elements - HTML 5
+var block = makeMap('br,code,address,article,applet,aside,audio,blockquote,button,canvas,center,dd,del,dir,div,dl,dt,fieldset,figcaption,figure,footer,form,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,iframe,ins,isindex,li,map,menu,noframes,noscript,object,ol,output,p,pre,section,script,table,tbody,td,tfoot,th,thead,tr,ul,video'); // Inline Elements - HTML 5
+var inline = makeMap('a,abbr,acronym,applet,b,basefont,bdo,big,button,cite,del,dfn,em,font,i,iframe,img,input,ins,kbd,label,map,object,q,s,samp,script,select,small,span,strike,strong,sub,sup,textarea,tt,u,var');
+// Elements that you can, intentionally, leave open
+// (and which close themselves)
+var closeSelf = makeMap('colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr');
+
+function removeDOCTYPE(html) {
+  var isDocument = /<body.*>([^]*)<\/body>/.test(html);
+  return isDocument ? RegExp.$1 : html;
+}
+
+function trimHtml(html) {
+  return html.
+  replace(/<!--.*?-->/gi, '').
+  replace(/\/\*.*?\*\//gi, '').
+  replace(/[ ]+</gi, '<').
+  replace(/<script[^]*<\/script>/gi, '').
+  replace(/<style[^]*<\/style>/gi, '');
+}
+
+function getScreenInfo() {
+  var screen = {};
+  wx.getSystemInfo({
+    success: function success(res) {
+      screen.width = res.windowWidth;
+      screen.height = res.windowHeight;
+    } });
+
+  return screen;
+}
+
+function html2json(html, customHandler, imageProp, host) {
+  // 处理字符串
+  html = removeDOCTYPE(html);
+  html = trimHtml(html);
+  html = _wxDiscode.default.strDiscode(html);
+  // 生成node节点
+  var bufArray = [];
+  var results = {
+    nodes: [],
+    imageUrls: [] };
+
+
+  var screen = getScreenInfo();
+  function Node(tag) {
+    this.node = 'element';
+    this.tag = tag;
+
+    this.$screen = screen;
+  }
+
+  (0, _htmlparser.default)(html, {
+    start: function start(tag, attrs, unary) {
+      // node for this element
+      var node = new Node(tag);
+
+      if (bufArray.length !== 0) {
+        var parent = bufArray[0];
+        if (parent.nodes === undefined) {
+          parent.nodes = [];
+        }
+      }
+
+      if (block[tag]) {
+        node.tagType = 'block';
+      } else if (inline[tag]) {
+        node.tagType = 'inline';
+      } else if (closeSelf[tag]) {
+        node.tagType = 'closeSelf';
+      }
+
+      node.attr = attrs.reduce(function (pre, attr) {var
+        name = attr.name;var
+        value = attr.value;
+        if (name === 'class') {
+          node.classStr = value;
+        }
+        // has multi attibutes
+        // make it array of attribute
+        if (name === 'style') {
+          node.styleStr = value;
+        }
+        if (value.match(/ /)) {
+          value = value.split(' ');
+        }
+
+        // if attr already exists
+        // merge it
+        if (pre[name]) {
+          if (Array.isArray(pre[name])) {
+            // already array, push to last
+            pre[name].push(value);
+          } else {
+            // single value, make it array
+            pre[name] = [pre[name], value];
+          }
+        } else {
+          // not exist, put it
+          pre[name] = value;
+        }
+
+        return pre;
+      }, {});
+
+      // 优化样式相关属性
+      if (node.classStr) {
+        node.classStr += " ".concat(node.tag);
+      } else {
+        node.classStr = node.tag;
+      }
+      if (node.tagType === 'inline') {
+        node.classStr += ' inline';
+      }
+
+      // 对img添加额外数据
+      if (node.tag === 'img') {
+        var imgUrl = node.attr.src;
+        imgUrl = _wxDiscode.default.urlToHttpUrl(imgUrl, imageProp.domain);
+        Object.assign(node.attr, imageProp, {
+          src: imgUrl || '' });
+
+        if (imgUrl) {
+          results.imageUrls.push(imgUrl);
+        }
+      }
+
+      // 处理a标签属性
+      if (node.tag === 'a') {
+        node.attr.href = node.attr.href || '';
+      }
+
+      // 处理font标签样式属性
+      if (node.tag === 'font') {
+        var fontSize = [
+        'x-small',
+        'small',
+        'medium',
+        'large',
+        'x-large',
+        'xx-large',
+        '-webkit-xxx-large'];
+
+        var styleAttrs = {
+          color: 'color',
+          face: 'font-family',
+          size: 'font-size' };
+
+        if (!node.styleStr) node.styleStr = '';
+        Object.keys(styleAttrs).forEach(function (key) {
+          if (node.attr[key]) {
+            var value = key === 'size' ? fontSize[node.attr[key] - 1] : node.attr[key];
+            node.styleStr += "".concat(styleAttrs[key], ": ").concat(value, ";");
+          }
+        });
+      }
+
+      // 临时记录source资源
+      if (node.tag === 'source') {
+        results.source = node.attr.src;
+      }
+
+      if (customHandler.start) {
+        customHandler.start(node, results);
+      }
+
+      if (unary) {
+        // if this tag doesn't have end tag
+        // like <img src="hoge.png"/>
+        // add to parents
+        var _parent = bufArray[0] || results;
+        if (_parent.nodes === undefined) {
+          _parent.nodes = [];
+        }
+        _parent.nodes.push(node);
+      } else {
+        bufArray.unshift(node);
+      }
+    },
+    end: function end(tag) {
+      // merge into parent tag
+      var node = bufArray.shift();
+      if (node.tag !== tag) {
+        console.error('invalid state: mismatch end tag');
+      }
+
+      // 当有缓存source资源时于于video补上src资源
+      if (node.tag === 'video' && results.source) {
+        node.attr.src = results.source;
+        delete results.source;
+      }
+
+      if (customHandler.end) {
+        customHandler.end(node, results);
+      }
+
+      if (bufArray.length === 0) {
+        results.nodes.push(node);
+      } else {
+        var parent = bufArray[0];
+        if (!parent.nodes) {
+          parent.nodes = [];
+        }
+        parent.nodes.push(node);
+      }
+    },
+    chars: function chars(text) {
+      if (!text.trim()) return;
+
+      var node = {
+        node: 'text',
+        text: text };
+
+
+      if (customHandler.chars) {
+        customHandler.chars(node, results);
+      }
+
+      if (bufArray.length === 0) {
+        results.nodes.push(node);
+      } else {
+        var parent = bufArray[0];
+        if (parent.nodes === undefined) {
+          parent.nodes = [];
+        }
+        parent.nodes.push(node);
+      }
+    } });
+
+
+  return results;
+}var _default =
+
+html2json;exports.default = _default;
+
+/***/ }),
+
+/***/ 330:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
   \*************************************************************************/
@@ -11344,7 +10014,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 311:
+/***/ 331:
 /*!**************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
   \**************************************************************************/
@@ -12429,7 +11099,1362 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+
+/***/ }),
+
+/***/ 72:
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 73);
+
+
+/***/ }),
+
+/***/ 73:
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ 74);
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
+/***/ 74:
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
+
+/***/ }),
+
+/***/ 75:
+/*!******************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrAfter/index.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = function _default(o, c) {
+  c.prototype.isSameOrAfter = function (that, units) {
+    return this.isSame(that, units) || this.isAfter(that, units);
+  };
+};exports.default = _default;
+
+/***/ }),
+
+/***/ 76:
+/*!*********************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 77));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 78));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 79));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+
+var L = 'en'; // global locale
+var Ls = {}; // global loaded locale
+Ls[L] = _en.default;
+
+var isDayjs = function isDayjs(d) {return d instanceof Dayjs;}; // eslint-disable-line no-use-before-define
+
+var parseLocale = function parseLocale(preset, object, isLocal) {
+  var l;
+  if (!preset) return L;
+  if (typeof preset === 'string') {
+    if (Ls[preset]) {
+      l = preset;
+    }
+    if (object) {
+      Ls[preset] = object;
+      l = preset;
+    }
+  } else {var
+    name = preset.name;
+    Ls[name] = preset;
+    l = name;
+  }
+  if (!isLocal) L = l;
+  return l;
+};
+
+var dayjs = function dayjs(date, c, pl) {
+  if (isDayjs(date)) {
+    return date.clone();
+  }
+  // eslint-disable-next-line no-nested-ternary
+  var cfg = c ? typeof c === 'string' ? { format: c, pl: pl } : c : {};
+  cfg.date = date;
+  return new Dayjs(cfg); // eslint-disable-line no-use-before-define
+};
+
+var wrapper = function wrapper(date, instance) {return (
+    dayjs(date, {
+      locale: instance.$L,
+      utc: instance.$u,
+      $offset: instance.$offset // todo: refactor; do not use this.$offset in you code
+    }));};
+
+var Utils = _utils.default; // for plugin use
+Utils.l = parseLocale;
+Utils.i = isDayjs;
+Utils.w = wrapper;
+
+var parseDate = function parseDate(cfg) {var
+  date = cfg.date,utc = cfg.utc;
+  if (date === null) return new Date(NaN); // null is invalid
+  if (Utils.u(date)) return new Date(); // today
+  if (date instanceof Date) return new Date(date);
+  if (typeof date === 'string' && !/Z$/i.test(date)) {
+    var d = date.match(C.REGEX_PARSE);
+    if (d) {
+      if (utc) {
+        return new Date(Date.UTC(d[1], d[2] - 1, d[3] ||
+        1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0));
+      }
+      return new Date(d[1], d[2] - 1, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0);
+    }
+  }
+
+  return new Date(date); // everything else
+};var
+
+Dayjs = /*#__PURE__*/function () {
+  function Dayjs(cfg) {_classCallCheck(this, Dayjs);
+    this.$L = this.$L || parseLocale(cfg.locale, null, true);
+    this.parse(cfg); // for plugin
+  }_createClass(Dayjs, [{ key: "parse", value: function parse(
+
+    cfg) {
+      this.$d = parseDate(cfg);
+      this.init();
+    } }, { key: "init", value: function init()
+
+    {var
+      $d = this.$d;
+      this.$y = $d.getFullYear();
+      this.$M = $d.getMonth();
+      this.$D = $d.getDate();
+      this.$W = $d.getDay();
+      this.$H = $d.getHours();
+      this.$m = $d.getMinutes();
+      this.$s = $d.getSeconds();
+      this.$ms = $d.getMilliseconds();
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+  }, { key: "$utils", value: function $utils() {
+      return Utils;
+    } }, { key: "isValid", value: function isValid()
+
+    {
+      return !(this.$d.toString() === C.INVALID_DATE_STRING);
+    } }, { key: "isSame", value: function isSame(
+
+    that, units) {
+      var other = dayjs(that);
+      return this.startOf(units) <= other && other <= this.endOf(units);
+    } }, { key: "isAfter", value: function isAfter(
+
+    that, units) {
+      return dayjs(that) < this.startOf(units);
+    } }, { key: "isBefore", value: function isBefore(
+
+    that, units) {
+      return this.endOf(units) < dayjs(that);
+    } }, { key: "$g", value: function $g(
+
+    input, get, set) {
+      if (Utils.u(input)) return this[get];
+      return this.set(set, input);
+    } }, { key: "year", value: function year(
+
+    input) {
+      return this.$g(input, '$y', C.Y);
+    } }, { key: "month", value: function month(
+
+    input) {
+      return this.$g(input, '$M', C.M);
+    } }, { key: "day", value: function day(
+
+    input) {
+      return this.$g(input, '$W', C.D);
+    } }, { key: "date", value: function date(
+
+    input) {
+      return this.$g(input, '$D', C.DATE);
+    } }, { key: "hour", value: function hour(
+
+    input) {
+      return this.$g(input, '$H', C.H);
+    } }, { key: "minute", value: function minute(
+
+    input) {
+      return this.$g(input, '$m', C.MIN);
+    } }, { key: "second", value: function second(
+
+    input) {
+      return this.$g(input, '$s', C.S);
+    } }, { key: "millisecond", value: function millisecond(
+
+    input) {
+      return this.$g(input, '$ms', C.MS);
+    } }, { key: "unix", value: function unix()
+
+    {
+      return Math.floor(this.valueOf() / 1000);
+    } }, { key: "valueOf", value: function valueOf()
+
+    {
+      // timezone(hour) * 60 * 60 * 1000 => ms
+      return this.$d.getTime();
+    } }, { key: "startOf", value: function startOf(
+
+    units, _startOf) {var _this = this; // startOf -> endOf
+      var isStartOf = !Utils.u(_startOf) ? _startOf : true;
+      var unit = Utils.p(units);
+      var instanceFactory = function instanceFactory(d, m) {
+        var ins = Utils.w(_this.$u ?
+        Date.UTC(_this.$y, m, d) : new Date(_this.$y, m, d), _this);
+        return isStartOf ? ins : ins.endOf(C.D);
+      };
+      var instanceFactorySet = function instanceFactorySet(method, slice) {
+        var argumentStart = [0, 0, 0, 0];
+        var argumentEnd = [23, 59, 59, 999];
+        return Utils.w(_this.toDate()[method].apply( // eslint-disable-line prefer-spread
+        _this.toDate(),
+        (isStartOf ? argumentStart : argumentEnd).slice(slice)),
+        _this);
+      };var
+      $W = this.$W,$M = this.$M,$D = this.$D;
+      var utcPad = "set".concat(this.$u ? 'UTC' : '');
+      switch (unit) {
+        case C.Y:
+          return isStartOf ? instanceFactory(1, 0) :
+          instanceFactory(31, 11);
+        case C.M:
+          return isStartOf ? instanceFactory(1, $M) :
+          instanceFactory(0, $M + 1);
+        case C.W:{
+            var weekStart = this.$locale().weekStart || 0;
+            var gap = ($W < weekStart ? $W + 7 : $W) - weekStart;
+            return instanceFactory(isStartOf ? $D - gap : $D + (6 - gap), $M);
+          }
+        case C.D:
+        case C.DATE:
+          return instanceFactorySet("".concat(utcPad, "Hours"), 0);
+        case C.H:
+          return instanceFactorySet("".concat(utcPad, "Minutes"), 1);
+        case C.MIN:
+          return instanceFactorySet("".concat(utcPad, "Seconds"), 2);
+        case C.S:
+          return instanceFactorySet("".concat(utcPad, "Milliseconds"), 3);
+        default:
+          return this.clone();}
+
+    } }, { key: "endOf", value: function endOf(
+
+    arg) {
+      return this.startOf(arg, false);
+    } }, { key: "$set", value: function $set(
+
+    units, int) {var _C$D$C$DATE$C$M$C$Y$C; // private set
+      var unit = Utils.p(units);
+      var utcPad = "set".concat(this.$u ? 'UTC' : '');
+      var name = (_C$D$C$DATE$C$M$C$Y$C = {}, _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.D, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.DATE, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.M, "".concat(utcPad, "Month")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.Y, "".concat(utcPad, "FullYear")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.H, "".concat(utcPad, "Hours")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.MIN, "".concat(utcPad, "Minutes")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.S, "".concat(utcPad, "Seconds")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.MS, "".concat(utcPad, "Milliseconds")), _C$D$C$DATE$C$M$C$Y$C)[
+      unit];
+      var arg = unit === C.D ? this.$D + (int - this.$W) : int;
+
+      if (unit === C.M || unit === C.Y) {
+        // clone is for badMutable plugin
+        var date = this.clone().set(C.DATE, 1);
+        date.$d[name](arg);
+        date.init();
+        this.$d = date.set(C.DATE, Math.min(this.$D, date.daysInMonth())).toDate();
+      } else if (name) this.$d[name](arg);
+
+      this.init();
+      return this;
+    } }, { key: "set", value: function set(
+
+    string, int) {
+      return this.clone().$set(string, int);
+    } }, { key: "get", value: function get(
+
+    unit) {
+      return this[Utils.p(unit)]();
+    } }, { key: "add", value: function add(
+
+    number, units) {var _this2 = this,_C$MIN$C$H$C$S$unit;
+      number = Number(number); // eslint-disable-line no-param-reassign
+      var unit = Utils.p(units);
+      var instanceFactorySet = function instanceFactorySet(n) {
+        var d = dayjs(_this2);
+        return Utils.w(d.date(d.date() + Math.round(n * number)), _this2);
+      };
+      if (unit === C.M) {
+        return this.set(C.M, this.$M + number);
+      }
+      if (unit === C.Y) {
+        return this.set(C.Y, this.$y + number);
+      }
+      if (unit === C.D) {
+        return instanceFactorySet(1);
+      }
+      if (unit === C.W) {
+        return instanceFactorySet(7);
+      }
+      var step = (_C$MIN$C$H$C$S$unit = {}, _defineProperty(_C$MIN$C$H$C$S$unit,
+      C.MIN, C.MILLISECONDS_A_MINUTE), _defineProperty(_C$MIN$C$H$C$S$unit,
+      C.H, C.MILLISECONDS_A_HOUR), _defineProperty(_C$MIN$C$H$C$S$unit,
+      C.S, C.MILLISECONDS_A_SECOND), _C$MIN$C$H$C$S$unit)[
+      unit] || 1; // ms
+
+      var nextTimeStamp = this.$d.getTime() + number * step;
+      return Utils.w(nextTimeStamp, this);
+    } }, { key: "subtract", value: function subtract(
+
+    number, string) {
+      return this.add(number * -1, string);
+    } }, { key: "format", value: function format(
+
+    formatStr) {var _this3 = this;
+      if (!this.isValid()) return C.INVALID_DATE_STRING;
+
+      var str = formatStr || C.FORMAT_DEFAULT;
+      var zoneStr = Utils.z(this);
+      var locale = this.$locale();var
+      $H = this.$H,$m = this.$m,$M = this.$M;var
+
+      weekdays =
+      locale.weekdays,months = locale.months,meridiem = locale.meridiem;
+      var getShort = function getShort(arr, index, full, length) {return (
+          arr && (arr[index] || arr(_this3, str)) || full[index].substr(0, length));};
+
+      var get$H = function get$H(num) {return (
+          Utils.s($H % 12 || 12, num, '0'));};
+
+
+      var meridiemFunc = meridiem || function (hour, minute, isLowercase) {
+        var m = hour < 12 ? 'AM' : 'PM';
+        return isLowercase ? m.toLowerCase() : m;
+      };
+
+      var matches = {
+        YY: String(this.$y).slice(-2),
+        YYYY: this.$y,
+        M: $M + 1,
+        MM: Utils.s($M + 1, 2, '0'),
+        MMM: getShort(locale.monthsShort, $M, months, 3),
+        MMMM: months[$M] || months(this, str),
+        D: this.$D,
+        DD: Utils.s(this.$D, 2, '0'),
+        d: String(this.$W),
+        dd: getShort(locale.weekdaysMin, this.$W, weekdays, 2),
+        ddd: getShort(locale.weekdaysShort, this.$W, weekdays, 3),
+        dddd: weekdays[this.$W],
+        H: String($H),
+        HH: Utils.s($H, 2, '0'),
+        h: get$H(1),
+        hh: get$H(2),
+        a: meridiemFunc($H, $m, true),
+        A: meridiemFunc($H, $m, false),
+        m: String($m),
+        mm: Utils.s($m, 2, '0'),
+        s: String(this.$s),
+        ss: Utils.s(this.$s, 2, '0'),
+        SSS: Utils.s(this.$ms, 3, '0'),
+        Z: zoneStr // 'ZZ' logic below
+      };
+
+      return str.replace(C.REGEX_FORMAT, function (match, $1) {return $1 || matches[match] || zoneStr.replace(':', '');}); // 'ZZ'
+    } }, { key: "utcOffset", value: function utcOffset()
+
+    {
+      // Because a bug at FF24, we're rounding the timezone offset around 15 minutes
+      // https://github.com/moment/moment/pull/1871
+      return -Math.round(this.$d.getTimezoneOffset() / 15) * 15;
+    } }, { key: "diff", value: function diff(
+
+    input, units, float) {var _C$Y$C$M$C$Q$C$W$C$D$;
+      var unit = Utils.p(units);
+      var that = dayjs(input);
+      var zoneDelta = (that.utcOffset() - this.utcOffset()) * C.MILLISECONDS_A_MINUTE;
+      var diff = this - that;
+      var result = Utils.m(this, that);
+
+      result = (_C$Y$C$M$C$Q$C$W$C$D$ = {}, _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.Y, result / 12), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.M, result), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.Q, result / 3), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.W, (diff - zoneDelta) / C.MILLISECONDS_A_WEEK), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.D, (diff - zoneDelta) / C.MILLISECONDS_A_DAY), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.H, diff / C.MILLISECONDS_A_HOUR), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.MIN, diff / C.MILLISECONDS_A_MINUTE), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.S, diff / C.MILLISECONDS_A_SECOND), _C$Y$C$M$C$Q$C$W$C$D$)[
+      unit] || diff; // milliseconds
+
+      return float ? result : Utils.a(result);
+    } }, { key: "daysInMonth", value: function daysInMonth()
+
+    {
+      return this.endOf(C.M).$D;
+    } }, { key: "$locale", value: function $locale()
+
+    {// get locale object
+      return Ls[this.$L];
+    } }, { key: "locale", value: function locale(
+
+    preset, object) {
+      if (!preset) return this.$L;
+      var that = this.clone();
+      var nextLocaleName = parseLocale(preset, object, true);
+      if (nextLocaleName) that.$L = nextLocaleName;
+      return that;
+    } }, { key: "clone", value: function clone()
+
+    {
+      return Utils.w(this.$d, this);
+    } }, { key: "toDate", value: function toDate()
+
+    {
+      return new Date(this.valueOf());
+    } }, { key: "toJSON", value: function toJSON()
+
+    {
+      return this.isValid() ? this.toISOString() : null;
+    } }, { key: "toISOString", value: function toISOString()
+
+    {
+      // ie 8 return
+      // new Dayjs(this.valueOf() + this.$d.getTimezoneOffset() * 60000)
+      // .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+      return this.$d.toISOString();
+    } }, { key: "toString", value: function toString()
+
+    {
+      return this.$d.toUTCString();
+    } }]);return Dayjs;}();
+
+
+dayjs.prototype = Dayjs.prototype;
+
+dayjs.extend = function (plugin, option) {
+  plugin(option, Dayjs, dayjs);
+  return dayjs;
+};
+
+dayjs.locale = parseLocale;
+
+dayjs.isDayjs = isDayjs;
+
+dayjs.unix = function (timestamp) {return (
+    dayjs(timestamp * 1e3));};
+
+
+dayjs.en = Ls[L];
+dayjs.Ls = Ls;var _default =
+
+dayjs;exports.default = _default;
+
+/***/ }),
+
+/***/ 77:
+/*!************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.REGEX_FORMAT = exports.REGEX_PARSE = exports.INVALID_DATE_STRING = exports.FORMAT_DEFAULT = exports.DATE = exports.Y = exports.Q = exports.M = exports.W = exports.D = exports.H = exports.MIN = exports.S = exports.MS = exports.MILLISECONDS_A_WEEK = exports.MILLISECONDS_A_DAY = exports.MILLISECONDS_A_HOUR = exports.MILLISECONDS_A_MINUTE = exports.MILLISECONDS_A_SECOND = exports.SECONDS_A_WEEK = exports.SECONDS_A_DAY = exports.SECONDS_A_HOUR = exports.SECONDS_A_MINUTE = void 0;var SECONDS_A_MINUTE = 60;exports.SECONDS_A_MINUTE = SECONDS_A_MINUTE;
+var SECONDS_A_HOUR = SECONDS_A_MINUTE * 60;exports.SECONDS_A_HOUR = SECONDS_A_HOUR;
+var SECONDS_A_DAY = SECONDS_A_HOUR * 24;exports.SECONDS_A_DAY = SECONDS_A_DAY;
+var SECONDS_A_WEEK = SECONDS_A_DAY * 7;exports.SECONDS_A_WEEK = SECONDS_A_WEEK;
+
+var MILLISECONDS_A_SECOND = 1e3;exports.MILLISECONDS_A_SECOND = MILLISECONDS_A_SECOND;
+var MILLISECONDS_A_MINUTE = SECONDS_A_MINUTE * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_MINUTE = MILLISECONDS_A_MINUTE;
+var MILLISECONDS_A_HOUR = SECONDS_A_HOUR * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_HOUR = MILLISECONDS_A_HOUR;
+var MILLISECONDS_A_DAY = SECONDS_A_DAY * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_DAY = MILLISECONDS_A_DAY;
+var MILLISECONDS_A_WEEK = SECONDS_A_WEEK * MILLISECONDS_A_SECOND;
+
+// English locales
+exports.MILLISECONDS_A_WEEK = MILLISECONDS_A_WEEK;var MS = 'millisecond';exports.MS = MS;
+var S = 'second';exports.S = S;
+var MIN = 'minute';exports.MIN = MIN;
+var H = 'hour';exports.H = H;
+var D = 'day';exports.D = D;
+var W = 'week';exports.W = W;
+var M = 'month';exports.M = M;
+var Q = 'quarter';exports.Q = Q;
+var Y = 'year';exports.Y = Y;
+var DATE = 'date';exports.DATE = DATE;
+
+var FORMAT_DEFAULT = 'YYYY-MM-DDTHH:mm:ssZ';exports.FORMAT_DEFAULT = FORMAT_DEFAULT;
+
+var INVALID_DATE_STRING = 'Invalid Date';
+
+// regex
+exports.INVALID_DATE_STRING = INVALID_DATE_STRING;var REGEX_PARSE = /^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/;exports.REGEX_PARSE = REGEX_PARSE;
+var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g;exports.REGEX_FORMAT = REGEX_FORMAT;
+
+/***/ }),
+
+/***/ 78:
+/*!*********************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 77));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+
+var padStart = function padStart(string, length, pad) {
+  var s = String(string);
+  if (!s || s.length >= length) return string;
+  return "".concat(Array(length + 1 - s.length).join(pad)).concat(string);
+};
+
+var padZoneStr = function padZoneStr(instance) {
+  var negMinuts = -instance.utcOffset();
+  var minutes = Math.abs(negMinuts);
+  var hourOffset = Math.floor(minutes / 60);
+  var minuteOffset = minutes % 60;
+  return "".concat(negMinuts <= 0 ? '+' : '-').concat(padStart(hourOffset, 2, '0'), ":").concat(padStart(minuteOffset, 2, '0'));
+};
+
+var monthDiff = function monthDiff(a, b) {
+  // function from moment.js in order to keep the same result
+  var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month());
+  var anchor = a.clone().add(wholeMonthDiff, C.M);
+  var c = b - anchor < 0;
+  var anchor2 = a.clone().add(wholeMonthDiff + (c ? -1 : 1), C.M);
+  return Number(-(wholeMonthDiff + (b - anchor) / (c ? anchor - anchor2 :
+  anchor2 - anchor)) || 0);
+};
+
+var absFloor = function absFloor(n) {return n < 0 ? Math.ceil(n) || 0 : Math.floor(n);};
+
+var prettyUnit = function prettyUnit(u) {
+  var special = {
+    M: C.M,
+    y: C.Y,
+    w: C.W,
+    d: C.D,
+    h: C.H,
+    m: C.MIN,
+    s: C.S,
+    ms: C.MS,
+    Q: C.Q };
+
+  return special[u] || String(u || '').toLowerCase().replace(/s$/, '');
+};
+
+var isUndefined = function isUndefined(s) {return s === undefined;};var _default =
+
+{
+  s: padStart,
+  z: padZoneStr,
+  m: monthDiff,
+  a: absFloor,
+  p: prettyUnit,
+  u: isUndefined };exports.default = _default;
+
+/***/ }),
+
+/***/ 79:
+/*!*************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // We don't need weekdaysShort, weekdaysMin, monthsShort in en.js locale
+var _default = {
+  name: 'en',
+  weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+  months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_') };exports.default = _default;
 
 /***/ }),
 
@@ -12442,6 +12467,22 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__A7B06FA" };exports.default = _default;
+
+/***/ }),
+
+/***/ 80:
+/*!*******************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrBefore/index.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = function _default(o, c) {
+  c.prototype.isSameOrBefore = function (that, units) {
+    return this.isSame(that, units) || this.isBefore(that, units);
+  };
+};exports.default = _default;
 
 /***/ })
 

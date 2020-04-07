@@ -388,6 +388,10 @@ export default {
 				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
 			});
 		},
+		// //进入工作室
+		// toUpload() {
+		// 	this.modal1 = true;
+		// },
 		// //关闭微信号弹框
 		// closewc() {
 		// 	this.modal1 = false;
@@ -411,7 +415,7 @@ export default {
 		// },
 		getDetail(id) {
 			if (this.isDis == 1) {
-				distributionDetail(id, 'tour-group').then(res => {
+				distributionDetail(id, 'tour-surround').then(res => {
 					this.list = res.data;
 					this.list.author = res.data.distributor;
 					this.chooseStart = this.list.teams[0].id;
@@ -532,7 +536,7 @@ export default {
 </script>
 
 <style>
-@import url('standardDetail.css');
+@import url('surround.css');
 
 .sticky-box {
 	/* #ifndef APP-PLUS-NVUE */

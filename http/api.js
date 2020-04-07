@@ -98,13 +98,22 @@ export function loginPassword(mobile, password, userInfo, openid, code) {
 		}
 	})
 }
+//预约导游-导游档期（月视图）
+export function guidesSchedules(id, month) {
+	return http({
+		url: "/api/guides/" + id + "/schedules",
+		data: {
+			month: month
+		}
+	})
+}
 
 //获取资源列表
 export function getResources(id, page, type, keywords, city_code, destination_code, client) {
 	let data = {}
-	if (id) {
-		data["id"] = id
-	}
+	// if (id) {
+	// 	data["id"] = id
+	// }
 	if (page) {
 		data["page"] = page
 	}

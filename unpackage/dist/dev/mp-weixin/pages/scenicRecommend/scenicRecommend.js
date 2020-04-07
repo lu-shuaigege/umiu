@@ -206,8 +206,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function uniIcons() {Promise.all(/*! require.ensure | plugins/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/components/uni-icons/uni-icons")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/components/uni-icons/uni-icons.vue */ 279));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/loadmore/loadmore.vue */ 258));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiNomore = function tuiNomore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/nomore/nomore */ 265));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function uniIcons() {Promise.all(/*! require.ensure | plugins/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/components/uni-icons/uni-icons")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/components/uni-icons/uni-icons.vue */ 302));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/loadmore/loadmore.vue */ 281));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiNomore = function tuiNomore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/nomore/nomore */ 288));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: {
     uniIcons: uniIcons,
@@ -333,9 +332,14 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
             url: "/pages/details/otherDetail/otherDetail?id=".concat(id, "&isDis=1") });
 
           break;
-        case 'boutique':
+        case 'tour-group':
           uni.navigateTo({
             url: "/pages/details/standardDetail/standardDetail?id=".concat(id, "&isDis=1") });
+
+          break;
+        case 'tour-surround':
+          uni.navigateTo({
+            url: "/pages/details/surround/surround?id=".concat(id, "&isDis=1") });
 
           break;
         // case 'specialty':
@@ -367,11 +371,12 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21);var uniIcons = function 
         this.type = 'specialty';
       }
       if (index === 6) {
-        this.type = 'boutique';
+        // this.type = 'boutique';
+        this.type = 'tour-group';
       }
-      // if (index === 7) {
-      // 	this.type = 'specialty';
-      // }
+      if (index === 7) {
+        this.type = 'tour-surround';
+      }
       this.getList(this.keywords, this.cityCode);
     } },
 

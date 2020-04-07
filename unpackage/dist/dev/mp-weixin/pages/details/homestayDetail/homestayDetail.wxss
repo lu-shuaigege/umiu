@@ -65,10 +65,39 @@ page {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
-	-webkit-box-pack: justify;
-	-webkit-justify-content: space-between;
-	        justify-content: space-between;
+	/* justify-content: space-between; */
 	margin-top: 10rpx;
+}
+.detail_intro .top .second .labela {
+	height: 36rpx;
+	background-color: #FFEFE5;
+	border-radius: 18rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	padding: 0rpx 16rpx;
+	box-sizing: border-box;
+	text-align: center;
+	margin-right: 15rpx;
+}
+.detail_intro .top .second .labelb {
+	height: 36rpx;
+	background-color: #e5f2ff;
+	border-radius: 18rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 36rpx;
+	letter-spacing: 0rpx;
+	color: #0084ff;
+	padding: 0rpx 16rpx;
+	box-sizing: border-box;
+	text-align: center;
 }
 .detail_intro .top .second .l {
 	font-size: 24rpx;
@@ -201,7 +230,75 @@ page {
 	min-height: 100rpx;
 	background-color: #ffffff;
 	margin-top: 20rpx;
+	padding-top: 1rpx;
 	padding-bottom: 40rpx;
+}
+
+/* 套餐选择 */
+.orderDetail {
+	width: 690rpx;
+	height: 60rpx;
+	background-color: #FFEFE5;
+	margin: 30rpx auto 0rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding: 12rpx 30rpx;
+	box-sizing: border-box;
+}
+.orderDetail_left {
+	width: 392rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	border-right: 1px solid #ff6600;
+}
+.orderDetail_left_heng {
+	margin: 0rpx 20rpx;
+}
+.orderDetail_left_all {
+	font-family: PingFang-SC-Regular;
+	font-size: 20rpx;
+	line-height: 24rpx;
+	font-weight: normal;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	margin-left: 20rpx;
+}
+.orderDetail_right {
+	width: 267rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+.orderDetail_right_center {
+	margin: 0rpx 20rpx;
 }
 .type_title {
 	width: 690rpx;
@@ -323,6 +420,37 @@ page {
 	border-radius: 50%;
 	margin-right: 10rpx;
 }
+.facilitiesa {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	width: 690rpx;
+	margin: 0 auto;
+	margin-top: 20rpx;
+}
+.facilitiesa_bottom {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	margin-right: 0rpx;
+}
+.facilitiesa_bottom view {
+	font-size: 28rpx;
+	margin-right: 0rpx;
+}
 .house_policy {
 	width: 690rpx;
 	margin: 0 auto;
@@ -332,5 +460,188 @@ page {
 }
 .cu-form-group {
 	padding: 1px 30rpx 1rpx 0;
+}
+.guideDetail_schedule {
+	width: 750rpx;
+	min-height: 750rpx;
+	background-color: #ffffff;
+	margin-top: 20rpx;
+	/* margin-bottom: 150upx; */
+}
+.guideDetail_schedule_title {
+	width: 690rpx;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	padding-top: 28rpx;
+}
+.guideDetail_schedule_title text {
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #28282c;
+}
+.guideDetail_schedule_title .line {
+	width: 6rpx;
+	height: 32rpx;
+	background-color: #ff6600;
+	border-radius: 3rpx;
+	margin-right: 10rpx;
+}
+
+/* 日历 */
+.tui-modal-box {
+	width: 690rpx !important;
+	top: 45% !important;
+	min-height: 600rpx;
+	border-radius: 4px;
+	padding-top: 20rpx;
+	padding-bottom: 30rpx;
+}
+.calendar_title {
+	text-align: center;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	margin-top: 20rpx;
+}
+.calendar_title image {
+	width: 57rpx;
+	height: 57rpx;
+	padding: 20rpx;
+}
+.calendar_title text {
+	font-size: 38rpx;
+	font-weight: 500;
+	color: #333;
+}
+.calendar_week {
+	width: 676rpx;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 24rpx;
+	color: #999;
+	margin-top: 30rpx;
+	margin-bottom: 10rpx;
+}
+.calendar_week view {
+	width: 80rpx;
+	height: 40rpx;
+	margin: 8rpx;
+	text-align: center;
+}
+.calendar_days {
+	width: 676rpx;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.calendar_days .dayone {
+	width: 96rpx;
+	height: 86rpx;
+	margin: 8rpx 0;
+	padding: 0 8rpx;
+	text-align: center;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	/* align-items: center; */
+}
+.calendar_days .dayone .day {
+	color: #666;
+	font-size: 28rpx;
+	width: 80rpx;
+	height: 25rpx;
+	margin-top: 14rpx;
+}
+.calendar_days .dayone .price {
+	color: #999999;
+	font-weight: 300;
+	font-size: 20rpx;
+	width: 80rpx;
+	height: 25rpx;
+}
+.calendar_days .dayone .price text {
+	margin-right: 5rpx;
+}
+.colorc1 {
+	color: #c1c1c1 !important;
+}
+.color6 {
+	color: #666;
+}
+.sbgFF6600 {
+	background: #FF6600;
+	color: #fff;
+	border-radius: 4px 0 0 4px;
+}
+.sbgFF6600 .day {
+	color: #fff !important;
+}
+.sbgFF6600 .price {
+	color: #fff !important;
+}
+.ebgFF6600 {
+	background: #FF6600;
+	color: #fff;
+	border-radius: 0 4px 4px 0;
+}
+.ebgFF6600 .day {
+	color: #fff !important;
+}
+.ebgFF6600 .price {
+	color: #fff !important;
+}
+.bgFFEFE5 {
+	background: #FFEFE5;
+}
+.sticky-box {
+	
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	position: -webkit-sticky;
+	
+	position: sticky;
+	top: 0px;
+	z-index: 99;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	margin: 0px;
+	padding: 15px 0 15px 0;
+	background-color: #f4f5f6;
+	border-bottom-style: solid;
+	border-bottom-color: #e2e2e2;
+}
+.textcenter {
+	text-align: center;
+	font-size: 18px;
+}
+.navclick {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 99;
 }
 

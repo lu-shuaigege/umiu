@@ -8060,65 +8060,66 @@ function boutiquesOrders(id, team_id, quantity, sharer_id) {
 }
 
 //资源-下单-分销
-function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,
-sharer_id) {
-  var data = {};
-  if (team_id) {
-    data['team_id'] = team_id;
+// distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,sharer_id)
+function distributionsOrders(data) {
+  // let data = {}
+  if (data.team_id) {
+    data['team_id'] = data.team_id;
   }
-  if (quantity) {
-    data['quantity'] = quantity;
+  if (data.quantity) {
+    data['quantity'] = data.quantity;
   }
   // if (type) {
   // 	data['type'] = type
   // }
-  if (child) {
-    data['child'] = child;
+  if (data.child) {
+    data['child'] = data.child;
   }
-  if (contact) {
-    data['contact'] = contact;
+  if (data.contact) {
+    data['contact'] = data.contact;
   }
-  if (contact_phone) {
-    data['contact_phone'] = contact_phone;
+  if (data.contact_phone) {
+    data['contact_phone'] = data.contact_phone;
   }
-  if (contact_address) {
-    data['contact_address'] = contact_address;
+  if (data.contact_address) {
+    data['contact_address'] = data.contact_address;
   }
-  if (sharer_id) {
-    data['sharer_id'] = sharer_id;
+  if (data.sharer_id) {
+    data['sharer_id'] = data.sharer_id;
   }
   return (0, _request.default)({
-    url: "/api/distributions/".concat(id, "/orders?type=").concat(type),
+    url: "/api/distributions/".concat(data.id, "/orders?type=").concat(data.type),
     method: 'POST',
     data: data });
 
 }
 //资源-下单-普通资源
-function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
-  var data = {};
-  if (team_id) {
-    data['team_id'] = team_id;
+// resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id)
+function resourcesOrders(data) {
+  // let data = {}
+  if (data.team_id) {
+    data['team_id'] = data.team_id;
   }
-  if (quantity) {
-    data['quantity'] = quantity;
+  if (data.quantity) {
+    data['quantity'] = data.quantity;
   }
   // if (type) {
   // 	data['type'] = type
   // }
-  if (child) {
-    data['child'] = child;
+  if (data.child) {
+    data['child'] = data.child;
   }
-  if (contact) {
-    data['contact'] = contact;
+  if (data.contact) {
+    data['contact'] = data.contact;
   }
-  if (contact_phone) {
-    data['contact_phone'] = contact_phone;
+  if (data.contact_phone) {
+    data['contact_phone'] = data.contact_phone;
   }
-  if (contact_address) {
-    data['contact_address'] = contact_address;
+  if (data.contact_address) {
+    data['contact_address'] = data.contact_address;
   }
-  if (sharer_id) {
-    data['sharer_id'] = sharer_id;
+  if (data.sharer_id) {
+    data['sharer_id'] = data.sharer_id;
   }
   return (0, _request.default)({
     url: "/api/resources/".concat(id, "/orders?type=").concat(type),
@@ -8205,9 +8206,9 @@ function ordersCancel(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // var baseUrl = 'https://admin.umu888.com';
 // var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
-// var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
+var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {
     var _header = {
@@ -8282,112 +8283,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-
-/***/ 307:
-/*!************************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  'contact': "\uE100",
-  'person': "\uE101",
-  'personadd': "\uE102",
-  'contact-filled': "\uE130",
-  'person-filled': "\uE131",
-  'personadd-filled': "\uE132",
-  'phone': "\uE200",
-  'email': "\uE201",
-  'chatbubble': "\uE202",
-  'chatboxes': "\uE203",
-  'phone-filled': "\uE230",
-  'email-filled': "\uE231",
-  'chatbubble-filled': "\uE232",
-  'chatboxes-filled': "\uE233",
-  'weibo': "\uE260",
-  'weixin': "\uE261",
-  'pengyouquan': "\uE262",
-  'chat': "\uE263",
-  'qq': "\uE264",
-  'videocam': "\uE300",
-  'camera': "\uE301",
-  'mic': "\uE302",
-  'location': "\uE303",
-  'mic-filled': "\uE332",
-  'speech': "\uE332",
-  'location-filled': "\uE333",
-  'micoff': "\uE360",
-  'image': "\uE363",
-  'map': "\uE364",
-  'compose': "\uE400",
-  'trash': "\uE401",
-  'upload': "\uE402",
-  'download': "\uE403",
-  'close': "\uE404",
-  'redo': "\uE405",
-  'undo': "\uE406",
-  'refresh': "\uE407",
-  'star': "\uE408",
-  'plus': "\uE409",
-  'minus': "\uE410",
-  'circle': "\uE411",
-  'checkbox': "\uE411",
-  'close-filled': "\uE434",
-  'clear': "\uE434",
-  'refresh-filled': "\uE437",
-  'star-filled': "\uE438",
-  'plus-filled': "\uE439",
-  'minus-filled': "\uE440",
-  'circle-filled': "\uE441",
-  'checkbox-filled': "\uE442",
-  'closeempty': "\uE460",
-  'refreshempty': "\uE461",
-  'reload': "\uE462",
-  'starhalf': "\uE463",
-  'spinner': "\uE464",
-  'spinner-cycle': "\uE465",
-  'search': "\uE466",
-  'plusempty': "\uE468",
-  'forward': "\uE470",
-  'back': "\uE471",
-  'left-nav': "\uE471",
-  'checkmarkempty': "\uE472",
-  'home': "\uE500",
-  'navigate': "\uE501",
-  'gear': "\uE502",
-  'paperplane': "\uE503",
-  'info': "\uE504",
-  'help': "\uE505",
-  'locked': "\uE506",
-  'more': "\uE507",
-  'flag': "\uE508",
-  'home-filled': "\uE530",
-  'gear-filled': "\uE532",
-  'info-filled': "\uE534",
-  'help-filled': "\uE535",
-  'more-filled': "\uE537",
-  'settings': "\uE560",
-  'list': "\uE562",
-  'bars': "\uE563",
-  'loop': "\uE565",
-  'paperclip': "\uE567",
-  'eye': "\uE568",
-  'arrowup': "\uE580",
-  'arrowdown': "\uE581",
-  'arrowleft': "\uE582",
-  'arrowright': "\uE583",
-  'arrowthinup': "\uE584",
-  'arrowthindown': "\uE585",
-  'arrowthinleft': "\uE586",
-  'arrowthinright': "\uE587",
-  'pulldown': "\uE588",
-  'closefill': "\uE589",
-  'sound': "\uE590",
-  'scan': "\uE612" };exports.default = _default;
 
 /***/ }),
 
@@ -9523,7 +9418,113 @@ module.exports = {
 
 /***/ }),
 
-/***/ 329:
+/***/ 323:
+/*!************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  'contact': "\uE100",
+  'person': "\uE101",
+  'personadd': "\uE102",
+  'contact-filled': "\uE130",
+  'person-filled': "\uE131",
+  'personadd-filled': "\uE132",
+  'phone': "\uE200",
+  'email': "\uE201",
+  'chatbubble': "\uE202",
+  'chatboxes': "\uE203",
+  'phone-filled': "\uE230",
+  'email-filled': "\uE231",
+  'chatbubble-filled': "\uE232",
+  'chatboxes-filled': "\uE233",
+  'weibo': "\uE260",
+  'weixin': "\uE261",
+  'pengyouquan': "\uE262",
+  'chat': "\uE263",
+  'qq': "\uE264",
+  'videocam': "\uE300",
+  'camera': "\uE301",
+  'mic': "\uE302",
+  'location': "\uE303",
+  'mic-filled': "\uE332",
+  'speech': "\uE332",
+  'location-filled': "\uE333",
+  'micoff': "\uE360",
+  'image': "\uE363",
+  'map': "\uE364",
+  'compose': "\uE400",
+  'trash': "\uE401",
+  'upload': "\uE402",
+  'download': "\uE403",
+  'close': "\uE404",
+  'redo': "\uE405",
+  'undo': "\uE406",
+  'refresh': "\uE407",
+  'star': "\uE408",
+  'plus': "\uE409",
+  'minus': "\uE410",
+  'circle': "\uE411",
+  'checkbox': "\uE411",
+  'close-filled': "\uE434",
+  'clear': "\uE434",
+  'refresh-filled': "\uE437",
+  'star-filled': "\uE438",
+  'plus-filled': "\uE439",
+  'minus-filled': "\uE440",
+  'circle-filled': "\uE441",
+  'checkbox-filled': "\uE442",
+  'closeempty': "\uE460",
+  'refreshempty': "\uE461",
+  'reload': "\uE462",
+  'starhalf': "\uE463",
+  'spinner': "\uE464",
+  'spinner-cycle': "\uE465",
+  'search': "\uE466",
+  'plusempty': "\uE468",
+  'forward': "\uE470",
+  'back': "\uE471",
+  'left-nav': "\uE471",
+  'checkmarkempty': "\uE472",
+  'home': "\uE500",
+  'navigate': "\uE501",
+  'gear': "\uE502",
+  'paperplane': "\uE503",
+  'info': "\uE504",
+  'help': "\uE505",
+  'locked': "\uE506",
+  'more': "\uE507",
+  'flag': "\uE508",
+  'home-filled': "\uE530",
+  'gear-filled': "\uE532",
+  'info-filled': "\uE534",
+  'help-filled': "\uE535",
+  'more-filled': "\uE537",
+  'settings': "\uE560",
+  'list': "\uE562",
+  'bars': "\uE563",
+  'loop': "\uE565",
+  'paperclip': "\uE567",
+  'eye': "\uE568",
+  'arrowup': "\uE580",
+  'arrowdown': "\uE581",
+  'arrowleft': "\uE582",
+  'arrowright': "\uE583",
+  'arrowthinup': "\uE584",
+  'arrowthindown': "\uE585",
+  'arrowthinleft': "\uE586",
+  'arrowthinright': "\uE587",
+  'pulldown': "\uE588",
+  'closefill': "\uE589",
+  'sound': "\uE590",
+  'scan': "\uE612" };exports.default = _default;
+
+/***/ }),
+
+/***/ 345:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
   \*************************************************************************/
@@ -9545,8 +9546,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 330));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 331));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 346));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 347));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9795,7 +9796,7 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 330:
+/***/ 346:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
   \*************************************************************************/
@@ -10014,7 +10015,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 331:
+/***/ 347:
 /*!**************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
   \**************************************************************************/
@@ -11091,31 +11092,19 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 
-/***/ 7:
-/*!**************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
-
-/***/ }),
-
-/***/ 72:
+/***/ 64:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 73);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 65);
 
 
 /***/ }),
 
-/***/ 73:
+/***/ 65:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -11146,7 +11135,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 74);
+module.exports = __webpack_require__(/*! ./runtime */ 66);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -11163,7 +11152,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 74:
+/***/ 66:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -11895,7 +11884,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 75:
+/***/ 67:
 /*!******************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrAfter/index.js ***!
   \******************************************************************************/
@@ -11911,7 +11900,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 76:
+/***/ 68:
 /*!*********************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
   \*********************************************************/
@@ -11919,9 +11908,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 77));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 78));
-var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 79));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 69));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 70));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 71));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
 
 var L = 'en'; // global locale
 var Ls = {}; // global loaded locale
@@ -12338,7 +12327,7 @@ dayjs;exports.default = _default;
 
 /***/ }),
 
-/***/ 77:
+/***/ 69:
 /*!************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
   \************************************************************/
@@ -12379,7 +12368,19 @@ var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{
 
 /***/ }),
 
-/***/ 78:
+/***/ 7:
+/*!**************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/order/order": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/videodetails/videodetails": { "navigationBarTitleText": "短视频详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+
+/***/ }),
+
+/***/ 70:
 /*!*********************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
   \*********************************************************/
@@ -12387,7 +12388,7 @@ var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 77));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 69));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 var padStart = function padStart(string, length, pad) {
   var s = String(string);
@@ -12442,7 +12443,7 @@ var isUndefined = function isUndefined(s) {return s === undefined;};var _default
 
 /***/ }),
 
-/***/ 79:
+/***/ 71:
 /*!*************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
   \*************************************************************/
@@ -12458,19 +12459,7 @@ var _default = {
 
 /***/ }),
 
-/***/ 8:
-/*!*************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"stat"} ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__A7B06FA" };exports.default = _default;
-
-/***/ }),
-
-/***/ 80:
+/***/ 72:
 /*!*******************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrBefore/index.js ***!
   \*******************************************************************************/
@@ -12483,6 +12472,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     return this.isSame(that, units) || this.isBefore(that, units);
   };
 };exports.default = _default;
+
+/***/ }),
+
+/***/ 8:
+/*!*************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"stat"} ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__A7B06FA" };exports.default = _default;
 
 /***/ })
 

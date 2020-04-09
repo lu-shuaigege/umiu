@@ -172,7 +172,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var tuiToast = function tuiToast() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/extend/toast/toast */ "plugins/thorui/components/extend/toast/toast").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/extend/toast/toast.vue */ 339));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiToast: tuiToast }, data: function data() {return { id: '', isDis: 0, uid: 0, gid: '', mobile: '', password: '', isCode: false, code: '', time: '59', userInfo: [], openid: '',
+var tuiToast = function tuiToast() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/extend/toast/toast */ "plugins/thorui/components/extend/toast/toast").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/extend/toast/toast.vue */ 355));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiToast: tuiToast }, data: function data() {return { id: '', isDis: 0, uid: 0, gid: '', mobile: '', password: '', isCode: false, code: '', time: '59', userInfo: [], openid: '',
       loadModal: false
       // openidUrl:'https://api.weixin.qq.com/sns/jscode2session',//获取openid接口
       // APP_SECRET:'cd3a365bbd2e41105726075d9bc886b9',

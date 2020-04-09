@@ -7,7 +7,7 @@
 			</view>
 		</view>
 		<view class="orderlist">
-			<view class="orderlist_item" v-for="(item, index) in orderList" :key="index"  @click="orderDetail(item.id, item.status_zh, item.type_zh)">
+			<view class="orderlist_item" v-for="(item, index) in orderList" :key="index" @click="orderDetail(item.id, item.status_zh, item.type_zh)">
 				<view class="orderlist_item_bottom">
 					<view class="orderlist_item_bottom_top">
 						<view class="orderlist_item_bottom_top_left">订单号：{{ item.number || '' }}</view>
@@ -70,6 +70,9 @@ export default {
 		wx.hideHomeButton();
 	},
 	onLoad(options) {
+		if (options.active) {
+			this.active = options.active;
+		}
 		this.getList();
 	},
 	methods: {

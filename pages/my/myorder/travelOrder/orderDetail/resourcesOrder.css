@@ -1,5 +1,6 @@
 .orderDetail {
 	width: 750rpx;
+	padding-bottom: 100upx;
 }
 
 .toptime {
@@ -42,7 +43,169 @@
 	color: #ff6600;
 }
 
-.ordertop {
+/* 订单信息头部 */
+.orderlist_item {
+	width: 100%;
+	height: 356upx;
+	margin: 20upx auto;
+}
+
+.orderlist_item_bottom {
+	width: 690rpx;
+	height: 100%;
+	background-color: #ffffff;
+	border-radius: 8rpx;
+	padding: 1upx 30upx 0upx;
+	box-sizing: border-box;
+	margin: 0upx auto;
+}
+
+.orderlist_item_bottom_top {
+	height: 87upx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.orderlist_item_bottom_top_left {
+	font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 15rpx;
+	letter-spacing: 0rpx;
+	color: #666666;
+}
+
+.orderlist_item_bottom_top_right {
+	font-family: PingFang-SC-Medium;
+	font-size: 30rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 15rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+
+.orderlist_itemcon {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 30upx;
+}
+
+.orderlist_itemcon_left {
+	width: 200rpx;
+	height: 150rpx;
+	border-radius: 10rpx;
+}
+
+.orderlist_itemcon_right {
+	width: 402upx;
+	height: 150upx;
+	display: flex;
+	align-content: space-between;
+	flex-wrap: wrap;
+	padding: 9upx 0px;
+	box-sizing: border-box;
+}
+
+.orderlist_itemcon_right_name {
+	width: 402rpx;
+	font-family: PingFang-SC-Bold;
+	font-size: 30rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 35rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
+.specifications {
+	width: 100%;
+	margin: 27upx 0px 28upx;
+}
+
+.orderlist_itemcon_right_money {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.item_moneytop_left_left {
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+}
+
+.item_moneytop_left_right {
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #999999;
+}
+
+.item_fly {
+	margin-top: 30upx;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+}
+
+.item_fly_left {
+	display: flex;
+	align-items: center;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26rpx;
+	letter-spacing: 0rpx;
+	color: #999999;
+	margin-left: 30upx;
+}
+
+.money {
+	font-family: PingFang-SC-Bold;
+	font-size: 22rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #f50000;
+}
+
+.item_fly_right {
+	font-family: PingFang-SC-Bold;
+	line-height: 36rpx;
+	font-size: 36rpx;
+	font-weight: normal;
+	letter-spacing: 0rpx;
+	color: #f50000;
+}
+
+/* .ordertop {
 	width: 690rpx;
 	height: 165rpx;
 	background-color: #ffffff;
@@ -70,7 +233,6 @@
 	line-height: 34rpx;
 	letter-spacing: 0rpx;
 	color: #28282c;
-	/* white-space: nowrap; */
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -129,14 +291,160 @@
 	font-weight: normal;
 	letter-spacing: 0rpx;
 	color: #f50000;
+} */
+/* 酒店信息 */
+.hotelitem {
+	width: 690rpx;
+	height: 280rpx;
+	background-color: #ffffff;
+	border-radius: 8rpx;
+	margin: 20upx auto;
+	padding: 1upx 30upx;
+	box-sizing: border-box;
 }
 
+.hotelitem_top {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	margin-top: 30upx;
+}
+
+.hotelitem_top_left {
+	font-family: PingFang-SC-Heavy;
+	font-size: 32rpx;
+	font-weight: 500;
+	font-stretch: normal;
+	line-height: 32rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+}
+
+.hotelitem_top_right {
+	display: flex;
+	align-items: flex-end;
+}
+
+.hotelitem_top_right_img {
+	width: 27rpx;
+	height: 27rpx;
+	margin-right: 13upx;
+}
+
+.hotelitem_top_right_text {
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+
+.hotelitem_list {
+	margin: 40upx 0upx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.hotelitem_list_left {
+	font-family: PingFang-SC-Bold;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+}
+
+.hotelitem_list_right {
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26rpx;
+	letter-spacing: 0rpx;
+	color: #666666;
+}
+
+/* 入住人信息 */
+.checkDetail {
+	width: 690rpx;
+	/* height: 349rpx; */
+	background-color: #ffffff;
+	border-radius: 8rpx;
+	margin: 20upx auto;
+	padding: 1upx 30upx;
+	box-sizing: border-box;
+}
+
+.checkDetail_top {
+	font-family: PingFang-SC-Heavy;
+	font-size: 32rpx;
+	font-weight: 500;
+	font-stretch: normal;
+	line-height: 32rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+	margin-top: 28upx;
+}
+
+.checkDetail_list:nth-child(4) {
+	border: 0px;
+}
+
+.checkDetail_list {
+	width: 100%;
+	height: 94upx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.checkDetail_list_left {
+	font-family: PingFang-SC-Bold;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 2rpx;
+	color: #28282c;
+}
+
+.checkDetail_list_right {
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 45rpx;
+	letter-spacing: 0rpx;
+	color: #666666;
+}
+
+/* 订单详情 */
 .ordercontent {
 	width: 690rpx;
 	/* height: 300rpx; */
 	background-color: #ffffff;
 	border-radius: 8rpx;
 	margin: 20upx auto;
+	padding: 1upx 30upx;
+	box-sizing: border-box;
+}
+
+.checkDetail_top {
+	font-family: PingFang-SC-Heavy;
+	font-size: 32rpx;
+	font-weight: 500;
+	font-stretch: normal;
+	line-height: 32rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+	margin-top: 27upx;
 }
 
 .ordercontent_top {
@@ -190,8 +498,19 @@
 
 .ordercontent_bottom {
 	width: 100%;
-	padding: 4upx 30upx;
-	box-sizing: border-box;
+	/* padding: 4upx 30upx;
+	box-sizing: border-box; */
+}
+
+.ordercontent_bottom_title {
+	font-family: PingFang-SC-Heavy;
+	font-size: 32rpx;
+	font-weight: 500;
+	font-stretch: normal;
+	line-height: 32rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+	margin-top: 30upx;
 }
 
 .ordercontent_bottom_item {

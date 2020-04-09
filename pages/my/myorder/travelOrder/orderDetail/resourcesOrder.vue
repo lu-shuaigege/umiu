@@ -7,7 +7,7 @@
 		</view>
 		<view class="toptimeok" v-if="data.status_zh == '预约中'">等待服务商确认...</view>
 		<!-- 订单编号 -->
-		<view class="ordertop">
+		<!-- <view class="ordertop">
 			<view class="ordertop_top">
 				<view class="ordertop_top_name">{{ data.title }}</view>
 				<view class="ordertop_top_right">{{ data.status_zh }}</view>
@@ -19,33 +19,110 @@
 					<view class="ordertop_bottom_right_moneynum">{{ data.amount }}</view>
 				</view>
 			</view>
+		</view> -->
+		<view class="orderlist_item">
+			<view class="orderlist_item_bottom">
+				<view class="orderlist_item_bottom_top">
+					<view class="orderlist_item_bottom_top_left">订单号：{{ data.number || '' }}</view>
+					<view class="orderlist_item_bottom_top_right">{{ data.status_zh }}</view>
+				</view>
+				<view class="orderlist_item_bottom_bottom">
+					<view class="orderlist_itemcon">
+						<image :src="data.product.cover_image" class="orderlist_itemcon_left" mode=""></image>
+						<view class="orderlist_itemcon_right">
+							<view class="orderlist_itemcon_right_name">{{ data.title || '' }}</view>
+							<view class="specifications" v-if="data.product.exts.length > 0 && data.type_zh == '特产'">
+								{{ data.product.exts[0].field || '' }}/{{ data.product.exts[0].value || '' }}
+							</view>
+							<view class="specifications" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">{{ data.product.child[0].title }}</view>
+							<view class="specifications" v-show="data.type_zh == '景点'">{{ data.address }}</view>
+							<view class="orderlist_itemcon_right_money" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+								<view class="item_moneytop_left_left">￥{{ data.product.child[0].price }}</view>
+								<view class="item_moneytop_left_right">X{{ data.product.child[0].quantity1 }}间 X{{ data.product.child[0].quantity2 }}晚</view>
+							</view>
+							<view class="orderlist_itemcon_right_money" v-if="data.type_zh != '酒店' && data.type_zh != '民宿'">
+								<view class="item_moneytop_left_left">￥{{ data.product.amount }}</view>
+								<view class="item_moneytop_left_right">X{{ data.product.quantity }}</view>
+							</view>
+						</view>
+					</view>
+					<view class="item_fly">
+						共{{ data.product.quantity || 0 }}件商品
+						<view class="item_fly_left">总计：</view>
+						<view class="money">￥</view>
+						<view class="item_fly_right">{{ data.amount }}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 酒店信息 -->
+		<view class="hotelitem" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+			<view class="hotelitem_top">
+				<view class="hotelitem_top_left" v-if="data.type_zh == '酒店'">酒店信息</view>
+				<view class="hotelitem_top_left" v-if="data.type_zh == '民宿'">民宿信息</view>
+				<view class="hotelitem_top_right">
+					<image src="../../../../../static/img/add_icon.png" class="hotelitem_top_right_img" mode=""></image>
+					<view class="hotelitem_top_right_text">每晚明细</view>
+				</view>
+			</view>
+			<view class="hotelitem_list">
+				<view class="hotelitem_list_left">房型</view>
+				<view class="hotelitem_list_right">{{ data.product.child[0].title }}</view>
+			</view>
+			<view class="hotelitem_list">
+				<view class="hotelitem_list_left">入住日期</view>
+				<view class="hotelitem_list_right">02月29日</view>
+			</view>
+			<view class="hotelitem_list">
+				<view class="hotelitem_list_left">离店日期</view>
+				<view class="hotelitem_list_right">03月01日</view>
+			</view>
+		</view>
+		<!-- 入住人信息 -->
+		<view class="checkDetail" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">
+			<view class="checkDetail_top">入住人信息</view>
+			<view class="checkDetail_list" v-for="(item, index) in datalist" :key="index">
+				<view class="checkDetail_list_left">房间{{ index + 1 }}</view>
+				<view class="checkDetail_list_right">{{ item.name }}</view>
+			</view>
+			<view class="checkDetail_list">
+				<view class="checkDetail_list_left">手机号</view>
+				<view class="checkDetail_list_right">18756895484</view>
+			</view>
 		</view>
 		<!-- 订单详情 -->
 		<view class="ordercontent">
-			<view class="ordercontent_top">
+			<!-- 联系供应商 -->
+			<!-- <view class="ordercontent_top">
 				<view class="ordercontent_top_left">
 					<image :src="data.seller.avatar" mode=""></image>
 					<view class="ordercontent_top_left_name">{{ data.seller.truename }}</view>
 				</view>
 				<view class="ordercontent_top_right" @click="tel">联系TA</view>
-			</view>
+			</view> -->
 			<view class="ordercontent_bottom">
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '景点' || data.type_zh == '用餐'">
-					<view class="ordercontent_bottom_item_left">下单时间</view>
+				<view class="ordercontent_bottom_title">订单信息</view>
+				<view class="ordercontent_bottom_item" v-if="data.type_zh == '景点' || data.type_zh == '用餐' || data.type_zh == '酒店' || data.type_zh == '民宿'">
+					<view class="ordercontent_bottom_item_left">订单编号</view>
+					<view class="ordercontent_bottom_item_right">{{ data.number || '' }}</view>
+				</view>
+				<view class="ordercontent_bottom_item" v-if="data.type_zh == '景点' || data.type_zh == '用餐' || data.type_zh == '酒店' || data.type_zh == '民宿'">
+					<view class="ordercontent_bottom_item_left">创建时间</view>
 					<view class="ordercontent_bottom_item_right">{{ data.created_at.slice(0, 10) }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '景点'">
+
+				<!-- <view class="ordercontent_bottom_item" v-if="data.type_zh == '景点'">
 					<view class="ordercontent_bottom_item_left">景点价格</view>
 					<view class="ordercontent_bottom_item_right">￥{{ data.product.amount }}*{{ data.product.quantity }}</view>
-				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '用餐'">
+				</view> -->
+				<!-- <view class="ordercontent_bottom_item" v-if="data.type_zh == '用餐'">
 					<view class="ordercontent_bottom_item_left">用餐价格</view>
 					<view class="ordercontent_bottom_item_right">￥{{ data.product.amount }}*{{ data.product.quantity }}</view>
-				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+				</view> -->
+				<!-- <view class="ordercontent_bottom_item" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
 					<view class="ordercontent_bottom_item_left">房型</view>
 					<view class="ordercontent_bottom_item_right">{{ data.product.child[0].title }}</view>
-				</view>
+				</view> -->
 				<!-- <view class="ordercontent_bottom_item" v-if="data.type_zh == '酒店'">
 					<view class="ordercontent_bottom_item_left">入住日期</view>
 					<view class="ordercontent_bottom_item_right">{{ data.start_date }}</view>
@@ -58,12 +135,12 @@
 					<view class="ordercontent_bottom_item_left">酒店价格</view>
 					<view class="ordercontent_bottom_item_right">{{ data.start_date }}</view>
 				</view> -->
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+				<!-- <view class="ordercontent_bottom_item" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
 					<view class="ordercontent_bottom_item_left">民宿价格</view>
 					<view class="ordercontent_bottom_item_right">
 						￥{{ data.product.child[0].price }}*{{ data.product.child[0].quantity1 }}*{{ data.product.child[0].quantity2 }}
 					</view>
-				</view>
+				</view> -->
 				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
 					<view class="ordercontent_bottom_item_left">联系人</view>
 					<view class="ordercontent_bottom_item_right">{{ data.contact }}</view>
@@ -109,7 +186,15 @@ export default {
 			data: {},
 			isclick: true,
 			min: 60,
-			miao: 0
+			miao: 0,
+			datalist: [
+				{
+					name: '张晓文'
+				},
+				{
+					name: '严小雨'
+				}
+			]
 		};
 	},
 	components: {
@@ -150,10 +235,6 @@ export default {
 		date() {
 			setInterval(() => {
 				var nowalldate = this.data.auto_close_time;
-				// var nowalldatea = this.data.auto_close_time.replace(/-/g, ',');
-				// var nowalldateb = nowalldatea.replace(/:/g, ',');
-				// var nowalldatec = nowalldateb.replace(/ /g, ',');
-				// var nowalldated = '2020' + nowalldatec.slice(4, 20).replace(/0/g, '');
 				var Year = nowalldate.slice(0, 4);
 				var Month = nowalldate.slice(5, 7);
 				var Datea = nowalldate.slice(9, 11);

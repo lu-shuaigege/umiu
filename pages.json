@@ -115,6 +115,13 @@
 			}
 		},
 		{
+			"path": "pages/confirm/order/order",
+			"style": {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
 			"path": "pages/confirm/specialtyConfirm/specialtyConfirm",
 			"style": {
 				"navigationBarTitleText": "确认订单",
@@ -168,12 +175,12 @@
 				"navigationBarTitleText": "攻略游记详情"
 			}
 		},
-		// {
-		// 	"path": "pages/newDetail/videodetails/videodetails",
-		// 	"style": {
-		// 		"navigationBarTitleText": "短视频详情"
-		// 	}
-		// },
+		{
+			"path": "pages/newDetail/videodetails/videodetails",
+			"style": {
+				"navigationBarTitleText": "短视频详情"
+			}
+		},
 		{
 			"path": "pages/newDetail/comments/comments",
 			"style": {

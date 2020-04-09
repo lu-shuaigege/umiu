@@ -383,7 +383,7 @@ export default {
 			} else {
 				_this.child = _this.child.replace(/\&nbsp;/g, '');
 				uni.navigateTo({
-					url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/order/order?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

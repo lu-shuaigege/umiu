@@ -83,6 +83,9 @@ export default {
 		wx.hideHomeButton();
 	},
 	onLoad(options) {
+		if (options.active) {
+			this.active = options.active;
+		}
 		this.getList();
 	},
 	methods: {

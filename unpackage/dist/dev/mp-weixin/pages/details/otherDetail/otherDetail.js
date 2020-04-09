@@ -323,9 +323,8 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           url: "/pages/login/login?id=".concat(_this.id, "&isDis=").concat(_this.isDis) });
 
       } else {
-        console.log(_this.id);
         uni.navigateTo({
-          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=specialty&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=specialty&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
 
       }
     } } };exports.default = _default;

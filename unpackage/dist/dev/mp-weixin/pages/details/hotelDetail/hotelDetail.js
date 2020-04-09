@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/details/hotelDetail/hotelDetail"],{
 
-/***/ 66:
+/***/ 75:
 /*!*************************************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/main.js?{"page":"pages%2Fdetails%2FhotelDetail%2FhotelDetail"} ***!
   \*************************************************************************************************/
@@ -11,13 +11,13 @@
 /* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _hotelDetail = _interopRequireDefault(__webpack_require__(/*! ./pages/details/hotelDetail/hotelDetail.vue */ 67));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _hotelDetail = _interopRequireDefault(__webpack_require__(/*! ./pages/details/hotelDetail/hotelDetail.vue */ 76));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_hotelDetail.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 
-/***/ 67:
+/***/ 76:
 /*!****************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/pages/details/hotelDetail/hotelDetail.vue ***!
   \****************************************************************************/
@@ -26,8 +26,8 @@ createPage(_hotelDetail.default);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _hotelDetail_vue_vue_type_template_id_1ea6dc10___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hotelDetail.vue?vue&type=template&id=1ea6dc10& */ 68);
-/* harmony import */ var _hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hotelDetail.vue?vue&type=script&lang=js& */ 70);
+/* harmony import */ var _hotelDetail_vue_vue_type_template_id_1ea6dc10___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hotelDetail.vue?vue&type=template&id=1ea6dc10& */ 77);
+/* harmony import */ var _hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hotelDetail.vue?vue&type=script&lang=js& */ 79);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _hotelDetail_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hotelDetail.vue?vue&type=style&index=0&lang=css& */ 81);
 /* harmony import */ var _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 14);
@@ -58,7 +58,7 @@ component.options.__file = "F:/object/uni-app/游米游/umiu/pages/details/hotel
 
 /***/ }),
 
-/***/ 68:
+/***/ 77:
 /*!***********************************************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/pages/details/hotelDetail/hotelDetail.vue?vue&type=template&id=1ea6dc10& ***!
   \***********************************************************************************************************/
@@ -67,7 +67,7 @@ component.options.__file = "F:/object/uni-app/游米游/umiu/pages/details/hotel
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_template_id_1ea6dc10___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./hotelDetail.vue?vue&type=template&id=1ea6dc10& */ 69);
+/* harmony import */ var _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_template_id_1ea6dc10___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./hotelDetail.vue?vue&type=template&id=1ea6dc10& */ 78);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_template_id_1ea6dc10___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_template_id_1ea6dc10___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -80,7 +80,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 69:
+/***/ 78:
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/object/uni-app/游米游/umiu/pages/details/hotelDetail/hotelDetail.vue?vue&type=template&id=1ea6dc10& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -123,7 +123,7 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ 70:
+/***/ 79:
 /*!*****************************************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/pages/details/hotelDetail/hotelDetail.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************/
@@ -132,14 +132,14 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./hotelDetail.vue?vue&type=script&lang=js& */ 71);
+/* harmony import */ var _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./hotelDetail.vue?vue&type=script&lang=js& */ 80);
 /* harmony import */ var _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_D_HBuilderX_2_2_2_20190816_full_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_hotelDetail_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 71:
+/***/ 80:
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/object/uni-app/游米游/umiu/pages/details/hotelDetail/hotelDetail.vue?vue&type=script&lang=js& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -147,7 +147,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 72));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 64));
 
 
 
@@ -322,10 +322,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _api = __webpack_require__(/*! @/http/api.js */ 21);
-var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/plugin/isSameOrAfter/index.js */ 75));
-var _index2 = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 76));
+var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/plugin/isSameOrAfter/index.js */ 67));
+var _index2 = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 68));
 
-var _index3 = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/plugin/isSameOrBefore/index.js */ 80));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}_index2.default.extend(_index.default); // use plugin
+var _index3 = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/plugin/isSameOrBefore/index.js */ 72));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}_index2.default.extend(_index.default); // use plugin
 // load on demand
 _index2.default.extend(_index3.default); // use plugin
 (0, _index2.default)().format('Q Do k kk X x'); // more available formats
@@ -348,7 +348,7 @@ var _default = { data: function data() {
       openid: '',
       userInfo: {},
       //日历
-      daysList: [],
+      // daysList: [],
       modal: false,
       dates: '', //格式化后日期
       currentDate: new Date(),
@@ -377,7 +377,489 @@ var _default = { data: function data() {
       {
         id: 3,
         name: '儿童数',
-        num: 0 }] };
+        num: 0 }],
+
+
+      daysList: [
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-01',
+        week: 3,
+        week_zh: "\u5468\u4E09",
+        price: 0,
+        status: 1,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-02',
+        week: 4,
+        week_zh: "\u5468\u56DB",
+        price: 110,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-03',
+        week: 5,
+        week_zh: "\u5468\u4E94",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-04',
+        week: 6,
+        week_zh: "\u5468\u516D",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-05',
+        week: 0,
+        week_zh: "\u5468\u65E5",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-06',
+        week: 1,
+        week_zh: "\u5468\u4E00",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-07',
+        week: 2,
+        week_zh: "\u5468\u4E8C",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-08',
+        week: 3,
+        week_zh: "\u5468\u4E09",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'past',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-09',
+        week: 4,
+        week_zh: "\u5468\u56DB",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'today',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-10',
+        week: 5,
+        week_zh: "\u5468\u4E94",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-11',
+        week: 6,
+        week_zh: "\u5468\u516D",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-12',
+        week: 0,
+        week_zh: "\u5468\u65E5",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-13',
+        week: 1,
+        week_zh: "\u5468\u4E00",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-14',
+        week: 2,
+        week_zh: "\u5468\u4E8C",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-15',
+        week: 3,
+        week_zh: "\u5468\u4E09",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-16',
+        week: 4,
+        week_zh: "\u5468\u56DB",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-17',
+        week: 5,
+        week_zh: "\u5468\u4E94",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-18',
+        week: 6,
+        week_zh: "\u5468\u516D",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-19',
+        week: 0,
+        week_zh: "\u5468\u65E5",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-20',
+        week: 1,
+        week_zh: "\u5468\u4E00",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-21',
+        week: 2,
+        week_zh: "\u5468\u4E8C",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-22',
+        week: 3,
+        week_zh: "\u5468\u4E09",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-23',
+        week: 4,
+        week_zh: "\u5468\u56DB",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-24',
+        week: 5,
+        week_zh: "\u5468\u4E94",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-25',
+        week: 6,
+        week_zh: "\u5468\u516D",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-26',
+        week: 0,
+        week_zh: "\u5468\u65E5",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-27',
+        week: 1,
+        week_zh: "\u5468\u4E00",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-28',
+        week: 2,
+        week_zh: "\u5468\u4E8C",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-29',
+        week: 3,
+        week_zh: "\u5468\u4E09",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' },
+
+      {
+        id: 0,
+        user_id: 0,
+        title: '',
+        travel_date: '2020-04-30',
+        week: 4,
+        week_zh: "\u5468\u56DB",
+        price: 0,
+        status: 0,
+        status_zh: "\u672A\u8BBE\u7F6E",
+        time_point: 'future',
+        calendar_title: "\u672A\u8BBE\u7F6E\u6863\u671F",
+        calendar_color: '#f2f2f2',
+        calendar_className: 'closed',
+        created_at: '' }] };
 
 
 
@@ -530,7 +1012,7 @@ var _default = { data: function data() {
       } else {
         // _this.child = _this.child.replace(/\&nbsp;/g, '');
         uni.navigateTo({
-          url: "/pages/confirm/hotelConfirm/hotelConfirm?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
 
       }
       uni.getSetting({
@@ -792,5 +1274,5 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[[66,"common/runtime","common/vendor"]]]);
+},[[75,"common/runtime","common/vendor"]]]);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/details/hotelDetail/hotelDetail.js.map

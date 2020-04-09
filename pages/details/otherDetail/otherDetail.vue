@@ -190,9 +190,8 @@ export default {
 					url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
 				});
 			} else {
-				console.log(_this.id);
 				uni.navigateTo({
-					url: `/pages/confirm/specialtyConfirm/specialtyConfirm?id=${_this.id}&type=specialty&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/order/order?id=${_this.id}&type=specialty&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 		}

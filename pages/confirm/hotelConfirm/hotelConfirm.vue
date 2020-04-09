@@ -79,7 +79,6 @@ export default {
 	},
 	methods: {
 		getDetail(id, type) {
-			console.log(this.isDis);
 			if (this.isDis == 1) {
 				distributionDetail(id, type).then(res => {
 					this.list = res.data;

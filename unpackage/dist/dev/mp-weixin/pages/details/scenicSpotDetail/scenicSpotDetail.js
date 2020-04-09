@@ -274,12 +274,11 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], id: '', isDis: 0, uid: "", user_id: '', //现在的用户id
+var _default = { components: {}, data: function data() {return { list: [], id: '', isDis: 0, uid: '', user_id: '', //现在的用户id
       isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {var _this2 = this;if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
           if (res.authSetting['scope.userInfo']) {//获取用户信息
-            wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.bindfans();_this2.getDetail(_this2.id);} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;
-          }
+            wx.getUserInfo({ success: function success(res) {_this2.userInfo = res.userInfo;uni.setStorageSync('userInfo', res.userInfo);_this2.bindfans();_this2.getDetail(_this2.id);} });} else {uni.navigateTo({ url: "/pages/login/login?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });return;}
         } });
 
     }
@@ -333,7 +332,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
 
       } else {
         uni.navigateTo({
-          url: "/pages/confirm/sceneConfirm/sceneConfirm?id=".concat(_this.id, "&type=sight&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=sight&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
 
       }
       uni.getSetting({

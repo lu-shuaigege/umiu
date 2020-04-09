@@ -46,7 +46,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="guideDetail_info">
+		<!-- 联系供应商 -->
+		<!-- <view class="guideDetail_info">
 			<view class="guideDetail_info_con">
 				<view class="guideDetail_info_con_l">
 					<image class="img" v-if="data.product.author.avatar" :src="data.product.author.avatar" mode=""></image>
@@ -61,7 +62,7 @@
 				</view>
 				<view class="button" @click="tel()">联系供应商</view>
 			</view>
-		</view>
+		</view> -->
 		<view class="orderlist">
 			<view class="orderlistitem">
 				<view class="orderlistitem_left">订单编号：</view>

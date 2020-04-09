@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail ,bindfans} from '@/http/api.js';
+import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
 export default {
 	components: {},
 	data() {
@@ -78,7 +78,7 @@ export default {
 			list: [],
 			id: '',
 			isDis: 0,
-			uid: "",
+			uid: '',
 			user_id: '', //现在的用户id
 			isbuy: 0,
 			code: '',
@@ -108,7 +108,6 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
-		
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -156,7 +155,7 @@ export default {
 		bindfans() {
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
-				console.log(res)
+				console.log(res);
 				if (res.code == 0) {
 					// uni.showToast({
 					// 	icon: 'none',
@@ -200,7 +199,7 @@ export default {
 				});
 			} else {
 				uni.navigateTo({
-					url: `/pages/confirm/sceneConfirm/sceneConfirm?id=${_this.id}&type=sight&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/order/order?id=${_this.id}&type=sight&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

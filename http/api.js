@@ -336,65 +336,66 @@ export function boutiquesOrders(id, team_id, quantity, sharer_id) {
 }
 
 //资源-下单-分销
-export function distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,
-	sharer_id) {
-	let data = {}
-	if (team_id) {
-		data['team_id'] = team_id
+// distributionsOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address,sharer_id)
+export function distributionsOrders(data) {
+	// let data = {}
+	if (data.team_id) {
+		data['team_id'] = data.team_id
 	}
-	if (quantity) {
-		data['quantity'] = quantity
+	if (data.quantity) {
+		data['quantity'] = data.quantity
 	}
 	// if (type) {
 	// 	data['type'] = type
 	// }
-	if (child) {
-		data['child'] = child
+	if (data.child) {
+		data['child'] = data.child
 	}
-	if (contact) {
-		data['contact'] = contact
+	if (data.contact) {
+		data['contact'] = data.contact
 	}
-	if (contact_phone) {
-		data['contact_phone'] = contact_phone
+	if (data.contact_phone) {
+		data['contact_phone'] = data.contact_phone
 	}
-	if (contact_address) {
-		data['contact_address'] = contact_address
+	if (data.contact_address) {
+		data['contact_address'] = data.contact_address
 	}
-	if (sharer_id) {
-		data['sharer_id'] = sharer_id
+	if (data.sharer_id) {
+		data['sharer_id'] = data.sharer_id
 	}
 	return http({
-		url: `/api/distributions/${id}/orders?type=${type}`,
+		url: `/api/distributions/${data.id}/orders?type=${data.type}`,
 		method: 'POST',
 		data: data
 	})
 }
 //资源-下单-普通资源
-export function resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id) {
-	let data = {}
-	if (team_id) {
-		data['team_id'] = team_id
+// resourcesOrders(id, team_id, quantity, type, child, contact, contact_phone, contact_address, sharer_id)
+export function resourcesOrders(data) {
+	// let data = {}
+	if (data.team_id) {
+		data['team_id'] = data.team_id
 	}
-	if (quantity) {
-		data['quantity'] = quantity
+	if (data.quantity) {
+		data['quantity'] = data.quantity
 	}
 	// if (type) {
 	// 	data['type'] = type
 	// }
-	if (child) {
-		data['child'] = child
+	if (data.child) {
+		data['child'] = data.child
 	}
-	if (contact) {
-		data['contact'] = contact
+	if (data.contact) {
+		data['contact'] = data.contact
 	}
-	if (contact_phone) {
-		data['contact_phone'] = contact_phone
+	if (data.contact_phone) {
+		data['contact_phone'] = data.contact_phone
 	}
-	if (contact_address) {
-		data['contact_address'] = contact_address
+	if (data.contact_address) {
+		data['contact_address'] = data.contact_address
 	}
-	if (sharer_id) {
-		data['sharer_id'] = sharer_id
+	if (data.sharer_id) {
+		data['sharer_id'] = data.sharer_id
 	}
 	return http({
 		url: `/api/resources/${id}/orders?type=${type}`,

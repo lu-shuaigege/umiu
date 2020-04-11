@@ -380,47 +380,49 @@ export default {
 			this.openid = uni.getStorageSync('openid');
 		}
 		if (getCurrentPages().length == 1) {
-			wx.getSetting({
-				success: res => {
-					//判断是否授权，如果授权成功
-					if (res.authSetting['scope.userInfo']) {
-						//获取用户信息
-						wx.getUserInfo({
-							success: res => {
-								this.userInfo = res.userInfo;
-								uni.setStorageSync('userInfo', res.userInfo);
-								this.bindfans();
-								this.getDetail();
-								return;
-							}
-						});
-					} else {
-						uni.navigateTo({
-							url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-						});
-						return;
-					}
-				}
-			});
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${this.id}`
+				});
+			}
+			// this.authVerify(function() {
+			// 	this.userInfo = res.userInfo;
+			// 	uni.setStorageSync('userInfo', res.userInfo);
+			// 	this.bindfans();
+			// 	this.getDetail();
+			// 	return;
+			// }, `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`);
 		} else {
-			wx.getSetting({
-				success: res => {
-					//判断是否授权，如果授权成功
-					if (res.authSetting['scope.userInfo']) {
-						//获取用户信息
-						wx.getUserInfo({
-							success: res => {
-								this.userInfo = res.userInfo;
-								uni.setStorageSync('userInfo', res.userInfo);
-								this.getDetail();
-							}
-						});
-					} else {
-						this.authorizations();
-						return;
-					}
-				}
-			});
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${this.id}`
+				});
+			}
+			// this.authVerify(function() {
+			// 	this.userInfo = res.userInfo;
+			// 	uni.setStorageSync('userInfo', res.userInfo);
+			// 	this.getDetail();
+			// 	return;
+			// }, `/pages/authorizations/authorizations?id=${this.id}`);
+
+			// wx.getSetting({
+			// 	success: res => {
+			// 		//判断是否授权，如果授权成功
+			// 		if (res.authSetting['scope.userInfo']) {
+			// 			//获取用户信息
+			// 			wx.getUserInfo({
+			// 				success: res => {
+			// 					this.userInfo = res.userInfo;
+			// 					uni.setStorageSync('userInfo', res.userInfo);
+			// 					this.getDetail();
+			// 				}
+			// 			});
+			// 		} else {
+			// 			this.authorizations();
+			// 			return;
+			// 		}
+			// 	}
+			// });
 		}
 		// if (uni.getStorageSync('openid')) {
 		// 	this.openid = uni.getStorageSync('openid');
@@ -436,11 +438,11 @@ export default {
 		this.questions();
 	},
 	methods: {
-		authorizations() {
-			uni.navigateTo({
-				url: `/pages/authorizations/authorizations?id=${this.id}`
-			});
-		},
+		// authorizations() {
+		// 	uni.navigateTo({
+		// 		url: `/pages/authorizations/authorizations?id=${this.id}`
+		// 	});
+		// },
 		gotoStudio(friend_id) {
 			uni.navigateTo({
 				url: '/pages/studio/studio?id=' + friend_id
@@ -474,6 +476,28 @@ export default {
 		getDetail() {
 			usersStudio(this.id, this.openid).then(res => {
 				this.data = res.data;
+			});
+		},
+
+		authVerify(backfun, failToUrl) {
+			wx.getSetting({
+				success: res => {
+					//判断是否授权，如果授权成功
+					if (res.authSetting['scope.userInfo']) {
+						//获取用户信息
+						wx.getUserInfo({
+							success: res =>
+								function() {
+									backfun();
+								}
+						});
+					} else {
+						uni.navigateTo({
+							url: failToUrl
+						});
+						return;
+					}
+				}
 			});
 		},
 		// 短视频

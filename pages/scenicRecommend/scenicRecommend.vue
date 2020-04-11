@@ -22,7 +22,7 @@
 		<view class="topbtn">
 			<view class="playRecommend_nav">
 				<view class="nav" :class="isSelected === 5 ? 'nav_selected' : ''" @click="navSelect(5)">特产</view>
-				<view class="nav" :class="isSelected === 6 ? 'nav_selected' : ''" @click="navSelect(6)">跟团</view>
+				<!-- <view class="nav" :class="isSelected === 6 ? 'nav_selected' : ''" @click="navSelect(6)">跟团</view> -->
 				<view class="nav" :class="isSelected === 7 ? 'nav_selected' : ''" @click="navSelect(7)">周边</view>
 				<view class="nav" :class="isSelected === 1 ? 'nav_selected' : ''" @click="navSelect(1)">酒店</view>
 				<view class="nav" :class="isSelected === 2 ? 'nav_selected' : ''" @click="navSelect(2)">景点</view>

@@ -1,5 +1,14 @@
 import http from "@/http/request.js";
 //////////////////////////////////////////////////////////新建
+
+//授权登陆
+export function get_phoneLogin(data) {
+	return http({
+		url: "/api/wechat/get_phone",
+		method: 'POST',
+		data: data
+	})
+}
 //筛选条件接口-定制师列表
 export function users() {
 	return http({
@@ -102,6 +111,15 @@ export function loginPassword(mobile, password, userInfo, openid, code) {
 export function guidesSchedules(id, month) {
 	return http({
 		url: "/api/guides/" + id + "/schedules",
+		data: {
+			month: month
+		}
+	})
+}
+//酒店民宿日历（月视图）
+export function hotelCalendar(id, month) {
+	return http({
+		url: `/api/hotel-rooms/${id}/calendars?month=${month}`,
 		data: {
 			month: month
 		}
@@ -311,14 +329,42 @@ export function sourcesOrdersa(id, type, quantity, sharer_id) {
 	})
 }
 //资源酒店-下单
-export function sourcesOrdersb(id, type, child, sharer_id) {
+// sourcesOrdersb(id, type, child, sharer_id)
+export function resourcesHotel(data) {
+	if (data.quantity) {
+		data['quantity'] = data.quantity
+	}
+	// if (type) {
+	// 	data['type'] = type
+	// }
+	if (data.contact_phone) {
+		data['contact_phone'] = data.contact_phone
+	}
+	if (data.start_date) {
+		data['start_date'] = data.start_date
+	}
+	if (data.end_date) {
+		data['end_date'] = data.end_date
+	}
+	if (data.number_of_adults) {
+		data['number_of_adults'] = data.number_of_adults
+	}
+	if (data.number_of_children) {
+		data['number_of_children'] = data.number_of_children
+	}
+	if (data.contact_phone) {
+		data['contact_phone'] = data.contact_phone
+	}
+	if (data.check_in_names) {
+		data['check_in_names'] = data.check_in_names
+	}
+	if (data.sharer_id) {
+		data['sharer_id'] = data.sharer_id
+	}
 	return http({
-		url: "/api/resources/" + id + "/orders?type=" + type,
+		url: `/api/resources/${data.id}/orders?type=${data.type}`,
 		method: 'POST',
-		data: {
-			child: child,
-			sharer_id: sharer_id
-		}
+		data: data
 	})
 }
 
@@ -359,6 +405,24 @@ export function distributionsOrders(data) {
 	}
 	if (data.contact_address) {
 		data['contact_address'] = data.contact_address
+	}
+	if (data.start_date) {
+		data['start_date'] = data.start_date
+	}
+	if (data.end_date) {
+		data['end_date'] = data.end_date
+	}
+	if (data.number_of_adults) {
+		data['number_of_adults'] = data.number_of_adults
+	}
+	if (data.number_of_children) {
+		data['number_of_children'] = data.number_of_children
+	}
+	if (data.contact_phone) {
+		data['contact_phone'] = data.contact_phone
+	}
+	if (data.check_in_names) {
+		data['check_in_names'] = data.check_in_names
 	}
 	if (data.sharer_id) {
 		data['sharer_id'] = data.sharer_id

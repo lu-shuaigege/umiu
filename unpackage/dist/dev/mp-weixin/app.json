@@ -7,6 +7,7 @@
     "pages/planDetail/planDetail",
     "pages/details/homestayDetail/homestayDetail",
     "pages/details/hotelDetail/hotelDetail",
+    "pages/details/calendar/calendar",
     "pages/details/check/check",
     "pages/details/otherDetail/otherDetail",
     "pages/details/restaurantDetail/restaurantDetail",

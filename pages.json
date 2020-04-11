@@ -47,6 +47,13 @@
 			}
 		},
 		{
+			"path": "pages/details/calendar/calendar",
+			"style": {
+				"navigationBarTitleText": "日期选择",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		},
+		{
 			"path": "pages/details/check/check",
 			"style": {
 				"navigationBarTitleText": "入住条件",

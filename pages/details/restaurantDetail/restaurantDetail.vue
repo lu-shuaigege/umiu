@@ -125,27 +125,32 @@ export default {
 			this.userInfo = uni.getStorageSync('userInfo');
 		}
 		if (getCurrentPages().length == 1) {
-			wx.getSetting({
-				success: res => {
-					//判断是否授权，如果授权成功
-					if (res.authSetting['scope.userInfo']) {
-						//获取用户信息
-						wx.getUserInfo({
-							success: res => {
-								this.userInfo = res.userInfo;
-								uni.setStorageSync('userInfo', res.userInfo);
-								this.bindfans();
-								this.getDetail(this.id);
-							}
-						});
-					} else {
-						uni.navigateTo({
-							url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-						});
-						return;
-					}
-				}
-			});
+			// wx.getSetting({
+			// 	success: res => {
+			// 		//判断是否授权，如果授权成功
+			// 		if (res.authSetting['scope.userInfo']) {
+			// 			//获取用户信息
+			// 			wx.getUserInfo({
+			// 				success: res => {
+			// 					this.userInfo = res.userInfo;
+			// 					uni.setStorageSync('userInfo', res.userInfo);
+			// 					this.bindfans();
+			// 					this.getDetail(this.id);
+			// 				}
+			// 			});
+			// 		} else {
+			// 			uni.navigateTo({
+			// 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+			// 			});
+			// 			return;
+			// 		}
+			// 	}
+			// });
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+				});
+			}
 		}
 		this.getDetail(options.id);
 	},
@@ -192,8 +197,11 @@ export default {
 		tobuy() {
 			let _this = this;
 			if (!uni.getStorageSync('token')) {
+				// uni.navigateTo({
+				// 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
+				// });
 				uni.navigateTo({
-					url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			} else {
 				uni.navigateTo({

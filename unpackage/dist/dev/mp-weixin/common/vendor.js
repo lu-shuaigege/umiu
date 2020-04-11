@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {return;}var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}
+Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
 
 var _toString = Object.prototype.toString;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7216,7 +7216,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7237,14 +7237,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7320,7 +7320,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7722,8 +7722,17 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.guidesSchedules = guidesSchedules;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.sourcesOrdersb = sourcesOrdersb;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.get_phoneLogin = get_phoneLogin;exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.guidesSchedules = guidesSchedules;exports.hotelCalendar = hotelCalendar;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.resourcesHotel = resourcesHotel;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 //////////////////////////////////////////////////////////新建
+
+//授权登陆
+function get_phoneLogin(data) {
+  return (0, _request.default)({
+    url: "/api/wechat/get_phone",
+    method: 'POST',
+    data: data });
+
+}
 //筛选条件接口-定制师列表
 function users() {
   return (0, _request.default)({
@@ -7826,6 +7835,15 @@ function loginPassword(mobile, password, userInfo, openid, code) {
 function guidesSchedules(id, month) {
   return (0, _request.default)({
     url: "/api/guides/" + id + "/schedules",
+    data: {
+      month: month } });
+
+
+}
+//酒店民宿日历（月视图）
+function hotelCalendar(id, month) {
+  return (0, _request.default)({
+    url: "/api/hotel-rooms/".concat(id, "/calendars?month=").concat(month),
     data: {
       month: month } });
 
@@ -8035,14 +8053,42 @@ function sourcesOrdersa(id, type, quantity, sharer_id) {
 
 }
 //资源酒店-下单
-function sourcesOrdersb(id, type, child, sharer_id) {
+// sourcesOrdersb(id, type, child, sharer_id)
+function resourcesHotel(data) {
+  if (data.quantity) {
+    data['quantity'] = data.quantity;
+  }
+  // if (type) {
+  // 	data['type'] = type
+  // }
+  if (data.contact_phone) {
+    data['contact_phone'] = data.contact_phone;
+  }
+  if (data.start_date) {
+    data['start_date'] = data.start_date;
+  }
+  if (data.end_date) {
+    data['end_date'] = data.end_date;
+  }
+  if (data.number_of_adults) {
+    data['number_of_adults'] = data.number_of_adults;
+  }
+  if (data.number_of_children) {
+    data['number_of_children'] = data.number_of_children;
+  }
+  if (data.contact_phone) {
+    data['contact_phone'] = data.contact_phone;
+  }
+  if (data.check_in_names) {
+    data['check_in_names'] = data.check_in_names;
+  }
+  if (data.sharer_id) {
+    data['sharer_id'] = data.sharer_id;
+  }
   return (0, _request.default)({
-    url: "/api/resources/" + id + "/orders?type=" + type,
+    url: "/api/resources/".concat(data.id, "/orders?type=").concat(data.type),
     method: 'POST',
-    data: {
-      child: child,
-      sharer_id: sharer_id } });
-
+    data: data });
 
 }
 
@@ -8083,6 +8129,24 @@ function distributionsOrders(data) {
   }
   if (data.contact_address) {
     data['contact_address'] = data.contact_address;
+  }
+  if (data.start_date) {
+    data['start_date'] = data.start_date;
+  }
+  if (data.end_date) {
+    data['end_date'] = data.end_date;
+  }
+  if (data.number_of_adults) {
+    data['number_of_adults'] = data.number_of_adults;
+  }
+  if (data.number_of_children) {
+    data['number_of_children'] = data.number_of_children;
+  }
+  if (data.contact_phone) {
+    data['contact_phone'] = data.contact_phone;
+  }
+  if (data.check_in_names) {
+    data['check_in_names'] = data.check_in_names;
   }
   if (data.sharer_id) {
     data['sharer_id'] = data.sharer_id;
@@ -8206,9 +8270,9 @@ function ordersCancel(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // var baseUrl = 'https://admin.umu888.com';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
 // var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
-var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
+// var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {
     var _header = {
@@ -8224,6 +8288,9 @@ var $http = function $http(options) {
         if (res.data.token) {
           uni.setStorageSync('token', res.data.token);
         }
+        if (res.token) {
+          uni.setStorageSync('token', res.token);
+        }
         if (res.data.code == 3001) {
           // uni.navigateTo({
           // 	url: '/pages/login/login'
@@ -8233,10 +8300,17 @@ var $http = function $http(options) {
         if (res.data.code !== 0) {
           uni.showToast({
             icon: 'none',
-            title: res.msg });
+            title: res.data.msg });
 
           reject(res.data);
         }
+        // if (res.data.code == 1001) {
+        // 	uni.showToast({
+        // 		icon: 'none',
+        // 		title: res.data.msg
+        // 	});
+        // 	reject(res.data);
+        // }
         resolve(res.data);
       },
       fail: function fail(res) {
@@ -8291,9 +8365,8 @@ module.exports = g;
   !*** F:/object/uni-app/游米游/umiu/static/js/city.js ***!
   \****************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 module.exports = {
   list: [
   {
@@ -9418,7 +9491,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 323:
+/***/ 331:
 /*!************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
   \************************************************************************/
@@ -9524,7 +9597,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 345:
+/***/ 353:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
   \*************************************************************************/
@@ -9546,8 +9619,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 346));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 347));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 354));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 355));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9796,7 +9869,7 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 346:
+/***/ 354:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
   \*************************************************************************/
@@ -10015,7 +10088,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 347:
+/***/ 355:
 /*!**************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
   \**************************************************************************/
@@ -10187,9 +10260,8 @@ HTMLParser;exports.default = _default;
   !*** F:/object/uni-app/游米游/umiu/pages.json ***!
   \*********************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 
 /***/ }),
@@ -10202,7 +10274,7 @@ HTMLParser;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {var _package = __webpack_require__(/*! ../package.json */ 6);function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+/* WEBPACK VAR INJECTION */(function(uni) {var _package = __webpack_require__(/*! ../package.json */ 6);function _createSuper(Derived) {return function () {var Super = _getPrototypeOf(Derived),result;if (_isNativeReflectConstruct()) {var NewTarget = _getPrototypeOf(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return _possibleConstructorReturn(this, result);};}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
 
 var STAT_VERSION = _package.version;
 var STAT_URL = 'https://tongji.dcloud.io/uni/stat';
@@ -10892,7 +10964,7 @@ Util = /*#__PURE__*/function () {
 
 
 
-Stat = /*#__PURE__*/function (_Util) {_inherits(Stat, _Util);_createClass(Stat, null, [{ key: "getInstance", value: function getInstance()
+Stat = /*#__PURE__*/function (_Util) {_inherits(Stat, _Util);var _super = _createSuper(Stat);_createClass(Stat, null, [{ key: "getInstance", value: function getInstance()
     {
       if (!this.instance) {
         this.instance = new Stat();
@@ -10900,7 +10972,7 @@ Stat = /*#__PURE__*/function (_Util) {_inherits(Stat, _Util);_createClass(Stat, 
       return this.instance;
     } }]);
   function Stat() {var _this6;_classCallCheck(this, Stat);
-    _this6 = _possibleConstructorReturn(this, _getPrototypeOf(Stat).call(this));
+    _this6 = _super.call(this);
     _this6.instance = null;
     // 注册拦截器
     if (typeof uni.addInterceptor === 'function' && "development" !== 'development') {
@@ -11088,23 +11160,593 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26920200402001","_inBundle":false,"_integrity":"sha512-Mdhd/IRuUMHWPj3TtWrBb0kghRBA0YiO2L2THMFvhCTfQDSoSq1vwOdAx5n/8fIORAvG0uVQoYl73xeVFZML5A==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26920200402001.tgz","_shasum":"5f66f5dc252ac00c6064857dee8251ee51aa2391","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"bfdbb7b3000599679ef8cb29a969e6bd447b00c7","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26920200402001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-261120200409001","_inBundle":false,"_integrity":"sha512-iM1vsCzUEg80lCM7rSAkh+28ahjS9zQgiGsEoHxawCD9s7rTFnSRIaOuc7WHeQt6EclGUUIrMccYHXsLsNAXZg==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-261120200409001.tgz","_shasum":"e9daeef120f133bf3d4ca0505f5b2abed0e874a7","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"ff0877f516c1cc986cf2d7eae2bf5030c58050f9","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-261120200409001"};
 
 /***/ }),
 
-/***/ 64:
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
-  \**********************************************************/
+/***/ 7:
+/*!**************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 65);
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/calendar/calendar": { "navigationBarTitleText": "日期选择", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/order/order": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/videodetails/videodetails": { "navigationBarTitleText": "短视频详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
-/***/ 65:
+/***/ 72:
+/*!*********************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 73));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 74));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 75));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+
+var L = 'en'; // global locale
+var Ls = {}; // global loaded locale
+Ls[L] = _en.default;
+
+var isDayjs = function isDayjs(d) {return d instanceof Dayjs;}; // eslint-disable-line no-use-before-define
+
+var parseLocale = function parseLocale(preset, object, isLocal) {
+  var l;
+  if (!preset) return L;
+  if (typeof preset === 'string') {
+    if (Ls[preset]) {
+      l = preset;
+    }
+    if (object) {
+      Ls[preset] = object;
+      l = preset;
+    }
+  } else {var
+    name = preset.name;
+    Ls[name] = preset;
+    l = name;
+  }
+  if (!isLocal) L = l;
+  return l;
+};
+
+var dayjs = function dayjs(date, c, pl) {
+  if (isDayjs(date)) {
+    return date.clone();
+  }
+  // eslint-disable-next-line no-nested-ternary
+  var cfg = c ? typeof c === 'string' ? { format: c, pl: pl } : c : {};
+  cfg.date = date;
+  return new Dayjs(cfg); // eslint-disable-line no-use-before-define
+};
+
+var wrapper = function wrapper(date, instance) {return (
+    dayjs(date, {
+      locale: instance.$L,
+      utc: instance.$u,
+      $offset: instance.$offset // todo: refactor; do not use this.$offset in you code
+    }));};
+
+var Utils = _utils.default; // for plugin use
+Utils.l = parseLocale;
+Utils.i = isDayjs;
+Utils.w = wrapper;
+
+var parseDate = function parseDate(cfg) {var
+  date = cfg.date,utc = cfg.utc;
+  if (date === null) return new Date(NaN); // null is invalid
+  if (Utils.u(date)) return new Date(); // today
+  if (date instanceof Date) return new Date(date);
+  if (typeof date === 'string' && !/Z$/i.test(date)) {
+    var d = date.match(C.REGEX_PARSE);
+    if (d) {
+      if (utc) {
+        return new Date(Date.UTC(d[1], d[2] - 1, d[3] ||
+        1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0));
+      }
+      return new Date(d[1], d[2] - 1, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0);
+    }
+  }
+
+  return new Date(date); // everything else
+};var
+
+Dayjs = /*#__PURE__*/function () {
+  function Dayjs(cfg) {_classCallCheck(this, Dayjs);
+    this.$L = this.$L || parseLocale(cfg.locale, null, true);
+    this.parse(cfg); // for plugin
+  }_createClass(Dayjs, [{ key: "parse", value: function parse(
+
+    cfg) {
+      this.$d = parseDate(cfg);
+      this.init();
+    } }, { key: "init", value: function init()
+
+    {var
+      $d = this.$d;
+      this.$y = $d.getFullYear();
+      this.$M = $d.getMonth();
+      this.$D = $d.getDate();
+      this.$W = $d.getDay();
+      this.$H = $d.getHours();
+      this.$m = $d.getMinutes();
+      this.$s = $d.getSeconds();
+      this.$ms = $d.getMilliseconds();
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+  }, { key: "$utils", value: function $utils() {
+      return Utils;
+    } }, { key: "isValid", value: function isValid()
+
+    {
+      return !(this.$d.toString() === C.INVALID_DATE_STRING);
+    } }, { key: "isSame", value: function isSame(
+
+    that, units) {
+      var other = dayjs(that);
+      return this.startOf(units) <= other && other <= this.endOf(units);
+    } }, { key: "isAfter", value: function isAfter(
+
+    that, units) {
+      return dayjs(that) < this.startOf(units);
+    } }, { key: "isBefore", value: function isBefore(
+
+    that, units) {
+      return this.endOf(units) < dayjs(that);
+    } }, { key: "$g", value: function $g(
+
+    input, get, set) {
+      if (Utils.u(input)) return this[get];
+      return this.set(set, input);
+    } }, { key: "year", value: function year(
+
+    input) {
+      return this.$g(input, '$y', C.Y);
+    } }, { key: "month", value: function month(
+
+    input) {
+      return this.$g(input, '$M', C.M);
+    } }, { key: "day", value: function day(
+
+    input) {
+      return this.$g(input, '$W', C.D);
+    } }, { key: "date", value: function date(
+
+    input) {
+      return this.$g(input, '$D', C.DATE);
+    } }, { key: "hour", value: function hour(
+
+    input) {
+      return this.$g(input, '$H', C.H);
+    } }, { key: "minute", value: function minute(
+
+    input) {
+      return this.$g(input, '$m', C.MIN);
+    } }, { key: "second", value: function second(
+
+    input) {
+      return this.$g(input, '$s', C.S);
+    } }, { key: "millisecond", value: function millisecond(
+
+    input) {
+      return this.$g(input, '$ms', C.MS);
+    } }, { key: "unix", value: function unix()
+
+    {
+      return Math.floor(this.valueOf() / 1000);
+    } }, { key: "valueOf", value: function valueOf()
+
+    {
+      // timezone(hour) * 60 * 60 * 1000 => ms
+      return this.$d.getTime();
+    } }, { key: "startOf", value: function startOf(
+
+    units, _startOf) {var _this = this; // startOf -> endOf
+      var isStartOf = !Utils.u(_startOf) ? _startOf : true;
+      var unit = Utils.p(units);
+      var instanceFactory = function instanceFactory(d, m) {
+        var ins = Utils.w(_this.$u ?
+        Date.UTC(_this.$y, m, d) : new Date(_this.$y, m, d), _this);
+        return isStartOf ? ins : ins.endOf(C.D);
+      };
+      var instanceFactorySet = function instanceFactorySet(method, slice) {
+        var argumentStart = [0, 0, 0, 0];
+        var argumentEnd = [23, 59, 59, 999];
+        return Utils.w(_this.toDate()[method].apply( // eslint-disable-line prefer-spread
+        _this.toDate(),
+        (isStartOf ? argumentStart : argumentEnd).slice(slice)),
+        _this);
+      };var
+      $W = this.$W,$M = this.$M,$D = this.$D;
+      var utcPad = "set".concat(this.$u ? 'UTC' : '');
+      switch (unit) {
+        case C.Y:
+          return isStartOf ? instanceFactory(1, 0) :
+          instanceFactory(31, 11);
+        case C.M:
+          return isStartOf ? instanceFactory(1, $M) :
+          instanceFactory(0, $M + 1);
+        case C.W:{
+            var weekStart = this.$locale().weekStart || 0;
+            var gap = ($W < weekStart ? $W + 7 : $W) - weekStart;
+            return instanceFactory(isStartOf ? $D - gap : $D + (6 - gap), $M);
+          }
+        case C.D:
+        case C.DATE:
+          return instanceFactorySet("".concat(utcPad, "Hours"), 0);
+        case C.H:
+          return instanceFactorySet("".concat(utcPad, "Minutes"), 1);
+        case C.MIN:
+          return instanceFactorySet("".concat(utcPad, "Seconds"), 2);
+        case C.S:
+          return instanceFactorySet("".concat(utcPad, "Milliseconds"), 3);
+        default:
+          return this.clone();}
+
+    } }, { key: "endOf", value: function endOf(
+
+    arg) {
+      return this.startOf(arg, false);
+    } }, { key: "$set", value: function $set(
+
+    units, _int) {var _C$D$C$DATE$C$M$C$Y$C; // private set
+      var unit = Utils.p(units);
+      var utcPad = "set".concat(this.$u ? 'UTC' : '');
+      var name = (_C$D$C$DATE$C$M$C$Y$C = {}, _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.D, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.DATE, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.M, "".concat(utcPad, "Month")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.Y, "".concat(utcPad, "FullYear")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.H, "".concat(utcPad, "Hours")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.MIN, "".concat(utcPad, "Minutes")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.S, "".concat(utcPad, "Seconds")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
+      C.MS, "".concat(utcPad, "Milliseconds")), _C$D$C$DATE$C$M$C$Y$C)[
+      unit];
+      var arg = unit === C.D ? this.$D + (_int - this.$W) : _int;
+
+      if (unit === C.M || unit === C.Y) {
+        // clone is for badMutable plugin
+        var date = this.clone().set(C.DATE, 1);
+        date.$d[name](arg);
+        date.init();
+        this.$d = date.set(C.DATE, Math.min(this.$D, date.daysInMonth())).toDate();
+      } else if (name) this.$d[name](arg);
+
+      this.init();
+      return this;
+    } }, { key: "set", value: function set(
+
+    string, _int2) {
+      return this.clone().$set(string, _int2);
+    } }, { key: "get", value: function get(
+
+    unit) {
+      return this[Utils.p(unit)]();
+    } }, { key: "add", value: function add(
+
+    number, units) {var _this2 = this,_C$MIN$C$H$C$S$unit;
+      number = Number(number); // eslint-disable-line no-param-reassign
+      var unit = Utils.p(units);
+      var instanceFactorySet = function instanceFactorySet(n) {
+        var d = dayjs(_this2);
+        return Utils.w(d.date(d.date() + Math.round(n * number)), _this2);
+      };
+      if (unit === C.M) {
+        return this.set(C.M, this.$M + number);
+      }
+      if (unit === C.Y) {
+        return this.set(C.Y, this.$y + number);
+      }
+      if (unit === C.D) {
+        return instanceFactorySet(1);
+      }
+      if (unit === C.W) {
+        return instanceFactorySet(7);
+      }
+      var step = (_C$MIN$C$H$C$S$unit = {}, _defineProperty(_C$MIN$C$H$C$S$unit,
+      C.MIN, C.MILLISECONDS_A_MINUTE), _defineProperty(_C$MIN$C$H$C$S$unit,
+      C.H, C.MILLISECONDS_A_HOUR), _defineProperty(_C$MIN$C$H$C$S$unit,
+      C.S, C.MILLISECONDS_A_SECOND), _C$MIN$C$H$C$S$unit)[
+      unit] || 1; // ms
+
+      var nextTimeStamp = this.$d.getTime() + number * step;
+      return Utils.w(nextTimeStamp, this);
+    } }, { key: "subtract", value: function subtract(
+
+    number, string) {
+      return this.add(number * -1, string);
+    } }, { key: "format", value: function format(
+
+    formatStr) {var _this3 = this;
+      if (!this.isValid()) return C.INVALID_DATE_STRING;
+
+      var str = formatStr || C.FORMAT_DEFAULT;
+      var zoneStr = Utils.z(this);
+      var locale = this.$locale();var
+      $H = this.$H,$m = this.$m,$M = this.$M;var
+
+      weekdays =
+      locale.weekdays,months = locale.months,meridiem = locale.meridiem;
+      var getShort = function getShort(arr, index, full, length) {return (
+          arr && (arr[index] || arr(_this3, str)) || full[index].substr(0, length));};
+
+      var get$H = function get$H(num) {return (
+          Utils.s($H % 12 || 12, num, '0'));};
+
+
+      var meridiemFunc = meridiem || function (hour, minute, isLowercase) {
+        var m = hour < 12 ? 'AM' : 'PM';
+        return isLowercase ? m.toLowerCase() : m;
+      };
+
+      var matches = {
+        YY: String(this.$y).slice(-2),
+        YYYY: this.$y,
+        M: $M + 1,
+        MM: Utils.s($M + 1, 2, '0'),
+        MMM: getShort(locale.monthsShort, $M, months, 3),
+        MMMM: months[$M] || months(this, str),
+        D: this.$D,
+        DD: Utils.s(this.$D, 2, '0'),
+        d: String(this.$W),
+        dd: getShort(locale.weekdaysMin, this.$W, weekdays, 2),
+        ddd: getShort(locale.weekdaysShort, this.$W, weekdays, 3),
+        dddd: weekdays[this.$W],
+        H: String($H),
+        HH: Utils.s($H, 2, '0'),
+        h: get$H(1),
+        hh: get$H(2),
+        a: meridiemFunc($H, $m, true),
+        A: meridiemFunc($H, $m, false),
+        m: String($m),
+        mm: Utils.s($m, 2, '0'),
+        s: String(this.$s),
+        ss: Utils.s(this.$s, 2, '0'),
+        SSS: Utils.s(this.$ms, 3, '0'),
+        Z: zoneStr // 'ZZ' logic below
+      };
+
+      return str.replace(C.REGEX_FORMAT, function (match, $1) {return $1 || matches[match] || zoneStr.replace(':', '');}); // 'ZZ'
+    } }, { key: "utcOffset", value: function utcOffset()
+
+    {
+      // Because a bug at FF24, we're rounding the timezone offset around 15 minutes
+      // https://github.com/moment/moment/pull/1871
+      return -Math.round(this.$d.getTimezoneOffset() / 15) * 15;
+    } }, { key: "diff", value: function diff(
+
+    input, units, _float) {var _C$Y$C$M$C$Q$C$W$C$D$;
+      var unit = Utils.p(units);
+      var that = dayjs(input);
+      var zoneDelta = (that.utcOffset() - this.utcOffset()) * C.MILLISECONDS_A_MINUTE;
+      var diff = this - that;
+      var result = Utils.m(this, that);
+
+      result = (_C$Y$C$M$C$Q$C$W$C$D$ = {}, _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.Y, result / 12), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.M, result), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.Q, result / 3), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.W, (diff - zoneDelta) / C.MILLISECONDS_A_WEEK), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.D, (diff - zoneDelta) / C.MILLISECONDS_A_DAY), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.H, diff / C.MILLISECONDS_A_HOUR), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.MIN, diff / C.MILLISECONDS_A_MINUTE), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
+      C.S, diff / C.MILLISECONDS_A_SECOND), _C$Y$C$M$C$Q$C$W$C$D$)[
+      unit] || diff; // milliseconds
+
+      return _float ? result : Utils.a(result);
+    } }, { key: "daysInMonth", value: function daysInMonth()
+
+    {
+      return this.endOf(C.M).$D;
+    } }, { key: "$locale", value: function $locale()
+
+    {// get locale object
+      return Ls[this.$L];
+    } }, { key: "locale", value: function locale(
+
+    preset, object) {
+      if (!preset) return this.$L;
+      var that = this.clone();
+      var nextLocaleName = parseLocale(preset, object, true);
+      if (nextLocaleName) that.$L = nextLocaleName;
+      return that;
+    } }, { key: "clone", value: function clone()
+
+    {
+      return Utils.w(this.$d, this);
+    } }, { key: "toDate", value: function toDate()
+
+    {
+      return new Date(this.valueOf());
+    } }, { key: "toJSON", value: function toJSON()
+
+    {
+      return this.isValid() ? this.toISOString() : null;
+    } }, { key: "toISOString", value: function toISOString()
+
+    {
+      // ie 8 return
+      // new Dayjs(this.valueOf() + this.$d.getTimezoneOffset() * 60000)
+      // .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+      return this.$d.toISOString();
+    } }, { key: "toString", value: function toString()
+
+    {
+      return this.$d.toUTCString();
+    } }]);return Dayjs;}();
+
+
+dayjs.prototype = Dayjs.prototype;
+
+dayjs.extend = function (plugin, option) {
+  plugin(option, Dayjs, dayjs);
+  return dayjs;
+};
+
+dayjs.locale = parseLocale;
+
+dayjs.isDayjs = isDayjs;
+
+dayjs.unix = function (timestamp) {return (
+    dayjs(timestamp * 1e3));};
+
+
+dayjs.en = Ls[L];
+dayjs.Ls = Ls;var _default =
+
+dayjs;exports.default = _default;
+
+/***/ }),
+
+/***/ 73:
+/*!************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.REGEX_FORMAT = exports.REGEX_PARSE = exports.INVALID_DATE_STRING = exports.FORMAT_DEFAULT = exports.DATE = exports.Y = exports.Q = exports.M = exports.W = exports.D = exports.H = exports.MIN = exports.S = exports.MS = exports.MILLISECONDS_A_WEEK = exports.MILLISECONDS_A_DAY = exports.MILLISECONDS_A_HOUR = exports.MILLISECONDS_A_MINUTE = exports.MILLISECONDS_A_SECOND = exports.SECONDS_A_WEEK = exports.SECONDS_A_DAY = exports.SECONDS_A_HOUR = exports.SECONDS_A_MINUTE = void 0;var SECONDS_A_MINUTE = 60;exports.SECONDS_A_MINUTE = SECONDS_A_MINUTE;
+var SECONDS_A_HOUR = SECONDS_A_MINUTE * 60;exports.SECONDS_A_HOUR = SECONDS_A_HOUR;
+var SECONDS_A_DAY = SECONDS_A_HOUR * 24;exports.SECONDS_A_DAY = SECONDS_A_DAY;
+var SECONDS_A_WEEK = SECONDS_A_DAY * 7;exports.SECONDS_A_WEEK = SECONDS_A_WEEK;
+
+var MILLISECONDS_A_SECOND = 1e3;exports.MILLISECONDS_A_SECOND = MILLISECONDS_A_SECOND;
+var MILLISECONDS_A_MINUTE = SECONDS_A_MINUTE * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_MINUTE = MILLISECONDS_A_MINUTE;
+var MILLISECONDS_A_HOUR = SECONDS_A_HOUR * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_HOUR = MILLISECONDS_A_HOUR;
+var MILLISECONDS_A_DAY = SECONDS_A_DAY * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_DAY = MILLISECONDS_A_DAY;
+var MILLISECONDS_A_WEEK = SECONDS_A_WEEK * MILLISECONDS_A_SECOND;
+
+// English locales
+exports.MILLISECONDS_A_WEEK = MILLISECONDS_A_WEEK;var MS = 'millisecond';exports.MS = MS;
+var S = 'second';exports.S = S;
+var MIN = 'minute';exports.MIN = MIN;
+var H = 'hour';exports.H = H;
+var D = 'day';exports.D = D;
+var W = 'week';exports.W = W;
+var M = 'month';exports.M = M;
+var Q = 'quarter';exports.Q = Q;
+var Y = 'year';exports.Y = Y;
+var DATE = 'date';exports.DATE = DATE;
+
+var FORMAT_DEFAULT = 'YYYY-MM-DDTHH:mm:ssZ';exports.FORMAT_DEFAULT = FORMAT_DEFAULT;
+
+var INVALID_DATE_STRING = 'Invalid Date';
+
+// regex
+exports.INVALID_DATE_STRING = INVALID_DATE_STRING;var REGEX_PARSE = /^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/;exports.REGEX_PARSE = REGEX_PARSE;
+var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g;exports.REGEX_FORMAT = REGEX_FORMAT;
+
+/***/ }),
+
+/***/ 74:
+/*!*********************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 73));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+
+var padStart = function padStart(string, length, pad) {
+  var s = String(string);
+  if (!s || s.length >= length) return string;
+  return "".concat(Array(length + 1 - s.length).join(pad)).concat(string);
+};
+
+var padZoneStr = function padZoneStr(instance) {
+  var negMinuts = -instance.utcOffset();
+  var minutes = Math.abs(negMinuts);
+  var hourOffset = Math.floor(minutes / 60);
+  var minuteOffset = minutes % 60;
+  return "".concat(negMinuts <= 0 ? '+' : '-').concat(padStart(hourOffset, 2, '0'), ":").concat(padStart(minuteOffset, 2, '0'));
+};
+
+var monthDiff = function monthDiff(a, b) {
+  // function from moment.js in order to keep the same result
+  var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month());
+  var anchor = a.clone().add(wholeMonthDiff, C.M);
+  var c = b - anchor < 0;
+  var anchor2 = a.clone().add(wholeMonthDiff + (c ? -1 : 1), C.M);
+  return Number(-(wholeMonthDiff + (b - anchor) / (c ? anchor - anchor2 :
+  anchor2 - anchor)) || 0);
+};
+
+var absFloor = function absFloor(n) {return n < 0 ? Math.ceil(n) || 0 : Math.floor(n);};
+
+var prettyUnit = function prettyUnit(u) {
+  var special = {
+    M: C.M,
+    y: C.Y,
+    w: C.W,
+    d: C.D,
+    h: C.H,
+    m: C.MIN,
+    s: C.S,
+    ms: C.MS,
+    Q: C.Q };
+
+  return special[u] || String(u || '').toLowerCase().replace(/s$/, '');
+};
+
+var isUndefined = function isUndefined(s) {return s === undefined;};var _default =
+
+{
+  s: padStart,
+  z: padZoneStr,
+  m: monthDiff,
+  a: absFloor,
+  p: prettyUnit,
+  u: isUndefined };exports.default = _default;
+
+/***/ }),
+
+/***/ 75:
+/*!*************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // We don't need weekdaysShort, weekdaysMin, monthsShort in en.js locale
+var _default = {
+  name: 'en',
+  weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+  months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_') };exports.default = _default;
+
+/***/ }),
+
+/***/ 8:
+/*!*************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"stat"} ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__A7B06FA" };exports.default = _default;
+
+/***/ }),
+
+/***/ 84:
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 85);
+
+/***/ }),
+
+/***/ 85:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -11135,7 +11777,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 66);
+module.exports = __webpack_require__(/*! ./runtime */ 86);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -11152,7 +11794,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 66:
+/***/ 86:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -11884,7 +12526,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 67:
+/***/ 87:
 /*!******************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrAfter/index.js ***!
   \******************************************************************************/
@@ -11900,566 +12542,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 68:
-/*!*********************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 69));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 70));
-var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 71));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
-
-var L = 'en'; // global locale
-var Ls = {}; // global loaded locale
-Ls[L] = _en.default;
-
-var isDayjs = function isDayjs(d) {return d instanceof Dayjs;}; // eslint-disable-line no-use-before-define
-
-var parseLocale = function parseLocale(preset, object, isLocal) {
-  var l;
-  if (!preset) return L;
-  if (typeof preset === 'string') {
-    if (Ls[preset]) {
-      l = preset;
-    }
-    if (object) {
-      Ls[preset] = object;
-      l = preset;
-    }
-  } else {var
-    name = preset.name;
-    Ls[name] = preset;
-    l = name;
-  }
-  if (!isLocal) L = l;
-  return l;
-};
-
-var dayjs = function dayjs(date, c, pl) {
-  if (isDayjs(date)) {
-    return date.clone();
-  }
-  // eslint-disable-next-line no-nested-ternary
-  var cfg = c ? typeof c === 'string' ? { format: c, pl: pl } : c : {};
-  cfg.date = date;
-  return new Dayjs(cfg); // eslint-disable-line no-use-before-define
-};
-
-var wrapper = function wrapper(date, instance) {return (
-    dayjs(date, {
-      locale: instance.$L,
-      utc: instance.$u,
-      $offset: instance.$offset // todo: refactor; do not use this.$offset in you code
-    }));};
-
-var Utils = _utils.default; // for plugin use
-Utils.l = parseLocale;
-Utils.i = isDayjs;
-Utils.w = wrapper;
-
-var parseDate = function parseDate(cfg) {var
-  date = cfg.date,utc = cfg.utc;
-  if (date === null) return new Date(NaN); // null is invalid
-  if (Utils.u(date)) return new Date(); // today
-  if (date instanceof Date) return new Date(date);
-  if (typeof date === 'string' && !/Z$/i.test(date)) {
-    var d = date.match(C.REGEX_PARSE);
-    if (d) {
-      if (utc) {
-        return new Date(Date.UTC(d[1], d[2] - 1, d[3] ||
-        1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0));
-      }
-      return new Date(d[1], d[2] - 1, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, d[7] || 0);
-    }
-  }
-
-  return new Date(date); // everything else
-};var
-
-Dayjs = /*#__PURE__*/function () {
-  function Dayjs(cfg) {_classCallCheck(this, Dayjs);
-    this.$L = this.$L || parseLocale(cfg.locale, null, true);
-    this.parse(cfg); // for plugin
-  }_createClass(Dayjs, [{ key: "parse", value: function parse(
-
-    cfg) {
-      this.$d = parseDate(cfg);
-      this.init();
-    } }, { key: "init", value: function init()
-
-    {var
-      $d = this.$d;
-      this.$y = $d.getFullYear();
-      this.$M = $d.getMonth();
-      this.$D = $d.getDate();
-      this.$W = $d.getDay();
-      this.$H = $d.getHours();
-      this.$m = $d.getMinutes();
-      this.$s = $d.getSeconds();
-      this.$ms = $d.getMilliseconds();
-    }
-
-    // eslint-disable-next-line class-methods-use-this
-  }, { key: "$utils", value: function $utils() {
-      return Utils;
-    } }, { key: "isValid", value: function isValid()
-
-    {
-      return !(this.$d.toString() === C.INVALID_DATE_STRING);
-    } }, { key: "isSame", value: function isSame(
-
-    that, units) {
-      var other = dayjs(that);
-      return this.startOf(units) <= other && other <= this.endOf(units);
-    } }, { key: "isAfter", value: function isAfter(
-
-    that, units) {
-      return dayjs(that) < this.startOf(units);
-    } }, { key: "isBefore", value: function isBefore(
-
-    that, units) {
-      return this.endOf(units) < dayjs(that);
-    } }, { key: "$g", value: function $g(
-
-    input, get, set) {
-      if (Utils.u(input)) return this[get];
-      return this.set(set, input);
-    } }, { key: "year", value: function year(
-
-    input) {
-      return this.$g(input, '$y', C.Y);
-    } }, { key: "month", value: function month(
-
-    input) {
-      return this.$g(input, '$M', C.M);
-    } }, { key: "day", value: function day(
-
-    input) {
-      return this.$g(input, '$W', C.D);
-    } }, { key: "date", value: function date(
-
-    input) {
-      return this.$g(input, '$D', C.DATE);
-    } }, { key: "hour", value: function hour(
-
-    input) {
-      return this.$g(input, '$H', C.H);
-    } }, { key: "minute", value: function minute(
-
-    input) {
-      return this.$g(input, '$m', C.MIN);
-    } }, { key: "second", value: function second(
-
-    input) {
-      return this.$g(input, '$s', C.S);
-    } }, { key: "millisecond", value: function millisecond(
-
-    input) {
-      return this.$g(input, '$ms', C.MS);
-    } }, { key: "unix", value: function unix()
-
-    {
-      return Math.floor(this.valueOf() / 1000);
-    } }, { key: "valueOf", value: function valueOf()
-
-    {
-      // timezone(hour) * 60 * 60 * 1000 => ms
-      return this.$d.getTime();
-    } }, { key: "startOf", value: function startOf(
-
-    units, _startOf) {var _this = this; // startOf -> endOf
-      var isStartOf = !Utils.u(_startOf) ? _startOf : true;
-      var unit = Utils.p(units);
-      var instanceFactory = function instanceFactory(d, m) {
-        var ins = Utils.w(_this.$u ?
-        Date.UTC(_this.$y, m, d) : new Date(_this.$y, m, d), _this);
-        return isStartOf ? ins : ins.endOf(C.D);
-      };
-      var instanceFactorySet = function instanceFactorySet(method, slice) {
-        var argumentStart = [0, 0, 0, 0];
-        var argumentEnd = [23, 59, 59, 999];
-        return Utils.w(_this.toDate()[method].apply( // eslint-disable-line prefer-spread
-        _this.toDate(),
-        (isStartOf ? argumentStart : argumentEnd).slice(slice)),
-        _this);
-      };var
-      $W = this.$W,$M = this.$M,$D = this.$D;
-      var utcPad = "set".concat(this.$u ? 'UTC' : '');
-      switch (unit) {
-        case C.Y:
-          return isStartOf ? instanceFactory(1, 0) :
-          instanceFactory(31, 11);
-        case C.M:
-          return isStartOf ? instanceFactory(1, $M) :
-          instanceFactory(0, $M + 1);
-        case C.W:{
-            var weekStart = this.$locale().weekStart || 0;
-            var gap = ($W < weekStart ? $W + 7 : $W) - weekStart;
-            return instanceFactory(isStartOf ? $D - gap : $D + (6 - gap), $M);
-          }
-        case C.D:
-        case C.DATE:
-          return instanceFactorySet("".concat(utcPad, "Hours"), 0);
-        case C.H:
-          return instanceFactorySet("".concat(utcPad, "Minutes"), 1);
-        case C.MIN:
-          return instanceFactorySet("".concat(utcPad, "Seconds"), 2);
-        case C.S:
-          return instanceFactorySet("".concat(utcPad, "Milliseconds"), 3);
-        default:
-          return this.clone();}
-
-    } }, { key: "endOf", value: function endOf(
-
-    arg) {
-      return this.startOf(arg, false);
-    } }, { key: "$set", value: function $set(
-
-    units, int) {var _C$D$C$DATE$C$M$C$Y$C; // private set
-      var unit = Utils.p(units);
-      var utcPad = "set".concat(this.$u ? 'UTC' : '');
-      var name = (_C$D$C$DATE$C$M$C$Y$C = {}, _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.D, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.DATE, "".concat(utcPad, "Date")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.M, "".concat(utcPad, "Month")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.Y, "".concat(utcPad, "FullYear")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.H, "".concat(utcPad, "Hours")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.MIN, "".concat(utcPad, "Minutes")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.S, "".concat(utcPad, "Seconds")), _defineProperty(_C$D$C$DATE$C$M$C$Y$C,
-      C.MS, "".concat(utcPad, "Milliseconds")), _C$D$C$DATE$C$M$C$Y$C)[
-      unit];
-      var arg = unit === C.D ? this.$D + (int - this.$W) : int;
-
-      if (unit === C.M || unit === C.Y) {
-        // clone is for badMutable plugin
-        var date = this.clone().set(C.DATE, 1);
-        date.$d[name](arg);
-        date.init();
-        this.$d = date.set(C.DATE, Math.min(this.$D, date.daysInMonth())).toDate();
-      } else if (name) this.$d[name](arg);
-
-      this.init();
-      return this;
-    } }, { key: "set", value: function set(
-
-    string, int) {
-      return this.clone().$set(string, int);
-    } }, { key: "get", value: function get(
-
-    unit) {
-      return this[Utils.p(unit)]();
-    } }, { key: "add", value: function add(
-
-    number, units) {var _this2 = this,_C$MIN$C$H$C$S$unit;
-      number = Number(number); // eslint-disable-line no-param-reassign
-      var unit = Utils.p(units);
-      var instanceFactorySet = function instanceFactorySet(n) {
-        var d = dayjs(_this2);
-        return Utils.w(d.date(d.date() + Math.round(n * number)), _this2);
-      };
-      if (unit === C.M) {
-        return this.set(C.M, this.$M + number);
-      }
-      if (unit === C.Y) {
-        return this.set(C.Y, this.$y + number);
-      }
-      if (unit === C.D) {
-        return instanceFactorySet(1);
-      }
-      if (unit === C.W) {
-        return instanceFactorySet(7);
-      }
-      var step = (_C$MIN$C$H$C$S$unit = {}, _defineProperty(_C$MIN$C$H$C$S$unit,
-      C.MIN, C.MILLISECONDS_A_MINUTE), _defineProperty(_C$MIN$C$H$C$S$unit,
-      C.H, C.MILLISECONDS_A_HOUR), _defineProperty(_C$MIN$C$H$C$S$unit,
-      C.S, C.MILLISECONDS_A_SECOND), _C$MIN$C$H$C$S$unit)[
-      unit] || 1; // ms
-
-      var nextTimeStamp = this.$d.getTime() + number * step;
-      return Utils.w(nextTimeStamp, this);
-    } }, { key: "subtract", value: function subtract(
-
-    number, string) {
-      return this.add(number * -1, string);
-    } }, { key: "format", value: function format(
-
-    formatStr) {var _this3 = this;
-      if (!this.isValid()) return C.INVALID_DATE_STRING;
-
-      var str = formatStr || C.FORMAT_DEFAULT;
-      var zoneStr = Utils.z(this);
-      var locale = this.$locale();var
-      $H = this.$H,$m = this.$m,$M = this.$M;var
-
-      weekdays =
-      locale.weekdays,months = locale.months,meridiem = locale.meridiem;
-      var getShort = function getShort(arr, index, full, length) {return (
-          arr && (arr[index] || arr(_this3, str)) || full[index].substr(0, length));};
-
-      var get$H = function get$H(num) {return (
-          Utils.s($H % 12 || 12, num, '0'));};
-
-
-      var meridiemFunc = meridiem || function (hour, minute, isLowercase) {
-        var m = hour < 12 ? 'AM' : 'PM';
-        return isLowercase ? m.toLowerCase() : m;
-      };
-
-      var matches = {
-        YY: String(this.$y).slice(-2),
-        YYYY: this.$y,
-        M: $M + 1,
-        MM: Utils.s($M + 1, 2, '0'),
-        MMM: getShort(locale.monthsShort, $M, months, 3),
-        MMMM: months[$M] || months(this, str),
-        D: this.$D,
-        DD: Utils.s(this.$D, 2, '0'),
-        d: String(this.$W),
-        dd: getShort(locale.weekdaysMin, this.$W, weekdays, 2),
-        ddd: getShort(locale.weekdaysShort, this.$W, weekdays, 3),
-        dddd: weekdays[this.$W],
-        H: String($H),
-        HH: Utils.s($H, 2, '0'),
-        h: get$H(1),
-        hh: get$H(2),
-        a: meridiemFunc($H, $m, true),
-        A: meridiemFunc($H, $m, false),
-        m: String($m),
-        mm: Utils.s($m, 2, '0'),
-        s: String(this.$s),
-        ss: Utils.s(this.$s, 2, '0'),
-        SSS: Utils.s(this.$ms, 3, '0'),
-        Z: zoneStr // 'ZZ' logic below
-      };
-
-      return str.replace(C.REGEX_FORMAT, function (match, $1) {return $1 || matches[match] || zoneStr.replace(':', '');}); // 'ZZ'
-    } }, { key: "utcOffset", value: function utcOffset()
-
-    {
-      // Because a bug at FF24, we're rounding the timezone offset around 15 minutes
-      // https://github.com/moment/moment/pull/1871
-      return -Math.round(this.$d.getTimezoneOffset() / 15) * 15;
-    } }, { key: "diff", value: function diff(
-
-    input, units, float) {var _C$Y$C$M$C$Q$C$W$C$D$;
-      var unit = Utils.p(units);
-      var that = dayjs(input);
-      var zoneDelta = (that.utcOffset() - this.utcOffset()) * C.MILLISECONDS_A_MINUTE;
-      var diff = this - that;
-      var result = Utils.m(this, that);
-
-      result = (_C$Y$C$M$C$Q$C$W$C$D$ = {}, _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.Y, result / 12), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.M, result), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.Q, result / 3), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.W, (diff - zoneDelta) / C.MILLISECONDS_A_WEEK), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.D, (diff - zoneDelta) / C.MILLISECONDS_A_DAY), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.H, diff / C.MILLISECONDS_A_HOUR), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.MIN, diff / C.MILLISECONDS_A_MINUTE), _defineProperty(_C$Y$C$M$C$Q$C$W$C$D$,
-      C.S, diff / C.MILLISECONDS_A_SECOND), _C$Y$C$M$C$Q$C$W$C$D$)[
-      unit] || diff; // milliseconds
-
-      return float ? result : Utils.a(result);
-    } }, { key: "daysInMonth", value: function daysInMonth()
-
-    {
-      return this.endOf(C.M).$D;
-    } }, { key: "$locale", value: function $locale()
-
-    {// get locale object
-      return Ls[this.$L];
-    } }, { key: "locale", value: function locale(
-
-    preset, object) {
-      if (!preset) return this.$L;
-      var that = this.clone();
-      var nextLocaleName = parseLocale(preset, object, true);
-      if (nextLocaleName) that.$L = nextLocaleName;
-      return that;
-    } }, { key: "clone", value: function clone()
-
-    {
-      return Utils.w(this.$d, this);
-    } }, { key: "toDate", value: function toDate()
-
-    {
-      return new Date(this.valueOf());
-    } }, { key: "toJSON", value: function toJSON()
-
-    {
-      return this.isValid() ? this.toISOString() : null;
-    } }, { key: "toISOString", value: function toISOString()
-
-    {
-      // ie 8 return
-      // new Dayjs(this.valueOf() + this.$d.getTimezoneOffset() * 60000)
-      // .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
-      return this.$d.toISOString();
-    } }, { key: "toString", value: function toString()
-
-    {
-      return this.$d.toUTCString();
-    } }]);return Dayjs;}();
-
-
-dayjs.prototype = Dayjs.prototype;
-
-dayjs.extend = function (plugin, option) {
-  plugin(option, Dayjs, dayjs);
-  return dayjs;
-};
-
-dayjs.locale = parseLocale;
-
-dayjs.isDayjs = isDayjs;
-
-dayjs.unix = function (timestamp) {return (
-    dayjs(timestamp * 1e3));};
-
-
-dayjs.en = Ls[L];
-dayjs.Ls = Ls;var _default =
-
-dayjs;exports.default = _default;
-
-/***/ }),
-
-/***/ 69:
-/*!************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.REGEX_FORMAT = exports.REGEX_PARSE = exports.INVALID_DATE_STRING = exports.FORMAT_DEFAULT = exports.DATE = exports.Y = exports.Q = exports.M = exports.W = exports.D = exports.H = exports.MIN = exports.S = exports.MS = exports.MILLISECONDS_A_WEEK = exports.MILLISECONDS_A_DAY = exports.MILLISECONDS_A_HOUR = exports.MILLISECONDS_A_MINUTE = exports.MILLISECONDS_A_SECOND = exports.SECONDS_A_WEEK = exports.SECONDS_A_DAY = exports.SECONDS_A_HOUR = exports.SECONDS_A_MINUTE = void 0;var SECONDS_A_MINUTE = 60;exports.SECONDS_A_MINUTE = SECONDS_A_MINUTE;
-var SECONDS_A_HOUR = SECONDS_A_MINUTE * 60;exports.SECONDS_A_HOUR = SECONDS_A_HOUR;
-var SECONDS_A_DAY = SECONDS_A_HOUR * 24;exports.SECONDS_A_DAY = SECONDS_A_DAY;
-var SECONDS_A_WEEK = SECONDS_A_DAY * 7;exports.SECONDS_A_WEEK = SECONDS_A_WEEK;
-
-var MILLISECONDS_A_SECOND = 1e3;exports.MILLISECONDS_A_SECOND = MILLISECONDS_A_SECOND;
-var MILLISECONDS_A_MINUTE = SECONDS_A_MINUTE * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_MINUTE = MILLISECONDS_A_MINUTE;
-var MILLISECONDS_A_HOUR = SECONDS_A_HOUR * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_HOUR = MILLISECONDS_A_HOUR;
-var MILLISECONDS_A_DAY = SECONDS_A_DAY * MILLISECONDS_A_SECOND;exports.MILLISECONDS_A_DAY = MILLISECONDS_A_DAY;
-var MILLISECONDS_A_WEEK = SECONDS_A_WEEK * MILLISECONDS_A_SECOND;
-
-// English locales
-exports.MILLISECONDS_A_WEEK = MILLISECONDS_A_WEEK;var MS = 'millisecond';exports.MS = MS;
-var S = 'second';exports.S = S;
-var MIN = 'minute';exports.MIN = MIN;
-var H = 'hour';exports.H = H;
-var D = 'day';exports.D = D;
-var W = 'week';exports.W = W;
-var M = 'month';exports.M = M;
-var Q = 'quarter';exports.Q = Q;
-var Y = 'year';exports.Y = Y;
-var DATE = 'date';exports.DATE = DATE;
-
-var FORMAT_DEFAULT = 'YYYY-MM-DDTHH:mm:ssZ';exports.FORMAT_DEFAULT = FORMAT_DEFAULT;
-
-var INVALID_DATE_STRING = 'Invalid Date';
-
-// regex
-exports.INVALID_DATE_STRING = INVALID_DATE_STRING;var REGEX_PARSE = /^(\d{4})-?(\d{1,2})-?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?.?(\d{1,3})?$/;exports.REGEX_PARSE = REGEX_PARSE;
-var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g;exports.REGEX_FORMAT = REGEX_FORMAT;
-
-/***/ }),
-
-/***/ 7:
-/*!**************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app" }, "pages/confirm/order/order": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/videodetails/videodetails": { "navigationBarTitleText": "短视频详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
-
-/***/ }),
-
-/***/ 70:
-/*!*********************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 69));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
-
-var padStart = function padStart(string, length, pad) {
-  var s = String(string);
-  if (!s || s.length >= length) return string;
-  return "".concat(Array(length + 1 - s.length).join(pad)).concat(string);
-};
-
-var padZoneStr = function padZoneStr(instance) {
-  var negMinuts = -instance.utcOffset();
-  var minutes = Math.abs(negMinuts);
-  var hourOffset = Math.floor(minutes / 60);
-  var minuteOffset = minutes % 60;
-  return "".concat(negMinuts <= 0 ? '+' : '-').concat(padStart(hourOffset, 2, '0'), ":").concat(padStart(minuteOffset, 2, '0'));
-};
-
-var monthDiff = function monthDiff(a, b) {
-  // function from moment.js in order to keep the same result
-  var wholeMonthDiff = (b.year() - a.year()) * 12 + (b.month() - a.month());
-  var anchor = a.clone().add(wholeMonthDiff, C.M);
-  var c = b - anchor < 0;
-  var anchor2 = a.clone().add(wholeMonthDiff + (c ? -1 : 1), C.M);
-  return Number(-(wholeMonthDiff + (b - anchor) / (c ? anchor - anchor2 :
-  anchor2 - anchor)) || 0);
-};
-
-var absFloor = function absFloor(n) {return n < 0 ? Math.ceil(n) || 0 : Math.floor(n);};
-
-var prettyUnit = function prettyUnit(u) {
-  var special = {
-    M: C.M,
-    y: C.Y,
-    w: C.W,
-    d: C.D,
-    h: C.H,
-    m: C.MIN,
-    s: C.S,
-    ms: C.MS,
-    Q: C.Q };
-
-  return special[u] || String(u || '').toLowerCase().replace(/s$/, '');
-};
-
-var isUndefined = function isUndefined(s) {return s === undefined;};var _default =
-
-{
-  s: padStart,
-  z: padZoneStr,
-  m: monthDiff,
-  a: absFloor,
-  p: prettyUnit,
-  u: isUndefined };exports.default = _default;
-
-/***/ }),
-
-/***/ 71:
-/*!*************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // We don't need weekdaysShort, weekdaysMin, monthsShort in en.js locale
-var _default = {
-  name: 'en',
-  weekdays: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
-  months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_') };exports.default = _default;
-
-/***/ }),
-
-/***/ 72:
+/***/ 88:
 /*!*******************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrBefore/index.js ***!
   \*******************************************************************************/
@@ -12472,18 +12555,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     return this.isSame(that, units) || this.isBefore(that, units);
   };
 };exports.default = _default;
-
-/***/ }),
-
-/***/ 8:
-/*!*************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"stat"} ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__A7B06FA" };exports.default = _default;
 
 /***/ })
 

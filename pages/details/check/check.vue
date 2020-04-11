@@ -40,7 +40,9 @@ export default {
 	onShow() {
 		wx.hideHomeButton();
 	},
-	onLoad(options) {},
+	onLoad(options) {
+		this.check = JSON.parse(options.check);
+	},
 	methods: {
 		reduce(index, num) {
 			if (num == 0) {

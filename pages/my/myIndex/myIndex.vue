@@ -57,6 +57,11 @@ export default {
 		wx.hideHomeButton();
 	},
 	onLoad(options) {
+		if (!uni.getStorageSync('token')) {
+			uni.navigateTo({
+				url: `/pages/authorizations/authorizations`
+			});
+		}
 		this.userInfo();
 	},
 	methods: {
@@ -71,7 +76,7 @@ export default {
 					url: '/pages/my/myorder/travelOrder/orderList/orderList'
 				});
 			}
-			if(go == 2){
+			if (go == 2) {
 				uni.navigateTo({
 					url: '/pages/my/myorder/specialtyOrder/orderList/orderList'
 				});

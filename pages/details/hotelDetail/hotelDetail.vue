@@ -18,8 +18,8 @@
 					</view>
 				</view>
 				<view class="second">
-					<view class="labela">豪华大床房</view>
-					<view class="labelb">库存：5</view>
+					<view class="labela">{{ list.room.title }}</view>
+					<view class="labelb">库存：20</view>
 					<!-- <view class="l">{{ list.address }}</view> -->
 					<!-- <view class="r">门市价:￥{{list.price}}</view> -->
 				</view>
@@ -46,45 +46,6 @@
 					</view>
 				</view>
 				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
-			</view>
-		</view>
-		<!-- 日历 -->
-		<view class="guideDetail_schedule">
-			<view class="guideDetail_schedule_title">
-				<text class="line"></text>
-				<text>档期选择</text>
-			</view>
-			<view class="tui-modal-custom">
-				<view class="calendar_title">
-					<image v-if="lefticon" src="/static/img/leftcolor.png" mode="" @click="left"></image>
-					<image v-if="!lefticon" src="/static/img/left.png" mode=""></image>
-					<text>{{ dates }}</text>
-					<image src="/static/img/right.png" mode="" @click="right"></image>
-				</view>
-				<view class="calendar_week">
-					<view>日</view>
-					<view>一</view>
-					<view>二</view>
-					<view>三</view>
-					<view>四</view>
-					<view>五</view>
-					<view>六</view>
-				</view>
-				<view class="calendar_days">
-					<view
-						class="dayone"
-						v-for="item in daysList"
-						:key="item"
-						@click="chooseItem(item)"
-						:class="{ sbgFF6600: chooseStart == 'start' + item.id, ebgFF6600: chooseEnd == 'end' + item.id, bgFFEFE5: chooseMid.indexOf(item.id) !== -1 }"
-					>
-						<view class="day" :class="item.status !== 1 ? 'colorc1' : 'color6'">{{ item.traveldate }}</view>
-						<view class="price" v-if="item.status === 1">
-							<text v-if="item.price !== undefined">¥</text>
-							{{ item.price }}
-						</view>
-					</view>
-				</view>
 			</view>
 		</view>
 		<!-- <view class="house_type">
@@ -127,11 +88,11 @@
 		</view> -->
 		<view class="house_type">
 			<view class="orderDetail">
-				<view class="orderDetail_left">
-					<view class="orderDetail_left_left">6月2日</view>
+				<view class="orderDetail_left" @click="calendar(list.room.id)">
+					<view class="orderDetail_left_left">{{ start_date.slice(5, 7) }}月{{ start_date.slice(8, 10) }}日</view>
 					<view class="orderDetail_left_heng">——</view>
-					<view class="orderDetail_left_right">6月3日</view>
-					<view class="orderDetail_left_all">共1日</view>
+					<view class="orderDetail_left_right">{{ end_date.slice(5, 7) }}月{{ end_date.slice(8, 10) }}日</view>
+					<view class="orderDetail_left_all">共{{ daysLength }}晚</view>
 				</view>
 				<view class="orderDetail_right" @click="gocheck()">
 					<view class="orderDetail_right_left">{{ check[0].num }}间</view>
@@ -145,8 +106,8 @@
 			</view>
 			<view class="facilitiesa" v-show="list.hotel_amenities.length">
 				<view class="facilitiesa_bottom">
-					<view class="facilities_bottom_left">精致大床房</view>
-					<view class="facilities_bottom_right">20m2 大床 2人入住 不含早</view>
+					<view class="facilities_bottom_left">{{ list.room.title }}</view>
+					<view class="facilities_bottom_right">{{ list.room.builtuparea }} {{ list.room.bed_type }} {{ list.room.capacity }} {{ list.room.description }}</view>
 				</view>
 			</view>
 			<view class="type_title" v-show="list.hotel_amenities.length">
@@ -172,23 +133,19 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail, bindfans, guidesSchedules } from '@/http/api.js';
-import isSameOrAfter from '@/plugins/dayjs/plugin/isSameOrAfter/index.js'; // load on demand
+import { sourcesDetail, distributionDetail, bindfans, hotelCalendar } from '@/http/api.js';
 import dayjs from '@/plugins/dayjs/index.js';
-dayjs.extend(isSameOrAfter); // use plugin
-import isSameOrBefore from '@/plugins/dayjs/plugin/isSameOrBefore/index.js'; // load on demand
-dayjs.extend(isSameOrBefore); // use plugin
-dayjs().format('Q Do k kk X x'); // more available formats
 export default {
 	data() {
 		return {
+			start_date: '0000-00-00',
+			end_date: '0000-00-00',
+			daysArr: [],
+			daysLength: 0, //共几日
+			quantity: 0, //房间数量
+			number_of_adults: 0, //成人数量
+			number_of_children: 0, //儿童数量
 			list: [],
-			lists: {
-				rating: 0,
-				rating_user: 0,
-				rating_agency: 0,
-				rating_platform: 0
-			},
 			id: '',
 			child: [],
 			isDis: 0,
@@ -198,22 +155,6 @@ export default {
 			code: '',
 			openid: '',
 			userInfo: {},
-			//日历
-			// daysList: [],
-			modal: false,
-			dates: '', //格式化后日期
-			currentDate: new Date(),
-			month: '',
-			lefticon: false, //左边按钮
-			chooseStart: '',
-			chooseEnd: '',
-			chooseMid: [],
-			paydata: [],
-			isclick: true,
-			startDate: '', //选中开始日期
-			endDate: '', //选中结束日期
-			daysArr: [], //选中日期数组
-			daysObject: {}, //缓存每月日历
 			check: [
 				{
 					id: 1,
@@ -231,488 +172,7 @@ export default {
 					num: 0
 				}
 			],
-			daysList: [
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-01',
-					week: 3,
-					week_zh: '\u5468\u4e09',
-					price: 0,
-					status: 1,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-02',
-					week: 4,
-					week_zh: '\u5468\u56db',
-					price: 110,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-03',
-					week: 5,
-					week_zh: '\u5468\u4e94',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-04',
-					week: 6,
-					week_zh: '\u5468\u516d',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-05',
-					week: 0,
-					week_zh: '\u5468\u65e5',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-06',
-					week: 1,
-					week_zh: '\u5468\u4e00',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-07',
-					week: 2,
-					week_zh: '\u5468\u4e8c',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-08',
-					week: 3,
-					week_zh: '\u5468\u4e09',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'past',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-09',
-					week: 4,
-					week_zh: '\u5468\u56db',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'today',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-10',
-					week: 5,
-					week_zh: '\u5468\u4e94',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-11',
-					week: 6,
-					week_zh: '\u5468\u516d',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-12',
-					week: 0,
-					week_zh: '\u5468\u65e5',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-13',
-					week: 1,
-					week_zh: '\u5468\u4e00',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-14',
-					week: 2,
-					week_zh: '\u5468\u4e8c',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-15',
-					week: 3,
-					week_zh: '\u5468\u4e09',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-16',
-					week: 4,
-					week_zh: '\u5468\u56db',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-17',
-					week: 5,
-					week_zh: '\u5468\u4e94',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-18',
-					week: 6,
-					week_zh: '\u5468\u516d',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-19',
-					week: 0,
-					week_zh: '\u5468\u65e5',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-20',
-					week: 1,
-					week_zh: '\u5468\u4e00',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-21',
-					week: 2,
-					week_zh: '\u5468\u4e8c',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-22',
-					week: 3,
-					week_zh: '\u5468\u4e09',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-23',
-					week: 4,
-					week_zh: '\u5468\u56db',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-24',
-					week: 5,
-					week_zh: '\u5468\u4e94',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-25',
-					week: 6,
-					week_zh: '\u5468\u516d',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-26',
-					week: 0,
-					week_zh: '\u5468\u65e5',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-27',
-					week: 1,
-					week_zh: '\u5468\u4e00',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-28',
-					week: 2,
-					week_zh: '\u5468\u4e8c',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-29',
-					week: 3,
-					week_zh: '\u5468\u4e09',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				},
-				{
-					id: 0,
-					user_id: 0,
-					title: '',
-					travel_date: '2020-04-30',
-					week: 4,
-					week_zh: '\u5468\u56db',
-					price: 0,
-					status: 0,
-					status_zh: '\u672a\u8bbe\u7f6e',
-					time_point: 'future',
-					calendar_title: '\u672a\u8bbe\u7f6e\u6863\u671f',
-					calendar_color: '#f2f2f2',
-					calendar_className: 'closed',
-					created_at: ''
-				}
-			]
+			isOne: false
 		};
 	},
 	onShow() {
@@ -729,6 +189,16 @@ export default {
 		if (currPage.data.check) {
 			this.check = currPage.data.check;
 			console.log(this.check);
+			this.quantity = currPage.data.check[0].num;
+			this.number_of_adults = currPage.data.check[1].num;
+			this.number_of_children = currPage.data.check[2].num;
+		}
+		// 入住日期
+		if (currPage.data.daysArr) {
+			this.start_date = currPage.data.start_date;
+			this.end_date = currPage.data.end_date;
+			this.daysArr = currPage.data.daysArr;
+			this.daysLength = this.daysArr.length;
 		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
@@ -762,72 +232,108 @@ export default {
 			this.userInfo = uni.getStorageSync('userInfo');
 		}
 		if (getCurrentPages().length == 1) {
-			wx.getSetting({
-				success: res => {
-					//判断是否授权，如果授权成功
-					if (res.authSetting['scope.userInfo']) {
-						//获取用户信息
-						wx.getUserInfo({
-							success: res => {
-								this.userInfo = res.userInfo;
-								uni.setStorageSync('userInfo', res.userInfo);
-								this.bindfans();
-								this.getDetail(this.id);
-							}
-						});
-					} else {
-						uni.navigateTo({
-							url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-						});
-						return;
-					}
-				}
-			});
+			// wx.getSetting({
+			// 	success: res => {
+			// 		//判断是否授权，如果授权成功
+			// 		if (res.authSetting['scope.userInfo']) {
+			// 			//获取用户信息
+			// 			wx.getUserInfo({
+			// 				success: res => {
+			// 					this.userInfo = res.userInfo;
+			// 					uni.setStorageSync('userInfo', res.userInfo);
+			// 					this.bindfans();
+			// 					this.getDetail(this.id);
+			// 				}
+			// 			});
+			// 		} else {
+			// 			uni.navigateTo({
+			// 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+			// 			});
+			// 			return;
+			// 		}
+			// 	}
+			// });
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+				});
+			}
 		}
 		this.getDetail(options.id);
-		this.getTeams('1000048');
-		this.month = this.currentDate.setMonth(this.currentDate.getMonth());
-		this.times(this.month);
 	},
-	computed: {
-		// 计算属性的 getter
-		totalPrice: function() {
-			let allPrice = 0;
-			//总价格
-			for (let i = 0; i < this.daysArr.length; i++) {
-				allPrice += parseInt(this.daysArr[i].price) || 0;
-			}
-			return allPrice;
-		}
-	},
+	// computed: {
+	// 	// 计算属性的 getter
+	// 	totalPrice: function() {
+	// 		let allPrice = 0;
+	// 		//总价格
+	// 		for (let i = 0; i < this.daysArr.length; i++) {
+	// 			allPrice += parseInt(this.daysArr[i].price) || 0;
+	// 		}
+	// 		return allPrice;
+	// 	}
+	// },
 	methods: {
+		// 跳转日历
+		calendar(id) {
+			uni.navigateTo({
+				url: `/pages/details/calendar/calendar?id=${id}`
+			});
+		},
+		//获取日历
+		timelist() {
+			hotelCalendar(this.list.room.id, '').then(res => {
+				let thistime = dayjs().format('YYYY-MM-DD');
+				console.log(thistime);
+				console.log(res.data);
+				for (let i = 0; i < res.data.length; i++) {
+					if (res.data[i].checkin_date == thistime) {
+						this.daysArr.push(res.data[i]);
+						this.daysArr.push(res.data[i + 1]);
+					}
+				}
+				console.log(this.daysArr);
+				this.start_date = this.daysArr[0].checkin_date;
+				this.end_date = this.daysArr[1].checkin_date;
+				let arr = this.daysArr;
+				arr.pop();
+				this.daysArr = arr;
+				this.daysLength = this.daysArr.length;
+				// if (this.daysArr[0].quantity == '0') {
+				// 	console.log(111111);
+				// 	this.daysArr = [];
+				// }
+				console.log(this.daysArr);
+			});
+		},
 		// 跳转到选择房间数量
 		gocheck() {
+			let check = JSON.stringify(this.check);
 			uni.navigateTo({
-				url: `/pages/details/check/check`
+				url: `/pages/details/check/check?check=${check}`
 			});
 		},
 		// 绑定粉丝
 		bindfans() {
 			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
-				// this.list = res.data;
 				console.log(res);
-				if (res.code == 0) {
-					// uni.showToast({
-					// 	icon: 'none',
-					// 	title: '绑定粉丝成功'
-					// });
-				}
 			});
 		},
 		getDetail(id) {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'hotel').then(res => {
 					this.list = res.data;
+					if (!this.isOne) {
+						this.timelist();
+					}
+					this.isOne = true;
 				});
 			} else {
 				sourcesDetail(id, 'hotel').then(res => {
 					this.list = res.data;
+					if (!this.isOne) {
+						this.timelist();
+					}
+					this.isOne = true;
 				});
 			}
 		},
@@ -849,21 +355,54 @@ export default {
 		},
 		tobuy() {
 			let _this = this;
-			// if (!_this.child.length) {
-			// 	uni.showToast({
-			// 		icon: 'none',
-			// 		title: '请选择套餐'
-			// 	});
-			// 	return;
-			// }
+			if (_this.daysArr[0].quantity == 0) {
+				uni.showToast({
+					icon: 'none',
+					title: '当前日期没有房间了'
+				});
+				return;
+			}
+			if (_this.daysArr.length == 0) {
+				uni.showToast({
+					icon: 'none',
+					title: '请选择入住日期'
+				});
+				return;
+			}
+			if (_this.check[0].num == 0) {
+				uni.showToast({
+					icon: 'none',
+					title: '请选择房间数量'
+				});
+				return;
+			}
+			if (_this.check[1].num == 0) {
+				uni.showToast({
+					icon: 'none',
+					title: '请选择成人数量'
+				});
+				return;
+			}
+			let data = {
+				start_date: _this.start_date, //开始时间
+				end_date: _this.end_date, //结束时间
+				daysArr: _this.daysArr,
+				quantity: _this.quantity, //房间数量
+				number_of_adults: _this.number_of_adults, //成人数量
+				number_of_children: _this.number_of_children //儿童数量
+			};
+			let datas = JSON.stringify(data);
 			if (!uni.getStorageSync('token')) {
+				// uni.navigateTo({
+				// 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
+				// });
 				uni.navigateTo({
-					url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			} else {
 				// _this.child = _this.child.replace(/\&nbsp;/g, '');
 				uni.navigateTo({
-					url: `/pages/confirm/order/order?id=${_this.id}&type=hotel&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/order/order?id=${_this.id}&type=hotel&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}&datas=${datas}`
 				});
 			}
 			uni.getSetting({
@@ -884,202 +423,6 @@ export default {
 		},
 		CheckboxChange(e) {
 			this.child = JSON.stringify(e.detail.value);
-		},
-		//选择套餐
-		//获取导游档期
-		async getTeams(id) {
-			this.daysList = [];
-			if (!this.daysObject[this.month]) {
-				let res = await guidesSchedules(id, this.month);
-				for (let i = 0; i < res.data.length; i++) {
-					let newList = res.data[i];
-					newList.traveldate = newList.travel_date.substring(8);
-					this.daysList.push(newList);
-				}
-				if (this.daysList[0].week_zh == '周日') {
-					this.daysList.unshift();
-				} else if (this.daysList[0].week_zh == '周一') {
-					this.daysList.unshift({});
-				} else if (this.daysList[0].week_zh == '周二') {
-					this.daysList.unshift({}, {});
-				} else if (this.daysList[0].week_zh == '周三') {
-					this.daysList.unshift({}, {}, {});
-				} else if (this.daysList[0].week_zh == '周四') {
-					this.daysList.unshift({}, {}, {}, {});
-				} else if (this.daysList[0].week_zh == '周五') {
-					this.daysList.unshift({}, {}, {}, {}, {});
-				} else if (this.daysList[0].week_zh == '周六') {
-					this.daysList.unshift({}, {}, {}, {}, {}, {});
-				}
-				this.daysObject[this.month] = this.daysList;
-			} else {
-				this.daysList = this.daysObject[this.month];
-			}
-		},
-		// 获取时间
-		times(dates) {
-			this.dates = new Date(dates);
-			let now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);
-			this.month = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
-			this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';
-			if (this.month == now) {
-				this.lefticon = false;
-			} else {
-				this.lefticon = true;
-			}
-		},
-		checkMonth(i) {
-			if (i < 10) {
-				i = '0' + i;
-			}
-			return i;
-		},
-		left() {
-			this.dates = this.currentDate.setMonth(this.currentDate.getMonth() - 1); // 输出日期格式为毫秒形式1551398400000
-			this.times(this.dates);
-			this.getTeams(this.id);
-		},
-		right() {
-			this.dates = this.currentDate.setMonth(this.currentDate.getMonth() + 1); // 输出日期格式为毫秒形式1551398400000
-			this.times(this.dates);
-			this.getTeams(this.id);
-		},
-		chooseItem(item) {
-			// this.chooseStart = id
-			this.daysArr = [];
-			if (item.status !== 1) {
-				return;
-			}
-
-			//是否设置出发点
-			if (this.startDate == '') {
-				this.daysArr.push(item);
-				(this.startDate = item.travel_date), (this.endDate = '');
-				this.chooseEnd = '';
-				this.chooseMid = [];
-				this.checkstyle(item);
-				return;
-			}
-
-			//出发结尾均有 点击重设出发点
-			if (this.startDate !== '' && this.endDate !== '') {
-				this.daysArr.push(item);
-				(this.startDate = item.travel_date), (this.endDate = '');
-				this.chooseEnd = '';
-				this.chooseMid = [];
-				this.checkstyle(item);
-				return;
-			}
-
-			//已有出发点 并且选在出发点前面
-			if (item.travel_date <= this.startDate) {
-				this.daysArr.push(item);
-				//前面重设开始点
-				(this.startDate = item.travel_date), (this.endDate = '');
-				this.chooseEnd = '';
-				this.chooseMid = [];
-				this.checkstyle(item);
-				return;
-			}
-
-			//点击到后面
-			if (item.travel_date > this.startDate) {
-				//判断中间是否有间隔
-				let hasDisable = false;
-
-				//判断是否同月
-				if (dayjs(item.travel_date).isSame(dayjs(this.startDate), 'month')) {
-					let currentMonth = this.daysObject[dayjs(item.travel_date).format('YYYY-MM')] || [];
-					for (let i = 0; i < currentMonth.length; i++) {
-						let currentItem = currentMonth[i];
-						if (
-							dayjs(currentItem.travel_date).isAfter(dayjs(this.startDate)) &&
-							dayjs(currentItem.travel_date).isBefore(dayjs(item.travel_date)) &&
-							currentItem.status !== 1
-						) {
-							hasDisable = true;
-							break;
-						}
-					}
-				} else {
-					let startDate = this.startDate;
-					let endDate = item.travel_date;
-					let startMonth = this.daysObject[dayjs(startDate).format('YYYY-MM')] || [];
-					let endMonth = this.daysObject[dayjs(endDate).format('YYYY-MM')] || [];
-					for (let i = 0; i < startMonth.length; i++) {
-						let currentItem = startMonth[i];
-						if (dayjs(currentItem.travel_date).isAfter(dayjs(startDate)) && currentItem.status !== 1) {
-							hasDisable = true;
-							break;
-						}
-					}
-					for (let i = 0; i < endMonth.length; i++) {
-						let currentItem = endMonth[i];
-						if (dayjs(currentItem.travel_date).isBefore(dayjs(endDate)) && currentItem.status !== 1) {
-							hasDisable = true;
-							break;
-						}
-					}
-				}
-				// for(let i = 0; i< this.daysList.length; i++){
-				// 	// this.daysList[i]
-				// 	if(this.daysList[i].travel_date>this.startDate&&this.daysList[i].travel_date < item.travel_date){
-				// 		if(this.daysList[i].status !==1){
-				// 			hasDisable = true
-				// 		}
-				// 	}
-				// }
-				if (hasDisable) {
-					//有间隔重设开始点
-					this.daysArr.push(item);
-					(this.startDate = item.travel_date), (this.endDate = '');
-					this.chooseEnd = '';
-					this.chooseMid = [];
-					this.checkstyle(item);
-				} else {
-					//此处设定enddate
-					//计算天数和价格
-					let length = this.getMonthRe(dayjs(item.travel_date).format('YYYY-MM'), dayjs(this.startDate).format('YYYY-MM')) + 1;
-					for (let i = 0; i < length; i++) {
-						let currentMonth = dayjs(this.startDate).add(i, 'month');
-						let currentDaysArr = this.daysObject[currentMonth.format('YYYY-MM')] || [];
-						currentDaysArr.forEach(el => {
-							if (dayjs(el.travel_date).isSameOrAfter(dayjs(this.startDate)) && dayjs(el.travel_date).isSameOrBefore(dayjs(item.travel_date))) {
-								this.daysArr.push(el);
-								this.checkstyle(el);
-							}
-						});
-					}
-					this.endDate = item.travel_date;
-					this.checkstyle(item);
-					for (let i = 0; i < this.daysArr.length; i++) {
-						if (this.daysArr[i].travel_date > this.startDate && this.daysArr[i].travel_date < this.endDate) {
-							this.chooseMid.push(this.daysArr[i].id);
-						}
-					}
-					console.log(this.daysArr);
-				}
-			}
-		},
-		checkstyle(item) {
-			if (item.travel_date == this.startDate) {
-				this.chooseStart = 'start' + item.id;
-			}
-			if (item.travel_date == this.endDate) {
-				this.chooseEnd = 'end' + item.id;
-				for (let i = 0; i < this.daysList.length; i++) {
-					if (this.daysList[i].travel_date > this.startDate && this.daysList[i].travel_date < this.endDate) {
-						this.chooseMid.push(this.daysList[i].id);
-					}
-				}
-			}
-		},
-		getMonthRe(date1, date2) {
-			date1 = date1.split('-');
-			date1 = parseInt(date1[0]) * 12 + parseInt(date1[1]);
-			date2 = date2.split('-');
-			date2 = parseInt(date2[0]) * 12 + parseInt(date2[1]);
-			return Math.abs(date1 - date2);
 		}
 	}
 

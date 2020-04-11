@@ -36,9 +36,10 @@
 							</view>
 							<view class="specifications" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">{{ data.product.child[0].title }}</view>
 							<view class="specifications" v-show="data.type_zh == '景点'">{{ data.address }}</view>
-							<view class="orderlist_itemcon_right_money" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
-								<view class="item_moneytop_left_left">￥{{ data.product.child[0].price }}</view>
-								<view class="item_moneytop_left_right">X{{ data.product.child[0].quantity1 }}间 X{{ data.product.child[0].quantity2 }}晚</view>
+							<view class="orderlist_itemcon_right_moneya" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+								<view class="item_moneytop_left_lefta">￥</view>
+								<view class="item_moneytop_left_centera">{{ data.product.child[0].price }}</view>
+								<view class="item_moneytop_left_righta">/间/晚</view>
 							</view>
 							<view class="orderlist_itemcon_right_money" v-if="data.type_zh != '酒店' && data.type_zh != '民宿'">
 								<view class="item_moneytop_left_left">￥{{ data.product.amount }}</view>
@@ -60,34 +61,38 @@
 			<view class="hotelitem_top">
 				<view class="hotelitem_top_left" v-if="data.type_zh == '酒店'">酒店信息</view>
 				<view class="hotelitem_top_left" v-if="data.type_zh == '民宿'">民宿信息</view>
-				<view class="hotelitem_top_right">
-					<image src="../../../../../static/img/add_icon.png" class="hotelitem_top_right_img" mode=""></image>
+				<view class="hotelitem_top_right" @click="look(true)">
+					<image src="../../../../../static/img/tips.png" class="hotelitem_top_right_img" mode=""></image>
 					<view class="hotelitem_top_right_text">每晚明细</view>
 				</view>
 			</view>
 			<view class="hotelitem_list">
 				<view class="hotelitem_list_left">房型</view>
-				<view class="hotelitem_list_right">{{ data.product.child[0].title }}</view>
+				<view class="hotelitem_list_right">{{ data.product.builtuparea }}{{ data.product.bed_type }}{{ data.product.capacity }}{{ data.product.description }}</view>
 			</view>
 			<view class="hotelitem_list">
 				<view class="hotelitem_list_left">入住日期</view>
-				<view class="hotelitem_list_right">02月29日</view>
+				<view class="hotelitem_list_right">{{ data.start_date.slice(5, 7) }}月{{ data.start_date.slice(8, 10) }}日</view>
 			</view>
 			<view class="hotelitem_list">
 				<view class="hotelitem_list_left">离店日期</view>
-				<view class="hotelitem_list_right">03月01日</view>
+				<view class="hotelitem_list_right">{{ data.end_date.slice(5, 7) }}月{{ data.end_date.slice(8, 10) }}日</view>
+			</view>
+			<view class="hotelitem_list">
+				<view class="hotelitem_list_left">酒店数量</view>
+				<view class="hotelitem_list_right">{{ data.quantity }}间 | {{ data.product.child.length }}晚</view>
 			</view>
 		</view>
 		<!-- 入住人信息 -->
-		<view class="checkDetail" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">
+		<view class="checkDetail" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
 			<view class="checkDetail_top">入住人信息</view>
-			<view class="checkDetail_list" v-for="(item, index) in datalist" :key="index">
+			<view class="checkDetail_list" v-for="(item, index) in data.supplement.check_in_names" :key="index">
 				<view class="checkDetail_list_left">房间{{ index + 1 }}</view>
-				<view class="checkDetail_list_right">{{ item.name }}</view>
+				<view class="checkDetail_list_right">{{ item }}</view>
 			</view>
 			<view class="checkDetail_list">
 				<view class="checkDetail_list_left">手机号</view>
-				<view class="checkDetail_list_right">18756895484</view>
+				<view class="checkDetail_list_right">{{ data.contact_phone }}</view>
 			</view>
 		</view>
 		<!-- 订单详情 -->
@@ -141,6 +146,14 @@
 						￥{{ data.product.child[0].price }}*{{ data.product.child[0].quantity1 }}*{{ data.product.child[0].quantity2 }}
 					</view>
 				</view> -->
+				<view class="ordercontent_bottom_item" v-if="data.type_zh == '跟团游' || data.type_zh == '周边游'">
+					<view class="ordercontent_bottom_item_left">出发时间</view>
+					<view class="ordercontent_bottom_item_right">{{ data.product.child[0].travel_date }} {{ data.product.child[0].week_zh }}</view>
+				</view>
+				<view class="ordercontent_bottom_item" v-if="data.type_zh == '跟团游' || data.type_zh == '周边游'">
+					<view class="ordercontent_bottom_item_left">线路价格</view>
+					<view class="ordercontent_bottom_item_right">￥{{ data.product.child[0].price }}*{{ data.product.quantity }}</view>
+				</view>
 				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
 					<view class="ordercontent_bottom_item_left">联系人</view>
 					<view class="ordercontent_bottom_item_right">{{ data.contact }}</view>
@@ -163,6 +176,25 @@
 				</view>
 			</view>
 		</view>
+		<!-- 酒店订单明细 -->
+		<view class="detailed" v-if="islook">
+			<view class="detailed_con">
+				<view class="detailed_con_top">
+					<view class="detailed_con_top_title">每晚明细</view>
+					<view class="detailed_con_top_item" v-for="(item, index) in data.product.child" :key="index">
+						<view class="detailed_con_top_item_left">{{ item.checkin_date.slice(5, 7) }}月{{ item.checkin_date.slice(8, 10) }}日</view>
+						<view class="detailed_con_top_item_right">{{ data.quantity }}间*￥{{ data.product.child[index].price }}</view>
+					</view>
+					<view class="detailed_con_top_bottom">
+						<view class="detailed_con_top_bottom_con">
+							<view class="detailed_con_top_bottom_con_left">{{ data.product.child.length }}晚，{{ data.quantity }}间共</view>
+							<view class="detailed_con_top_bottom_con_right">￥{{ data.amount }}</view>
+						</view>
+					</view>
+				</view>
+				<image src="../../../../../static/img/circleFork.png" @click="look(false)" class="detailed_con_close" mode=""></image>
+			</view>
+		</view>
 		<!-- 订单支付按钮 -->
 		<view class="orderbottom" v-if="data.status_zh == '待支付'">
 			<view class="orderbottom_left" @click="ordersCancel()">取消订单</view>
@@ -180,6 +212,8 @@ import popupok from '@/pages/components/popupok/popupok.vue';
 export default {
 	data() {
 		return {
+			amount: '',
+			islook: false,
 			id: 0,
 			active: 1,
 			show: false,
@@ -193,6 +227,14 @@ export default {
 				},
 				{
 					name: '严小雨'
+				}
+			],
+			detailed: [
+				{
+					date: '03月01日'
+				},
+				{
+					date: '03月01日'
 				}
 			]
 		};
@@ -208,6 +250,10 @@ export default {
 		this.ordersDetail();
 	},
 	methods: {
+		//查看明细
+		look(islook) {
+			this.islook = islook;
+		},
 		isok(isokfn) {
 			console.log(isokfn);
 			if (!isokfn) {
@@ -284,15 +330,19 @@ export default {
 		ordersDetail() {
 			ordersDetail({ id: this.id }).then(res => {
 				this.data = res.data;
+				this.amount = res.data.amount;
 				if (this.data.status_zh == '待支付') {
 					this.date();
 				}
 			});
 		},
 		gopay() {
+			if (!this.isclick) {
+				return;
+			}
 			this.isclick = false;
 			payWechat(this.id, uni.getStorageSync('openid')).then(res1 => {
-				this.isclick = true;
+				this.isclick = false;
 				if (res1.code == 0) {
 					this.pay(res1.data);
 				}

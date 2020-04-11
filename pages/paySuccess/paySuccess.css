@@ -1,32 +1,78 @@
-page{
+page {
 	background: #FFFFFF;
 }
-.paySuccess{
+
+.paySuccess {
 	text-align: center;
 }
-.paySuccess image{
+
+.paySuccess image {
 	width: 311upx;
 	height: 210upx;
 	margin-top: 80upx;
 }
-.paySuccess .first{
+
+.paySuccess .first {
 	font-size: 36upx;
 	font-weight: bold;
 	color: #28282c;
 	margin-top: 30upx;
 }
-.paySuccess .second{
+
+.paySuccess .second {
 	font-size: 24upx;
 	color: #666666;
 	margin-top: 25upx;
 }
-.paySuccess .third{
+
+.paySuccess .third {
 	font-size: 30upx;
 	color: #666666;
 	margin-top: 65upx;
 }
-.paySuccess .third text{
+
+.paySuccess .third text {
 	font-size: 30upx;
 	color: #ff6600;
 	text-decoration: underline;
+}
+
+.bottomview {
+	margin-top: 75upx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0upx 50upx;
+	box-sizing: border-box;
+}
+
+.bottomview_left {
+	width: 301rpx;
+	height: 79rpx;
+	background-color: #ffffff;
+	border-radius: 8rpx;
+	border: solid 1rpx #ff6600;
+	font-family: PingFang-SC-Medium;
+	font-size: 34rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 79rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	text-align: center;
+}
+
+.bottomview_right {
+	width: 301rpx;
+	height: 79rpx;
+	background-color: #ff6600;
+	border-radius: 8rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 34rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 79rpx;
+	letter-spacing: 0rpx;
+	color: #ffffff;
+	text-align: center;
 }

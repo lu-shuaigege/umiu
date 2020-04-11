@@ -83,7 +83,8 @@ export default {
 			}
 			if (this.isDis == 1) {
 				this.isclick = false;
-				distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid).then(res => {
+				// distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
+				distributionsOrders({ id: id, team_id: this.team.id, quantity: this.quantity, type: 'boutique', sharer_id: this.uid }).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
@@ -92,7 +93,7 @@ export default {
 						});
 						if (res.msg == '请登录！') {
 							uni.navigateTo({
-								url: '/pages/login/login'
+								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}`
 							});
 						}
 						this.isclick = true;
@@ -120,7 +121,7 @@ export default {
 						});
 						if (res.msg == '请登录！') {
 							uni.navigateTo({
-								url: '/pages/login/login'
+								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}`
 							});
 						}
 						this.isclick = true;
@@ -159,7 +160,7 @@ export default {
 					console.log('fail:' + JSON.stringify(err));
 					setTimeout(() => {
 						uni.redirectTo({
-							url: '/pages/my/myIndex/myIndex'
+							url: `/pages/my/myorder/travelOrder/orderList/orderList?active=2`
 						});
 					}, 1000);
 				}

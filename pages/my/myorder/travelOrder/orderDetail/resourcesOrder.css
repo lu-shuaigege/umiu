@@ -129,7 +129,42 @@
 
 .specifications {
 	width: 100%;
-	margin: 27upx 0px 28upx;
+	/* margin: 27upx 0px 28upx; */
+}
+
+.orderlist_itemcon_right_moneya {
+	width: 100%;
+	display: flex;
+	/* justify-content: space-between; */
+	align-items: flex-end;
+}
+
+.item_moneytop_left_lefta {
+	font-family: PingFang-SC-Bold;
+	font-size: 22rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 22rpx;
+	letter-spacing: 0rpx;
+	color: #f50000;
+}
+
+.item_moneytop_left_centera {
+	font-family: PingFang-SC-Bold;
+	font-size: 36rpx;
+	line-height: 36rpx;
+	font-weight: 500;
+	letter-spacing: 0rpx;
+	color: #f50000;
+}
+
+.item_moneytop_left_righta {
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	line-height: 36rpx;
+	font-weight: normal;
+	letter-spacing: 0rpx;
+	color: #999999;
 }
 
 .orderlist_itemcon_right_money {
@@ -295,7 +330,7 @@
 /* 酒店信息 */
 .hotelitem {
 	width: 690rpx;
-	height: 280rpx;
+	/* height: 280rpx; */
 	background-color: #ffffff;
 	border-radius: 8rpx;
 	margin: 20upx auto;
@@ -392,7 +427,7 @@
 	margin-top: 28upx;
 }
 
-.checkDetail_list:nth-child(4) {
+.checkDetail_list:last-child {
 	border: 0px;
 }
 
@@ -596,4 +631,112 @@
 	letter-spacing: 0rpx;
 	color: #ff6600;
 	text-align: center;
+}
+/* 酒店订单明细 */
+.detailed {
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	top: 0upx;
+	left: 0upx;
+	z-index: 99;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.detailed_con {
+	width: 600upx;
+
+}
+
+.detailed_con_top {
+	width: 600rpx;
+	/* height: 360rpx; */
+	background-color: #ffffff;
+	border-radius: 8rpx;
+	padding: 1upx 50upx;
+	box-sizing: border-box;
+}
+
+.detailed_con_top_title {
+	font-family: PingFang-SC-Bold;
+	font-size: 30rpx;
+	font-weight: bold;
+	font-stretch: normal;
+	line-height: 30rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+	margin: 48upx auto 0upx;
+	text-align: center;
+}
+
+.detailed_con_top_item {
+	height: 25upx;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 40upx 0upx;
+}
+
+.detailed_con_top_item_left {
+	font-family: PingFang-SC-Bold;
+	font-size: 28rpx;
+	font-weight: 500;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 0rpx;
+	color: #28282c;
+}
+
+.detailed_con_top_item_right {
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 26rpx;
+	letter-spacing: 0rpx;
+	color: #666666;
+}
+
+.detailed_con_top_bottom {
+	width: 100%;
+	border-top: 1px solid #e1e1e1;
+	height: 100upx;
+}
+
+.detailed_con_top_bottom_con {
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	margin-top: 29upx;
+}
+
+.detailed_con_top_bottom_con_left {
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #666666;
+}
+
+.detailed_con_top_bottom_con_right {
+	font-family: PingFang-SC-Bold;
+	font-size: 28rpx;
+	line-height: 28rpx;
+	font-weight: normal;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+
+.detailed_con_close {
+	display: block;
+	width: 54rpx;
+	height: 54rpx;
+	margin: 39upx auto;
 }

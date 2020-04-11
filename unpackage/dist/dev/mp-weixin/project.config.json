@@ -37,9 +37,16 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/confirm/order/order",
-					"pathName": "pages/confirm/order/order",
-					"query": "id=30&type=hotel&isDis=1",
+					"name": "pages/details/otherDetail/otherDetail",
+					"pathName": "pages/details/otherDetail/otherDetail",
+					"query": "id=7174&type=specialty&isDis=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/myIndex/myIndex",
+					"pathName": "pages/my/myIndex/myIndex",
+					"query": "id=7174&type=specialty&isDis=1",
 					"scene": null
 				}
 			]

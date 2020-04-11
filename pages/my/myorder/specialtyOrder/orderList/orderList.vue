@@ -23,7 +23,7 @@
 								</view>
 								<view class="orderlist_itemcon_right_money">
 									<view class="item_moneytop_left_left">￥{{ item.amount }}</view>
-									<view class="item_moneytop_left_right">X1</view>
+									<view class="item_moneytop_left_right">X{{ item.product.quantity || 0 }}</view>
 								</view>
 							</view>
 						</view>

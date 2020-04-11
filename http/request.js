@@ -1,6 +1,6 @@
-// var baseUrl = 'https://admin.umu888.com';
+var baseUrl = 'https://admin.umu888.com';
 // var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
-var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
+// var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
 var $http = function(options) {
 	return new Promise((resolve, reject) => {
 		var _header = {
@@ -16,6 +16,9 @@ var $http = function(options) {
 				if (res.data.token) {
 					uni.setStorageSync('token', res.data.token);
 				}
+				if (res.token) {
+					uni.setStorageSync('token', res.token);
+				}
 				if (res.data.code == 3001) {
 					// uni.navigateTo({
 					// 	url: '/pages/login/login'
@@ -25,10 +28,17 @@ var $http = function(options) {
 				if (res.data.code !== 0) {
 					uni.showToast({
 						icon: 'none',
-						title: res.msg
+						title: res.data.msg
 					});
 					reject(res.data);
 				}
+				// if (res.data.code == 1001) {
+				// 	uni.showToast({
+				// 		icon: 'none',
+				// 		title: res.data.msg
+				// 	});
+				// 	reject(res.data);
+				// }
 				resolve(res.data);
 			},
 			fail: res => {

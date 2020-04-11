@@ -32,7 +32,7 @@
 							<view class="orderlist_itemcon_right_name">{{ data.title || '' }}</view>
 							<view class="specifications" v-show="data.product.exts.length > 0">{{ data.product.exts[0].field || '' }}/{{ data.product.exts[0].value || '' }}</view>
 							<view class="orderlist_itemcon_right_money">
-								<view class="item_moneytop_left_left">￥{{ data.product.price }}</view>
+								<view class="item_moneytop_left_left">￥{{ data.product.show_price }}</view>
 								<view class="item_moneytop_left_right">X{{ data.product.quantity }}</view>
 							</view>
 						</view>
@@ -99,6 +99,7 @@ import popupok from '@/pages/components/popupok/popupok.vue';
 export default {
 	data() {
 		return {
+			amount: '',
 			id: 0,
 			show: false,
 			data: {},
@@ -147,13 +148,17 @@ export default {
 		ordersDetail() {
 			ordersDetail({ id: this.id }).then(res => {
 				this.data = res.data;
+				this.amount = res.data.amount;
 			});
 		},
 		// 支付
 		gopay() {
+			if (!this.isclick) {
+				return;
+			}
 			this.isclick = false;
 			payWechat(this.id, uni.getStorageSync('openid')).then(res1 => {
-				this.isclick = true;
+				this.isclick = false;
 				if (res1.code == 0) {
 					this.pay(res1.data);
 				}

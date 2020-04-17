@@ -36,11 +36,11 @@
 							</view>
 							<view class="specifications" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">{{ data.product.child[0].title }}</view>
 							<view class="specifications" v-show="data.type_zh == '景点'">{{ data.address }}</view>
-							<view class="orderlist_itemcon_right_moneya" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+							<!-- <view class="orderlist_itemcon_right_moneya" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
 								<view class="item_moneytop_left_lefta">￥</view>
 								<view class="item_moneytop_left_centera">{{ data.product.child[0].price }}</view>
 								<view class="item_moneytop_left_righta">/间/晚</view>
-							</view>
+							</view> -->
 							<view class="orderlist_itemcon_right_money" v-if="data.type_zh != '酒店' && data.type_zh != '民宿'">
 								<view class="item_moneytop_left_left">￥{{ data.product.amount }}</view>
 								<view class="item_moneytop_left_right">X{{ data.product.quantity }}</view>
@@ -68,7 +68,7 @@
 			</view>
 			<view class="hotelitem_list">
 				<view class="hotelitem_list_left">房型</view>
-				<view class="hotelitem_list_right">{{ data.product.builtuparea }}{{ data.product.bed_type }}{{ data.product.capacity }}{{ data.product.description }}</view>
+				<view class="hotelitem_list_right">{{ data.product.builtuparea }}{{ data.product.bed_type }}{{ data.product.capacity }}</view>
 			</view>
 			<view class="hotelitem_list">
 				<view class="hotelitem_list_left">入住日期</view>

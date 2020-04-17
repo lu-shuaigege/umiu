@@ -593,20 +593,12 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
       recommendStudiotop: [], // 我的圈子
       recommendStudio: [], data: { user: { id: 0, supplier_id: 0, username: '', truename: '', mobile: '', avatar: '', nickname: '', sex: 2, wx_number: '', profile: '', rating: '', cover_image: '', role: '', role_zh: '', role_type: '', is_admin: 0 }, trade_number: 0, visitor_number: 0, service_number: 0, play_number: 0, plays: [], isDis: 0, uid: '', code: '', openid: '', userInfo: {} } };}, onShow: function onShow() {var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
     wx.hideHomeButton();if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onPageScroll: function onPageScroll(res) {var _this = this;wx.createSelectorQuery().select('.studioBottom-top').boundingClientRect(function (rect) {_this.fixTop = rect.top;}).exec();}, onLoad: function onLoad(options) {this.id = options.id; // this.getList();
-    if (options.id) {uni.setStorageSync('studio', options.id);}if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (getCurrentPages().length == 1) {if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id) });} // this.authVerify(function() {
-      // 	this.userInfo = res.userInfo;
-      // 	uni.setStorageSync('userInfo', res.userInfo);
-      // 	this.bindfans();
-      // 	this.getDetail();
-      // 	return;
-      // }, `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`);
-    } else {if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id) });} // this.authVerify(function() {
-      // 	this.userInfo = res.userInfo;
-      // 	uni.setStorageSync('userInfo', res.userInfo);
-      // 	this.getDetail();
-      // 	return;
-      // }, `/pages/authorizations/authorizations?id=${this.id}`);
-      // wx.getSetting({
+    if (options.id) {uni.setStorageSync('studio', options.id);}if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// if (!uni.getStorageSync('token')) {
+      // 	uni.navigateTo({
+      // 		url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${1}`
+      // 	});
+      // }
+      if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id, "&needUserInfo=", 1, "&needToken=", 0) });}} else {if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id, "&needUserInfo=", 1, "&needToken=", 0) });} // wx.getSetting({
       // 	success: res => {
       // 		//判断是否授权，如果授权成功
       // 		if (res.authSetting['scope.userInfo']) {
@@ -624,45 +616,16 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
       // 		}
       // 	}
       // });
-    } // if (uni.getStorageSync('openid')) {
-    // 	this.openid = uni.getStorageSync('openid');
-    // } else {
-    // 	this.authorizations();
-    // }
-    this.getDetail();this.videos();this.circle();this.circles(true);this.travelsfn();this.questions();}, methods: { // authorizations() {
-    // 	uni.navigateTo({
-    // 		url: `/pages/authorizations/authorizations?id=${this.id}`
-    // 	});
-    // },
-    gotoStudio: function gotoStudio(friend_id) {uni.navigateTo({ url: '/pages/studio/studio?id=' + friend_id });}, tel: function tel() {wx.makePhoneCall({ phoneNumber: this.data.user.mobile });}, gotolife: function gotolife() {wx.pageScrollTo({ scrollTop: 820, duration: 300 });}, bindfans: function bindfans() {(0, _api.bindfans)('', this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+    }this.getDetail();this.videos();this.circle();this.circles(true);this.travelsfn();this.questions();}, methods: { gotoStudio: function gotoStudio(friend_id) {uni.navigateTo({ url: '/pages/studio/studio?id=' + friend_id });}, tel: function tel() {wx.makePhoneCall({ phoneNumber: this.data.user.mobile });}, gotolife: function gotolife() {wx.pageScrollTo({ scrollTop: 820, duration: 300 });}, bindfans: function bindfans() {(0, _api.bindfans)('', this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
         console.log(res);if (res.code == 0) {// uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
           // });
         }});}, // 用户信息
-    getDetail: function getDetail() {var _this2 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this2.data = res.data;});}, authVerify: function authVerify(backfun, failToUrl) {wx.getSetting({ success: function success(res) {//判断是否授权，如果授权成功
-          if (res.authSetting['scope.userInfo']) {//获取用户信息
-            wx.getUserInfo({ success: function success(res) {return function () {backfun();};} });} else {uni.navigateTo({ url: failToUrl });return;}} });}, // 短视频
-    videos: function videos() {var _this3 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {_this3.loadding = true;if (res.data.data.length == 0) {_this3.loadding = false;_this3.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this3.loadding = false;
-          _this3.pullUpOn = false;
-          _this3.video = _this3.video.concat(res.data.data);
-          _this3.pagea++;
-          return;
-        }
-      });
-    },
-    //我的圈子推荐
-    circles: function circles(recommend) {var _this4 = this;
-      (0, _api.circles)(this.id, recommend).then(function (res) {
-        _this4.recommendStudiotop = res.data.slice(0, 1);
-      });
-    },
-    // 我的圈子
-    circle: function circle() {var _this5 = this;
-      (0, _api.circle)(this.pageb, this.id).then(function (res) {
-        _this5.loadding = true;
-        if (res.data.data.length == 0) {
-          _this5.loadding = false;
+    getDetail: function getDetail() {var _this2 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this2.data = res.data;});}, // 短视频
+    videos: function videos() {var _this3 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {_this3.loadding = true;if (res.data.data.length == 0) {_this3.loadding = false;_this3.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this3.loadding = false;_this3.pullUpOn = false;_this3.video = _this3.video.concat(res.data.data);_this3.pagea++;return;}});}, //我的圈子推荐
+    circles: function circles(recommend) {var _this4 = this;(0, _api.circles)(this.id, recommend).then(function (res) {_this4.recommendStudiotop = res.data.slice(0, 1);});}, // 我的圈子
+    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {_this5.loadding = true;if (res.data.data.length == 0) {_this5.loadding = false;
           _this5.pullUpOn = false;
           return;
         }
@@ -763,7 +726,12 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
             url: "/pages/details/homestayDetail/homestayDetail?id=".concat(id, "&isDis=1") });
 
           break;
-        case 'feature':
+        // case 'feature':
+        // 	uni.navigateTo({
+        // 		url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
+        // 	});
+        // 	break;
+        case 'specialty':
           uni.navigateTo({
             url: "/pages/details/otherDetail/otherDetail?id=".concat(id, "&isDis=1") });
 

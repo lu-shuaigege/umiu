@@ -19,7 +19,7 @@
 				</view>
 				<view class="second">
 					<view class="labela">{{ list.room.title }}</view>
-					<view class="labelb">库存：20</view>
+					<!-- <view class="labelb">库存：20</view> -->
 					<!-- <view class="l">{{ list.address }}</view> -->
 					<!-- <view class="r">门市价:￥{{list.price}}</view> -->
 				</view>
@@ -255,9 +255,9 @@ export default {
 		// 	});
 		// }
 		if (getCurrentPages().length == 1) {
-			if (!uni.setStorageSync('token')) {
+			if (!uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${this.id}`
+					url: `/pages/authorizations/authorizations?needUserInfo=${1}&needToken=${0}`
 				});
 			}
 		}
@@ -289,7 +289,7 @@ export default {
 		},
 		// 绑定粉丝
 		bindfans() {
-			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
+			bindfans(this.id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				console.log(res);
 			});
 		},
@@ -357,8 +357,11 @@ export default {
 				// uni.navigateTo({
 				// 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
 				// });
+				// uni.navigateTo({
+				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
 				});
 			} else {
 				_this.child = _this.child.replace(/\&nbsp;/g, '');
@@ -366,21 +369,6 @@ export default {
 					url: `/pages/confirm/order/order?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}&datas=${datas}`
 				});
 			}
-			uni.getSetting({
-				success(res) {
-					// if (!res.authSetting['scope.userInfo']) {
-					// if (uni.getStorageSync('token')) {
-					// 	uni.navigateTo({
-					// 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
-					// 	});
-					// } else {
-					// 	_this.child = _this.child.replace(/\&nbsp;/g, '');
-					// 	uni.navigateTo({
-					// 		url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}`
-					// 	});
-					// }
-				}
-			});
 		},
 		CheckboxChange(e) {
 			this.child = JSON.stringify(e.detail.value);

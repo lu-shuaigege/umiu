@@ -390,7 +390,7 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
     },
     toDetail: function toDetail(id) {
       uni.navigateTo({
-        url: '/pages/studio/studio?id=' + id });
+        url: "/pages/studio/studio?id=".concat(id) });
 
       uni.setStorageSync('studio', id);
     } },

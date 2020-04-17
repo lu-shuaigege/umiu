@@ -224,9 +224,11 @@ var _default = { components: {}, data: function data() {return { list: [], quant
               icon: 'none',
               title: res.msg });
 
-            if (res.msg == '请登录！') {
+            console.log(res.code);
+            // if (res.msg == '请登录！') {
+            if (res.code == '3001') {
               uni.navigateTo({
-                url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid) });
+                url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
             }
             _this2.isclick = true;
@@ -252,9 +254,10 @@ var _default = { components: {}, data: function data() {return { list: [], quant
               icon: 'none',
               title: res.msg });
 
-            if (res.msg == '请登录！') {
+            // if (res.msg == '请登录！') {
+            if (res.code == '3001') {
               uni.navigateTo({
-                url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid) });
+                url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
             }
             _this2.isclick = true;

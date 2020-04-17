@@ -379,31 +379,26 @@ export default {
 		if (uni.getStorageSync('openid')) {
 			this.openid = uni.getStorageSync('openid');
 		}
+		if (uni.getStorageSync('userInfo')) {
+			this.userInfo = uni.getStorageSync('userInfo');
+		}
 		if (getCurrentPages().length == 1) {
-			if (!uni.getStorageSync('token')) {
+			// if (!uni.getStorageSync('token')) {
+			// 	uni.navigateTo({
+			// 		url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${1}`
+			// 	});
+			// }
+			if (!uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${this.id}`
+					url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${0}`
 				});
 			}
-			// this.authVerify(function() {
-			// 	this.userInfo = res.userInfo;
-			// 	uni.setStorageSync('userInfo', res.userInfo);
-			// 	this.bindfans();
-			// 	this.getDetail();
-			// 	return;
-			// }, `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`);
 		} else {
-			if (!uni.getStorageSync('token')) {
+			if (!uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${this.id}`
+					url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${0}`
 				});
 			}
-			// this.authVerify(function() {
-			// 	this.userInfo = res.userInfo;
-			// 	uni.setStorageSync('userInfo', res.userInfo);
-			// 	this.getDetail();
-			// 	return;
-			// }, `/pages/authorizations/authorizations?id=${this.id}`);
 
 			// wx.getSetting({
 			// 	success: res => {
@@ -424,11 +419,6 @@ export default {
 			// 	}
 			// });
 		}
-		// if (uni.getStorageSync('openid')) {
-		// 	this.openid = uni.getStorageSync('openid');
-		// } else {
-		// 	this.authorizations();
-		// }
 
 		this.getDetail();
 		this.videos();
@@ -438,11 +428,6 @@ export default {
 		this.questions();
 	},
 	methods: {
-		// authorizations() {
-		// 	uni.navigateTo({
-		// 		url: `/pages/authorizations/authorizations?id=${this.id}`
-		// 	});
-		// },
 		gotoStudio(friend_id) {
 			uni.navigateTo({
 				url: '/pages/studio/studio?id=' + friend_id
@@ -476,28 +461,6 @@ export default {
 		getDetail() {
 			usersStudio(this.id, this.openid).then(res => {
 				this.data = res.data;
-			});
-		},
-
-		authVerify(backfun, failToUrl) {
-			wx.getSetting({
-				success: res => {
-					//判断是否授权，如果授权成功
-					if (res.authSetting['scope.userInfo']) {
-						//获取用户信息
-						wx.getUserInfo({
-							success: res =>
-								function() {
-									backfun();
-								}
-						});
-					} else {
-						uni.navigateTo({
-							url: failToUrl
-						});
-						return;
-					}
-				}
 			});
 		},
 		// 短视频
@@ -630,7 +593,12 @@ export default {
 						url: `/pages/details/homestayDetail/homestayDetail?id=${id}&isDis=1`
 					});
 					break;
-				case 'feature':
+				// case 'feature':
+				// 	uni.navigateTo({
+				// 		url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
+				// 	});
+				// 	break;
+				case 'specialty':
 					uni.navigateTo({
 						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1`
 					});

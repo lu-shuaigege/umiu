@@ -184,9 +184,9 @@ export function boutiquesDetail(id) {
 	})
 }
 //标品-线路
-export function boutiquesTeams(id, date) {
+export function boutiquesTeams(id, date, type) {
 	return http({
-		url: "/api/boutiques/" + id + "/teams/" + date
+		url: `/api/${type}/${id}/teams/${date}`
 	})
 }
 //参数配置-订单评价

@@ -91,9 +91,11 @@ export default {
 							icon: 'none',
 							title: res.msg
 						});
-						if (res.msg == '请登录！') {
+						console.log(res.code);
+						// if (res.msg == '请登录！') {
+						if (res.code == '3001') {
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}`
+								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						this.isclick = true;
@@ -119,9 +121,10 @@ export default {
 							icon: 'none',
 							title: res.msg
 						});
-						if (res.msg == '请登录！') {
+						// if (res.msg == '请登录！') {
+						if (res.code == '3001') {
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}`
+								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						this.isclick = true;

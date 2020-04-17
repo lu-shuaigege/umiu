@@ -232,7 +232,7 @@ export default {
 		},
 		toDetail(id) {
 			uni.navigateTo({
-				url: '/pages/studio/studio?id=' + id
+				url: `/pages/studio/studio?id=${id}`
 			});
 			uni.setStorageSync('studio', id);
 		}

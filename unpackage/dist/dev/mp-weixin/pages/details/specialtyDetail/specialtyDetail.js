@@ -268,9 +268,12 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
       // 		}
       // 	}
       // });
-      if (!uni.getStorageSync('token')) {
+      if (!uni.getStorageSync('userInfo')) {
+        // uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+        // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });
+          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });
 
       }
     }
@@ -278,7 +281,7 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
   },
   methods: {
     bindfans: function bindfans() {
-      (0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
+      (0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
         // this.list = res.data;
         console.log(res);
         if (res.code == 0) {
@@ -322,8 +325,11 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
         // uni.navigateTo({
         // 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
         // });
+        // uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+        // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         uni.navigateTo({

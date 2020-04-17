@@ -143,6 +143,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
@@ -154,23 +172,101 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { data: function data() {return { id: '', isDis: '', uid: '', data: '', code: '', userInfo: [], openid: '', session_key: ''
-      // openidUrl: 'https://api.weixin.qq.com/sns/jscode2session', //获取openid接口
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { id: '', isDis: '', uid: '', needUserInfo_active: 0, needToken_active: 0, data: '', code: '', userInfo: '', openid: '', session_key: '', token: '', needUserInfo: 0, needToken: 0, phones: 0, datas: '' // openidUrl: 'https://api.weixin.qq.com/sns/jscode2session', //获取openid接口
       // APP_SECRET: 'ddec28ff357d206e32a42b41575de883',
       // APP_ID: 'wx620e699d34566854'
-    };
-  },
-  onShow: function onShow() {},
-  onLoad: function onLoad(options) {
-    // this.getConfig();
-    this.id = options.id;
-    this.isDis = options.isDis;
-    this.uid = options.uid;
-
-    console.log(this.id);
+    };}, onShow: function onShow() {}, onLoad: function onLoad(options) {this.id = options.id;this.isDis = options.isDis;this.uid = options.uid;if (options.needUserInfo) {this.needUserInfo = options.needUserInfo;}
+    if (options.needToken) {
+      this.needToken = options.needToken;
+    }
+    if (options.datas) {
+      this.datas = options.datas;
+    }
   },
   methods: {
     //获取用户信息
+    getConfiguser: function getConfiguser(e) {
+      var auth_param = e.detail;
+      var that = this;
+      uni.login({
+        provider: 'weixin',
+        success: function success(loginRes) {
+          that.code = loginRes.code;
+          uni.setStorageSync('code', loginRes.code);
+          (0, _api.getOpenid)(loginRes.code).then(function (res) {
+            if (res.code == 0) {
+              that.openid = res.data.openid;
+              uni.setStorageSync('openid', res.data.openid);
+              that.session_key = res.data.session_key;
+              uni.setStorageSync('session_key', res.data.session_key);
+              uni.getSetting({
+                success: function success(res) {
+                  if (res.authSetting['scope.userInfo']) {
+                    uni.getUserInfo({
+                      success: function success(infoRes) {
+                        that.userInfo = infoRes.userInfo;
+                        uni.setStorageSync('userInfo', infoRes.userInfo);
+                        that.needUserInfo_active = 1;
+                        //需要用户信息并且用户已经授权并且不需要授权手机号
+                        if (that.needUserInfo == 1 && that.needUserInfo_active == 1 && that.needToken == 0) {
+                          var pages = getCurrentPages();
+                          var prevPage = pages[pages.length - 2]; //上一个页面
+                          console.log(prevPage);
+                          //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+                          prevPage.setData({
+                            id: that.id,
+                            isDis: that.isDis,
+                            uid: that.uid });
+
+                          wx.navigateBack({
+                            //返回
+                            delta: 1 });
+
+                        } else if (that.needToken_active == 1 && that.needToken_active == 1 && that.needUserInfo == 1 && that.needUserInfo_active == 1) {
+                          //需要用户信息并且用户已经授权并且需要授权手机号并且手机号已经授权
+                          var _pages = getCurrentPages();
+                          var _prevPage = _pages[_pages.length - 2]; //上一个页面
+                          console.log(_prevPage);
+                          //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+                          _prevPage.setData({
+                            id: that.id,
+                            isDis: that.isDis,
+                            uid: that.uid });
+
+                          wx.navigateBack({
+                            //返回
+                            delta: 1 });
+
+                        }
+                      } });
+
+                  }
+                } });
+
+            }
+          });
+        } });
+
+    },
+    //用户授权手机号
     getConfig: function getConfig(e) {
       console.log(e);
       // return false;
@@ -188,21 +284,6 @@ var _default = { data: function data() {return { id: '', isDis: '', uid: '', dat
               uni.setStorageSync('openid', res.data.openid);
               that.session_key = res.data.session_key;
               uni.setStorageSync('session_key', res.data.session_key);
-              uni.getSetting({
-                success: function success(res) {
-                  if (res.authSetting['scope.userInfo']) {
-                    uni.getUserInfo({
-                      success: function success(infoRes) {
-                        that.userInfo = infoRes.userInfo;
-                        uni.setStorageSync('userInfo', infoRes.userInfo);
-                        // uni.navigateTo({
-                        // 	url: '/pages/studio/studio?id=' + that.id
-                        // });
-                      } });
-
-                  }
-                } });
-
               (0, _api.get_phoneLogin)({
                 code: loginRes.code,
                 encryptedData: auth_param.encryptedData,
@@ -213,35 +294,40 @@ var _default = { data: function data() {return { id: '', isDis: '', uid: '', dat
                 console.log(res);
                 if (res.token) {
                   uni.setStorageSync('token', res.token);
+                  that.needToken_active = 1;
                 }
-                var pages = getCurrentPages();
-                var prevPage = pages[pages.length - 2]; //上一个页面
-                //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-                prevPage.setData({
-                  id: that.id,
-                  isDis: that.isDis,
-                  uid: that.uid });
+                // 需要手机号并且手机号已经授权并且不需要用户信息
+                if (that.needToken_active == 1 && that.needToken == 1 && that.needUserInfo == 0) {
+                  var pages = getCurrentPages();
+                  var prevPage = pages[pages.length - 2]; //上一个页面
+                  console.log(prevPage);
+                  //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+                  prevPage.setData({
+                    id: that.id,
+                    isDis: that.isDis,
+                    uid: that.uid });
 
-                wx.navigateBack({
-                  //返回
-                  delta: 1 });
+                  wx.navigateBack({
+                    //返回
+                    delta: 1 });
 
+                } else if (that.needToken_active == 1 && that.needToken_active == 1 && that.needUserInfo == 1 && that.needUserInfo_active == 1) {
+                  // 需要手机号并且手机号已经授权并且需要用户信息并且用户信息已经授权
+                  var _pages2 = getCurrentPages();
+                  var _prevPage2 = _pages2[_pages2.length - 2]; //上一个页面
+                  console.log(_prevPage2);
+                  //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+                  _prevPage2.setData({
+                    id: that.id,
+                    isDis: that.isDis,
+                    uid: that.uid });
+
+                  wx.navigateBack({
+                    //返回
+                    delta: 1 });
+
+                }
               });
-              // uni.getSetting({
-              // 	success(res) {
-              // 		if (res.authSetting['scope.userInfo']) {
-              // 			uni.getUserInfo({
-              // 				success: function(infoRes) {
-              // 					that.userInfo = infoRes.userInfo;
-              // 					uni.setStorageSync('userInfo', infoRes.userInfo);
-              // 					// uni.navigateTo({
-              // 					// 	url: '/pages/studio/studio?id=' + that.id
-              // 					// });
-              // 				}
-              // 			});
-              // 		}
-              // 	}
-              // });
             }
           });
         } });

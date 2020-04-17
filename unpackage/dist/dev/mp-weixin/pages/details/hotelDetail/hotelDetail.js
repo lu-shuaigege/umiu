@@ -446,7 +446,10 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
       // 		}
       // 	}
       // });
-      if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });}}this.getDetail(options.id);}, // computed: {
+      if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+        // });
+        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });}}this.getDetail(options.id);}, // computed: {
   // 	// 计算属性的 getter
   // 	totalPrice: function() {
   // 		let allPrice = 0;
@@ -465,7 +468,7 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
         // }
         console.log(_this2.daysArr);});}, // 跳转到选择房间数量
     gocheck: function gocheck() {var check = JSON.stringify(this.check);uni.navigateTo({ url: "/pages/details/check/check?check=".concat(check) });}, // 绑定粉丝
-    bindfans: function bindfans() {(0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});},
+    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});},
     getDetail: function getDetail(id) {var _this3 = this;
       if (this.isDis == 1) {
         (0, _api.distributionDetail)(id, 'hotel').then(function (res) {
@@ -544,8 +547,11 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
         // uni.navigateTo({
         // 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
         // });
+        // uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+        // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         // _this.child = _this.child.replace(/\&nbsp;/g, '');

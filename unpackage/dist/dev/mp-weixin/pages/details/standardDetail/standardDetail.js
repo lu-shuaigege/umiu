@@ -587,7 +587,10 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
       // 		}
       // 	}
       // });
-      if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });}}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+      if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+        // });
+        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });}}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
         console.log(res);if (res.code == 0) {// uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
@@ -625,7 +628,7 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     // 	});
     // },
     getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'tour-group').then(function (res) {_this3.list = res.data;_this3.list.author = res.data.distributor;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];_this3.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {_this3.list = res.data;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];});}}, //获取日历&&价格
-    getTeams: function getTeams(id) {var _this4 = this;(0, _api.boutiquesTeams)(id, this.date).then(function (res) {_this4.daysList = res.data;if (_this4.daysList[0].week_zh == '周日') {_this4.daysList.unshift();} else if (_this4.daysList[0].week_zh == '周一') {_this4.daysList.unshift({});} else if (_this4.daysList[0].week_zh == '周二') {_this4.daysList.unshift({}, {});} else if (_this4.daysList[0].week_zh == '周三') {_this4.daysList.unshift({}, {}, {});} else if (_this4.daysList[0].week_zh == '周四') {_this4.daysList.unshift({}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周五') {_this4.daysList.unshift({}, {}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周六') {_this4.daysList.unshift({}, {}, {}, {}, {}, {});}});}, // 隐藏日历
+    getTeams: function getTeams(id) {var _this4 = this;(0, _api.boutiquesTeams)(id, this.date, "tour-groups").then(function (res) {_this4.daysList = res.data;if (_this4.daysList[0].week_zh == '周日') {_this4.daysList.unshift();} else if (_this4.daysList[0].week_zh == '周一') {_this4.daysList.unshift({});} else if (_this4.daysList[0].week_zh == '周二') {_this4.daysList.unshift({}, {});} else if (_this4.daysList[0].week_zh == '周三') {_this4.daysList.unshift({}, {}, {});} else if (_this4.daysList[0].week_zh == '周四') {_this4.daysList.unshift({}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周五') {_this4.daysList.unshift({}, {}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周六') {_this4.daysList.unshift({}, {}, {}, {}, {}, {});}});}, // 隐藏日历
     hide: function hide() {this.modal = false;this.currentDate = new Date();}, // 显示日历
     show: function show() {this.modal = true;this.dates = this.currentDate.setMonth(this.currentDate.getMonth());this.times(this.dates);this.getTeams(this.id);}, // 获取时间
     times: function times(dates) {this.dates = new Date(dates);this.today = (0, _index.default)().format('YYYY-MM-DD');var now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);this.date = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
@@ -655,8 +658,11 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
         // uni.navigateTo({
         // 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
         // });
+        // uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+        // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         _this.team = JSON.stringify(_this.team);

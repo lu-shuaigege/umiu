@@ -55,11 +55,17 @@ export default {
 	},
 	onShow() {
 		wx.hideHomeButton();
+		this.userInfo();
 	},
 	onLoad(options) {
 		if (!uni.getStorageSync('token')) {
 			uni.navigateTo({
-				url: `/pages/authorizations/authorizations`
+				url: `/pages/authorizations/authorizations?needUserInfo=${1}&needToken=${1}`
+			});
+		}
+		if (!uni.getStorageSync('userInfo')) {
+			uni.navigateTo({
+				url: `/pages/authorizations/authorizations?needUserInfo=${1}&needToken=${1}`
 			});
 		}
 		this.userInfo();

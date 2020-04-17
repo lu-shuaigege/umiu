@@ -345,9 +345,12 @@ export default {
 			// 		}
 			// 	}
 			// });
-			if (!uni.getStorageSync('token')) {
+			if (!uni.getStorageSync('userInfo')) {
+				// uni.navigateTo({
+				// 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&needUserInfo=${1}&needToken=${0}`
 				});
 			}
 		}
@@ -355,7 +358,7 @@ export default {
 	},
 	methods: {
 		bindfans() {
-			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
+			bindfans(this.id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
 				console.log(res);
 				if (res.code == 0) {
@@ -433,7 +436,7 @@ export default {
 		},
 		//获取日历&&价格
 		getTeams(id) {
-			boutiquesTeams(id, this.date).then(res => {
+			boutiquesTeams(id, this.date,"tour-groups").then(res => {
 				this.daysList = res.data;
 				if (this.daysList[0].week_zh == '周日') {
 					this.daysList.unshift();
@@ -506,8 +509,11 @@ export default {
 				// uni.navigateTo({
 				// 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
 				// });
+				// uni.navigateTo({
+				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
 				});
 			} else {
 				_this.team = JSON.stringify(_this.team);

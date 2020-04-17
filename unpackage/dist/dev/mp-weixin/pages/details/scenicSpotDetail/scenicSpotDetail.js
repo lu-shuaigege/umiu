@@ -297,7 +297,10 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
       // 		}
       // 	}
       // });
-      if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid) });}}this.getDetail(options.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+      if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+        // });
+        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });}}this.getDetail(options.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
         console.log(res);if (res.code == 0) {// uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
@@ -335,8 +338,11 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
         // uni.navigateTo({
         // 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
         // });
+        // uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+        // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         uni.navigateTo({

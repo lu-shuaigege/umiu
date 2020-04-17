@@ -98,7 +98,7 @@
 		{
 			"path": "pages/details/specialtyDetail/specialtyDetail",
 			"style": {
-				"navigationBarTitleText": "特产详情",
+				"navigationBarTitleText": "特产详情", //特色详情
 				"navigationBarBackgroundColor": "#FFFFFF"
 			}
 		},

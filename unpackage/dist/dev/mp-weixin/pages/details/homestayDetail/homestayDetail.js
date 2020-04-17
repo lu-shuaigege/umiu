@@ -451,7 +451,7 @@ var _default = { components: {}, data: function data() {return { start_date: '00
     // 		}
     // 	});
     // }
-    if (getCurrentPages().length == 1) {if (!uni.setStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id) });}}this.getDetail(options.id);}, // computed: {
+    if (getCurrentPages().length == 1) {if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?needUserInfo=".concat(1, "&needToken=", 0) });}}this.getDetail(options.id);}, // computed: {
   // 	// 计算属性的 getter
   // 	totalPrice: function() {
   // 		let allPrice = 0;
@@ -465,7 +465,7 @@ var _default = { components: {}, data: function data() {return { start_date: '00
   methods: { // 跳转日历
     calendar: function calendar() {uni.navigateTo({ url: "/pages/details/calendar/calendar?id=".concat(id) });}, // 跳转到选择房间数量
     gocheck: function gocheck() {uni.navigateTo({ url: "/pages/details/check/check" });}, // 绑定粉丝
-    bindfans: function bindfans() {(0, _api.bindfans)(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});}, getDetail: function getDetail(id) {var _this2 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'homestay').then(function (res) {_this2.list = res.data;});} else {(0, _api.sourcesDetail)(id, 'homestay').then(function (res) {_this2.list = res.data;});}}, //进入工作室
+    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});}, getDetail: function getDetail(id) {var _this2 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'homestay').then(function (res) {_this2.list = res.data;});} else {(0, _api.sourcesDetail)(id, 'homestay').then(function (res) {_this2.list = res.data;});}}, //进入工作室
     toUpload: function toUpload(id) {// if (this.isDis == 1 && this.uid) {
       // 	this.user_id = this.list.distributor.id;
       // }
@@ -505,8 +505,11 @@ var _default = { components: {}, data: function data() {return { start_date: '00
         // uni.navigateTo({
         // 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
         // });
+        // uni.navigateTo({
+        // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+        // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         _this.child = _this.child.replace(/\&nbsp;/g, '');
@@ -514,21 +517,6 @@ var _default = { components: {}, data: function data() {return { start_date: '00
           url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=homestay&child=").concat(_this.child, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&datas=").concat(datas) });
 
       }
-      uni.getSetting({
-        success: function success(res) {
-          // if (!res.authSetting['scope.userInfo']) {
-          // if (uni.getStorageSync('token')) {
-          // 	uni.navigateTo({
-          // 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
-          // 	});
-          // } else {
-          // 	_this.child = _this.child.replace(/\&nbsp;/g, '');
-          // 	uni.navigateTo({
-          // 		url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}`
-          // 	});
-          // }
-        } });
-
     },
     CheckboxChange: function CheckboxChange(e) {
       this.child = JSON.stringify(e.detail.value);

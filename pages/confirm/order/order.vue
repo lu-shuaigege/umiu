@@ -9,11 +9,11 @@
 					{{ data.product.exts[0].field || '' }}/{{ data.product.exts[0].value || '' }}
 				</view>
 				<view class="order_right_specifications" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">{{ list.address }}</view>
-				<view class="order_right_specifications_sight" v-if="type == 'sight' || type == 'repast'">{{ list.address }}</view>
+				<view class="order_right_specifications_sight" v-if="type == 'sight' || type == 'repast' || type == 'specialty'">{{ list.address }}</view>
 				<view class="order_right_money">
-					<view class="order_right_money_icon">￥</view>
-					<view class="order_right_money_num">{{ list.price }}</view>
-					<view class="order_right_money_right" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">/间/晚</view>
+					<view class="order_right_money_icon" v-if="list.type_zh != '酒店' && list.type_zh != '民宿'">￥</view>
+					<view class="order_right_money_num" v-if="list.type_zh != '酒店' && list.type_zh != '民宿'">{{ list.price }}</view>
+					<!-- <view class="order_right_money_right" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">/间/晚</view> -->
 					<view class="order_right_money_right" v-if="list.type_zh == '特产'">/个</view>
 					<view class="order_right_money_right" v-if="list.type_zh == '景点'">/张</view>
 					<view class="order_right_money_right" v-if="list.type_zh == '用餐'">/人</view>
@@ -395,7 +395,7 @@ export default {
 							};
 							let datas = JSON.stringify(data);
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&datas=${datas}`
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						return;
@@ -433,7 +433,7 @@ export default {
 							};
 							let datas = JSON.stringify(data);
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&datas=${datas}`
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						return;

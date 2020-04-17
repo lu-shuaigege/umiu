@@ -11,6 +11,8 @@
 	"libVersion": "2.9.2",
 	"appid": "wx620e699d34566854",
 	"projectname": "游米游",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -36,17 +38,10 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "pages/details/otherDetail/otherDetail",
 					"pathName": "pages/details/otherDetail/otherDetail",
-					"query": "id=7174&type=specialty&isDis=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/my/myIndex/myIndex",
-					"pathName": "pages/my/myIndex/myIndex",
-					"query": "id=7174&type=specialty&isDis=1",
+					"query": "id=16474&type=specialty&isDis=1&uid=1000002",
 					"scene": null
 				}
 			]

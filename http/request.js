@@ -25,7 +25,7 @@ var $http = function(options) {
 					// });
 					// reject(res.data);
 				}
-				if (res.data.code !== 0) {
+				if (res.data.code !== 0 && res.data.code != 3001) {
 					uni.showToast({
 						icon: 'none',
 						title: res.data.msg

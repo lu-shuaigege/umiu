@@ -137,6 +137,7 @@
 			getDetail(id){
 				shortvideos(id).then(res => {
 					this.list = res.data;
+					wx.createVideoContext("myVideo").play()
 				});
 			},
 			toAll(){

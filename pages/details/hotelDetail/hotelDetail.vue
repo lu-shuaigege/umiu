@@ -19,7 +19,7 @@
 				</view>
 				<view class="second">
 					<view class="labela">{{ list.room.title }}</view>
-					<view class="labelb">库存：20</view>
+					<!-- <view class="labelb">库存：20</view> -->
 					<!-- <view class="l">{{ list.address }}</view> -->
 					<!-- <view class="r">门市价:￥{{list.price}}</view> -->
 				</view>
@@ -253,9 +253,12 @@ export default {
 			// 		}
 			// 	}
 			// });
-			if (!uni.getStorageSync('token')) {
+			if (!uni.getStorageSync('userInfo')) {
+				// uni.navigateTo({
+				// 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&needUserInfo=${1}&needToken=${0}`
 				});
 			}
 		}
@@ -314,7 +317,7 @@ export default {
 		},
 		// 绑定粉丝
 		bindfans() {
-			bindfans(this.distributable_id, this.uid, this.code, this.openid, this.userInfo).then(res => {
+			bindfans(this.id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				console.log(res);
 			});
 		},
@@ -396,8 +399,11 @@ export default {
 				// uni.navigateTo({
 				// 	url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
 				// });
+				// uni.navigateTo({
+				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
 				});
 			} else {
 				// _this.child = _this.child.replace(/\&nbsp;/g, '');

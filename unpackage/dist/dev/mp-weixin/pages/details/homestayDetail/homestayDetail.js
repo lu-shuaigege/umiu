@@ -428,7 +428,7 @@ var _default = { components: {}, data: function data() {return { start_date: '00
     // 登陆
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);} // 入住条件
     if (currPage.data.check) {this.check = currPage.data.check;console.log(this.check);this.quantity = currPage.data.check[0].num;this.number_of_adults = currPage.data.check[1].num;this.number_of_children = currPage.data.check[2].num;} // 入住日期
-    if (currPage.data.daysArr) {this.start_date = currPage.data.start_date;this.end_date = currPage.data.end_date;this.daysArr = currPage.data.daysArr;this.daysLength = this.daysArr.length;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {this.id = options.id;if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');} // if (getCurrentPages().length == 1) {
+    if (currPage.data.daysArr) {this.start_date = currPage.data.start_date;this.end_date = currPage.data.end_date;this.daysArr = currPage.data.daysArr;this.daysLength = this.daysArr.length;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {this.id = options.id;console.log(options.id);if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');} // if (getCurrentPages().length == 1) {
     // 	wx.getSetting({
     // 		success: res => {
     // 			//判断是否授权，如果授权成功
@@ -476,6 +476,7 @@ var _default = { components: {}, data: function data() {return { start_date: '00
       // 	this.user_id = id;
       // }
       this.user_id = id;uni.navigateTo({ url: "/pages/studio/studio?id=".concat(this.user_id, "&isDis=").concat(this.isDis) });}, tobuy: function tobuy() {var _this = this;if (_this.daysArr.length == 0) {uni.showToast({ icon: 'none', title: '请选择入住日期' });
+
         return;
       }
       if (_this.check[0].num == 0) {

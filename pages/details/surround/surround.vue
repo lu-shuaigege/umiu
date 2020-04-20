@@ -261,6 +261,8 @@ export default {
 			],
 
 			//日历
+			dataid: '',//获取日历列表的id
+
 			daysList: [],
 			modal: false,
 			dates: '', //格式化后日期
@@ -311,6 +313,7 @@ export default {
 			this.distributable_id = options.id;
 		}
 		this.id = options.id;
+		console.log(options.id);
 		if (options.uid) {
 			this.uid = options.uid;
 		}
@@ -430,18 +433,20 @@ export default {
 					this.chooseStart = this.list.teams[0].id;
 					this.team = this.list.teams[0];
 					this.distributable_id = res.data.distributable_id;
+					this.dataid=this.list.distributable_id
 				});
 			} else {
-				boutiquesDetail(id).then(res => {
+				boutiquesDetail(id, 'tour-surrounds').then(res => {
 					this.list = res.data;
 					this.chooseStart = this.list.teams[0].id;
 					this.team = this.list.teams[0];
+					this.dataid=this.id
 				});
 			}
 		},
 		//获取日历&&价格
 		getTeams(id) {
-			boutiquesTeams(this.list.distributable_id, this.date, 'tour-surrounds').then(res => {
+			boutiquesTeams(this.dataid, this.date, 'tour-surrounds').then(res => {
 				this.daysList = [];
 				this.daysList = res.data;
 				if (this.daysList[0].week_zh == '周日') {
@@ -524,7 +529,8 @@ export default {
 			} else {
 				_this.team = JSON.stringify(_this.team);
 				uni.navigateTo({
-					url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
+					// url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
+					url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type=tour-surround&team=${_this.team}&isDis=${_this.isDis}&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

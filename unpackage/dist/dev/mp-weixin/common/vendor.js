@@ -7902,12 +7902,12 @@ function distributionDetail(id, type) {
 }
 
 //标品-详情
-function boutiquesDetail(id) {
+function boutiquesDetail(id, type) {
   return (0, _request.default)({
-    url: "/api/boutiques/" + id });
+    url: "/api/".concat(type, "/").concat(id) });
 
 }
-//标品-线路
+//标品-线路-时间
 function boutiquesTeams(id, date, type) {
   return (0, _request.default)({
     url: "/api/".concat(type, "/").concat(id, "/teams/").concat(date) });
@@ -8093,9 +8093,9 @@ function resourcesHotel(data) {
 }
 
 //资源线路-下单-普通标品
-function boutiquesOrders(id, team_id, quantity, sharer_id) {
+function boutiquesOrders(id, team_id, quantity, sharer_id, type) {
   return (0, _request.default)({
-    url: "/api/boutiques/" + id + "/orders",
+    url: "/api/".concat(type, "/").concat(id, "/orders"),
     method: 'POST',
     data: {
       team_id: team_id,

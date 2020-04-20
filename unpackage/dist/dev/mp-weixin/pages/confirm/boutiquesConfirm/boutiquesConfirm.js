@@ -192,20 +192,22 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], quantity: '1', allprice: '', isclick: true, team: '', isDis: 0, uid: '', downbtn: false };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}var pages = getCurrentPages();var prevPage = pages[pages.length - 2]; //上一个页面
+var _default = { components: {}, data: function data() {return { list: [], type: 0, quantity: '1', allprice: '', isclick: true, team: '', isDis: 0, uid: '', downbtn: false };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}this.type = options.type;var pages = getCurrentPages();var prevPage = pages[pages.length - 2]; //上一个页面
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
     prevPage.setData({ // isDis: this.isDis,
-      isbuy: 1 });this.getDetail(options.id);this.team = JSON.parse(options.team);
+      isbuy: 1 });
+    this.getDetail(options.id);
+    this.team = JSON.parse(options.team);
     this.allprice = this.team.price;
   },
   methods: {
     getDetail: function getDetail(id) {var _this = this;
       if (this.isDis == 1) {
-        (0, _api.distributionDetail)(id, 'boutique').then(function (res) {
+        (0, _api.distributionDetail)(id, this.type).then(function (res) {
           _this.list = res.data;
         });
       } else {
-        (0, _api.boutiquesDetail)(id).then(function (res) {
+        (0, _api.boutiquesDetail)(id, "".concat(this.type, "s")).then(function (res) {
           _this.list = res.data;
         });
       }
@@ -217,7 +219,7 @@ var _default = { components: {}, data: function data() {return { list: [], quant
       if (this.isDis == 1) {
         this.isclick = false;
         // distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
-        (0, _api.distributionsOrders)({ id: id, team_id: this.team.id, quantity: this.quantity, type: 'boutique', sharer_id: this.uid }).then(function (res) {
+        (0, _api.distributionsOrders)({ id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid }).then(function (res) {
           _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({
@@ -247,7 +249,7 @@ var _default = { components: {}, data: function data() {return { list: [], quant
         });
       } else {
         this.isclick = false;
-        (0, _api.boutiquesOrders)(id, this.team.id, this.quantity, this.uid).then(function (res) {
+        (0, _api.boutiquesOrders)(id, this.team.id, this.quantity, this.uid, "".concat(this.type, "s")).then(function (res) {
           _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({

@@ -310,6 +310,7 @@ export default {
 			this.distributable_id = options.id;
 		}
 		this.id = options.id;
+		console.log(options.id);
 		if (options.uid) {
 			this.uid = options.uid;
 		}
@@ -427,7 +428,7 @@ export default {
 					this.distributable_id = res.data.distributable_id;
 				});
 			} else {
-				boutiquesDetail(id).then(res => {
+				boutiquesDetail(id, 'tour-groups').then(res => {
 					this.list = res.data;
 					this.chooseStart = this.list.teams[0].id;
 					this.team = this.list.teams[0];
@@ -436,7 +437,7 @@ export default {
 		},
 		//获取日历&&价格
 		getTeams(id) {
-			boutiquesTeams(id, this.date,"tour-groups").then(res => {
+			boutiquesTeams(id, this.date, 'tour-groups').then(res => {
 				this.daysList = res.data;
 				if (this.daysList[0].week_zh == '周日') {
 					this.daysList.unshift();
@@ -518,7 +519,8 @@ export default {
 			} else {
 				_this.team = JSON.stringify(_this.team);
 				uni.navigateTo({
-					url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
+					// url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
+					url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='tour-group'&team=${_this.team}&isDis=1&uid=${_this.uid}`
 				});
 			}
 			uni.getSetting({

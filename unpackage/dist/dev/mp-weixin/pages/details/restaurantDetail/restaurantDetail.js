@@ -272,7 +272,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 21); //
 //
 var _default = { components: {}, data: function data() {return { list: [], id: '', isDis: 0, uid: '', user_id: '', //现在的用户id
       isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
-    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
+    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
       // 	success: res => {
       // 		//判断是否授权，如果授权成功
       // 		if (res.authSetting['scope.userInfo']) {
@@ -301,7 +301,8 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
           // });
-        }});
+        }
+      });
     },
     getDetail: function getDetail(id) {var _this2 = this;
       if (this.isDis == 1) {

@@ -35,6 +35,7 @@ export default {
 	data() {
 		return {
 			list: [],
+			type: 0,
 			quantity: '1',
 			allprice: '',
 			isclick: true,
@@ -54,6 +55,7 @@ export default {
 		if (options.uid) {
 			this.uid = options.uid;
 		}
+		this.type = options.type;
 		let pages = getCurrentPages();
 		let prevPage = pages[pages.length - 2]; //上一个页面
 		//直接调用上一个页面的setData()方法，把数据存到上一个页面中去
@@ -68,11 +70,11 @@ export default {
 	methods: {
 		getDetail(id) {
 			if (this.isDis == 1) {
-				distributionDetail(id, 'boutique').then(res => {
+				distributionDetail(id, this.type).then(res => {
 					this.list = res.data;
 				});
 			} else {
-				boutiquesDetail(id).then(res => {
+				boutiquesDetail(id, `${this.type}s`).then(res => {
 					this.list = res.data;
 				});
 			}
@@ -84,7 +86,7 @@ export default {
 			if (this.isDis == 1) {
 				this.isclick = false;
 				// distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
-				distributionsOrders({ id: id, team_id: this.team.id, quantity: this.quantity, type: 'boutique', sharer_id: this.uid }).then(res => {
+				distributionsOrders({ id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid }).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
@@ -114,7 +116,7 @@ export default {
 				});
 			} else {
 				this.isclick = false;
-				boutiquesOrders(id, this.team.id, this.quantity, this.uid).then(res => {
+				boutiquesOrders(id, this.team.id, this.quantity, this.uid, `${this.type}s`).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({

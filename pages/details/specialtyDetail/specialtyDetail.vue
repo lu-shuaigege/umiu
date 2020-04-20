@@ -101,6 +101,7 @@ export default {
 			this.isDis = 1;
 		}
 		this.id = options.id;
+		console.log(options.id)
 		if (options.uid) {
 			this.uid = options.uid;
 		}

@@ -178,12 +178,12 @@ export function distributionDetail(id, type) {
 }
 
 //标品-详情
-export function boutiquesDetail(id) {
+export function boutiquesDetail(id, type) {
 	return http({
-		url: "/api/boutiques/" + id
+		url: `/api/${type}/${id}`
 	})
 }
-//标品-线路
+//标品-线路-时间
 export function boutiquesTeams(id, date, type) {
 	return http({
 		url: `/api/${type}/${id}/teams/${date}`
@@ -369,9 +369,9 @@ export function resourcesHotel(data) {
 }
 
 //资源线路-下单-普通标品
-export function boutiquesOrders(id, team_id, quantity, sharer_id) {
+export function boutiquesOrders(id, team_id, quantity, sharer_id,type) {
 	return http({
-		url: "/api/boutiques/" + id + "/orders",
+		url: `/api/${type}/${id}/orders`,
 		method: 'POST',
 		data: {
 			team_id: team_id,

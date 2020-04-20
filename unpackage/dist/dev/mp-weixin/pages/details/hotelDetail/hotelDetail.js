@@ -425,7 +425,7 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
     // 登陆
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);} // 入住条件
     if (currPage.data.check) {this.check = currPage.data.check;console.log(this.check);this.quantity = currPage.data.check[0].num;this.number_of_adults = currPage.data.check[1].num;this.number_of_children = currPage.data.check[2].num;} // 入住日期
-    if (currPage.data.daysArr) {this.start_date = currPage.data.start_date;this.end_date = currPage.data.end_date;this.daysArr = currPage.data.daysArr;this.daysLength = this.daysArr.length;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
+    if (currPage.data.daysArr) {this.start_date = currPage.data.start_date;this.end_date = currPage.data.end_date;this.daysArr = currPage.data.daysArr;this.daysLength = this.daysArr.length;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
       // 	success: res => {
       // 		//判断是否授权，如果授权成功
       // 		if (res.authSetting['scope.userInfo']) {
@@ -468,7 +468,8 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
         // }
         console.log(_this2.daysArr);});}, // 跳转到选择房间数量
     gocheck: function gocheck() {var check = JSON.stringify(this.check);uni.navigateTo({ url: "/pages/details/check/check?check=".concat(check) });}, // 绑定粉丝
-    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});},
+    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});
+    },
     getDetail: function getDetail(id) {var _this3 = this;
       if (this.isDis == 1) {
         (0, _api.distributionDetail)(id, 'hotel').then(function (res) {

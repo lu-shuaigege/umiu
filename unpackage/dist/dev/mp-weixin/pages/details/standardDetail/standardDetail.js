@@ -565,7 +565,7 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis; // this.uid = currPage.data.uid;
       this.isbuy = currPage.data.isbuy;this.getDetail(this.id); // this.bindfans();
-    }if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;this.distributable_id = options.id;}this.id = options.id;if (options.uid) {this.uid = options.uid;} // console.log('detail' + this.uid);
+    }if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;this.distributable_id = options.id;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;} // console.log('detail' + this.uid);
     if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
       // 	success: res => {
       // 		//判断是否授权，如果授权成功
@@ -627,12 +627,13 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     // 		}
     // 	});
     // },
-    getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'tour-group').then(function (res) {_this3.list = res.data;_this3.list.author = res.data.distributor;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];_this3.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id).then(function (res) {_this3.list = res.data;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];});}}, //获取日历&&价格
-    getTeams: function getTeams(id) {var _this4 = this;(0, _api.boutiquesTeams)(id, this.date, "tour-groups").then(function (res) {_this4.daysList = res.data;if (_this4.daysList[0].week_zh == '周日') {_this4.daysList.unshift();} else if (_this4.daysList[0].week_zh == '周一') {_this4.daysList.unshift({});} else if (_this4.daysList[0].week_zh == '周二') {_this4.daysList.unshift({}, {});} else if (_this4.daysList[0].week_zh == '周三') {_this4.daysList.unshift({}, {}, {});} else if (_this4.daysList[0].week_zh == '周四') {_this4.daysList.unshift({}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周五') {_this4.daysList.unshift({}, {}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周六') {_this4.daysList.unshift({}, {}, {}, {}, {}, {});}});}, // 隐藏日历
+    getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'tour-group').then(function (res) {_this3.list = res.data;_this3.list.author = res.data.distributor;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];_this3.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id, 'tour-groups').then(function (res) {_this3.list = res.data;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];});}}, //获取日历&&价格
+    getTeams: function getTeams(id) {var _this4 = this;(0, _api.boutiquesTeams)(id, this.date, 'tour-groups').then(function (res) {_this4.daysList = res.data;if (_this4.daysList[0].week_zh == '周日') {_this4.daysList.unshift();} else if (_this4.daysList[0].week_zh == '周一') {_this4.daysList.unshift({});} else if (_this4.daysList[0].week_zh == '周二') {_this4.daysList.unshift({}, {});} else if (_this4.daysList[0].week_zh == '周三') {_this4.daysList.unshift({}, {}, {});} else if (_this4.daysList[0].week_zh == '周四') {_this4.daysList.unshift({}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周五') {_this4.daysList.unshift({}, {}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周六') {_this4.daysList.unshift({}, {}, {}, {}, {}, {});}});}, // 隐藏日历
     hide: function hide() {this.modal = false;this.currentDate = new Date();}, // 显示日历
     show: function show() {this.modal = true;this.dates = this.currentDate.setMonth(this.currentDate.getMonth());this.times(this.dates);this.getTeams(this.id);}, // 获取时间
     times: function times(dates) {this.dates = new Date(dates);this.today = (0, _index.default)().format('YYYY-MM-DD');var now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);this.date = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
-      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {if (i < 10) {i = '0' + i;}
+      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {if (i < 10) {i = '0' + i;
+      }
       return i;
     },
     left: function left() {
@@ -667,7 +668,8 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
       } else {
         _this.team = JSON.stringify(_this.team);
         uni.navigateTo({
-          url: "/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=".concat(_this.id, "&type='boutique'&team=").concat(_this.team, "&isDis=1&uid=").concat(_this.uid) });
+          // url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
+          url: "/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=".concat(_this.id, "&type='tour-group'&team=").concat(_this.team, "&isDis=1&uid=").concat(_this.uid) });
 
       }
       uni.getSetting({

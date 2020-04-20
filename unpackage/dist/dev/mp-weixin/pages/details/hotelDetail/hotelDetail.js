@@ -449,7 +449,7 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
       if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
         // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
         // });
-        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });}}this.getDetail(options.id);}, // computed: {
+        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });} else {this.bindfans();}}this.getDetail(options.id);}, // computed: {
   // 	// 计算属性的 getter
   // 	totalPrice: function() {
   // 		let allPrice = 0;
@@ -468,7 +468,9 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
         // }
         console.log(_this2.daysArr);});}, // 跳转到选择房间数量
     gocheck: function gocheck() {var check = JSON.stringify(this.check);uni.navigateTo({ url: "/pages/details/check/check?check=".concat(check) });}, // 绑定粉丝
-    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});
+    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
+        console.log(res);
+      });
     },
     getDetail: function getDetail(id) {var _this3 = this;
       if (this.isDis == 1) {

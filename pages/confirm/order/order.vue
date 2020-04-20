@@ -8,23 +8,23 @@
 				<view class="order_right_specifications" v-if="type == 'specialty' && list.exts.length > 0">
 					{{ data.product.exts[0].field || '' }}/{{ data.product.exts[0].value || '' }}
 				</view>
-				<view class="order_right_specifications" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">{{ list.address }}</view>
+				<view class="order_right_specifications" v-if="list.type == 'hotel' || list.type == 'homestay'">{{ list.address }}</view>
 				<view class="order_right_specifications_sight" v-if="type == 'sight' || type == 'repast' || type == 'specialty'">{{ list.address }}</view>
 				<view class="order_right_money">
-					<view class="order_right_money_icon" v-if="list.type_zh != '酒店' && list.type_zh != '民宿'">￥</view>
-					<view class="order_right_money_num" v-if="list.type_zh != '酒店' && list.type_zh != '民宿'">{{ list.price }}</view>
+					<view class="order_right_money_icon" v-if="list.type != 'hotel' && list.type != 'homestay'">￥</view>
+					<view class="order_right_money_num" v-if="list.type != 'hotel' && list.type != 'homestay'">{{ list.price }}</view>
 					<!-- <view class="order_right_money_right" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">/间/晚</view> -->
-					<view class="order_right_money_right" v-if="list.type_zh == '特产'">/个</view>
-					<view class="order_right_money_right" v-if="list.type_zh == '景点'">/张</view>
-					<view class="order_right_money_right" v-if="list.type_zh == '用餐'">/人</view>
+					<view class="order_right_money_right" v-if="list.type_zh == 'specialty'">/个</view>
+					<view class="order_right_money_right" v-if="list.type_zh == 'sight'">/张</view>
+					<view class="order_right_money_right" v-if="list.type_zh == 'repast'">/人</view>
 				</view>
 			</view>
 		</view>
 		<!-- 酒店信息 -->
-		<view class="hotelitem" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">
+		<view class="hotelitem" v-if="list.type == 'hotel' || list.type == 'homestay'">
 			<view class="hotelitem_top">
-				<view class="hotelitem_top_left" v-if="list.type_zh == '酒店'">酒店信息</view>
-				<view class="hotelitem_top_left" v-if="list.type_zh == '民宿'">民宿信息</view>
+				<view class="hotelitem_top_left" v-if="list.type == 'hotel'">酒店信息</view>
+				<view class="hotelitem_top_left" v-if="list.type == 'homestay'">民宿信息</view>
 				<view class="hotelitem_top_right" @click="look(true)">
 					<image src="@/static/img/tips.png" class="hotelitem_top_right_img" mode=""></image>
 					<view class="hotelitem_top_right_text">每晚明细</view>
@@ -44,7 +44,7 @@
 			</view>
 		</view>
 		<!-- 入住人信息 -->
-		<view class="checkDetail" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">
+		<view class="checkDetail" v-if="list.type == 'hotel' || list.type == 'homestay'">
 			<view class="checkDetail_top">入住人信息</view>
 			<view class="checkDetail_list" v-for="(item, index) in nameslist" :key="index">
 				<view class="checkDetail_list_left">房间{{ index + 1 }}</view>
@@ -133,8 +133,8 @@
 			<view class="orderBottom_left">
 				<view class="orderBottom_left_con">
 					<view class="orderBottom_left_con_left">合计：</view>
-					<view class="orderBottom_left_con_right" v-if="list.type_zh == '酒店' || list.type_zh == '民宿'">￥{{ totalPrices }}</view>
-					<view class="orderBottom_left_con_right" v-if="list.type_zh != '酒店' && list.type_zh != '民宿'">￥{{ totalPrice }}</view>
+					<view class="orderBottom_left_con_right" v-if="list.type == 'hotel' || list.type == 'homestay'">￥{{ totalPrices }}</view>
+					<view class="orderBottom_left_con_right" v-if="list.type != 'hotel' && list.type != 'homestay'">￥{{ totalPrice }}</view>
 				</view>
 			</view>
 			<view class="orderBottom_right" @click="gopay(list.id, list.type)">提交订单</view>
@@ -161,7 +161,6 @@ export default {
 			openid: '',
 			userInfo: {},
 			downbtn: false,
-			isclick: true,
 			quantity: 1,
 			totle: 0,
 			contact: '',
@@ -291,7 +290,7 @@ export default {
 			// 	});
 			// 	return
 			// }
-			if (this.list.type_zh == '酒店' || this.list.type_zh == '民宿') {
+			if (this.list.type == 'hotel' || this.list.type == 'homestay') {
 				for (let i = 0; i < this.nameslist.length; i++) {
 					if (this.nameslist[i].name == '') {
 						uni.showToast({
@@ -302,7 +301,7 @@ export default {
 					}
 				}
 			}
-			if (this.contact_phone && (this.type == 'specialty' || this.list.type_zh == '酒店' || this.list.type_zh == '民宿')) {
+			if (this.contact_phone && (this.type == 'specialty' || this.list.type == 'hotel' || this.list.type == 'homestay')) {
 				if (!/^1[3456789]\d{9}$/.test(this.contact_phone)) {
 					uni.showToast({
 						icon: 'none',
@@ -353,7 +352,6 @@ export default {
 			// 		// });
 			// 		this.amount = res.data.amount;
 			// 		payWechat(res.data.id, uni.getStorageSync('openid')).then(res1 => {
-			// 			this.isclick = true;
 			// 			if (res1.code == 0) {
 			// 				this.pay(res1.data);
 			// 			}
@@ -362,7 +360,6 @@ export default {
 			// } else {
 			if (this.isDis == 1) {
 				this.downbtn = true;
-				// this.isclick = false;
 				distributionsOrders({
 					id: id,
 					start_date: this.start_date,
@@ -377,7 +374,7 @@ export default {
 					contact_address: this.contact_address,
 					sharer_id: this.uid
 				}).then(res => {
-					this.downbtn = true;
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -385,8 +382,24 @@ export default {
 						});
 						if (res.msg == '请登录！') {
 							let data = {
-								nameslist: this.this.nameslist,
-								start_date: this.this.start_date,
+								nameslist: this.nameslist,
+								start_date: this.start_date,
+								end_date: this.end_date,
+								daysArr: this.daysArr,
+								quantity: this.quantity,
+								number_of_adults: this.number_of_adults,
+								number_of_children: this.number_of_children
+							};
+							let datas = JSON.stringify(data);
+							uni.navigateTo({
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
+							});
+						}
+						if (res.code == '3002') {
+							uni.setStorageSync('token', '');
+							let data = {
+								nameslist: this.nameslist,
+								start_date: this.start_date,
 								end_date: this.end_date,
 								daysArr: this.daysArr,
 								quantity: this.quantity,
@@ -405,7 +418,6 @@ export default {
 					// });
 					this.amount = res.data.amount;
 					payWechat(res.data.id, uni.getStorageSync('openid')).then(res1 => {
-						this.isclick = true;
 						if (res1.code == 0) {
 							this.pay(res1.data);
 						}
@@ -413,9 +425,8 @@ export default {
 				});
 			} else {
 				this.downbtn = true;
-				this.isclick = false;
 				resourcesOrders({ id: id, quantity: this.quantity, type: type, sharer_id: this.uid }).then(res => {
-					this.downbtn = true;
+					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
 							icon: 'none',
@@ -423,8 +434,24 @@ export default {
 						});
 						if (res.msg == '请登录！') {
 							let data = {
-								nameslist: this.this.nameslist,
-								start_date: this.this.start_date,
+								nameslist: this.nameslist,
+								start_date: this.start_date,
+								end_date: this.end_date,
+								daysArr: this.daysArr,
+								quantity: this.quantity,
+								number_of_adults: this.number_of_adults,
+								number_of_children: this.number_of_children
+							};
+							let datas = JSON.stringify(data);
+							uni.navigateTo({
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
+							});
+						}
+						if (res.msg == '请登录！') {
+							uni.setStorageSync('token', '');
+							let data = {
+								nameslist: this.nameslist,
+								start_date: this.start_date,
 								end_date: this.end_date,
 								daysArr: this.daysArr,
 								quantity: this.quantity,
@@ -440,7 +467,6 @@ export default {
 					}
 					this.amount = res.data.amount;
 					payWechat(res.data.id, uni.getStorageSync('openid')).then(res1 => {
-						this.isclick = true;
 						if (res1.code == 0) {
 							this.pay(res1.data);
 						}

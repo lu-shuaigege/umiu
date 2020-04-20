@@ -31,17 +31,17 @@
 						<image :src="data.product.cover_image" class="orderlist_itemcon_left" mode=""></image>
 						<view class="orderlist_itemcon_right">
 							<view class="orderlist_itemcon_right_name">{{ data.title || '' }}</view>
-							<view class="specifications" v-if="data.product.exts.length > 0 && data.type_zh == '特产'">
+							<view class="specifications" v-if="data.product.exts.length > 0 && data.type == 'specialty'">
 								{{ data.product.exts[0].field || '' }}/{{ data.product.exts[0].value || '' }}
 							</view>
-							<view class="specifications" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">{{ data.product.child[0].title }}</view>
-							<view class="specifications" v-show="data.type_zh == '景点'">{{ data.address }}</view>
+							<view class="specifications" v-if="data.type == 'hotel' || data.type == 'homestay'">{{ data.product.child[0].title }}</view>
+							<view class="specifications" v-show="data.type == 'sight'">{{ data.address }}</view>
 							<!-- <view class="orderlist_itemcon_right_moneya" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
 								<view class="item_moneytop_left_lefta">￥</view>
 								<view class="item_moneytop_left_centera">{{ data.product.child[0].price }}</view>
 								<view class="item_moneytop_left_righta">/间/晚</view>
 							</view> -->
-							<view class="orderlist_itemcon_right_money" v-if="data.type_zh != '酒店' && data.type_zh != '民宿'">
+							<view class="orderlist_itemcon_right_money" v-if="data.type != 'hotel' && data.type != 'homestay'">
 								<view class="item_moneytop_left_left">￥{{ data.product.amount }}</view>
 								<view class="item_moneytop_left_right">X{{ data.product.quantity }}</view>
 							</view>
@@ -57,10 +57,10 @@
 			</view>
 		</view>
 		<!-- 酒店信息 -->
-		<view class="hotelitem" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+		<view class="hotelitem" v-if="data.type == 'hotel' || data.type == 'homestay'">
 			<view class="hotelitem_top">
-				<view class="hotelitem_top_left" v-if="data.type_zh == '酒店'">酒店信息</view>
-				<view class="hotelitem_top_left" v-if="data.type_zh == '民宿'">民宿信息</view>
+				<view class="hotelitem_top_left" v-if="data.type == 'hotel'">酒店信息</view>
+				<view class="hotelitem_top_left" v-if="data.type == 'homestay'">民宿信息</view>
 				<view class="hotelitem_top_right" @click="look(true)">
 					<image src="../../../../../static/img/tips.png" class="hotelitem_top_right_img" mode=""></image>
 					<view class="hotelitem_top_right_text">每晚明细</view>
@@ -84,7 +84,7 @@
 			</view>
 		</view>
 		<!-- 入住人信息 -->
-		<view class="checkDetail" v-if="data.type_zh == '酒店' || data.type_zh == '民宿'">
+		<view class="checkDetail" v-if="data.type == 'hotel' || data.type == 'homestay'">
 			<view class="checkDetail_top">入住人信息</view>
 			<view class="checkDetail_list" v-for="(item, index) in data.supplement.check_in_names" :key="index">
 				<view class="checkDetail_list_left">房间{{ index + 1 }}</view>
@@ -107,11 +107,11 @@
 			</view> -->
 			<view class="ordercontent_bottom">
 				<view class="ordercontent_bottom_title">订单信息</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '景点' || data.type_zh == '用餐' || data.type_zh == '酒店' || data.type_zh == '民宿'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'sight' || data.type == 'repast' || data.type == 'hotel' || data.type == 'homestay'">
 					<view class="ordercontent_bottom_item_left">订单编号</view>
 					<view class="ordercontent_bottom_item_right">{{ data.number || '' }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '景点' || data.type_zh == '用餐' || data.type_zh == '酒店' || data.type_zh == '民宿'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'sight' || data.type == 'repast' || data.type == 'hotel' || data.type == 'homestay'">
 					<view class="ordercontent_bottom_item_left">创建时间</view>
 					<view class="ordercontent_bottom_item_right">{{ data.created_at.slice(0, 10) }}</view>
 				</view>
@@ -146,31 +146,31 @@
 						￥{{ data.product.child[0].price }}*{{ data.product.child[0].quantity1 }}*{{ data.product.child[0].quantity2 }}
 					</view>
 				</view> -->
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '跟团游' || data.type_zh == '周边游'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'tour-group' || data.type == 'tour-surround'">
 					<view class="ordercontent_bottom_item_left">出发时间</view>
 					<view class="ordercontent_bottom_item_right">{{ data.product.child[0].travel_date }} {{ data.product.child[0].week_zh }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '跟团游' || data.type_zh == '周边游'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'tour-group' || data.type == 'tour-surround'">
 					<view class="ordercontent_bottom_item_left">线路价格</view>
 					<view class="ordercontent_bottom_item_right">￥{{ data.product.child[0].price }}*{{ data.product.quantity }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'specialty'">
 					<view class="ordercontent_bottom_item_left">联系人</view>
 					<view class="ordercontent_bottom_item_right">{{ data.contact }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'specialty'">
 					<view class="ordercontent_bottom_item_left">联系方式</view>
 					<view class="ordercontent_bottom_item_right">{{ data.contact_phone }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'specialty'">
 					<view class="ordercontent_bottom_item_left">地址</view>
 					<view class="ordercontent_bottom_item_right">{{ data.contact_address }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'specialty'">
 					<view class="ordercontent_bottom_item_left">下单时间</view>
 					<view class="ordercontent_bottom_item_right">{{ data.created_at.slice(0, 10) }}</view>
 				</view>
-				<view class="ordercontent_bottom_item" v-if="data.type_zh == '特产'">
+				<view class="ordercontent_bottom_item" v-if="data.type == 'specialty'">
 					<view class="ordercontent_bottom_item_left">特产资源价格</view>
 					<view class="ordercontent_bottom_item_right">￥{{ data.product.price }}*{{ data.product.quantity }}</view>
 				</view>

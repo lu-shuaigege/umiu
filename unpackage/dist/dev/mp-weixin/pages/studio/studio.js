@@ -598,7 +598,7 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
       // 		url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${1}`
       // 	});
       // }
-      if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id, "&needUserInfo=", 1, "&needToken=", 0) });}} else {if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id, "&needUserInfo=", 1, "&needToken=", 0) });} // wx.getSetting({
+      if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id, "&needUserInfo=", 1, "&needToken=", 0) });} else {this.bindfans();}} else {if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(this.id, "&needUserInfo=", 1, "&needToken=", 0) });} // wx.getSetting({
       // 	success: res => {
       // 		//判断是否授权，如果授权成功
       // 		if (res.authSetting['scope.userInfo']) {
@@ -625,7 +625,9 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
     getDetail: function getDetail() {var _this2 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this2.data = res.data;});}, // 短视频
     videos: function videos() {var _this3 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {_this3.loadding = true;if (res.data.data.length == 0) {_this3.loadding = false;_this3.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this3.loadding = false;_this3.pullUpOn = false;_this3.video = _this3.video.concat(res.data.data);_this3.pagea++;return;}});}, //我的圈子推荐
     circles: function circles(recommend) {var _this4 = this;(0, _api.circles)(this.id, recommend).then(function (res) {_this4.recommendStudiotop = res.data.slice(0, 1);});}, // 我的圈子
-    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {_this5.loadding = true;if (res.data.data.length == 0) {_this5.loadding = false;
+    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {_this5.loadding = true;
+        if (res.data.data.length == 0) {
+          _this5.loadding = false;
           _this5.pullUpOn = false;
           return;
         }

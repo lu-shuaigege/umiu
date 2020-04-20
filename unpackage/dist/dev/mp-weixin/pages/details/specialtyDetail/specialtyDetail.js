@@ -276,6 +276,8 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
         uni.navigateTo({
           url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });
 
+      } else {
+        this.bindfans();
       }
     }
     this.getDetail(options.id);

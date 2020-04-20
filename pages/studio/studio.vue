@@ -392,6 +392,8 @@ export default {
 				uni.navigateTo({
 					url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${0}`
 				});
+			} else {
+				this.bindfans();
 			}
 		} else {
 			if (!uni.getStorageSync('userInfo')) {

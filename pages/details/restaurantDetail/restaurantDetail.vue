@@ -154,6 +154,8 @@ export default {
 				uni.navigateTo({
 					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&needUserInfo=${1}&needToken=${0}`
 				});
+			} else {
+				this.bindfans();
 			}
 		}
 		this.getDetail(options.id);

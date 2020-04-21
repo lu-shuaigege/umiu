@@ -216,7 +216,7 @@ export default {
 	},
 	onLoad(options) {
 		this.id = options.id;
-		console.log(options.id)
+		console.log(options.id);
 		if (options.isDis && options.isDis == 1) {
 			this.isDis = 1;
 		}
@@ -260,6 +260,8 @@ export default {
 				uni.navigateTo({
 					url: `/pages/authorizations/authorizations?needUserInfo=${1}&needToken=${0}`
 				});
+			} else {
+				this.bindfans();
 			}
 		}
 		this.getDetail(options.id);

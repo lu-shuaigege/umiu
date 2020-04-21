@@ -217,7 +217,7 @@ var _default = { components: {}, data: function data() {return { list: [], type:
         return;
       }
       if (this.isDis == 1) {
-        this.isclick = false;
+        this.downbtn = true;
         // distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
         (0, _api.distributionsOrders)({ id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid }).then(function (res) {
           _this2.downbtn = false;
@@ -233,7 +233,12 @@ var _default = { components: {}, data: function data() {return { list: [], type:
                 url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
             }
-            _this2.isclick = true;
+            if (res.code == '3002') {
+              uni.setStorageSync('token', '');
+              uni.navigateTo({
+                url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid, "&needUserInfo=", 0, "&needToken=", 1) });
+
+            }
             return;
           }
           // uni.redirectTo({
@@ -241,14 +246,13 @@ var _default = { components: {}, data: function data() {return { list: [], type:
           // });
           _this2.amount = res.data.amount;
           (0, _api.payWechat)(res.data.id, uni.getStorageSync('openid')).then(function (res1) {
-            _this2.isclick = true;
             if (res1.code == 0) {
               _this2.pay(res1.data);
             }
           });
         });
       } else {
-        this.isclick = false;
+        this.downbtn = true;
         (0, _api.boutiquesOrders)(id, this.team.id, this.quantity, this.uid, "".concat(this.type, "s")).then(function (res) {
           _this2.downbtn = false;
           if (res.code !== 0) {
@@ -262,12 +266,16 @@ var _default = { components: {}, data: function data() {return { list: [], type:
                 url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid, "&needUserInfo=", 0, "&needToken=", 1) });
 
             }
-            _this2.isclick = true;
+            if (res.code == '3002') {
+              uni.setStorageSync('token', '');
+              uni.navigateTo({
+                url: "/pages/authorizations/authorizations?id=".concat(id, "&isDis=").concat(_this2.isDis, "&uid=").concat(_this2.uid, "&needUserInfo=", 0, "&needToken=", 1) });
+
+            }
             return;
           }
           _this2.amount = res.data.amount;
           (0, _api.payWechat)(res.data.id, uni.getStorageSync('openid')).then(function (res1) {
-            _this2.isclick = true;
             if (res1.code == 0) {
               _this2.pay(res1.data);
             }

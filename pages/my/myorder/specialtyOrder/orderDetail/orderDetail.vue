@@ -120,7 +120,6 @@ export default {
 	},
 	methods: {
 		isok(isokfn) {
-			console.log(isokfn);
 			if (!isokfn) {
 				this.show = isokfn;
 			} else {

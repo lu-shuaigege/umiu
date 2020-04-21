@@ -84,7 +84,7 @@ export default {
 				return;
 			}
 			if (this.isDis == 1) {
-				this.isclick = false;
+				this.downbtn = true;
 				// distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
 				distributionsOrders({ id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid }).then(res => {
 					this.downbtn = false;
@@ -100,7 +100,12 @@ export default {
 								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
-						this.isclick = true;
+						if (res.code == '3002') {
+							uni.setStorageSync('token', '');
+							uni.navigateTo({
+								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}&needUserInfo=${0}&needToken=${1}`
+							});
+						}
 						return;
 					}
 					// uni.redirectTo({
@@ -108,14 +113,13 @@ export default {
 					// });
 					this.amount = res.data.amount;
 					payWechat(res.data.id, uni.getStorageSync('openid')).then(res1 => {
-						this.isclick = true;
 						if (res1.code == 0) {
 							this.pay(res1.data);
 						}
 					});
 				});
 			} else {
-				this.isclick = false;
+				this.downbtn = true;
 				boutiquesOrders(id, this.team.id, this.quantity, this.uid, `${this.type}s`).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
@@ -129,12 +133,16 @@ export default {
 								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
-						this.isclick = true;
+						if (res.code == '3002') {
+							uni.setStorageSync('token', '');
+							uni.navigateTo({
+								url: `/pages/authorizations/authorizations?id=${id}&isDis=${this.isDis}&uid=${this.uid}&needUserInfo=${0}&needToken=${1}`
+							});
+						}
 						return;
 					}
 					this.amount = res.data.amount;
 					payWechat(res.data.id, uni.getStorageSync('openid')).then(res1 => {
-						this.isclick = true;
 						if (res1.code == 0) {
 							this.pay(res1.data);
 						}

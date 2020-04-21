@@ -451,7 +451,7 @@ var _default = { components: {}, data: function data() {return { start_date: '00
     // 		}
     // 	});
     // }
-    if (getCurrentPages().length == 1) {if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?needUserInfo=".concat(1, "&needToken=", 0) });}}this.getDetail(options.id);}, // computed: {
+    if (getCurrentPages().length == 1) {if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?needUserInfo=".concat(1, "&needToken=", 0) });} else {this.bindfans();}}this.getDetail(options.id);}, // computed: {
   // 	// 计算属性的 getter
   // 	totalPrice: function() {
   // 		let allPrice = 0;
@@ -475,7 +475,9 @@ var _default = { components: {}, data: function data() {return { start_date: '00
       // if (!this.uid) {
       // 	this.user_id = id;
       // }
-      this.user_id = id;uni.navigateTo({ url: "/pages/studio/studio?id=".concat(this.user_id, "&isDis=").concat(this.isDis) });}, tobuy: function tobuy() {var _this = this;if (_this.daysArr.length == 0) {uni.showToast({ icon: 'none', title: '请选择入住日期' });
+      this.user_id = id;uni.navigateTo({ url: "/pages/studio/studio?id=".concat(this.user_id, "&isDis=").concat(this.isDis) });}, tobuy: function tobuy() {var _this = this;if (_this.daysArr.length == 0) {uni.showToast({
+          icon: 'none',
+          title: '请选择入住日期' });
 
         return;
       }

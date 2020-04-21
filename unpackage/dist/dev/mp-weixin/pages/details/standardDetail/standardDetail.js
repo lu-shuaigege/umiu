@@ -590,7 +590,7 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
       if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
         // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
         // });
-        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });}}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });} else {this.bindfans();}}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
         console.log(res);if (res.code == 0) {// uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
@@ -632,7 +632,9 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     hide: function hide() {this.modal = false;this.currentDate = new Date();}, // 显示日历
     show: function show() {this.modal = true;this.dates = this.currentDate.setMonth(this.currentDate.getMonth());this.times(this.dates);this.getTeams(this.id);}, // 获取时间
     times: function times(dates) {this.dates = new Date(dates);this.today = (0, _index.default)().format('YYYY-MM-DD');var now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);this.date = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
-      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {if (i < 10) {i = '0' + i;
+      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {
+      if (i < 10) {
+        i = '0' + i;
       }
       return i;
     },

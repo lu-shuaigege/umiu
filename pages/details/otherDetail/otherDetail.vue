@@ -1,5 +1,6 @@
 <template>
 	<view class="otherDetail">
+		<navigator url="../../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="hotelDetail_banner">
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000" duration="500">
 				<swiper-item v-for="(item, index) in list.images" :key="index"><image :src="item" mode="aspectFill"></image></swiper-item>
@@ -55,6 +56,7 @@
 				<view class="house_policy">{{ item.value }}</view>
 			</view>
 		</view>
+		<view class="otherDetailHtml" v-if="list.body" v-html="list.body"></view>
 		<view class="tobuy" @click="tobuy()">立即购买</view>
 	</view>
 </template>
@@ -105,7 +107,7 @@ export default {
 			this.isDis = 1;
 		}
 		this.id = options.id;
-		console.log(options.id)
+		console.log(options.id);
 		if (options.uid) {
 			this.uid = options.uid;
 		}
@@ -201,7 +203,7 @@ export default {
 				// uni.navigateTo({
 				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
 				// });
-				
+
 				uni.navigateTo({
 					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
 				});

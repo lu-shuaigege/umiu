@@ -201,7 +201,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
 //
 //
 //
@@ -297,8 +299,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
         // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
         // });
         uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });} else {this.bindfans();}}this.getDetail(options.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
-        console.log(res);
-        if (res.code == 0) {
+        console.log(res);if (res.code == 0) {
           // uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'

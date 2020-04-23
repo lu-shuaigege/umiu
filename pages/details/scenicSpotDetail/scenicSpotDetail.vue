@@ -1,5 +1,6 @@
 <template>
 	<view class="scenicSpotDetail">
+		<navigator url="../../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="hotelDetail_banner">
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000" duration="500">
 				<swiper-item v-for="(item, index) in list.images" :key="index"><image :src="item" mode="aspectFill"></image></swiper-item>

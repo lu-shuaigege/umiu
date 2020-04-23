@@ -1,3 +1,4 @@
+<template></template>
 <script>
 export default {
 	onLaunch: function() {
@@ -129,5 +130,17 @@ export default {
 }
 .logodisabled {
 	pointer-events: none;
+}
+.gotomyCenterbtn {
+	width: 153upx;
+	height: 183upx;
+	/* border-radius: 50%; */
+	background: url(static/img/gotomyIndex.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	position: fixed;
+	z-index: 101;
+	bottom: 200upx;
+	right: 0upx;
 }
 </style>

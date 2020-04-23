@@ -134,13 +134,48 @@ page {
 	position: relative;
 }
 
-.detail_intro .con image {
+.detail_intro .con .conDescription {
+	height: 74upx;
+	overflow: hidden;
+	margin-bottom: 26upx;
+}
+
+.detail_intro .con .conDescriptionall {
+	height: max-content;
+	overflow: hidden;
+	margin-bottom: 26upx;
+}
+
+.detail_intro .con .yinhao {
 	width: 33upx;
 	height: 28upx;
 	background-color: #ffffff;
 	position: absolute;
 	padding: 5upx;
 	top: -15upx;
+}
+
+.opencon {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.opencon_left {
+	font-family: PingFang-SC-Bold;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+
+.opencon_right {
+	width: 24rpx;
+	height: 14rpx;
+	margin-left: 17upx;
 }
 
 .detail_intro .tip {

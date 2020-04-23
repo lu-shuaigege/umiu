@@ -234,3 +234,13 @@ page {
 	color: #7a7a7a;
 }
 
+/* 详情富文本 */
+.otherDetailHtml {
+	margin: 0;
+	word-wrap: break-word;
+	padding: 30rpx;
+	margin-top: 20rpx;
+	background: #ffffff;
+	box-sizing: border-box;
+}
+

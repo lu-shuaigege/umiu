@@ -116,12 +116,6 @@
 			}
 		},
 		{
-			"path": "pages/downloadapp/downloadapp",
-			"style": {
-				"navigationBarTitleText": "下载app"
-			}
-		},
-		{
 			"path": "pages/confirm/order/order",
 			"style": {
 				"navigationBarTitleText": "确认订单",

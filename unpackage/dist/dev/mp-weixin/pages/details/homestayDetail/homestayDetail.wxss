@@ -124,13 +124,50 @@ page {
 	color: #28282c;
 	position: relative;
 }
-.detail_intro .con image {
+.detail_intro .con .conDescription {
+	height: 74rpx;
+	overflow: hidden;
+	margin-bottom: 26rpx;
+}
+.detail_intro .con .conDescriptionall {
+	height: -webkit-max-content;
+	height: max-content;
+	overflow: hidden;
+	margin-bottom: 26rpx;
+}
+.detail_intro .con .yinhao {
 	width: 33rpx;
 	height: 28rpx;
 	background-color: #ffffff;
 	position: absolute;
 	padding: 5rpx;
 	top: -15rpx;
+}
+.opencon {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.opencon_left {
+	font-family: PingFang-SC-Bold;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+}
+.opencon_right {
+	width: 24rpx;
+	height: 14rpx;
+	margin-left: 17rpx;
 }
 .detail_intro .tip {
 	width: 690rpx;

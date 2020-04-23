@@ -1,5 +1,6 @@
 <template>
 	<view class="hotelDetail">
+		<navigator url="../../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="hotelDetail_banner">
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000" duration="500">
 				<swiper-item v-for="(item, index) in list.images" :key="index"><image :src="item" mode="aspectFill"></image></swiper-item>
@@ -25,8 +26,17 @@
 				</view>
 			</view>
 			<view class="con">
-				<image src="/static/img/yinhao.png" mode=""></image>
-				{{ list.description }}
+				<image src="/static/img/yinhao.png" class="yinhao" mode=""></image>
+				<view class="conDescription" v-if="opencon">{{ list.description }}</view>
+				<view class="conDescriptionall" v-if="!opencon">{{ list.description }}</view>
+				<view class="opencon" v-if="opencon" @click="openconfn(false)">
+					<view class="opencon_left">展开全部介绍</view>
+					<image src="../../../static/img/open.png" class="opencon_right" mode=""></image>
+				</view>
+				<view class="opencon" v-if="!opencon" @click="openconfn(true)">
+					<view class="opencon_left">收起全部介绍</view>
+					<image src="../../../static/img/retract.png" class="opencon_right" mode=""></image>
+				</view>
 			</view>
 			<view class="tip">
 				<text v-for="item in list.tags" :key="item">#{{ item }}#</text>
@@ -138,18 +148,19 @@ import dayjs from '@/plugins/dayjs/index.js';
 export default {
 	data() {
 		return {
-			start_date: '0000-00-00',
-			end_date: '0000-00-00',
-			daysArr: [],
+			opencon: true, //是否查看全部介绍
+			start_date: '0000-00-00', //入住日期
+			end_date: '0000-00-00', //离店日期
+			daysArr: [], //选择日期的列表
 			daysLength: 0, //共几日
 			quantity: 0, //房间数量
 			number_of_adults: 0, //成人数量
 			number_of_children: 0, //儿童数量
-			list: [],
+			list: [], //页面总数居
 			id: '',
 			child: [],
-			isDis: 0,
-			uid: '',
+			isDis: 0, //是否是分销过来的
+			uid: '', //分享过来的用户id
 			user_id: '', //现在的用户id
 			isbuy: 0,
 			code: '',
@@ -219,7 +230,7 @@ export default {
 			this.isDis = 1;
 		}
 		this.id = options.id;
-		console.log(options.id)
+		console.log(options.id);
 		if (options.uid) {
 			this.uid = options.uid;
 		}
@@ -279,6 +290,10 @@ export default {
 	// 	}
 	// },
 	methods: {
+		//点击查看简介详情
+		openconfn(open) {
+			this.opencon = open;
+		},
 		// 跳转日历
 		calendar(id) {
 			uni.navigateTo({
@@ -414,21 +429,6 @@ export default {
 					url: `/pages/confirm/order/order?id=${_this.id}&type=hotel&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}&datas=${datas}`
 				});
 			}
-			uni.getSetting({
-				success(res) {
-					// if (!res.authSetting['scope.userInfo']) {
-					// if (uni.getStorageSync('token')) {
-					// 	uni.navigateTo({
-					// 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
-					// 	});
-					// } else {
-					// 	_this.child = _this.child.replace(/\&nbsp;/g, '');
-					// 	uni.navigateTo({
-					// 		url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&$isDis={_this.isDis}`
-					// 	});
-					// }
-				}
-			});
 		},
 		CheckboxChange(e) {
 			this.child = JSON.stringify(e.detail.value);

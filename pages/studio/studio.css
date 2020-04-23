@@ -818,6 +818,16 @@
 .studioBottom-bottom-video-list-top {
 	font-size: 0upx;
 	width: 100%;
+	position: relative;
+}
+
+.studioBottom-bottom-video-list-top-imgplay {
+	position: absolute;
+	top: 30upx;
+	right: 30upx;
+	width: 34upx;
+	height: 34upx;
+	z-index: 99;
 }
 
 .studioBottom-bottom-video-list-top-img {

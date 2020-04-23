@@ -1,5 +1,6 @@
 <template>
 	<view class="homestayDetail">
+		<navigator url="../../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="homestayDetail_banner">
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000" duration="500">
 				<swiper-item v-for="(item, index) in list.images" :key="index"><image :src="item" mode="aspectFill"></image></swiper-item>
@@ -25,8 +26,17 @@
 				</view>
 			</view>
 			<view class="con">
-				<image src="/static/img/yinhao.png" mode=""></image>
-				{{ list.description }}
+				<image src="/static/img/yinhao.png" class="yinhao" mode=""></image>
+				<view class="conDescription" v-if="opencon">{{ list.description }}</view>
+				<view class="conDescriptionall" v-if="!opencon">{{ list.description }}</view>
+				<view class="opencon" v-if="opencon" @click="openconfn(false)">
+					<view class="opencon_left">展开全部介绍</view>
+					<image src="../../../static/img/open.png" class="opencon_right" mode=""></image>
+				</view>
+				<view class="opencon" v-if="!opencon" @click="openconfn(true)">
+					<view class="opencon_left">收起全部介绍</view>
+					<image src="../../../static/img/retract.png" class="opencon_right" mode=""></image>
+				</view>
 			</view>
 			<view class="tip">
 				<text v-for="item in list.tags" :key="item">#{{ item }}#</text>
@@ -134,19 +144,21 @@
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
+import { sourcesDetail, distributionDetail, bindfans, hotelCalendar } from '@/http/api.js';
+import dayjs from '@/plugins/dayjs/index.js';
 export default {
 	components: {},
 	data() {
 		return {
-			start_date: '0000-00-00',
-			end_date: '0000-00-00',
-			daysArr: [],
+			opencon: true, //是否查看全部介绍
+			start_date: '0000-00-00', //入住日期
+			end_date: '0000-00-00', //离店日期
+			daysArr: [], //选择日期的列表
 			daysLength: 0, //共几日
 			quantity: 0, //房间数量
 			number_of_adults: 0, //成人数量
 			number_of_children: 0, //儿童数量
-			list: [],
+			list: [], //页面总数居
 			id: '',
 			child: [],
 			isDis: 0, //是否是分销过来的
@@ -172,7 +184,8 @@ export default {
 					name: '儿童数',
 					num: 0
 				}
-			]
+			],
+			isOne: false
 		};
 	},
 	onShow() {
@@ -278,10 +291,41 @@ export default {
 	// 	}
 	// },
 	methods: {
+		//点击查看简介详情
+		openconfn(open) {
+			this.opencon = open;
+		},
 		// 跳转日历
 		calendar() {
 			uni.navigateTo({
 				url: `/pages/details/calendar/calendar?id=${id}`
+			});
+		},
+		//获取日历
+		timelist() {
+			console.log(this.list.room.id);
+			hotelCalendar(this.list.room.id, '').then(res => {
+				let thistime = dayjs().format('YYYY-MM-DD');
+				console.log(thistime);
+				console.log(res.data);
+				for (let i = 0; i < res.data.length; i++) {
+					if (res.data[i].checkin_date == thistime) {
+						this.daysArr.push(res.data[i]);
+						this.daysArr.push(res.data[i + 1]);
+					}
+				}
+				console.log(this.daysArr);
+				this.start_date = this.daysArr[0].checkin_date;
+				this.end_date = this.daysArr[1].checkin_date;
+				let arr = this.daysArr;
+				arr.pop();
+				this.daysArr = arr;
+				this.daysLength = this.daysArr.length;
+				// if (this.daysArr[0].quantity == '0') {
+				// 	console.log(111111);
+				// 	this.daysArr = [];
+				// }
+				console.log(this.daysArr);
 			});
 		},
 		// 跳转到选择房间数量
@@ -301,10 +345,18 @@ export default {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'homestay').then(res => {
 					this.list = res.data;
+					if (!this.isOne) {
+						this.timelist();
+					}
+					this.isOne = true;
 				});
 			} else {
 				sourcesDetail(id, 'homestay').then(res => {
 					this.list = res.data;
+					if (!this.isOne) {
+						this.timelist();
+					}
+					this.isOne = true;
 				});
 			}
 		},
@@ -326,6 +378,13 @@ export default {
 		},
 		tobuy() {
 			let _this = this;
+			if (_this.daysArr[0].quantity == 0) {
+				uni.showToast({
+					icon: 'none',
+					title: '当前日期没有房间了'
+				});
+				return;
+			}
 			if (_this.daysArr.length == 0) {
 				uni.showToast({
 					icon: 'none',

@@ -17,7 +17,6 @@
     "pages/details/specialtyDetail/specialtyDetail",
     "pages/login/login",
     "pages/authorizations/authorizations",
-    "pages/downloadapp/downloadapp",
     "pages/confirm/order/order",
     "pages/confirm/specialtyConfirm/specialtyConfirm",
     "pages/confirm/sceneConfirm/sceneConfirm",

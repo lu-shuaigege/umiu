@@ -1,5 +1,6 @@
 <template>
 	<view class="playRecommend">
+		<navigator url="../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="cu-bar search fixed" style="background: #ff8532;">
 			<view class="search-form round" style="background: rgba(255,255,255,0.2);">
 				<!-- 				<text class="cuIcon-search" style="color: #7A7A7A;"></text> -->

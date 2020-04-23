@@ -1,5 +1,6 @@
 <template>
 	<view class="studio">
+		<navigator url="../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<!-- 上面信息 -->
 		<view class="studioTop">
 			<view class="studioTop-topimg">
@@ -43,7 +44,7 @@
 					</view>
 					<view class="studioCenter-top-list-item">
 						<view class="studioCenter-top-list-item-top">{{ data.play_number }}</view>
-						<view class="studioCenter-top-list-item-bottom">玩法案例</view>
+						<view class="studioCenter-top-list-item-bottom">产品数量</view>
 					</view>
 					<!-- <view class="studioCenter-top-list-item">
 						<view class="studioCenter-top-list-item-top">{{ data.service_number }}</view>
@@ -164,6 +165,7 @@
 				<view class="studioBottom-bottom-video" v-show="studioBottomActive == 1">
 					<view :key="index" class="studioBottom-bottom-video-list" v-for="(item, index) in video" @click="toVodeo(item.id)">
 						<view class="studioBottom-bottom-video-list-top">
+							<image src="../../static/img/play.png" class="studioBottom-bottom-video-list-top-imgplay" mode=""></image>
 							<image class="studioBottom-bottom-video-list-top-img" :src="item.cover_image" mode="widthFix"></image>
 							<!-- <video class="studioBottom-bottom-video-list-top-img" :src="item.video" mode="widthFix" objectFit="contain" controls></video> -->
 						</view>
@@ -220,7 +222,7 @@
 	</view>
 </template>
 <script>
-import { usersStudio, videos, circles, circle, questions, travels, bindfans } from '@/http/api.js';
+import { usersStudio, videos, circles, circle, questions, travels, bindfans, visitors } from '@/http/api.js';
 import tuiLoadmore from '@/plugins/thorui/components/loadmore/loadmore.vue';
 import tuiNomore from '@/plugins/thorui/components/nomore/nomore';
 export default {
@@ -347,6 +349,7 @@ export default {
 		}
 		if (uni.getStorageSync('userInfo')) {
 			this.userInfo = uni.getStorageSync('userInfo');
+			this.visitorsfn();
 		}
 		if (currPage.data.uid) {
 			this.uid = currPage.data.uid;
@@ -394,12 +397,15 @@ export default {
 				});
 			} else {
 				this.bindfans();
+				this.visitorsfn();
 			}
 		} else {
 			if (!uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
 					url: `/pages/authorizations/authorizations?id=${this.id}&needUserInfo=${1}&needToken=${0}`
 				});
+			} else {
+				this.visitorsfn();
 			}
 
 			// wx.getSetting({
@@ -430,22 +436,30 @@ export default {
 		this.questions();
 	},
 	methods: {
+		// 访客记录
+		visitorsfn() {
+			visitors({ openid: this.openid, user_id: this.id, userInfo: this.userInfo }).then(res => {});
+		},
+		//进入其他工作室
 		gotoStudio(friend_id) {
 			uni.navigateTo({
 				url: '/pages/studio/studio?id=' + friend_id
 			});
 		},
+		//拨打电话
 		tel() {
 			wx.makePhoneCall({
 				phoneNumber: this.data.user.mobile
 			});
 		},
+		//走进他的生活
 		gotolife() {
 			wx.pageScrollTo({
 				scrollTop: 820,
 				duration: 300
 			});
 		},
+		// 绑定粉丝
 		bindfans() {
 			bindfans('', this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;

@@ -41,6 +41,14 @@ export function getCustomizers(page, city_code, sex, goodat_type, sort) {
 		}
 	})
 }
+//访客记录
+export function visitors(data) {
+	return http({
+		url: `/api/wechat/visitors`,
+		method: 'POST',
+		data: data
+	})
+}
 //工作室(其他用户)-详情
 export function usersStudio(id, openid) {
 	return http({
@@ -369,7 +377,7 @@ export function resourcesHotel(data) {
 }
 
 //资源线路-下单-普通标品
-export function boutiquesOrders(id, team_id, quantity, sharer_id,type) {
+export function boutiquesOrders(id, team_id, quantity, sharer_id, type) {
 	return http({
 		url: `/api/${type}/${id}/orders`,
 		method: 'POST',

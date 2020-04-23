@@ -351,8 +351,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 72));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
 //
 //
 //
@@ -632,8 +634,7 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     hide: function hide() {this.modal = false;this.currentDate = new Date();}, // 显示日历
     show: function show() {this.modal = true;this.dates = this.currentDate.setMonth(this.currentDate.getMonth());this.times(this.dates);this.getTeams(this.id);}, // 获取时间
     times: function times(dates) {this.dates = new Date(dates);this.today = (0, _index.default)().format('YYYY-MM-DD');var now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);this.date = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
-      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {
-      if (i < 10) {
+      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {if (i < 10) {
         i = '0' + i;
       }
       return i;

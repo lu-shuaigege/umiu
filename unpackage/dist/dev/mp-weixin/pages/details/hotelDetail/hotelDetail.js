@@ -281,6 +281,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 72));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -416,11 +426,28 @@ var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/inde
 //
 //
 //
-var _default = { data: function data() {return { start_date: '0000-00-00', end_date: '0000-00-00', daysArr: [], daysLength: 0, //共几日
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { opencon: true, //是否查看全部介绍
+      start_date: '0000-00-00', //入住日期
+      end_date: '0000-00-00', //离店日期
+      daysArr: [], //选择日期的列表
+      daysLength: 0, //共几日
       quantity: 0, //房间数量
       number_of_adults: 0, //成人数量
       number_of_children: 0, //儿童数量
-      list: [], id: '', child: [], isDis: 0, uid: '', user_id: '', //现在的用户id
+      list: [], //页面总数居
+      id: '', child: [], isDis: 0, //是否是分销过来的
+      uid: '', //分享过来的用户id
+      user_id: '', //现在的用户id
       isbuy: 0, code: '', openid: '', userInfo: {}, check: [{ id: 1, name: '房间数', num: 0 }, { id: 2, name: '成人数', num: 0 }, { id: 3, name: '儿童数', num: 0 }], isOne: false };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
     // 登陆
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);} // 入住条件
@@ -460,7 +487,8 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
   // 		return allPrice;
   // 	}
   // },
-  methods: { // 跳转日历
+  methods: { //点击查看简介详情
+    openconfn: function openconfn(open) {this.opencon = open;}, // 跳转日历
     calendar: function calendar(id) {uni.navigateTo({ url: "/pages/details/calendar/calendar?id=".concat(id) });}, //获取日历
     timelist: function timelist() {var _this2 = this;(0, _api.hotelCalendar)(this.list.room.id, '').then(function (res) {var thistime = (0, _index.default)().format('YYYY-MM-DD');console.log(thistime);console.log(res.data);for (var i = 0; i < res.data.length; i++) {if (res.data[i].checkin_date == thistime) {_this2.daysArr.push(res.data[i]);_this2.daysArr.push(res.data[i + 1]);}}console.log(_this2.daysArr);_this2.start_date = _this2.daysArr[0].checkin_date;_this2.end_date = _this2.daysArr[1].checkin_date;var arr = _this2.daysArr;arr.pop();_this2.daysArr = arr;_this2.daysLength = _this2.daysArr.length; // if (this.daysArr[0].quantity == '0') {
         // 	console.log(111111);
@@ -468,20 +496,7 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
         // }
         console.log(_this2.daysArr);});}, // 跳转到选择房间数量
     gocheck: function gocheck() {var check = JSON.stringify(this.check);uni.navigateTo({ url: "/pages/details/check/check?check=".concat(check) });}, // 绑定粉丝
-    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
-        console.log(res);
-      });
-    },
-    getDetail: function getDetail(id) {var _this3 = this;
-      if (this.isDis == 1) {
-        (0, _api.distributionDetail)(id, 'hotel').then(function (res) {
-          _this3.list = res.data;
-          if (!_this3.isOne) {
-            _this3.timelist();
-          }
-          _this3.isOne = true;
-        });
-      } else {
+    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});}, getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'hotel').then(function (res) {_this3.list = res.data;if (!_this3.isOne) {_this3.timelist();}_this3.isOne = true;});} else {
         (0, _api.sourcesDetail)(id, 'hotel').then(function (res) {
           _this3.list = res.data;
           if (!_this3.isOne) {
@@ -562,21 +577,6 @@ var _default = { data: function data() {return { start_date: '0000-00-00', end_d
           url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&datas=").concat(datas) });
 
       }
-      uni.getSetting({
-        success: function success(res) {
-          // if (!res.authSetting['scope.userInfo']) {
-          // if (uni.getStorageSync('token')) {
-          // 	uni.navigateTo({
-          // 		url: `/pages/login/login?id=${_this.id}&isDis=${_this.isDis}`
-          // 	});
-          // } else {
-          // 	_this.child = _this.child.replace(/\&nbsp;/g, '');
-          // 	uni.navigateTo({
-          // 		url: `/pages/confirm/hotelConfirm/hotelConfirm?id=${_this.id}&type=hotel&child=${_this.child}&$isDis={_this.isDis}`
-          // 	});
-          // }
-        } });
-
     },
     CheckboxChange: function CheckboxChange(e) {
       this.child = JSON.stringify(e.detail.value);

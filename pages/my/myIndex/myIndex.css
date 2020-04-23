@@ -163,7 +163,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-/* 	padding: 0upx 67upx;
+	/* 	padding: 0upx 67upx;
 	box-sizing: border-box; */
 }
 
@@ -179,6 +179,7 @@
 .myCenter-top-list-item-top {
 	max-width: 45upx;
 	max-height: 41upx;
+	width: 36upx;
 	margin-bottom: 15upx;
 }
 

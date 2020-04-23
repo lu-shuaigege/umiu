@@ -203,7 +203,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 21); //
+//
 //
 //
 //
@@ -305,8 +307,7 @@ var _default = { components: {}, data: function data() {return { list: [], id: '
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
           // });
-        }
-      });
+        }});
     },
     getDetail: function getDetail(id) {var _this2 = this;
       if (this.isDis == 1) {

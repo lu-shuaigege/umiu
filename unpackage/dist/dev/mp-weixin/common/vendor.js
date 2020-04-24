@@ -245,12 +245,16 @@ var SYNC_API_RE =
 
 var CONTEXT_API_RE = /^create|Manager$/;
 
+// Context例外情况
+var CONTEXT_API_RE_EXC = ['createBLEConnection'];
+
+// 同步例外情况
 var ASYNC_API = ['createBLEConnection'];
 
 var CALLBACK_API_RE = /^on|^off/;
 
 function isContextApi(name) {
-  return CONTEXT_API_RE.test(name);
+  return CONTEXT_API_RE.test(name) && CONTEXT_API_RE_EXC.indexOf(name) === -1;
 }
 function isSyncApi(name) {
   return SYNC_API_RE.test(name) && ASYNC_API.indexOf(name) === -1;
@@ -354,14 +358,12 @@ var interceptors = {
   promiseInterceptor: promiseInterceptor };
 
 
-
-
 var baseApi = /*#__PURE__*/Object.freeze({
   __proto__: null,
   upx2px: upx2px,
-  interceptors: interceptors,
   addInterceptor: addInterceptor,
-  removeInterceptor: removeInterceptor });
+  removeInterceptor: removeInterceptor,
+  interceptors: interceptors });
 
 
 var previewImage = {
@@ -604,8 +606,6 @@ var eventApi = /*#__PURE__*/Object.freeze({
   $emit: $emit });
 
 
-
-
 var api = /*#__PURE__*/Object.freeze({
   __proto__: null });
 
@@ -792,14 +792,14 @@ function createObserver(name) {
 }
 
 function initBehaviors(vueOptions, initBehavior) {
-  var vueBehaviors = vueOptions['behaviors'];
-  var vueExtends = vueOptions['extends'];
-  var vueMixins = vueOptions['mixins'];
+  var vueBehaviors = vueOptions.behaviors;
+  var vueExtends = vueOptions.extends;
+  var vueMixins = vueOptions.mixins;
 
-  var vueProps = vueOptions['props'];
+  var vueProps = vueOptions.props;
 
   if (!vueProps) {
-    vueOptions['props'] = vueProps = [];
+    vueOptions.props = vueProps = [];
   }
 
   var behaviors = [];
@@ -811,11 +811,11 @@ function initBehaviors(vueOptions, initBehavior) {
           vueProps.push('name');
           vueProps.push('value');
         } else {
-          vueProps['name'] = {
+          vueProps.name = {
             type: String,
             default: '' };
 
-          vueProps['value'] = {
+          vueProps.value = {
             type: [String, Number, Boolean, Array, Object, Date],
             default: '' };
 
@@ -884,7 +884,7 @@ function initProperties(props) {var isBehavior = arguments.length > 1 && argumen
     Object.keys(props).forEach(function (key) {
       var opts = props[key];
       if (isPlainObject(opts)) {// title:{type:String,default:''}
-        var value = opts['default'];
+        var value = opts.default;
         if (isFn(value)) {
           value = value();
         }
@@ -919,8 +919,12 @@ function wrapper$1(event) {
 
   event.target = event.target || {};
 
-  if (!hasOwn(event, 'detail')) {
+  if (!hasOwn(event, 'detail') || !event.detail) {
     event.detail = {};
+  }
+
+  if (!('markerId' in event.detail) && 'markerId' in event) {
+    event.detail.markerId = event.markerId;
   }
 
   if (isPlainObject(event.detail)) {
@@ -1075,11 +1079,11 @@ function handleEvent(event) {var _this = this;
   // [['tap',[['handle',[1,2,a]],['handle1',[1,2,a]]]]]
   var dataset = (event.currentTarget || event.target).dataset;
   if (!dataset) {
-    return console.warn("\u4E8B\u4EF6\u4FE1\u606F\u4E0D\u5B58\u5728");
+    return console.warn('事件信息不存在');
   }
   var eventOpts = dataset.eventOpts || dataset['event-opts']; // 支付宝 web-view 组件 dataset 非驼峰
   if (!eventOpts) {
-    return console.warn("\u4E8B\u4EF6\u4FE1\u606F\u4E0D\u5B58\u5728");
+    return console.warn('事件信息不存在');
   }
 
   // [['handle',[1,2,a]],['handle1',[1,2,a]]]
@@ -1338,8 +1342,8 @@ function parseBaseComponent(vueComponentOptions)
 
   {
     // 微信 multipleSlots 部分情况有 bug，导致内容顺序错乱 如 u-list，提供覆盖选项
-    if (vueOptions['mp-weixin'] && vueOptions['mp-weixin']['options']) {
-      Object.assign(options, vueOptions['mp-weixin']['options']);
+    if (vueOptions['mp-weixin'] && vueOptions['mp-weixin'].options) {
+      Object.assign(options, vueOptions['mp-weixin'].options);
     }
   }
 
@@ -1555,7 +1559,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 14:
+/***/ 16:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
   \**********************************************************************************************************/
@@ -6655,10 +6659,10 @@ function initMixin (Vue) {
     initEvents(vm);
     initRender(vm);
     callHook(vm, 'beforeCreate');
-    vm.mpHost !== 'mp-toutiao' && initInjections(vm); // resolve injections before data/props  
+    !vm._$fallback && initInjections(vm); // resolve injections before data/props  
     initState(vm);
-    vm.mpHost !== 'mp-toutiao' && initProvide(vm); // resolve provide after data/props
-    vm.mpHost !== 'mp-toutiao' && callHook(vm, 'created');      
+    !vm._$fallback && initProvide(vm); // resolve provide after data/props
+    !vm._$fallback && callHook(vm, 'created');      
 
     /* istanbul ignore if */
     if ( true && config.performance && mark) {
@@ -7374,7 +7378,7 @@ function mountComponent$1(
     }
   }
   
-  vm.mpHost !== 'mp-toutiao' && callHook(vm, 'beforeMount');
+  !vm._$fallback && callHook(vm, 'beforeMount');
 
   var updateComponent = function () {
     vm._update(vm._render(), hydrating);
@@ -7714,7 +7718,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 21:
+/***/ 23:
 /*!**********************************************!*\
   !*** F:/object/uni-app/游米游/umiu/http/api.js ***!
   \**********************************************/
@@ -7722,7 +7726,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.get_phoneLogin = get_phoneLogin;exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.visitors = visitors;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.guidesSchedules = guidesSchedules;exports.hotelCalendar = hotelCalendar;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.resourcesHotel = resourcesHotel;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.get_phoneLogin = get_phoneLogin;exports.users = users;exports.getcustomDesignerselct = getcustomDesignerselct;exports.citysHot = citysHot;exports.getCustomizers = getCustomizers;exports.visitors = visitors;exports.usersStudio = usersStudio;exports.videos = videos;exports.circle = circle;exports.circles = circles;exports.travels = travels;exports.questions = questions;exports.loginPassword = loginPassword;exports.guidesSchedules = guidesSchedules;exports.hotelCalendar = hotelCalendar;exports.getResources = getResources;exports.sourcesDetail = sourcesDetail;exports.distributionDetail = distributionDetail;exports.boutiquesDetail = boutiquesDetail;exports.boutiquesTeams = boutiquesTeams;exports.evaluationsConfigs = evaluationsConfigs;exports.evaluationsOrders = evaluationsOrders;exports.orders = orders;exports.bindfans = bindfans;exports.getOpenid = getOpenid;exports.plans = plans;exports.grabs = grabs;exports.loginPasswords = loginPasswords;exports.code = code;exports.access_records = access_records;exports.access_records_del = access_records_del;exports.payWechat = payWechat;exports.sourcesOrders = sourcesOrders;exports.sourcesOrdersa = sourcesOrdersa;exports.resourcesHotel = resourcesHotel;exports.boutiquesOrders = boutiquesOrders;exports.distributionsOrders = distributionsOrders;exports.resourcesOrders = resourcesOrders;exports.travelsDetail = travelsDetail;exports.shortvideos = shortvideos;exports.comments = comments;exports.questionDetail = questionDetail;exports.questionAnswers = questionAnswers;exports.userInfo = userInfo;exports.travelOrders = travelOrders;exports.ordersDetail = ordersDetail;exports.ordersCancel = ordersCancel;var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 //////////////////////////////////////////////////////////新建
 
 //授权登陆
@@ -8270,7 +8274,7 @@ function ordersCancel(data) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 24:
 /*!**************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/http/request.js ***!
   \**************************************************/
@@ -8278,8 +8282,8 @@ function ordersCancel(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // var baseUrl = 'https://admin.umu888.com';
-var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://admin.umu888.com';
+// var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
 // var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
 var $http = function $http(options) {
   return new Promise(function (resolve, reject) {
@@ -8368,7 +8372,113 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 31:
+/***/ 327:
+/*!************************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  'contact': "\uE100",
+  'person': "\uE101",
+  'personadd': "\uE102",
+  'contact-filled': "\uE130",
+  'person-filled': "\uE131",
+  'personadd-filled': "\uE132",
+  'phone': "\uE200",
+  'email': "\uE201",
+  'chatbubble': "\uE202",
+  'chatboxes': "\uE203",
+  'phone-filled': "\uE230",
+  'email-filled': "\uE231",
+  'chatbubble-filled': "\uE232",
+  'chatboxes-filled': "\uE233",
+  'weibo': "\uE260",
+  'weixin': "\uE261",
+  'pengyouquan': "\uE262",
+  'chat': "\uE263",
+  'qq': "\uE264",
+  'videocam': "\uE300",
+  'camera': "\uE301",
+  'mic': "\uE302",
+  'location': "\uE303",
+  'mic-filled': "\uE332",
+  'speech': "\uE332",
+  'location-filled': "\uE333",
+  'micoff': "\uE360",
+  'image': "\uE363",
+  'map': "\uE364",
+  'compose': "\uE400",
+  'trash': "\uE401",
+  'upload': "\uE402",
+  'download': "\uE403",
+  'close': "\uE404",
+  'redo': "\uE405",
+  'undo': "\uE406",
+  'refresh': "\uE407",
+  'star': "\uE408",
+  'plus': "\uE409",
+  'minus': "\uE410",
+  'circle': "\uE411",
+  'checkbox': "\uE411",
+  'close-filled': "\uE434",
+  'clear': "\uE434",
+  'refresh-filled': "\uE437",
+  'star-filled': "\uE438",
+  'plus-filled': "\uE439",
+  'minus-filled': "\uE440",
+  'circle-filled': "\uE441",
+  'checkbox-filled': "\uE442",
+  'closeempty': "\uE460",
+  'refreshempty': "\uE461",
+  'reload': "\uE462",
+  'starhalf': "\uE463",
+  'spinner': "\uE464",
+  'spinner-cycle': "\uE465",
+  'search': "\uE466",
+  'plusempty': "\uE468",
+  'forward': "\uE470",
+  'back': "\uE471",
+  'left-nav': "\uE471",
+  'checkmarkempty': "\uE472",
+  'home': "\uE500",
+  'navigate': "\uE501",
+  'gear': "\uE502",
+  'paperplane': "\uE503",
+  'info': "\uE504",
+  'help': "\uE505",
+  'locked': "\uE506",
+  'more': "\uE507",
+  'flag': "\uE508",
+  'home-filled': "\uE530",
+  'gear-filled': "\uE532",
+  'info-filled': "\uE534",
+  'help-filled': "\uE535",
+  'more-filled': "\uE537",
+  'settings': "\uE560",
+  'list': "\uE562",
+  'bars': "\uE563",
+  'loop': "\uE565",
+  'paperclip': "\uE567",
+  'eye': "\uE568",
+  'arrowup': "\uE580",
+  'arrowdown': "\uE581",
+  'arrowleft': "\uE582",
+  'arrowright': "\uE583",
+  'arrowthinup': "\uE584",
+  'arrowthindown': "\uE585",
+  'arrowthinleft': "\uE586",
+  'arrowthinright': "\uE587",
+  'pulldown': "\uE588",
+  'closefill': "\uE589",
+  'sound': "\uE590",
+  'scan': "\uE612" };exports.default = _default;
+
+/***/ }),
+
+/***/ 33:
 /*!****************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/static/js/city.js ***!
   \****************************************************/
@@ -9499,113 +9609,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 331:
-/*!************************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/plugins/components/uni-icons/icons.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  'contact': "\uE100",
-  'person': "\uE101",
-  'personadd': "\uE102",
-  'contact-filled': "\uE130",
-  'person-filled': "\uE131",
-  'personadd-filled': "\uE132",
-  'phone': "\uE200",
-  'email': "\uE201",
-  'chatbubble': "\uE202",
-  'chatboxes': "\uE203",
-  'phone-filled': "\uE230",
-  'email-filled': "\uE231",
-  'chatbubble-filled': "\uE232",
-  'chatboxes-filled': "\uE233",
-  'weibo': "\uE260",
-  'weixin': "\uE261",
-  'pengyouquan': "\uE262",
-  'chat': "\uE263",
-  'qq': "\uE264",
-  'videocam': "\uE300",
-  'camera': "\uE301",
-  'mic': "\uE302",
-  'location': "\uE303",
-  'mic-filled': "\uE332",
-  'speech': "\uE332",
-  'location-filled': "\uE333",
-  'micoff': "\uE360",
-  'image': "\uE363",
-  'map': "\uE364",
-  'compose': "\uE400",
-  'trash': "\uE401",
-  'upload': "\uE402",
-  'download': "\uE403",
-  'close': "\uE404",
-  'redo': "\uE405",
-  'undo': "\uE406",
-  'refresh': "\uE407",
-  'star': "\uE408",
-  'plus': "\uE409",
-  'minus': "\uE410",
-  'circle': "\uE411",
-  'checkbox': "\uE411",
-  'close-filled': "\uE434",
-  'clear': "\uE434",
-  'refresh-filled': "\uE437",
-  'star-filled': "\uE438",
-  'plus-filled': "\uE439",
-  'minus-filled': "\uE440",
-  'circle-filled': "\uE441",
-  'checkbox-filled': "\uE442",
-  'closeempty': "\uE460",
-  'refreshempty': "\uE461",
-  'reload': "\uE462",
-  'starhalf': "\uE463",
-  'spinner': "\uE464",
-  'spinner-cycle': "\uE465",
-  'search': "\uE466",
-  'plusempty': "\uE468",
-  'forward': "\uE470",
-  'back': "\uE471",
-  'left-nav': "\uE471",
-  'checkmarkempty': "\uE472",
-  'home': "\uE500",
-  'navigate': "\uE501",
-  'gear': "\uE502",
-  'paperplane': "\uE503",
-  'info': "\uE504",
-  'help': "\uE505",
-  'locked': "\uE506",
-  'more': "\uE507",
-  'flag': "\uE508",
-  'home-filled': "\uE530",
-  'gear-filled': "\uE532",
-  'info-filled': "\uE534",
-  'help-filled': "\uE535",
-  'more-filled': "\uE537",
-  'settings': "\uE560",
-  'list': "\uE562",
-  'bars': "\uE563",
-  'loop': "\uE565",
-  'paperclip': "\uE567",
-  'eye': "\uE568",
-  'arrowup': "\uE580",
-  'arrowdown': "\uE581",
-  'arrowleft': "\uE582",
-  'arrowright': "\uE583",
-  'arrowthinup': "\uE584",
-  'arrowthindown': "\uE585",
-  'arrowthinleft': "\uE586",
-  'arrowthinright': "\uE587",
-  'pulldown': "\uE588",
-  'closefill': "\uE589",
-  'sound': "\uE590",
-  'scan': "\uE612" };exports.default = _default;
-
-/***/ }),
-
-/***/ 353:
+/***/ 349:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/html2json.js ***!
   \*************************************************************************/
@@ -9627,8 +9631,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 354));
-var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 355));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
+var _wxDiscode = _interopRequireDefault(__webpack_require__(/*! ./wxDiscode */ 350));
+var _htmlparser = _interopRequireDefault(__webpack_require__(/*! ./htmlparser */ 351));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /**
                                                                                                                                                                  * html2Json 改造来自: https://github.com/Jxck/html2json
                                                                                                                                                                  *
                                                                                                                                                                  *
@@ -9877,7 +9881,7 @@ html2json;exports.default = _default;
 
 /***/ }),
 
-/***/ 354:
+/***/ 350:
 /*!*************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/wxDiscode.js ***!
   \*************************************************************************/
@@ -10096,7 +10100,7 @@ function urlToHttpUrl(url, domain) {
 
 /***/ }),
 
-/***/ 355:
+/***/ 351:
 /*!**************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/gaoyia-parse/libs/htmlparser.js ***!
   \**************************************************************************/
@@ -11168,23 +11172,11 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-261120200409001","_inBundle":false,"_integrity":"sha512-iM1vsCzUEg80lCM7rSAkh+28ahjS9zQgiGsEoHxawCD9s7rTFnSRIaOuc7WHeQt6EclGUUIrMccYHXsLsNAXZg==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-261120200409001.tgz","_shasum":"e9daeef120f133bf3d4ca0505f5b2abed0e874a7","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"ff0877f516c1cc986cf2d7eae2bf5030c58050f9","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-261120200409001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26920200421003","_inBundle":false,"_integrity":"sha512-Aa6R66ZF2pIK9XB+Y7QbSW2GficyNTcdT7fnxFw5gY1eeY+u8oT7rTpZrL1W2qKbqf2FbsNPDjZrg1nRj6RxkQ==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26920200421003.tgz","_shasum":"c08ebc00afa71edd9ed388fc4bf411e42d458ac5","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"a7035ab7f2a83dbc2c75090de34f68e5a01224a7","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26920200421003"};
 
 /***/ }),
 
-/***/ 7:
-/*!**************************************************************!*\
-  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市", "usingComponents": { "tui-icon": "/plugins/thorui/components/icon/icon" }, "usingAutoImportComponents": {} }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white", "usingComponents": { "uni-icons": "/plugins/components/uni-icons/uni-icons", "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情", "usingComponents": { "lu-bar-tab-nav": "/plugins/lu-bar-tab-nav/lu-bar-tab-nav", "tui-collapse": "/plugins/thorui/components/tui-collapse/tui-collapse" }, "usingAutoImportComponents": {} }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/calendar/calendar": { "navigationBarTitleText": "日期选择", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": { "lu-bar-tab-nav": "/plugins/lu-bar-tab-nav/lu-bar-tab-nav", "u-parse": "/plugins/gaoyia-parse/parse", "tui-modal": "/plugins/thorui/components/modal/modal" }, "usingAutoImportComponents": {} }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": { "lu-bar-tab-nav": "/plugins/lu-bar-tab-nav/lu-bar-tab-nav", "u-parse": "/plugins/gaoyia-parse/parse", "tui-modal": "/plugins/thorui/components/modal/modal" }, "usingAutoImportComponents": {} }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": { "u-parse": "/plugins/gaoyia-parse/parse" }, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": { "tui-toast": "/plugins/thorui/components/extend/toast/toast" }, "usingAutoImportComponents": {} }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/downloadapp/downloadapp": { "navigationBarTitleText": "下载app", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/confirm/order/order": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情", "usingComponents": { "u-parse": "/plugins/gaoyia-parse/parse" }, "usingAutoImportComponents": {} }, "pages/newDetail/videodetails/videodetails": { "navigationBarTitleText": "短视频详情", "usingComponents": { "cmd-progress": "/plugins/cmd-progress/cmd-progress", "tui-drawer": "/plugins/thorui/components/drawer/drawer", "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情", "usingComponents": { "popupok": "/pages/components/popupok/popupok" }, "usingAutoImportComponents": {} }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单", "usingComponents": { "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore", "tui-nomore": "/plugins/thorui/components/nomore/nomore" }, "usingAutoImportComponents": {} }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情", "usingComponents": { "popupok": "/pages/components/popupok/popupok" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
-
-/***/ }),
-
-/***/ 72:
+/***/ 66:
 /*!*********************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/index.js ***!
   \*********************************************************/
@@ -11192,9 +11184,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 73));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 74));
-var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 75));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 67));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ./utils */ 68));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./locale/en */ 69));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
 
 var L = 'en'; // global locale
 var Ls = {}; // global loaded locale
@@ -11611,7 +11603,7 @@ dayjs;exports.default = _default;
 
 /***/ }),
 
-/***/ 73:
+/***/ 67:
 /*!************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/constant.js ***!
   \************************************************************/
@@ -11652,7 +11644,7 @@ var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{
 
 /***/ }),
 
-/***/ 74:
+/***/ 68:
 /*!*********************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/utils.js ***!
   \*********************************************************/
@@ -11660,7 +11652,7 @@ var REGEX_FORMAT = /\[([^\]]+)]|Y{2,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 73));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var C = _interopRequireWildcard(__webpack_require__(/*! ./constant */ 67));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 var padStart = function padStart(string, length, pad) {
   var s = String(string);
@@ -11715,7 +11707,7 @@ var isUndefined = function isUndefined(s) {return s === undefined;};var _default
 
 /***/ }),
 
-/***/ 75:
+/***/ 69:
 /*!*************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/locale/en.js ***!
   \*************************************************************/
@@ -11731,6 +11723,18 @@ var _default = {
 
 /***/ }),
 
+/***/ 7:
+/*!**************************************************************!*\
+  !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"style"} ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/customizedList/customized": { "navigationBarTitleText": "定制师列表" }, "pages/selectCity/selectCity": { "navigationBarTitleText": "城市" }, "pages/studio/studio": { "navigationBarTitleText": "我的工作室" }, "pages/scenicRecommend/scenicRecommend": { "navigationBarTitleText": "商品推荐", "navigationBarBackgroundColor": "#ff8532", "navigationBarTextStyle": "white" }, "pages/planDetail/planDetail": { "navigationBarTitleText": "方案详情" }, "pages/details/homestayDetail/homestayDetail": { "navigationBarTitleText": "民宿详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/hotelDetail/hotelDetail": { "navigationBarTitleText": "酒店详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/calendar/calendar": { "navigationBarTitleText": "日期选择", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/check/check": { "navigationBarTitleText": "入住条件", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/otherDetail/otherDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/restaurantDetail/restaurantDetail": { "navigationBarTitleText": "餐饮详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/scenicSpotDetail/scenicSpotDetail": { "navigationBarTitleText": "景点详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/standardDetail/standardDetail": { "navigationBarTitleText": "跟团游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/surround/surround": { "navigationBarTitleText": "周边游详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/details/specialtyDetail/specialtyDetail": { "navigationBarTitleText": "特产详情", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/login/login": { "navigationBarTitleText": "登录", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/authorizations/authorizations": { "navigationBarTitleText": "游米游" }, "pages/confirm/order/order": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/specialtyConfirm/specialtyConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/sceneConfirm/sceneConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/hotelConfirm/hotelConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/confirm/boutiquesConfirm/boutiquesConfirm": { "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/paySuccess/paySuccess": { "navigationBarTitleText": "支付成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/payGoapp/payGoapp": { "navigationBarTitleText": "预约成功", "navigationBarBackgroundColor": "#FFFFFF" }, "pages/customizationList/customizationList": { "navigationBarTitleText": "我的定制师列表" }, "pages/newDetail/traveldetails/traveldetails": { "navigationBarTitleText": "攻略游记详情" }, "pages/newDetail/videodetails/videodetails": { "navigationBarTitleText": "短视频详情" }, "pages/newDetail/comments/comments": { "navigationBarTitleText": "全部评论" }, "pages/newDetail/questionsdetails/questionsdetails": { "navigationBarTitleText": "问答详情" }, "pages/my/myIndex/myIndex": { "navigationBarTitleText": "个人中心" }, "pages/my/myorder/travelOrder/orderList/orderList": { "navigationBarTitleText": "旅游订单" }, "pages/my/myorder/travelOrder/orderDetail/resourcesOrder": { "navigationBarTitleText": "订单详情" }, "pages/my/myorder/specialtyOrder/orderList/orderList": { "navigationBarTitleText": "特产订单" }, "pages/my/myorder/specialtyOrder/orderDetail/orderDetail": { "navigationBarTitleText": "订单详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+
+/***/ }),
+
 /***/ 8:
 /*!*************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/pages.json?{"type":"stat"} ***!
@@ -11743,18 +11747,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 84:
+/***/ 86:
 /*!*********************************************************************************************!*\
   !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
   \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 85);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 87);
 
 /***/ }),
 
-/***/ 85:
+/***/ 87:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -11785,7 +11789,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 86);
+module.exports = __webpack_require__(/*! ./runtime */ 88);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -11802,7 +11806,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 86:
+/***/ 88:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -12534,7 +12538,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 87:
+/***/ 89:
 /*!******************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrAfter/index.js ***!
   \******************************************************************************/
@@ -12550,7 +12554,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 88:
+/***/ 90:
 /*!*******************************************************************************!*\
   !*** F:/object/uni-app/游米游/umiu/plugins/dayjs/plugin/isSameOrBefore/index.js ***!
   \*******************************************************************************/

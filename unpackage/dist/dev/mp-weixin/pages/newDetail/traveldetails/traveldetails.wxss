@@ -162,7 +162,9 @@
     width: 750rpx;
     height: 100rpx;
     background-color: #ffffff;
-    box-shadow: 0 -4rpx 10rpx 0.2rpx
+    -webkit-box-shadow: 0 -4rpx 10rpx 0.2rpx
+      rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -4rpx 10rpx 0.2rpx
       rgba(0, 0, 0, 0.05);
     display: -webkit-box;
     display: -webkit-flex;

@@ -4,7 +4,8 @@
 	min-height: 100vh;
 	background-color: #ffffff;
 	padding: 1rpx 0rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .list {
 	width: 100%;
@@ -21,7 +22,8 @@
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
 	padding: 38rpx 30rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .item_left {
 	display: -webkit-box;

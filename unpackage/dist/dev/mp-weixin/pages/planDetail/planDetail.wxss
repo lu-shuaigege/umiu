@@ -228,6 +228,7 @@ page {
 	padding-left: 30rpx;
 	margin-top: 20rpx;
 	background-color: #fff7f2;
+	background-image: -webkit-gradient(linear, left top, right top, from(#fff7f2), to(#ffffff));
 	background-image: -webkit-linear-gradient(left, #fff7f2, #ffffff);
 	background-image: linear-gradient(to right, #fff7f2, #ffffff);
 }

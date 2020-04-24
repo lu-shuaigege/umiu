@@ -241,5 +241,9 @@ page {
 	margin-top: 20rpx;
 	background: #ffffff;
 	box-sizing: border-box;
+}
 
+rich-text .rich-img {
+	width: 100%;
+	height: auto;
 }

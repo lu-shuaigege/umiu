@@ -18,16 +18,22 @@
 									<view class="studioTop-bottom-top-name">{{ data.user.nickname }}</view>
 									<image v-if="data.user.sex == 1" class="studioTop-bottom-top-sex" src="/static/img/customized_manicon.png" mode=""></image>
 									<image v-if="data.user.sex == 2" class="studioTop-bottom-top-sex" src="/static/img/customized_womanicon.png" mode=""></image>
-								</view>
-								<view class="studioTop-bottom-top-right-top-left-bottom">
 									<view class="serve_num">{{ data.user.rating }}</view>
 									<view class="role_zh">{{ data.user.role_zh }}</view>
 								</view>
+								<!-- <view class="studioTop-bottom-top-right-top-left-bottom">
+									<view class="serve_num">{{ data.user.rating }}</view>
+									<view class="role_zh">{{ data.user.role_zh }}</view>
+								</view> -->
+								<view class="community" v-if="data.user.supplier">
+									<image src="../../static/img/community_icon.png" class="community_img" mode=""></image>
+									<view class="communitytext">所属社：{{ data.user.supplier.name || '' }}</view>
+								</view>
 							</view>
 
-							<view class="studioTop-bottom-top-right-phone" @click="tel">
+							<!-- <view class="studioTop-bottom-top-right-phone" @click="tel">
 								<image class="studioTop-bottom-top-right-phone-img" src="../../static/img/phone.png" mode=""></image>
-							</view>
+							</view> -->
 						</view>
 
 						<view class="studioTop-bottom-top-right-word">{{ data.user.profile }}</view>
@@ -37,7 +43,7 @@
 		</view>
 		<view class="studioCenter">
 			<view class="studioCenter-top">
-				<view class="studioCenter-top-list">
+				<!-- <view class="studioCenter-top-list">
 					<view class="studioCenter-top-list-item">
 						<view class="studioCenter-top-list-item-top">{{ data.trade_number }}</view>
 						<view class="studioCenter-top-list-item-bottom">交易量</view>
@@ -46,24 +52,27 @@
 						<view class="studioCenter-top-list-item-top">{{ data.play_number }}</view>
 						<view class="studioCenter-top-list-item-bottom">产品数量</view>
 					</view>
-					<!-- <view class="studioCenter-top-list-item">
+					<view class="studioCenter-top-list-item">
 						<view class="studioCenter-top-list-item-top">{{ data.service_number }}</view>
 						<view class="studioCenter-top-list-item-bottom">服务人数</view>
-					</view> -->
+					</view>
 					<view class="studioCenter-top-list-item">
 						<view class="studioCenter-top-list-item-top">{{ data.visitor_number }}</view>
 						<view class="studioCenter-top-list-item-bottom">来访客户</view>
 					</view>
+				</view> -->
+				<view class="studioCenter-top-bottom">
+					<image src="../../static/img/gotoshop_icon.png" class="gotoshop" @click="gotoscenicRecommend()" mode=""></image>
+					<image src="../../static/img/gototel_icon.png" class="gototel" @click="tel" mode=""></image>
+					<!-- <view class="studioCenter-top-bottom-btn" @click="gotolife">走进TA的生活</view> -->
 				</view>
-				<view class="studioCenter-top-bottom"><view class="studioCenter-top-bottom-btn" @click="gotolife">走进TA的生活</view></view>
 			</view>
-			<view class="studioCenter-bottom">
+			<!-- <view class="studioCenter-bottom">
 				<view class="studioCenter-bottom-top" @click="gotoscenicRecommend()">
 					<view class="studioCenter-bottom-top-left">
 						<image src="../../static/img/shop.png" class="shop-icon" mode=""></image>
 						<view class="shop-title">进入我的小店</view>
 					</view>
-					<!-- <view class="studioCenter-bottom-top-right">查看更多</view> -->
 					<image src="../../static/img/studio_rightImg.png" class="studioCenter-bottom-top-rightImg" mode=""></image>
 				</view>
 				<view class="studioCenter-bottom-bottom">
@@ -77,7 +86,7 @@
 						</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		<view class="studioBottom">
 			<view class="studioBottom-top">

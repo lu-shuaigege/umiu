@@ -145,7 +145,8 @@ textarea::-webkit-input-placeholder {
 	position: fixed;
 	top: 100rpx;
 	z-index: 1;
-	box-shadow: 0 0 15rpx rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 0 0 15rpx rgba(0, 0, 0, 0.05);
+	        box-shadow: 0 0 15rpx rgba(0, 0, 0, 0.05);
 }
 .playRecommend_nav {
 	width: -webkit-max-content;

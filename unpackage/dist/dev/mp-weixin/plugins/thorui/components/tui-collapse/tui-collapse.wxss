@@ -29,7 +29,8 @@
 }
 .tui-arrow-padding{
 	padding-right: 62rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .tui-icon-active {
 	-webkit-transform: rotate(180deg);

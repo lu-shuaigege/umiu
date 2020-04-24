@@ -5,7 +5,8 @@ page {
 .paySuccess {
 	text-align: center;
 	padding: 1rpx 50rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .paySuccess image {
 	width: 311rpx;

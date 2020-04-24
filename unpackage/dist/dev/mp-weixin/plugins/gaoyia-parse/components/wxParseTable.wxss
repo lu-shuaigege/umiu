@@ -212,7 +212,8 @@
 }
 .wxParse .table .table,.wxParse .table{
 	border-collapse:collapse;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	/* 内边框 */
 	/* width: 100%; */
 	overflow: auto;
@@ -220,26 +221,30 @@
 }
 .wxParse .tbody{
 	border-collapse:collapse;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	/* 内边框 */
 	border: 1px solid #dadada;
 }
 .wxParse .table  .thead, .wxParse  .table .tfoot, .wxParse  .table .th{
 	border-collapse:collapse;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	background: #ececec;
 	font-weight: 40;
 }
 .wxParse  .table .tr {
 	border-collapse:collapse;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	/* border: 2px solid #F0AD4E; */
 	overflow:auto;
 }
 .wxParse  .table .th,
 .wxParse  .table .td{
 	border-collapse:collapse;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	border: 2rpx solid #dadada;
 	overflow:auto;
 }

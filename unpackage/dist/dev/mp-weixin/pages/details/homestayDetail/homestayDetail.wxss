@@ -22,7 +22,8 @@ page {
 	background: #ffffff;
 	margin-top: 20rpx;
 	padding: 30rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .detail_intro .top {
 	width: 690rpx;
@@ -80,7 +81,8 @@ page {
 	letter-spacing: 0rpx;
 	color: #ff6600;
 	padding: 0rpx 16rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	text-align: center;
 	margin-right: 15rpx;
 }
@@ -96,7 +98,8 @@ page {
 	letter-spacing: 0rpx;
 	color: #0084ff;
 	padding: 0rpx 16rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	text-align: center;
 }
 .detail_intro .top .second .l {
@@ -284,7 +287,8 @@ page {
 	-webkit-align-items: center;
 	        align-items: center;
 	padding: 12rpx 30rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .orderDetail_left {
 	width: 392rpx;
@@ -499,12 +503,12 @@ page {
 	padding: 1px 30rpx 1rpx 0;
 }
 .sticky-box {
-	
+
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
 	position: -webkit-sticky;
-	
+
 	position: sticky;
 	top: 0px;
 	z-index: 99;

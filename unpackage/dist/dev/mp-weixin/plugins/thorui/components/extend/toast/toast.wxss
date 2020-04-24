@@ -28,7 +28,8 @@
 	-webkit-flex-direction: column;
 	        flex-direction: column;
 	padding: 60rpx 20rpx 54rpx 20rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .tui-toast-padding {
 	padding-top: 50rpx !important;

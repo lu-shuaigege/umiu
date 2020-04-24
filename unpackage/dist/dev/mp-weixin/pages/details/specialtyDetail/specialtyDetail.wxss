@@ -22,7 +22,8 @@ page {
 	background: #ffffff;
 	margin-top: 20rpx;
 	padding: 30rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .detail_intro .top {
 	width: 690rpx;

@@ -83,6 +83,7 @@
 	line-height: 30rpx;
 	letter-spacing: 0rpx;
 	color: #00d838;
+	margin-left: 20upx;
 }
 
 .role_zh {
@@ -99,6 +100,27 @@
 	text-align: center;
 	padding: 0px 10upx;
 	margin-left: 20upx;
+}
+
+.community {
+	display: flex;
+	align-items: center;
+	margin-top: 26upx
+}
+
+.community_img {
+	width: 25rpx;
+	height: 25rpx;
+	margin-right: 14upx;
+}
+
+.communitytext {
+	font-family: PingFang-SC-Regular;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0rpx;
+	color: #666666;
 }
 
 .studioTop-bottom-top-right-phone {
@@ -201,7 +223,8 @@
 
 .studioCenter-top {
 	width: 690upx;
-	height: 270upx;
+	/* height: 270upx; */
+	height: 119upx;
 	background: rgba(255, 255, 255, 1);
 	box-shadow: 0upx 0upx 10upx 0upx rgba(40, 40, 44, 0.1);
 	border-radius: 8upx;
@@ -245,6 +268,20 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.gotoshop {
+	box-shadow: 0rpx 3rpx 10rpx 0rpx rgba(233, 94, 1, 0.5);
+	margin-right: 50upx;
+	border-radius: 34rpx;
+	width: 260upx;
+	height: 68upx;
+}
+
+.gototel {
+	border-radius: 34rpx;
+	width: 260upx;
+	height: 68upx;
 }
 
 .studioCenter-top-bottom-btn {

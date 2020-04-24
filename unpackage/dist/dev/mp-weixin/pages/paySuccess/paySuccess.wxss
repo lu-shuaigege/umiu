@@ -42,7 +42,8 @@ page {
 	-webkit-align-items: center;
 	        align-items: center;
 	padding: 0rpx 50rpx;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 .bottomview_left {
 	width: 301rpx;

@@ -56,7 +56,7 @@
 				<view class="house_policy">{{ item.value }}</view>
 			</view>
 		</view>
-		<view class="otherDetailHtml" v-if="list.body" v-html="list.body"></view>
+		<view class="otherDetailHtml" v-if="list.body" v-html="body"></view>
 		<view class="tobuy" @click="tobuy()">立即购买</view>
 	</view>
 </template>
@@ -68,6 +68,7 @@ export default {
 	data() {
 		return {
 			list: [],
+			body: '',
 			id: '',
 			isDis: 0,
 			uid: '',
@@ -171,10 +172,12 @@ export default {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'specialty').then(res => {
 					this.list = res.data;
+					this.body = this.list.body.replace(/\<img/gi, '<img class="rich-img"');
 				});
 			} else {
 				sourcesDetail(id, 'specialty').then(res => {
 					this.list = res.data;
+					this.body = this.list.body.replace(/\<img/gi, '<img class="rich-img"');
 				});
 			}
 		},

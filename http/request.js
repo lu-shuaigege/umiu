@@ -1,6 +1,7 @@
 var baseUrl = 'https://admin.umu888.com';
 // var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
 // var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
+
 var $http = function(options) {
 	return new Promise((resolve, reject) => {
 		var _header = {

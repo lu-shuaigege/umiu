@@ -18,7 +18,7 @@
 			<!-- <view class="total">销量：{{list.sales_volume}}</view> -->
 			<view class="price">
 				<view class="l">
-					<view class="l">门市价:</view>
+					<view class="l">售卖价:</view>
 					<view class="r">
 						<text>
 							￥

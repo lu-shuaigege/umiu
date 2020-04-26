@@ -44,21 +44,12 @@
 						<text></text>
 						<view class="r">行程天数：{{ item.last_days }}天</view>
 					</view>
-					<!-- <view class="price" v-show="isSelected != 6 && isSelected != 2">
-						门市价:
-						<text>￥</text>
-						<text class="price">{{ item.purchase_price }}</text>
-						<text class="price-right">门市价:￥{{ item.price }}</text>
-					</view> -->
 					<view class="price">
-						<text v-if="type != 'specialty'">门市价:</text>
+						<!-- <text v-if="type != 'specialty'">门市价:</text> -->
+						<text v-if="type != 'specialty'">售卖价:</text>
 						<text v-if="type == 'specialty'">售卖价:</text>
 						<text class="text">￥</text>
 						<text class="price">{{ item.price }}</text>
-						<!-- 门市价:
-						<text>￥</text>
-						<text class="price">{{ item.purchase_price }}</text> -->
-						<!-- <text class="price-right">门市价:￥{{ item.price }}</text> -->
 					</view>
 				</view>
 			</view>

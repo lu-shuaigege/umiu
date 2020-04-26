@@ -11,7 +11,7 @@
 				<view class="first">
 					<view class="l">{{ list.title }}</view>
 					<view class="r">
-						门市价:
+						售卖价:
 						<text>
 							￥
 							<text>{{ list.price }}</text>

@@ -57,14 +57,18 @@
 			</view>
 		</view>
 		<view class="otherDetailHtml" v-if="list.body" v-html="body"></view>
+		<!-- <view class="otherDetailHtml"><u-parse :content="body" /></view> -->
 		<view class="tobuy" @click="tobuy()">立即购买</view>
 	</view>
 </template>
 
 <script>
 import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
+import uParse from '@/plugins/gaoyia-parse/parse.vue';
 export default {
-	components: {},
+	components: {
+		uParse
+	},
 	data() {
 		return {
 			list: [],

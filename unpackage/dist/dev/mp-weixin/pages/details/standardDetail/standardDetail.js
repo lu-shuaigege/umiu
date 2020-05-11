@@ -351,6 +351,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 23);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 66));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -556,48 +567,41 @@ var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/inde
 //
 //
 //
-var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/gaoyia-parse/parse.vue */ 344));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var luBarTabNav = function luBarTabNav() {Promise.all(/*! require.ensure | plugins/lu-bar-tab-nav/lu-bar-tab-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/lu-bar-tab-nav/lu-bar-tab-nav")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/lu-bar-tab-nav/lu-bar-tab-nav.vue */ 330));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiModal = function tuiModal() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/modal/modal */ "plugins/thorui/components/modal/modal").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/modal/modal.vue */ 352));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { luBarTabNav: luBarTabNav, uParse: uParse, tuiModal: tuiModal }, data: function data() {return { list: { title: '', destination: '', last_days: 0, sales_volume: 0, price: 0, author: { truename: '' }, distributable_id: 0 }, distributable_id: 0, id: '', isnew: false, //是否是分享进来的
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/gaoyia-parse/parse.vue */ 391));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var luBarTabNav = function luBarTabNav() {Promise.all(/*! require.ensure | plugins/lu-bar-tab-nav/lu-bar-tab-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/lu-bar-tab-nav/lu-bar-tab-nav")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/lu-bar-tab-nav/lu-bar-tab-nav.vue */ 377));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiModal = function tuiModal() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/modal/modal */ "plugins/thorui/components/modal/modal").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/modal/modal.vue */ 399));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { luBarTabNav: luBarTabNav, uParse: uParse, tuiModal: tuiModal }, data: function data() {return { list: { title: '', destination: '', last_days: 0, sales_volume: 0, price: 0, author: { truename: '' }, distributable_id: 0 }, distributable_id: 0, id: '', isnew: false, //是否是分享进来的
       code: '', openid: '', userInfo: {}, isClick: false, scrollTop: 0, barFixed: true, barHeight: '38', barTop: 0, iconShow: true, barId: '0', intro: '', tabList: [{ text: '图文介绍', navTarget: '#item1' }, { text: '行程路线', navTarget: '#item2' }, { text: '费用说明', navTarget: '#item3' }, { text: '购买须知', navTarget: '#item4' }], //日历
       daysList: [], modal: false, dates: '', //格式化后日期
       currentDate: new Date(), date: '', lefticon: false, //左边按钮
       chooseStart: -1, today: '', team: '', //微信号弹框
-      modal1: false, isDis: 0, uid: '', user_id: '', //现在的用户id
+      modal1: false, isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
+      useisShare: 0, // 1:普通分享   2:普通分销   3:我要分销
+      isDis: 0, uid: '', //分享过来的用户id
+      user_id: '', //现在的用户id
+      myid: '', //自己的id
+      usemyid: '', //要使用的自己id
       isbuy: 0 };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages(); // console.log(pages);
     var currPage = pages[pages.length - 1]; // 当前页
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis; // this.uid = currPage.data.uid;
       this.isbuy = currPage.data.isbuy;this.getDetail(this.id); // this.bindfans();
-    }if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;this.distributable_id = options.id;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;} // console.log('detail' + this.uid);
-    if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
-      // 	success: res => {
-      // 		//判断是否授权，如果授权成功
-      // 		if (res.authSetting['scope.userInfo']) {
-      // 			//获取用户信息
-      // 			wx.getUserInfo({
-      // 				success: res => {
-      // 					this.userInfo = res.userInfo;
-      // 					uni.setStorageSync('userInfo', res.userInfo);
-      // 					this.bindfans();
-      // 					this.getDetail(this.id);
-      // 				}
-      // 			});
-      // 		} else {
-      // 			uni.navigateTo({
-      // 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-      // 			});
-      // 			return;
-      // 		}
-      // 	}
-      // });
-      if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
-        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-        // });
-        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });} else {this.bindfans();}}this.getDetail(this.id);}, methods: { bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
+    }if (currPage.data.isShare) {this.isShare = currPage.data.isShare;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}if (uni.getStorageSync('token')) {this.userInfofn();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;this.distributable_id = options.id;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (options.isShare) {this.isShare = options.isShare;console.log(this.isShare);} // console.log('detail' + this.uid);
+    if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {if (!uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(options.isShare, "&needUserInfo=", 1, "&needToken=", 1) });return;}if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(options.isShare, "&needUserInfo=", 1, "&needToken=", 0) });return;}if (!uni.getStorageSync('token')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(options.isShare, "&needUserInfo=", 0, "&needToken=", 1) });return;} else {this.bindfans();}}this.getDetail(this.id);}, methods: { //获取个人信息
+    userInfofn: function userInfofn() {var _this2 = this;(0, _api.userInfo)().then(function (res) {console.log(res.data);_this2.myid = res.data.id;_this2.usemyid = res.data.id;});}, bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {// this.list = res.data;
         console.log(res);if (res.code == 0) {// uni.showToast({
           // 	icon: 'none',
           // 	title: '绑定粉丝成功'
           // });
         }});}, //选择套餐
-    chooseItem: function chooseItem(item) {var _this2 = this;if (item.travel_date > this.today && item.price > 0) {this.chooseStart = item.id;this.team = item;setTimeout(function () {_this2.hide();}, 500);}}, //进入工作室
+    chooseItem: function chooseItem(item) {var _this3 = this;if (item.travel_date > this.today && item.price > 0) {this.chooseStart = item.id;this.team = item;setTimeout(function () {_this3.hide();}, 500);}}, //进入工作室
     toUpload: function toUpload(id) {// if (this.isDis == 1 && this.uid) {
       // 	this.user_id = this.list.distributor.id;
       // }
@@ -628,12 +632,50 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     // 		}
     // 	});
     // },
-    getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'tour-group').then(function (res) {_this3.list = res.data;_this3.list.author = res.data.distributor;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];_this3.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id, 'tour-groups').then(function (res) {_this3.list = res.data;_this3.chooseStart = _this3.list.teams[0].id;_this3.team = _this3.list.teams[0];});}}, //获取日历&&价格
-    getTeams: function getTeams(id) {var _this4 = this;(0, _api.boutiquesTeams)(id, this.date, 'tour-groups').then(function (res) {_this4.daysList = res.data;if (_this4.daysList[0].week_zh == '周日') {_this4.daysList.unshift();} else if (_this4.daysList[0].week_zh == '周一') {_this4.daysList.unshift({});} else if (_this4.daysList[0].week_zh == '周二') {_this4.daysList.unshift({}, {});} else if (_this4.daysList[0].week_zh == '周三') {_this4.daysList.unshift({}, {}, {});} else if (_this4.daysList[0].week_zh == '周四') {_this4.daysList.unshift({}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周五') {_this4.daysList.unshift({}, {}, {}, {}, {});} else if (_this4.daysList[0].week_zh == '周六') {_this4.daysList.unshift({}, {}, {}, {}, {}, {});}});}, // 隐藏日历
-    hide: function hide() {this.modal = false;this.currentDate = new Date();}, // 显示日历
-    show: function show() {this.modal = true;this.dates = this.currentDate.setMonth(this.currentDate.getMonth());this.times(this.dates);this.getTeams(this.id);}, // 获取时间
-    times: function times(dates) {this.dates = new Date(dates);this.today = (0, _index.default)().format('YYYY-MM-DD');var now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);this.date = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
-      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';if (this.date == now) {this.lefticon = false;} else {this.lefticon = true;}}, checkMonth: function checkMonth(i) {if (i < 10) {
+    getDetail: function getDetail(id) {var _this4 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'tour-group').then(function (res) {_this4.list = res.data;_this4.list.author = res.data.distributor; // this.chooseStart = this.list.teams[0].id;
+          // this.team = this.list.teams[0];
+          for (var i = 0; i < _this4.list.teams.length; i++) {if (_this4.list.teams[i].quantity > 0) {_this4.chooseStart = _this4.list.teams[i].id;_this4.team = _this4.list.teams[i];break;}}_this4.distributable_id = res.data.distributable_id;});} else {(0, _api.boutiquesDetail)(id, 'tour-groups').then(function (res) {_this4.list = res.data; // this.chooseStart = this.list.teams[0].id;
+          // this.team = this.list.teams[0];
+          for (var i = 0; i < _this4.list.teams.length; i++) {if (_this4.list.teams[i].quantity > 0) {_this4.chooseStart = _this4.list.teams[i].id;_this4.team = _this4.list.teams[i];break;}}});}}, //获取日历&&价格
+    getTeams: function getTeams(id) {var _this5 = this;(0, _api.boutiquesTeams)(id, this.date, 'tour-groups').then(function (res) {_this5.daysList = res.data;if (_this5.daysList[0].week_zh == '周日') {_this5.daysList.unshift();} else if (_this5.daysList[0].week_zh == '周一') {_this5.daysList.unshift({});} else if (_this5.daysList[0].week_zh == '周二') {_this5.daysList.unshift({}, {});
+        } else if (_this5.daysList[0].week_zh == '周三') {
+          _this5.daysList.unshift({}, {}, {});
+        } else if (_this5.daysList[0].week_zh == '周四') {
+          _this5.daysList.unshift({}, {}, {}, {});
+        } else if (_this5.daysList[0].week_zh == '周五') {
+          _this5.daysList.unshift({}, {}, {}, {}, {});
+        } else if (_this5.daysList[0].week_zh == '周六') {
+          _this5.daysList.unshift({}, {}, {}, {}, {}, {});
+        }
+      });
+    },
+    // 隐藏日历
+    hide: function hide() {
+      this.modal = false;
+      this.currentDate = new Date();
+    },
+    // 显示日历
+    show: function show() {
+      this.modal = true;
+      this.dates = this.currentDate.setMonth(this.currentDate.getMonth());
+      this.times(this.dates);
+      this.getTeams(this.id);
+    },
+    // 获取时间
+    times: function times(dates) {
+      this.dates = new Date(dates);
+      this.today = (0, _index.default)().format('YYYY-MM-DD');
+      var now = new Date().getFullYear() + '-' + this.checkMonth(new Date().getMonth() + 1);
+      this.date = this.dates.getFullYear() + '-' + this.checkMonth(this.dates.getMonth() + 1); // "2019-03"
+      this.dates = this.dates.getFullYear() + ' 年 ' + this.checkMonth(this.dates.getMonth() + 1) + ' 月 ';
+      if (this.date == now) {
+        this.lefticon = false;
+      } else {
+        this.lefticon = true;
+      }
+    },
+    checkMonth: function checkMonth(i) {
+      if (i < 10) {
         i = '0' + i;
       }
       return i;
@@ -665,13 +707,13 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
         // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
         // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&isShare=").concat(_this.isShare, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         _this.team = JSON.stringify(_this.team);
         uni.navigateTo({
           // url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
-          url: "/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=".concat(_this.id, "&type='tour-group'&team=").concat(_this.team, "&isDis=1&uid=").concat(_this.uid) });
+          url: "/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=".concat(_this.id, "&type='tour-group'&team=").concat(_this.team, "&isDis=1&uid=").concat(_this.uid, "&isShare=").concat(_this.isShare) });
 
       }
       uni.getSetting({
@@ -694,6 +736,30 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
   //页面滚动执行方式
   onPageScroll: function onPageScroll(e) {
     this.$refs.barTabNav._selectedTab(e.scrollTop);
+  },
+  // 转发
+  onShareAppMessage: function onShareAppMessage(res) {
+    console.log(res);
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      this.isShare = 3;
+      this.uid = this.usemyid;
+    }
+    return {
+      title: '特产详情',
+      path: "/pages/details/otherDetail/otherDetail?id=".concat(this.id, "&isDis=").concat(this.isDis, "&uid=").concat(this.uid, "&isShare=").concat(this.isShare),
+      success: function success(res) {
+        console.log(res);
+      },
+      fail: function fail(res) {
+        this.uid = this.myid;
+        this.isShare = this.useisShare;
+        // 转发失败
+        console.log('用户点击了取消', res);
+        console.log('uid', this.uid);
+        console.log('isShare', this.isShare);
+      } };
+
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

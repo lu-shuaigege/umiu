@@ -91,11 +91,40 @@ export default {
 	line-height: 100upx;
 	font-size: 30upx;
 	color: #ffffff;
-	background-color: #ff6600;
+	background-color: #ffffff;
 	text-align: center;
 	position: fixed;
 	bottom: 0;
 	z-index: 9;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.tobuyleft {
+	width: 50%;
+	height: 100%;
+	color: #ff6600;
+	line-height: 100upx;
+	text-align: center;
+}
+.tobuyright {
+	font-size: 30upx;
+	border: 0upx;
+	border-radius: 0upx;
+	width: 50%;
+	height: 100%;
+	color: #ffffff;
+	background-color: #ff6600;
+	line-height: 100upx;
+	text-align: center;
+}
+.nowbuy {
+	width: 100%;
+	height: 100%;
+	background: #ff6600;
+	color: #ffffff;
+	line-height: 100upx;
+	text-align: center;
 }
 .confirm_bottom {
 	width: 100%;
@@ -132,15 +161,18 @@ export default {
 	pointer-events: none;
 }
 .gotomyCenterbtn {
-	width: 153upx;
-	height: 183upx;
+	/* width: 153upx;
+	height: 183upx; */
+	width: 122.4upx;
+	height: 146.4upx;
 	/* border-radius: 50%; */
 	background: url(static/img/gotomyIndex.png);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	position: fixed;
 	z-index: 101;
-	bottom: 200upx;
+	/* bottom: 200upx; */
+	top: 680upx;
 	right: 0upx;
 }
 </style>

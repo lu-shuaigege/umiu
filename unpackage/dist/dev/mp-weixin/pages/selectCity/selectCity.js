@@ -273,7 +273,7 @@ var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
 //
-var cityData = __webpack_require__(/*! @/static/js/city.js */ 33);var tuiIcon = function tuiIcon() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/icon/icon */ "plugins/thorui/components/icon/icon").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/icon/icon.vue */ 315));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiIcon: tuiIcon }, data: function data() {return { lists: [], touchmove: false, // 是否在索引表上滑动
+var cityData = __webpack_require__(/*! @/static/js/city.js */ 33);var tuiIcon = function tuiIcon() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/icon/icon */ "plugins/thorui/components/icon/icon").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/icon/icon.vue */ 355));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiIcon: tuiIcon }, data: function data() {return { lists: [], touchmove: false, // 是否在索引表上滑动
       touchmoveIndex: -1, titleHeight: 0, // 索引二字距离窗口顶部的高度
       indexBarHeight: 0, // 索引表高度
       indexBarItemHeight: 0, // 索引表子项的高度

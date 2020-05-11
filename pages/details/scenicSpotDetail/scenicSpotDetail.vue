@@ -66,21 +66,29 @@
 			</view>
 			<view class="house_policy">{{ list.booking_instr }}</view>
 		</view>
-		<view class="tobuy" @click="tobuy()">立即购买</view>
+		<view class="tobuy">
+			<view class="tobuyleft" v-if="isShare == 3" @click="tobuy()">立即购买</view>
+			<button class="tobuyright" v-if="isShare == 3" open-type="share">我要分销</button>
+			<view class="nowbuy" v-if="isShare != 3" @click="tobuy()">立即购买</view>
+		</view>
 	</view>
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
+import { userInfo,sourcesDetail, distributionDetail, bindfans } from '@/http/api.js';
 export default {
 	components: {},
 	data() {
 		return {
 			list: [],
 			id: '',
+			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+			useisShare: 1, // 1:普通分享   2:普通分销   3:我要分销
 			isDis: 0,
-			uid: '',
+			uid: '',//分享过来的用户id
 			user_id: '', //现在的用户id
+			myid: '', //自己的id
+			usemyid: '', //要使用的自己id
 			isbuy: 0,
 			code: '',
 			openid: '',
@@ -96,6 +104,9 @@ export default {
 			this.isDis = currPage.data.isDis;
 			this.getDetail(this.id);
 		}
+		if (currPage.data.isShare) {
+			this.isShare = currPage.data.isShare;
+		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
 		}
@@ -109,6 +120,9 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
+		if (uni.getStorageSync('token')) {
+			this.userInfofn();
+		}
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -118,6 +132,10 @@ export default {
 		console.log(options.id)
 		if (options.uid) {
 			this.uid = options.uid;
+		}
+		if (options.isShare) {
+			this.isShare = options.isShare;
+			console.log(this.isShare);
 		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
@@ -129,34 +147,29 @@ export default {
 			this.userInfo = uni.getStorageSync('userInfo');
 		}
 		if (getCurrentPages().length == 1) {
-			// wx.getSetting({
-			// 	success: res => {
-			// 		//判断是否授权，如果授权成功
-			// 		if (res.authSetting['scope.userInfo']) {
-			// 			//获取用户信息
-			// 			wx.getUserInfo({
-			// 				success: res => {
-			// 					this.userInfo = res.userInfo;
-			// 					uni.setStorageSync('userInfo', res.userInfo);
-			// 					this.bindfans();
-			// 					this.getDetail(this.id);
-			// 				}
-			// 			});
-			// 		} else {
-			// 			uni.navigateTo({
-			// 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-			// 			});
-			// 			return;
-			// 		}
-			// 	}
-			// });
-			if (!uni.getStorageSync('userInfo')) {
-				// uni.navigateTo({
-				// 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-				// });
+			if (!uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&needUserInfo=${1}&needToken=${0}`
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${1}&needToken=${1}`
 				});
+				return;
+			}
+			if (!uni.getStorageSync('userInfo')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${1}&needToken=${0}`
+				});
+				return;
+			}
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${0}&needToken=${1}`
+				});
+				return;
 			} else {
 				this.bindfans();
 			}
@@ -164,6 +177,14 @@ export default {
 		this.getDetail(options.id);
 	},
 	methods: {
+		//获取个人信息
+		userInfofn() {
+			userInfo().then(res => {
+				console.log(res.data);
+				this.myid = res.data.id;
+				this.usemyid = res.data.id;
+			});
+		},
 		bindfans() {
 			bindfans(this.id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
@@ -213,11 +234,11 @@ export default {
 				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
 				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&isShare=${_this.isShare}&needUserInfo=${0}&needToken=${1}`
 				});
 			} else {
 				uni.navigateTo({
-					url: `/pages/confirm/order/order?id=${_this.id}&type=sight&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/order/order?id=${_this.id}&type=sight&isDis=${_this.isDis}&uid=${_this.uid}&isShare=${_this.isShare}`
 				});
 			}
 			uni.getSetting({
@@ -235,6 +256,30 @@ export default {
 				}
 			});
 		}
+	},
+	// 转发
+	onShareAppMessage(res) {
+		console.log(res);
+		if (res.from === 'button') {
+			// 来自页面内转发按钮
+			this.isShare = 3;
+			this.uid = this.usemyid;
+		}
+		return {
+			title: '特产详情',
+			path: `/pages/details/otherDetail/otherDetail?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`,
+			success: function(res) {
+				console.log(res);
+			},
+			fail: function(res) {
+				this.uid = this.myid;
+				this.isShare = this.useisShare;
+				// 转发失败
+				console.log('用户点击了取消', res);
+				console.log('uid', this.uid);
+				console.log('isShare', this.isShare);
+			}
+		};
 	}
 };
 </script>

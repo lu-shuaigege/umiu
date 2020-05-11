@@ -1,0 +1,177 @@
+.my-wallet-detail {
+	width: 750upx;
+	height: 100vh;
+	background-color: #F8F8F8;
+	font-family: PingFang-SC-Regular;
+}
+
+.my-wallet-detail-amount {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 690upx;
+	margin: 20upx 30upx 30upx 30upx;
+	padding: 30upx 0upx;
+	background-image: url(../../../../static/img/my_wallet_detail_bg.png);
+	background-size: cover;
+	border-radius: 10upx;
+}
+
+.my-wallet-detail-amount .hit {
+	margin-top: 16upx;
+	font-size: 24upx;
+	color: #FFFFFF;
+}
+
+.my-wallet-detail-amount .total {
+	font-size: 60upx;
+	color: #FFFFFF;
+	padding-top: 6upx;
+	padding-bottom: 34upx;
+}
+
+.my-wallet-detail-amount .total-income {
+	text-align: center;
+	background-color: #FDC187;
+	border-radius: 30upx;
+	border: 1upx solid #ffab59;
+	font-size: 24upx;
+	color: #FFFFFF;
+	opacity: 0.8;
+	padding: 12upx 58upx;
+}
+
+.my-wallet-detail-choose {
+	display: flex;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.my-wallet-detail-choose .choose-item {
+	display: flex;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+}
+
+.my-wallet-detail-choose .choose-item .choose-item-name {
+	font-size: 30upx;
+	line-height: 90upx;
+	color: #666666;
+	border-bottom: 2upx solid #FFFFFF;
+}
+
+.my-wallet-detail-choose .choose-item .choose-item-name.active {
+	color: #FF6600;
+	border-bottom: 2upx solid #FF6600;
+}
+
+.my-wallet-detail-list {
+	width: 100%;
+}
+
+.my-wallet-detail-list-item {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	padding: 40upx 30upx;
+	background-color: #FFFFFF;
+	border-top: 1upx solid #ededed;
+}
+
+.my-wallet-detail-list-item .item-image {
+	width: 60upx;
+	height: 60upx;
+	margin-right: 20upx;
+}
+
+.my-wallet-detail-list-item .item-text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: calc(100% - 60upx);
+}
+
+.my-wallet-detail-list-item .item-text .flex-horizontal-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.my-wallet-detail-list-item .item-text-bottom {
+	margin-top: 25upx;
+}
+
+.my-wallet-detail-list-item .item-text .item-name {
+	width: 400upx;
+	font-size: 30upx;
+	color: #28282C;
+	font-family: PingFang-SC-Bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+}
+
+.my-wallet-detail-list-item .item-text .item-num {
+	font-size: 26upx;
+	color: #666666;
+	font-family: PingFang-SC-Medium;
+}
+
+.my-wallet-detail-list-item .item-text .item-money {
+	font-size: 26upx;
+	color: #28282C;
+	font-family: PingFang-SC-Medium;
+}
+
+.my-wallet-detail-list-item .item-text .item-time {
+	font-size: 24upx;
+	font-family: PingFang-SC-Regular;
+	color: #999999;
+}
+
+.my-wallet-detail-list-item .item-text .item-status {
+	font-size: 26upx;
+	font-family: PingFang-SC-Medium;
+	color: #28282c;
+}
+
+.status-success {
+	color: #00aa44;
+}
+
+.status-failed {
+	color: #f50000;
+}
+
+.my-wallet-detail-no-more {
+	width: 100%;
+	font-size: 24upx;
+	text-align: center;
+}
+
+.my-wallet-detail-list-empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	min-height: 400upx;
+}
+
+.my-wallet-detail-list-empty image {
+	width: 200upx;
+	height: 200upx;
+}
+
+.my-wallet-detail-list-empty .empty-data {
+	font-size: 20upx;
+	color: #999999;
+	margin-top: 20upx;
+}

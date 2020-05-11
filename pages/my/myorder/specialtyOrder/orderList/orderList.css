@@ -140,6 +140,11 @@
 .specifications {
 	width: 100%;
 	margin: 27upx 0px 28upx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
 }
 
 .orderlist_itemcon_right_money {

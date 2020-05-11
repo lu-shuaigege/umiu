@@ -41,9 +41,10 @@
 				</view>
 				<view class="setmeal_r">
 					<view class="one" v-for="item in list.teams" :key="item" @click="chooseItem(item)">
-						<view class="one_p" :class="chooseStart == item.id ? 'borderFF6600' : ''">
+						<view class="one_p" :class="chooseStart == item.id ? 'borderFF6600' : item.quantity != 0 ? '' : 'bg999'">
 							<view class="up">{{ item.travel_date.substring(5) }} {{ item.week_zh }}</view>
-							<view class="ud">￥{{ item.price }}</view>
+							<view class="ud" v-if="item.quantity != 0">￥{{ item.price }}</view>
+							<view class="ud" v-if="item.quantity == 0">暂无库存</view>
 						</view>
 					</view>
 					<view class="one" @click="show">
@@ -174,9 +175,15 @@
 					<view>六</view>
 				</view>
 				<view class="calendar_days">
-					<view class="dayone" v-for="item in daysList" :key="item" @click="chooseItem(item)" :class="chooseStart == item.id ? 'sbgFF6600' : ''">
+					<view
+						class="dayone"
+						v-for="item in daysList"
+						:key="item"
+						@click="chooseItem(item)"
+						:class="chooseStart == item.id ? 'sbgFF6600' : item.quantity != 0 ? '' : ''"
+					>
 						<view class="day" :class="item.price === 0 || item.travel_date <= today ? 'colorc1' : 'color6'">{{ item.day }}</view>
-						<view class="price" v-if="item.price !== 0 && item.travel_date > today">
+						<view class="price" v-if="item.price !== 0 && item.travel_date > today && item.quantity != 0">
 							<text v-if="item.price !== undefined">¥</text>
 							{{ item.price }}
 						</view>
@@ -199,12 +206,16 @@
 				</view>
 			</tui-modal>
 		</view> -->
-		<view class="tobuy" @click="tobuy()">立即购买</view>
+		<view class="tobuy">
+			<view class="tobuyleft" v-if="isShare == 3" @click="tobuy()">立即购买</view>
+			<button class="tobuyright" v-if="isShare == 3" open-type="share">我要分销</button>
+			<view class="nowbuy" v-if="isShare != 3" @click="tobuy()">立即购买</view>
+		</view>
 	</view>
 </template>
 
 <script>
-import { boutiquesTeams, boutiquesDetail, distributionDetail, bindfans } from '@/http/api.js';
+import { userInfo, boutiquesTeams, boutiquesDetail, distributionDetail, bindfans } from '@/http/api.js';
 import dayjs from '@/plugins/dayjs/index.js';
 import uParse from '@/plugins/gaoyia-parse/parse.vue';
 import luBarTabNav from '@/plugins/lu-bar-tab-nav/lu-bar-tab-nav.vue';
@@ -262,7 +273,7 @@ export default {
 			],
 
 			//日历
-			dataid: '',//获取日历列表的id
+			dataid: '', //获取日历列表的id
 
 			daysList: [],
 			modal: false,
@@ -275,9 +286,12 @@ export default {
 			team: '',
 			//微信号弹框
 			modal1: false,
+			isShare: 0, // 1:普通分享   2:我要分销
 			isDis: 0,
-			uid: '',
+			uid: '', //分享过来的用户id
 			user_id: '', //现在的用户id
+			myid: '', //自己的id
+			usemyid: '', //要使用的自己id
 			isbuy: 0
 		};
 	},
@@ -294,6 +308,9 @@ export default {
 			this.getDetail(this.id);
 			// this.bindfans();
 		}
+		if (currPage.data.isShare) {
+			this.isShare = currPage.data.isShare;
+		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
 		}
@@ -307,6 +324,9 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
+		if (uni.getStorageSync('token')) {
+			this.userInfofn();
+		}
 	},
 	onLoad(options) {
 		if (options.isDis && options.isDis == 1) {
@@ -317,6 +337,10 @@ export default {
 		console.log(options.id);
 		if (options.uid) {
 			this.uid = options.uid;
+		}
+		if (options.isShare) {
+			this.isShare = options.isShare;
+			console.log(this.isShare);
 		}
 		// console.log('detail' + this.uid);
 		if (uni.getStorageSync('code')) {
@@ -329,34 +353,29 @@ export default {
 			this.userInfo = uni.getStorageSync('userInfo');
 		}
 		if (getCurrentPages().length == 1) {
-			// wx.getSetting({
-			// 	success: res => {
-			// 		//判断是否授权，如果授权成功
-			// 		if (res.authSetting['scope.userInfo']) {
-			// 			//获取用户信息
-			// 			wx.getUserInfo({
-			// 				success: res => {
-			// 					this.userInfo = res.userInfo;
-			// 					uni.setStorageSync('userInfo', res.userInfo);
-			// 					this.bindfans();
-			// 					this.getDetail(this.id);
-			// 				}
-			// 			});
-			// 		} else {
-			// 			uni.navigateTo({
-			// 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-			// 			});
-			// 			return;
-			// 		}
-			// 	}
-			// });
-			if (!uni.getStorageSync('userInfo')) {
-				// uni.navigateTo({
-				// 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-				// });
+			if (!uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&needUserInfo=${1}&needToken=${0}`
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${1}&needToken=${1}`
 				});
+				return;
+			}
+			if (!uni.getStorageSync('userInfo')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${1}&needToken=${0}`
+				});
+				return;
+			}
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${0}&needToken=${1}`
+				});
+				return;
 			} else {
 				this.bindfans();
 			}
@@ -364,6 +383,14 @@ export default {
 		this.getDetail(this.id);
 	},
 	methods: {
+		//获取个人信息
+		userInfofn() {
+			userInfo().then(res => {
+				console.log(res.data);
+				this.myid = res.data.id;
+				this.usemyid = res.data.id;
+			});
+		},
 		bindfans() {
 			bindfans(this.id, this.uid, this.code, this.openid, this.userInfo).then(res => {
 				// this.list = res.data;
@@ -379,7 +406,7 @@ export default {
 
 		//选择套餐
 		chooseItem(item) {
-			if (item.travel_date > this.today && item.price > 0) {
+			if (item.travel_date > this.today && item.price > 0 && item.quantity > 0) {
 				this.chooseStart = item.id;
 				this.team = item;
 				setTimeout(() => {
@@ -433,17 +460,32 @@ export default {
 				distributionDetail(id, 'tour-surround').then(res => {
 					this.list = res.data;
 					this.list.author = res.data.distributor;
-					this.chooseStart = this.list.teams[0].id;
-					this.team = this.list.teams[0];
+					// this.chooseStart = this.list.teams[0].id;
+					// this.team = this.list.teams[0];
+					for (let i = 0; i < this.list.teams.length; i++) {
+						if (this.list.teams[i].quantity > 0) {
+							this.chooseStart = this.list.teams[i].id;
+							this.team = this.list.teams[i];
+							break;
+						}
+					}
+					console.log(this.chooseStart);
 					this.distributable_id = res.data.distributable_id;
-					this.dataid=this.list.distributable_id
+					this.dataid = this.list.distributable_id;
 				});
 			} else {
 				boutiquesDetail(id, 'tour-surrounds').then(res => {
 					this.list = res.data;
-					this.chooseStart = this.list.teams[0].id;
-					this.team = this.list.teams[0];
-					this.dataid=this.id
+					// this.chooseStart = this.list.teams[0].id;
+					// this.team = this.list.teams[0];
+					for (let i = 0; i < this.list.teams.length; i++) {
+						if (this.list.teams[i].quantity > 0) {
+							this.chooseStart = this.list.teams[i].id;
+							this.team = this.list.teams[i];
+							break;
+						}
+					}
+					this.dataid = this.id;
 				});
 			}
 		},
@@ -527,13 +569,15 @@ export default {
 				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
 				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&isShare=${_this.isShare}&needUserInfo=${0}&needToken=${1}`
 				});
 			} else {
 				_this.team = JSON.stringify(_this.team);
 				uni.navigateTo({
 					// url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type='boutique'&team=${_this.team}&isDis=1&uid=${_this.uid}`
-					url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type=tour-surround&team=${_this.team}&isDis=${_this.isDis}&uid=${_this.uid}`
+					url: `/pages/confirm/boutiquesConfirm/boutiquesConfirm?id=${_this.id}&type=tour-surround&team=${_this.team}&isDis=${_this.isDis}&uid=${_this.uid}&isShare=${
+						_this.isShare
+					}`
 				});
 			}
 			uni.getSetting({
@@ -556,6 +600,30 @@ export default {
 	//页面滚动执行方式
 	onPageScroll: function(e) {
 		this.$refs.barTabNav._selectedTab(e.scrollTop);
+	},
+	// 转发
+	onShareAppMessage(res) {
+		console.log(res);
+		if (res.from === 'button') {
+			// 来自页面内转发按钮
+			this.isShare = 3;
+			this.uid = this.usemyid;
+		}
+		return {
+			title: '特产详情',
+			path: `/pages/details/otherDetail/otherDetail?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`,
+			success: function(res) {
+				console.log(res);
+			},
+			fail: function(res) {
+				this.uid = this.myid;
+				this.isShare = this.useisShare;
+				// 转发失败
+				console.log('用户点击了取消', res);
+				console.log('uid', this.uid);
+				console.log('isShare', this.isShare);
+			}
+		};
 	}
 };
 </script>

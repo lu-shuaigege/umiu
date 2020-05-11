@@ -1,8 +1,13 @@
-var baseUrl = 'https://admin.umu888.com';
-// var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
+// var baseUrl = 'https://admin.umu888.com';
+var baseUrl = 'http://umiu.dev.zhangxinkeji.com';
 // var baseUrl = 'http://umu888.dev.zhangxinkeji.com';
 
 var $http = function(options) {
+	console.log("接口参数", options)
+	// uni.setStorageSync('token',
+	// 	'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC91bWl1LmRldi56aGFuZ3hpbmtlamkuY29tXC9hcGlcL2xvZ2luXC9wYXNzd29yZCIsImlhdCI6MTU4ODE1MTk1OCwiZXhwIjoxNTg4NzU2NzU4LCJuYmYiOjE1ODgxNTE5NTgsImp0aSI6IjFOanlEbVhNN2ZYdE40RXoiLCJzdWIiOjEwMDAwMDIsInBydiI6ImI5MTI3OTk3OGYxMWFhN2JjNTY3MDQ4N2ZmZjAxZTIyODI1M2ZlNDgifQ.ys1oqJuX_asdDIuvxm271pcdQkPz2XGE-2C6o-eS5bg'
+	// );
+
 	return new Promise((resolve, reject) => {
 		var _header = {
 			'content-type': 'application/json',
@@ -25,6 +30,11 @@ var $http = function(options) {
 					// 	url: '/pages/login/login'
 					// });
 					// reject(res.data);
+				}
+				if (res.data.code == 3003) {
+					uni.navigateTo({
+						url: `/pages/authorizations/authorizations?needUserInfo=0&needToken=1`
+					});
 				}
 				if (res.data.code !== 0 && res.data.code != 3001) {
 					uni.showToast({

@@ -153,6 +153,7 @@ export default {
 			id: '',
 			type: '',
 			child: [],
+			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
 			isDis: 0,
 			uid: '',
 			user_id: '', //现在的用户id
@@ -211,6 +212,10 @@ export default {
 		this.type = options.type;
 		if (options.uid) {
 			this.uid = options.uid;
+		}
+		if (options.isShare) {
+			this.isShare = options.isShare;
+			console.log('order isShare', this.isShare);
 		}
 		if (options.datas) {
 			let datas = JSON.parse(options.datas);
@@ -321,46 +326,9 @@ export default {
 			for (let i = 0; i < this.nameslist.length; i++) {
 				check_in_names.push(this.nameslist[i].name);
 			}
-			// if (this.type == 'hotel') {
-			// 	resourcesHotel({
-			// 		id: id,
-			// 		start_date: this.start_date,
-			// 		end_date: this.end_date,
-			// 		quantity: this.quantity,
-			// 		number_of_adults: this.number_of_adults,
-			// 		number_of_children: this.number_of_children,
-			// 		check_in_names: check_in_names,
-			// 		type: type,
-			// 		contact_phone: this.contact_phone,
-			// 		sharer_id: this.uid
-			// 	}).then(res => {
-			// 		this.downbtn = false;
-			// 		if (res.code !== 0) {
-			// 			uni.showToast({
-			// 				icon: 'none',
-			// 				title: res.msg
-			// 			});
-			// 			if (res.msg == '请登录！') {
-			// 				uni.navigateTo({
-			// 					url: '/pages/login/login'
-			// 				});
-			// 			}
-			// 			return;
-			// 		}
-			// 		// uni.redirectTo({
-			// 		// 	url: '/pages/payGoapp/payGoapp'
-			// 		// });
-			// 		this.amount = res.data.amount;
-			// 		payWechat(res.data.id, uni.getStorageSync('openid')).then(res1 => {
-			// 			if (res1.code == 0) {
-			// 				this.pay(res1.data);
-			// 			}
-			// 		});
-			// 	});
-			// } else {
 			if (this.isDis == 1) {
 				this.downbtn = true;
-				distributionsOrders({
+				let data = {
 					id: id,
 					start_date: this.start_date,
 					end_date: this.end_date,
@@ -373,7 +341,12 @@ export default {
 					contact_phone: this.contact_phone,
 					contact_address: this.contact_address,
 					sharer_id: this.uid
-				}).then(res => {
+				};
+				if (this.isShare != 3) {
+					delete data.sharer_id;
+				}
+				console.log(data);
+				distributionsOrders(data).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
@@ -392,7 +365,9 @@ export default {
 							};
 							let datas = JSON.stringify(data);
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${
+									this.isShare
+								}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						if (res.code == '3002') {
@@ -408,7 +383,9 @@ export default {
 							};
 							let datas = JSON.stringify(data);
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${
+									this.isShare
+								}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						return;
@@ -425,7 +402,12 @@ export default {
 				});
 			} else {
 				this.downbtn = true;
-				resourcesOrders({ id: id, quantity: this.quantity, type: type, sharer_id: this.uid }).then(res => {
+				let data = { id: id, quantity: this.quantity, type: type, sharer_id: this.uid };
+				if (this.isShare != 3) {
+					delete data.sharer_id;
+				}
+				console.log(data);
+				resourcesOrders(data).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({
@@ -444,7 +426,9 @@ export default {
 							};
 							let datas = JSON.stringify(data);
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${
+									this.isShare
+								}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						if (res.msg == '请登录！') {
@@ -460,7 +444,9 @@ export default {
 							};
 							let datas = JSON.stringify(data);
 							uni.navigateTo({
-								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
+								url: `/pages/authorizations/authorizations?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${
+									this.isShare
+								}&datas=${datas}&needUserInfo=${0}&needToken=${1}`
 							});
 						}
 						return;

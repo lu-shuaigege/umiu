@@ -189,15 +189,33 @@ var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
 //
-var _default = { data: function data() {return { id: '', isDis: '', uid: '', needUserInfo_active: 0, needToken_active: 0, data: '', code: '', userInfo: '', openid: '', session_key: '', token: '', needUserInfo: 0, needToken: 0, phones: 0, datas: '' // openidUrl: 'https://api.weixin.qq.com/sns/jscode2session', //获取openid接口
+var _default = { data: function data() {return { id: '', isDis: '', uid: '', isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+      needUserInfo_active: 0, needToken_active: 0, data: '', code: '', userInfo: '', openid: '', session_key: '', token: '', needUserInfo: 0, needToken: 0, phones: 0, datas: '' // openidUrl: 'https://api.weixin.qq.com/sns/jscode2session', //获取openid接口
       // APP_SECRET: 'ddec28ff357d206e32a42b41575de883',
       // APP_ID: 'wx620e699d34566854'
-    };}, onShow: function onShow() {}, onLoad: function onLoad(options) {var _this = this;this.id = options.id;this.isDis = options.isDis;this.uid = options.uid;if (options.needUserInfo) {this.needUserInfo = options.needUserInfo;}
+    };}, onShow: function onShow() {}, onLoad: function onLoad(options) {var _this = this;this.id = options.id;this.isDis = options.isDis;this.uid = options.uid;if (options.isShare) {this.isShare = options.isShare;}if (options.needUserInfo) {
+      this.needUserInfo = options.needUserInfo;
+    }
     if (options.needToken) {
       this.needToken = options.needToken;
     }
     if (options.datas) {
       this.datas = options.datas;
+    }
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 2]; // 当前页
+    console.log(currPage.data);
+    if (currPage.data.id != '') {
+      this.id = currPage.data.id;
+    }
+    if (currPage.data.isDis) {
+      this.isDis = currPage.data.isDis;
+    }
+    if (currPage.data.uid) {
+      this.uid = currPage.data.uid;
+    }
+    if (currPage.data.isShare) {
+      this.isShare = currPage.data.isShare;
     }
     wx.getSetting({
       success: function success(res) {
@@ -248,7 +266,8 @@ var _default = { data: function data() {return { id: '', isDis: '', uid: '', nee
                           prevPage.setData({
                             id: that.id,
                             isDis: that.isDis,
-                            uid: that.uid });
+                            uid: that.uid,
+                            isShare: that.isShare });
 
                           wx.navigateBack({
                             //返回
@@ -263,7 +282,8 @@ var _default = { data: function data() {return { id: '', isDis: '', uid: '', nee
                           _prevPage.setData({
                             id: that.id,
                             isDis: that.isDis,
-                            uid: that.uid });
+                            uid: that.uid,
+                            isShare: that.isShare });
 
                           wx.navigateBack({
                             //返回
@@ -319,7 +339,8 @@ var _default = { data: function data() {return { id: '', isDis: '', uid: '', nee
                   prevPage.setData({
                     id: that.id,
                     isDis: that.isDis,
-                    uid: that.uid });
+                    uid: that.uid,
+                    isShare: that.isShare });
 
                   wx.navigateBack({
                     //返回
@@ -334,7 +355,8 @@ var _default = { data: function data() {return { id: '', isDis: '', uid: '', nee
                   _prevPage2.setData({
                     id: that.id,
                     isDis: that.isDis,
-                    uid: that.uid });
+                    uid: that.uid,
+                    isShare: that.isShare });
 
                   wx.navigateBack({
                     //返回

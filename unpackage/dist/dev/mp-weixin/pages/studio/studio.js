@@ -363,6 +363,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
@@ -595,7 +596,10 @@ var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
 //
-var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/loadmore/loadmore.vue */ 301));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiNomore = function tuiNomore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/nomore/nomore */ 308));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore }, data: function data() {return { id: '', //详情id
+//
+var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/loadmore/loadmore */ "plugins/thorui/components/loadmore/loadmore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/loadmore/loadmore.vue */ 341));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var tuiNomore = function tuiNomore() {__webpack_require__.e(/*! require.ensure | plugins/thorui/components/nomore/nomore */ "plugins/thorui/components/nomore/nomore").then((function () {return resolve(__webpack_require__(/*! @/plugins/thorui/components/nomore/nomore */ 348));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);}; // import dragball from '@/plugins/drag-ball/components/drag-ball/drag-ball.vue';
+var _default = { components: { tuiLoadmore: tuiLoadmore, tuiNomore: tuiNomore // dragball
+  }, data: function data() {return { id: '', //详情id
       openid: '', topnocontent: false, //是否有我的定制师
       pagea: 1, pageb: 1, pagec: 1, paged: 1, loadding: false, pullUpOn: true, studioBottomActive: 1, //按钮选中状态
       answer: '', //回答
@@ -651,8 +655,7 @@ var tuiLoadmore = function tuiLoadmore() {__webpack_require__.e(/*! require.ensu
     getDetail: function getDetail() {var _this2 = this;(0, _api.usersStudio)(this.id, this.openid).then(function (res) {_this2.data = res.data;});}, // 短视频
     videos: function videos() {var _this3 = this;(0, _api.videos)(this.pagea, this.id).then(function (res) {_this3.loadding = true;if (res.data.data.length == 0) {_this3.loadding = false;_this3.pullUpOn = false;return;}if (res.data.data.length !== 0) {_this3.loadding = false;_this3.pullUpOn = false;_this3.video = _this3.video.concat(res.data.data);_this3.pagea++;return;}});}, //我的圈子推荐
     circles: function circles(recommend) {var _this4 = this;(0, _api.circles)(this.id, recommend).then(function (res) {_this4.recommendStudiotop = res.data.slice(0, 1);});}, // 我的圈子
-    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {_this5.loadding = true;if (res.data.data.length == 0) {_this5.loadding = false;_this5.pullUpOn = false;return;
-        }
+    circle: function circle() {var _this5 = this;(0, _api.circle)(this.pageb, this.id).then(function (res) {_this5.loadding = true;if (res.data.data.length == 0) {_this5.loadding = false;_this5.pullUpOn = false;return;}
         if (res.data.data.length !== 0) {
           _this5.loadding = false;
           _this5.pullUpOn = false;

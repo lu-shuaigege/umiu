@@ -1,0 +1,39 @@
+.my-wallet-wd-status{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	width: 750upx;
+	height: 100vh;
+	background-color: #FFFFFF;
+}
+.my-wallet-wd-status .status-image{
+	margin-top: 80upx;
+	width: 268upx;
+	height: 216upx;
+}
+.my-wallet-wd-status .status-title{
+	width: 100%;
+	text-align: center;
+	font-size: 36upx;
+	color: #28282C;
+	padding-top:34upx ;
+	padding-bottom: 34upx;
+}
+.my-wallet-wd-status .status-hit{
+	width: 100%;
+	text-align: center;
+	font-size: 26upx;
+	color: #666666;
+	margin-bottom: 34upx;
+	/* margin-left: -10upx; */
+}
+.my-wallet-wd-status .status-hit-small{
+	width: 100%;
+	text-align: center;
+	font-size: 24upx;
+	color: #666666;
+}
+.my-wallet-wd-status .status-hit-small.top{
+	margin-top: 16upx;
+}

@@ -35,6 +35,7 @@ export default {
 			id: '',
 			isDis: '',
 			uid: '',
+			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
 			needUserInfo_active: 0,
 			needToken_active: 0,
 			data: '',
@@ -57,7 +58,9 @@ export default {
 		this.id = options.id;
 		this.isDis = options.isDis;
 		this.uid = options.uid;
-
+		if (options.isShare) {
+			this.isShare = options.isShare;
+		}
 		if (options.needUserInfo) {
 			this.needUserInfo = options.needUserInfo;
 		}
@@ -66,6 +69,21 @@ export default {
 		}
 		if (options.datas) {
 			this.datas = options.datas;
+		}
+		const pages = getCurrentPages();
+		const currPage = pages[pages.length - 2]; // 当前页
+		console.log(currPage.data);
+		if (currPage.data.id != '') {
+			this.id = currPage.data.id;
+		}
+		if (currPage.data.isDis) {
+			this.isDis = currPage.data.isDis;
+		}
+		if (currPage.data.uid) {
+			this.uid = currPage.data.uid;
+		}
+		if (currPage.data.isShare) {
+			this.isShare = currPage.data.isShare;
 		}
 		wx.getSetting({
 			success: res => {
@@ -116,7 +134,8 @@ export default {
 													prevPage.setData({
 														id: that.id,
 														isDis: that.isDis,
-														uid: that.uid
+														uid: that.uid,
+														isShare: that.isShare
 													});
 													wx.navigateBack({
 														//返回
@@ -131,7 +150,8 @@ export default {
 													prevPage.setData({
 														id: that.id,
 														isDis: that.isDis,
-														uid: that.uid
+														uid: that.uid,
+														isShare: that.isShare
 													});
 													wx.navigateBack({
 														//返回
@@ -187,7 +207,8 @@ export default {
 									prevPage.setData({
 										id: that.id,
 										isDis: that.isDis,
-										uid: that.uid
+										uid: that.uid,
+										isShare: that.isShare
 									});
 									wx.navigateBack({
 										//返回
@@ -202,7 +223,8 @@ export default {
 									prevPage.setData({
 										id: that.id,
 										isDis: that.isDis,
-										uid: that.uid
+										uid: that.uid,
+										isShare: that.isShare
 									});
 									wx.navigateBack({
 										//返回

@@ -191,10 +191,15 @@ var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
 //
-var _default = { components: {}, data: function data() {return { list: [], type: 0, quantity: '1', allprice: '', isclick: true, team: '', isDis: 0, uid: '', downbtn: false };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}this.type = options.type;var pages = getCurrentPages();var prevPage = pages[pages.length - 2]; //上一个页面
+var _default = { components: {}, data: function data() {return { list: [], type: 0, quantity: '1', allprice: '', isclick: true, team: '', isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
+      isDis: 0, uid: '', downbtn: false };}, onShow: function onShow() {wx.hideHomeButton();}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}if (options.uid) {this.uid = options.uid;}if (options.isShare) {this.isShare = options.isShare;console.log(this.isShare);}this.type = options.type;
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2]; //上一个页面
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-    prevPage.setData({ // isDis: this.isDis,
+    prevPage.setData({
+      // isDis: this.isDis,
       isbuy: 1 });
+
     this.getDetail(options.id);
     this.team = JSON.parse(options.team);
     this.allprice = this.team.price;
@@ -218,7 +223,11 @@ var _default = { components: {}, data: function data() {return { list: [], type:
       if (this.isDis == 1) {
         this.downbtn = true;
         // distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
-        (0, _api.distributionsOrders)({ id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid }).then(function (res) {
+        var data = { id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid };
+        if (this.isShare != 3) {
+          delete data.sharer_id;
+        }
+        (0, _api.distributionsOrders)(data).then(function (res) {
           _this2.downbtn = false;
           if (res.code !== 0) {
             uni.showToast({

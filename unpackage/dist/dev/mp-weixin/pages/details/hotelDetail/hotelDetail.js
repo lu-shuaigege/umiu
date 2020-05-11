@@ -256,76 +256,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _api = __webpack_require__(/*! @/http/api.js */ 23);
 var _index = _interopRequireDefault(__webpack_require__(/*! @/plugins/dayjs/index.js */ 66));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -444,38 +376,31 @@ var _default = { data: function data() {return { opencon: true, //是否查看�
       number_of_adults: 0, //成人数量
       number_of_children: 0, //儿童数量
       list: [], //页面总数居
-      id: '', child: [], isDis: 0, //是否是分销过来的
+      id: '', child: [], isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+      useisShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+      isDis: 0, //是否是分销过来的
       uid: '', //分享过来的用户id
       user_id: '', //现在的用户id
+      myid: '', //自己的id
+      usemyid: '', //要使用的自己id
       isbuy: 0, code: '', openid: '', userInfo: {}, check: [{ id: 1, name: '房间数', num: 0 }, { id: 2, name: '成人数', num: 0 }, { id: 3, name: '儿童数', num: 0 }], isOne: false };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
     // 登陆
     if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);} // 入住条件
     if (currPage.data.check) {this.check = currPage.data.check;console.log(this.check);this.quantity = currPage.data.check[0].num;this.number_of_adults = currPage.data.check[1].num;this.number_of_children = currPage.data.check[2].num;} // 入住日期
-    if (currPage.data.daysArr) {this.start_date = currPage.data.start_date;this.end_date = currPage.data.end_date;this.daysArr = currPage.data.daysArr;this.daysLength = this.daysArr.length;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {// wx.getSetting({
-      // 	success: res => {
-      // 		//判断是否授权，如果授权成功
-      // 		if (res.authSetting['scope.userInfo']) {
-      // 			//获取用户信息
-      // 			wx.getUserInfo({
-      // 				success: res => {
-      // 					this.userInfo = res.userInfo;
-      // 					uni.setStorageSync('userInfo', res.userInfo);
-      // 					this.bindfans();
-      // 					this.getDetail(this.id);
-      // 				}
-      // 			});
-      // 		} else {
-      // 			uni.navigateTo({
-      // 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-      // 			});
-      // 			return;
-      // 		}
-      // 	}
-      // });
-      if (!uni.getStorageSync('userInfo')) {// uni.navigateTo({
-        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-        // });
-        uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });} else {this.bindfans();}}this.getDetail(options.id);}, // computed: {
+    if (currPage.data.daysArr) {this.start_date = currPage.data.start_date;this.end_date = currPage.data.end_date;this.daysArr = currPage.data.daysArr;this.daysLength = this.daysArr.length;}if (currPage.data.isShare) {this.isShare = currPage.data.isShare;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}if (uni.getStorageSync('token')) {this.userInfofn();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (options.isShare) {this.isShare = options.isShare;console.log(this.isShare);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (getCurrentPages().length == 1) {if (!uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(options.isShare, "&needUserInfo=", 1, "&needToken=", 1) });return;}if (!uni.getStorageSync('userInfo')) {uni.navigateTo({ url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(options.isShare, "&needUserInfo=", 1, "&needToken=", 0) });return;}if (!uni.getStorageSync('token')) {
+        uni.navigateTo({
+          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(
+          options.isShare, "&needUserInfo=",
+          0, "&needToken=", 1) });
+
+        return;
+      } else {
+        this.bindfans();
+      }
+    }
+    this.getDetail(options.id);
+  },
+  // computed: {
   // 	// 计算属性的 getter
   // 	totalPrice: function() {
   // 		let allPrice = 0;
@@ -486,22 +411,80 @@ var _default = { data: function data() {return { opencon: true, //是否查看�
   // 		return allPrice;
   // 	}
   // },
-  methods: { //点击查看简介详情
-    openconfn: function openconfn(open) {this.opencon = open;}, // 跳转日历
-    calendar: function calendar(id) {uni.navigateTo({ url: "/pages/details/calendar/calendar?id=".concat(id) });}, //获取日历
-    timelist: function timelist() {var _this2 = this;(0, _api.hotelCalendar)(this.list.room.id, '').then(function (res) {var thistime = (0, _index.default)().format('YYYY-MM-DD');console.log(thistime);console.log(res.data);for (var i = 0; i < res.data.length; i++) {if (res.data[i].checkin_date == thistime) {_this2.daysArr.push(res.data[i]);_this2.daysArr.push(res.data[i + 1]);}}console.log(_this2.daysArr);_this2.start_date = _this2.daysArr[0].checkin_date;_this2.end_date = _this2.daysArr[1].checkin_date;var arr = _this2.daysArr;arr.pop();_this2.daysArr = arr;_this2.daysLength = _this2.daysArr.length; // if (this.daysArr[0].quantity == '0') {
+  methods: {
+    //获取个人信息
+    userInfofn: function userInfofn() {var _this2 = this;
+      (0, _api.userInfo)().then(function (res) {
+        console.log(res.data);
+        _this2.myid = res.data.id;
+        _this2.usemyid = res.data.id;
+      });
+    },
+    //点击查看简介详情
+    openconfn: function openconfn(open) {
+      this.opencon = open;
+    },
+    // 跳转日历
+    calendar: function calendar(id) {
+      uni.navigateTo({
+        url: "/pages/details/calendar/calendar?id=".concat(id) });
+
+    },
+    //获取日历
+    timelist: function timelist() {var _this3 = this;
+      (0, _api.hotelCalendar)(this.list.room.id, '').then(function (res) {
+        var thistime = (0, _index.default)().format('YYYY-MM-DD');
+        console.log(thistime);
+        console.log(res.data);
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].checkin_date == thistime) {
+            _this3.daysArr.push(res.data[i]);
+            _this3.daysArr.push(res.data[i + 1]);
+          }
+        }
+        console.log(_this3.daysArr);
+        _this3.start_date = _this3.daysArr[0].checkin_date;
+        _this3.end_date = _this3.daysArr[1].checkin_date;
+        var arr = _this3.daysArr;
+        arr.pop();
+        _this3.daysArr = arr;
+        _this3.daysLength = _this3.daysArr.length;
+        // if (this.daysArr[0].quantity == '0') {
         // 	console.log(111111);
         // 	this.daysArr = [];
         // }
-        console.log(_this2.daysArr);});}, // 跳转到选择房间数量
-    gocheck: function gocheck() {var check = JSON.stringify(this.check);uni.navigateTo({ url: "/pages/details/check/check?check=".concat(check) });}, // 绑定粉丝
-    bindfans: function bindfans() {(0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {console.log(res);});}, getDetail: function getDetail(id) {var _this3 = this;if (this.isDis == 1) {(0, _api.distributionDetail)(id, 'hotel').then(function (res) {_this3.list = res.data;if (!_this3.isOne) {_this3.timelist();}_this3.isOne = true;});} else {
-        (0, _api.sourcesDetail)(id, 'hotel').then(function (res) {
-          _this3.list = res.data;
-          if (!_this3.isOne) {
-            _this3.timelist();
+        console.log(_this3.daysArr);
+      });
+    },
+    // 跳转到选择房间数量
+    gocheck: function gocheck() {
+      var check = JSON.stringify(this.check);
+      uni.navigateTo({
+        url: "/pages/details/check/check?check=".concat(check) });
+
+    },
+    // 绑定粉丝
+    bindfans: function bindfans() {
+      (0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
+        console.log(res);
+      });
+    },
+    getDetail: function getDetail(id) {var _this4 = this;
+      if (this.isDis == 1) {
+        (0, _api.distributionDetail)(id, 'hotel').then(function (res) {
+          _this4.list = res.data;
+          if (!_this4.isOne) {
+            _this4.timelist();
           }
-          _this3.isOne = true;
+          _this4.isOne = true;
+        });
+      } else {
+        (0, _api.sourcesDetail)(id, 'hotel').then(function (res) {
+          _this4.list = res.data;
+          if (!_this4.isOne) {
+            _this4.timelist();
+          }
+          _this4.isOne = true;
         });
       }
     },
@@ -568,29 +551,43 @@ var _default = { data: function data() {return { opencon: true, //是否查看�
         // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
         // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&isShare=").concat(_this.isShare, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         // _this.child = _this.child.replace(/\&nbsp;/g, '');
         uni.navigateTo({
-          url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&datas=").concat(datas) });
+          url: "/pages/confirm/order/order?id=".concat(_this.id, "&type=hotel&child=").concat(_this.child, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&isShare=").concat(_this.isShare, "&datas=").concat(datas) });
 
       }
     },
     CheckboxChange: function CheckboxChange(e) {
       this.child = JSON.stringify(e.detail.value);
-    } }
-
+    } },
 
   // 转发
-  // onShareAppMessage() {
-  // 	let _this = this;
-  // 	return {
-  // 		title: '酒店详情',
-  // 		path: `/pages/details/hotelDetail/hotelDetail?id=${_this.id}&isDis=${_this.isDis}`
-  // 	};
-  // }
-};exports.default = _default;
+  onShareAppMessage: function onShareAppMessage(res) {
+    console.log(res);
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      this.isShare = 3;
+      this.uid = this.usemyid;
+    }
+    return {
+      title: '特产详情',
+      path: "/pages/details/otherDetail/otherDetail?id=".concat(this.id, "&isDis=").concat(this.isDis, "&uid=").concat(this.uid, "&isShare=").concat(this.isShare),
+      success: function success(res) {
+        console.log(res);
+      },
+      fail: function fail(res) {
+        this.uid = this.myid;
+        this.isShare = this.useisShare;
+        // 转发失败
+        console.log('用户点击了取消', res);
+        console.log('uid', this.uid);
+        console.log('isShare', this.isShare);
+      } };
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

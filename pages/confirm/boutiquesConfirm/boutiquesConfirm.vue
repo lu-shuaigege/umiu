@@ -40,6 +40,7 @@ export default {
 			allprice: '',
 			isclick: true,
 			team: '',
+			isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			isDis: 0,
 			uid: '',
 			downbtn: false
@@ -54,6 +55,10 @@ export default {
 		}
 		if (options.uid) {
 			this.uid = options.uid;
+		}
+		if (options.isShare) {
+			this.isShare = options.isShare;
+			console.log(this.isShare);
 		}
 		this.type = options.type;
 		let pages = getCurrentPages();
@@ -86,7 +91,11 @@ export default {
 			if (this.isDis == 1) {
 				this.downbtn = true;
 				// distributionsOrders(id, this.team.id, this.quantity, 'boutique', '', '', '', '', this.uid)
-				distributionsOrders({ id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid }).then(res => {
+				let data = { id: id, team_id: this.team.id, quantity: this.quantity, type: this.type, sharer_id: this.uid };
+				if (this.isShare != 3) {
+					delete data.sharer_id;
+				}
+				distributionsOrders(data).then(res => {
 					this.downbtn = false;
 					if (res.code !== 0) {
 						uni.showToast({

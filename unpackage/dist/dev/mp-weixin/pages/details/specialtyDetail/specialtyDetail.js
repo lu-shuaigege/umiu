@@ -187,6 +187,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
@@ -243,39 +247,48 @@ var _api = __webpack_require__(/*! @/http/api.js */ 23); //
 //
 //
 //
-var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/gaoyia-parse/parse.vue */ 344));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { uParse: uParse }, data: function data() {return { list: [], id: '', isDis: 0, uid: '', user_id: '', //现在的用户id
+//
+//
+//
+//
+var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-parse/parse */[__webpack_require__.e("common/vendor"), __webpack_require__.e("plugins/gaoyia-parse/parse")]).then((function () {return resolve(__webpack_require__(/*! @/plugins/gaoyia-parse/parse.vue */ 391));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { uParse: uParse }, data: function data() {return { list: [], id: '', isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+      useisShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+      isDis: 0, uid: '', //分享过来的用户id
+      user_id: '', //现在的用户id
+      myid: '', //自己的id
+      usemyid: '', //要使用的自己id
       isbuy: 0, code: '', openid: '', userInfo: {} };}, onShow: function onShow() {wx.hideHomeButton();var pages = getCurrentPages();var currPage = pages[pages.length - 1]; // 当前页
-    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');
+    if (currPage.data.id != '') {this.id = currPage.data.id;this.isDis = currPage.data.isDis;this.getDetail(this.id);}if (currPage.data.isShare) {this.isShare = currPage.data.isShare;}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}if (uni.getStorageSync('openid')) {this.openid = uni.getStorageSync('openid');}if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');}if (currPage.data.uid) {this.uid = currPage.data.uid;this.bindfans();}if (uni.getStorageSync('token')) {this.userInfofn();}}, onLoad: function onLoad(options) {if (options.isDis && options.isDis == 1) {this.isDis = 1;}this.id = options.id;console.log(options.id);if (options.uid) {this.uid = options.uid;}if (options.isShare) {this.isShare = options.isShare;console.log(this.isShare);}if (uni.getStorageSync('code')) {this.code = uni.getStorageSync('code');}
+    if (uni.getStorageSync('openid')) {
+      this.openid = uni.getStorageSync('openid');
+    }
+    if (uni.getStorageSync('userInfo')) {
+      this.userInfo = uni.getStorageSync('userInfo');
     }
     if (getCurrentPages().length == 1) {
-      // wx.getSetting({
-      // 	success: res => {
-      // 		//判断是否授权，如果授权成功
-      // 		if (res.authSetting['scope.userInfo']) {
-      // 			//获取用户信息
-      // 			wx.getUserInfo({
-      // 				success: res => {
-      // 					this.userInfo = res.userInfo;
-      // 					uni.setStorageSync('userInfo', res.userInfo);
-      // 					this.bindfans();
-      // 					this.getDetail(this.id);
-      // 				}
-      // 			});
-      // 		} else {
-      // 			uni.navigateTo({
-      // 				url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-      // 			});
-      // 			return;
-      // 		}
-      // 	}
-      // });
-      if (!uni.getStorageSync('userInfo')) {
-        // uni.navigateTo({
-        // 	url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-        // });
+      if (!uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&needUserInfo=", 1, "&needToken=", 0) });
+          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(
+          options.isShare, "&needUserInfo=",
+          1, "&needToken=", 1) });
 
+        return;
+      }
+      if (!uni.getStorageSync('userInfo')) {
+        uni.navigateTo({
+          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(
+          options.isShare, "&needUserInfo=",
+          1, "&needToken=", 0) });
+
+        return;
+      }
+      if (!uni.getStorageSync('token')) {
+        uni.navigateTo({
+          url: "/pages/authorizations/authorizations?id=".concat(options.id, "&isDis=").concat(options.isDis, "&uid=").concat(options.uid, "&isShare=").concat(
+          options.isShare, "&needUserInfo=",
+          0, "&needToken=", 1) });
+
+        return;
       } else {
         this.bindfans();
       }
@@ -283,6 +296,14 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
     this.getDetail(options.id);
   },
   methods: {
+    //获取个人信息
+    userInfofn: function userInfofn() {var _this2 = this;
+      (0, _api.userInfo)().then(function (res) {
+        console.log(res.data);
+        _this2.myid = res.data.id;
+        _this2.usemyid = res.data.id;
+      });
+    },
     bindfans: function bindfans() {
       (0, _api.bindfans)(this.id, this.uid, this.code, this.openid, this.userInfo).then(function (res) {
         // this.list = res.data;
@@ -295,14 +316,14 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
         }
       });
     },
-    getDetail: function getDetail(id) {var _this2 = this;
+    getDetail: function getDetail(id) {var _this3 = this;
       if (this.isDis == 1) {
         (0, _api.distributionDetail)(id, 'specialty').then(function (res) {
-          _this2.list = res.data;
+          _this3.list = res.data;
         });
       } else {
         (0, _api.sourcesDetail)(id, 'specialty').then(function (res) {
-          _this2.list = res.data;
+          _this3.list = res.data;
         });
       }
     },
@@ -332,11 +353,11 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
         // 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
         // });
         uni.navigateTo({
-          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&needUserInfo=", 0, "&needToken=", 1) });
+          url: "/pages/authorizations/authorizations?id=".concat(_this.id, "&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&isShare=").concat(_this.isShare, "&needUserInfo=", 0, "&needToken=", 1) });
 
       } else {
         uni.navigateTo({
-          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=specialty&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid) });
+          url: "/pages/confirm/specialtyConfirm/specialtyConfirm?id=".concat(_this.id, "&type=specialty&isDis=").concat(_this.isDis, "&uid=").concat(_this.uid, "&isShare=").concat(_this.isShare) });
 
       }
       uni.getSetting({
@@ -353,7 +374,32 @@ var uParse = function uParse() {Promise.all(/*! require.ensure | plugins/gaoyia-
           // }
         } });
 
-    } } };exports.default = _default;
+    } },
+
+  // 转发
+  onShareAppMessage: function onShareAppMessage(res) {
+    console.log(res);
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      this.isShare = 3;
+      this.uid = this.usemyid;
+    }
+    return {
+      title: '特产详情',
+      path: "/pages/details/otherDetail/otherDetail?id=".concat(this.id, "&isDis=").concat(this.isDis, "&uid=").concat(this.uid, "&isShare=").concat(this.isShare),
+      success: function success(res) {
+        console.log(res);
+      },
+      fail: function fail(res) {
+        this.uid = this.myid;
+        this.isShare = this.useisShare;
+        // 转发失败
+        console.log('用户点击了取消', res);
+        console.log('uid', this.uid);
+        console.log('isShare', this.isShare);
+      } };
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

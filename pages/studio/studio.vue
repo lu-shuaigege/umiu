@@ -224,6 +224,7 @@
 				</view>
 			</view>
 		</view>
+		<!-- <dragball :x="80" :y="80" image="../../../../static/img/gotomyIndex.png"></dragball> -->
 		<!--加载loadding-->
 		<tui-loadmore :visible="loadding"></tui-loadmore>
 		<tui-nomore :visible="!pullUpOn"></tui-nomore>
@@ -234,10 +235,12 @@
 import { usersStudio, videos, circles, circle, questions, travels, bindfans, visitors } from '@/http/api.js';
 import tuiLoadmore from '@/plugins/thorui/components/loadmore/loadmore.vue';
 import tuiNomore from '@/plugins/thorui/components/nomore/nomore';
+// import dragball from '@/plugins/drag-ball/components/drag-ball/drag-ball.vue';
 export default {
 	components: {
 		tuiLoadmore,
-		tuiNomore
+		tuiNomore,
+		// dragball
 	},
 	data() {
 		return {

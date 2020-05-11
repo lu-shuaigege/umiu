@@ -223,8 +223,40 @@
 			"style": {
 				"navigationBarTitleText": "订单详情"
 			}
+		}, {
+			"path": "pages/my/myWallet/index/myWalletIndex",
+			"style": {
+				"navigationBarTitleText": "我的钱包",
+				"navigationBarBackgroundColor": "#ffab59",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "pages/my/myWallet/detail/myWalletDetail",
+			"style": {
+				"navigationBarTitleText": "收支明细",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "pages/my/myWallet/withdraw/myWalletWithdraw",
+			"style": {
+				"navigationBarTitleText": "提现",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		}, {
+			"path": "pages/my/myWallet/withdraw/status/myWalletWithdrawSuccess",
+			"style": {
+				"navigationBarTitleText": "提现成功",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
+		}, {
+			"path": "pages/my/myWallet/withdraw/status/myWalletWithdrawFailed",
+			"style": {
+				"navigationBarTitleText": "提现失败",
+				"navigationBarBackgroundColor": "#FFFFFF"
+			}
 		}
-
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

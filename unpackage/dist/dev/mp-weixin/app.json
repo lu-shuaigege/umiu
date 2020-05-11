@@ -33,7 +33,12 @@
     "pages/my/myorder/travelOrder/orderList/orderList",
     "pages/my/myorder/travelOrder/orderDetail/resourcesOrder",
     "pages/my/myorder/specialtyOrder/orderList/orderList",
-    "pages/my/myorder/specialtyOrder/orderDetail/orderDetail"
+    "pages/my/myorder/specialtyOrder/orderDetail/orderDetail",
+    "pages/my/myWallet/index/myWalletIndex",
+    "pages/my/myWallet/detail/myWalletDetail",
+    "pages/my/myWallet/withdraw/myWalletWithdraw",
+    "pages/my/myWallet/withdraw/status/myWalletWithdrawSuccess",
+    "pages/my/myWallet/withdraw/status/myWalletWithdrawFailed"
   ],
   "subPackages": [],
   "window": {

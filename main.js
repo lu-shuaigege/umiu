@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App'
-
 Vue.config.productionTip = false
 Vue.prototype.$url = "https://umiu.dev.zhangxinkeji.com"
 App.mpType = 'app'

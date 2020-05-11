@@ -498,6 +498,9 @@ page {
 .borderFF6600 {
 	border: 1px solid #FF6600;
 }
+.bg999 {
+	background: #E1E1E1;
+}
 .sticky-box {
 
 	display: -webkit-box;

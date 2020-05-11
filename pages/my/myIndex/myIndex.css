@@ -6,8 +6,10 @@
 }
 
 .myTop {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
 	width: 750upx;
-	height: 705upx;
 	position: relative;
 }
 
@@ -24,12 +26,10 @@
 
 .myTop-bottom {
 	width: 100%;
-	height: 320upx;
+	height: 220upx;
 	background: #FFFFFF;
-	position: absolute;
-	bottom: 0upx;
-	left: 0upx;
 	z-index: 1;
+	margin-top: -5upx;
 	padding: 0upx 30upx;
 	box-sizing: border-box;
 	border-radius: 10rpx 10rpx 0rpx 0rpx;
@@ -55,10 +55,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.myTop-bottom-top-right-top-left {
-	/* width: 200upx; */
 }
 
 .myTop-bottom-top-right-top-left-bottom {
@@ -139,54 +135,47 @@
 	-webkit-line-clamp: 2;
 }
 
-.myCenter {
-	width: 690rpx;
-	height: 160rpx;
-	background-color: #ffffff;
-	box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(40, 40, 44, 0.1);
-	border-radius: 8rpx;
-	position: absolute;
-	z-index: 9;
-	top: 646upx;
-	left: 30upx;
-}
 
-.myCenter-top {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-}
-
-.myCenter-top-list {
+.myCenter-list {
 	width: 100%;
 	display: flex;
-	align-items: center;
+	/* align-items: center; */
 	justify-content: space-between;
-	/* 	padding: 0upx 67upx;
-	box-sizing: border-box; */
+	flex-direction: column;
+	padding-left: 30upx;
+	padding-right: 30upx;
+	background-color: #FFFFFF;
+	margin-top: 20upx;
+	padding-bottom: 38upx;
 }
 
-.myCenter-top-list-item {
-	text-align: center;
-	width: 50%;
+.myCenter-list-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1upx solid  #e1e1e1;
+	line-height: 120upx;
+	height: 120upx;
 }
-
-.myCenter-top-list-item:nth-child(1) {
-	border-right: 1px solid #E1E1E1;
+.myCenter-list :last-child {
+	border: none;
 }
-
-.myCenter-top-list-item-top {
-	max-width: 45upx;
-	max-height: 41upx;
-	width: 36upx;
-	margin-bottom: 15upx;
+.myCenter-list-item-label{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
-
-.myCenter-top-list-item-bottom {
-	font-size: 25upx;
-	font-family: Arial;
-	font-weight: 400;
-	color: #999999;
-	line-height: 25upx;
+.myCenter-list-item-label .label-img{
+	display: block;
+	width: 30upx;
+	height: 30upx;
+	margin-right:30upx ;
+}
+.myCenter-list-item-label .label-text{
+	font-size: 28upx;
+	color: #28282C;
+}
+.myCenter-list-item-right{
+	width: 12upx;
+	height: 20upx;
 }

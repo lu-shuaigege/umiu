@@ -58,44 +58,6 @@
 				<view class="button" @click="toUpload(list.distributor.id)">进入工作室</view>
 			</view>
 		</view>
-		<!-- <view class="house_type">
-			<view class="type_title">
-				<text class="dot"></text>
-				<text>房型</text>
-			</view>
-			<view class="house_type_p">
-				<checkbox-group class="block" @change="CheckboxChange">
-					<view class="house_type_list" v-for="item in list.rooms" :key="item">
-						<view class="cu-form-group"><checkbox class="round radio orange" :value="JSON.stringify(item)"></checkbox></view>
-						<view class="">
-							<view class="up">
-								<view class="l">{{ item.title }}</view>
-								<view class="r">
-									门市价:
-									<text>
-										￥
-										<text>{{ item.price }}</text>
-									</text>
-								</view>
-							</view>
-							<view class="ud">
-								<view class="l">{{ item.builtuparea }}&emsp;{{ item.bed_type }}&emsp;{{ item.capacity }}入住&emsp;{{ item.breakfast }}</view>
-							</view>
-						</view>
-					</view>
-				</checkbox-group>
-			</view>
-			<view class="type_title" v-show="list.facility.length">
-				<text class="dot"></text>
-				<text>民宿设施</text>
-			</view>
-			<view class="facilities" v-show="list.facility.length">
-				<view v-for="item in list.facility" :key="item">
-					<text></text>
-					{{ item }}
-				</view>
-			</view>
-		</view> -->
 		<view class="house_type">
 			<view class="orderDetail">
 				<view class="orderDetail_left" @click="calendar(list.room.id)">
@@ -139,12 +101,17 @@
 			</view>
 			<view class="house_policy">{{ list.check_in_instr }}</view>
 		</view>
-		<view class="tobuy" @click="tobuy()">立即购买</view>
+
+		<view class="tobuy">
+			<view class="tobuyleft" v-if="isShare == 3" @click="tobuy()">立即购买</view>
+			<button class="tobuyright" v-if="isShare == 3" open-type="share">我要分销</button>
+			<view class="nowbuy" v-if="isShare != 3" @click="tobuy()">立即购买</view>
+		</view>
 	</view>
 </template>
 
 <script>
-import { sourcesDetail, distributionDetail, bindfans, hotelCalendar } from '@/http/api.js';
+import { userInfo,sourcesDetail, distributionDetail, bindfans, hotelCalendar } from '@/http/api.js';
 import dayjs from '@/plugins/dayjs/index.js';
 export default {
 	components: {},
@@ -161,9 +128,13 @@ export default {
 			list: [], //页面总数居
 			id: '',
 			child: [],
-			isDis: 0, //是否是分销过来的
+			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+			useisShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+			isDis: 0, //是否是分销过来的用于获取详情 0:普通分享  1：分销
 			uid: '', //分享过来的用户id
 			user_id: '', //现在的用户id
+			myid: '', //自己的id
+			usemyid: '', //要使用的自己id
 			isbuy: 0,
 			code: '',
 			openid: '',
@@ -213,6 +184,9 @@ export default {
 			this.daysArr = currPage.data.daysArr;
 			this.daysLength = this.daysArr.length;
 		}
+		if (currPage.data.isShare) {
+			this.isShare = currPage.data.isShare;
+		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
 		}
@@ -226,6 +200,9 @@ export default {
 			this.uid = currPage.data.uid;
 			this.bindfans();
 		}
+		if (uni.getStorageSync('token')) {
+			this.userInfofn();
+		}
 	},
 	onLoad(options) {
 		this.id = options.id;
@@ -236,6 +213,10 @@ export default {
 		if (options.uid) {
 			this.uid = options.uid;
 		}
+		if (options.isShare) {
+			this.isShare = options.isShare;
+			console.log(this.isShare);
+		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
 		}
@@ -245,34 +226,30 @@ export default {
 		if (uni.getStorageSync('userInfo')) {
 			this.userInfo = uni.getStorageSync('userInfo');
 		}
-		// if (getCurrentPages().length == 1) {
-		// 	wx.getSetting({
-		// 		success: res => {
-		// 			//判断是否授权，如果授权成功
-		// 			if (res.authSetting['scope.userInfo']) {
-		// 				//获取用户信息
-		// 				wx.getUserInfo({
-		// 					success: res => {
-		// 						this.userInfo = res.userInfo;
-		// 						uni.setStorageSync('userInfo', res.userInfo);
-		// 						this.bindfans();
-		// 						this.getDetail(this.id);
-		// 					}
-		// 				});
-		// 			} else {
-		// 				uni.navigateTo({
-		// 					url: `/pages/login/login?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}`
-		// 				});
-		// 				return;
-		// 			}
-		// 		}
-		// 	});
-		// }
 		if (getCurrentPages().length == 1) {
+			if (!uni.getStorageSync('token') && !uni.getStorageSync('userInfo')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${1}&needToken=${1}`
+				});
+				return;
+			}
 			if (!uni.getStorageSync('userInfo')) {
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?needUserInfo=${1}&needToken=${0}`
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${1}&needToken=${0}`
 				});
+				return;
+			}
+			if (!uni.getStorageSync('token')) {
+				uni.navigateTo({
+					url: `/pages/authorizations/authorizations?id=${options.id}&isDis=${options.isDis}&uid=${options.uid}&isShare=${
+						options.isShare
+					}&needUserInfo=${0}&needToken=${1}`
+				});
+				return;
 			} else {
 				this.bindfans();
 			}
@@ -291,6 +268,14 @@ export default {
 	// 	}
 	// },
 	methods: {
+		//获取个人信息
+		userInfofn() {
+			userInfo().then(res => {
+				console.log(res.data);
+				this.myid = res.data.id;
+				this.usemyid = res.data.id;
+			});
+		},
 		//点击查看简介详情
 		openconfn(open) {
 			this.opencon = open;
@@ -423,18 +408,44 @@ export default {
 				// 	url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}`
 				// });
 				uni.navigateTo({
-					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&needUserInfo=${0}&needToken=${1}`
+					url: `/pages/authorizations/authorizations?id=${_this.id}&isDis=${_this.isDis}&uid=${_this.uid}&isShare=${_this.isShare}&needUserInfo=${0}&needToken=${1}`
 				});
 			} else {
 				_this.child = _this.child.replace(/\&nbsp;/g, '');
 				uni.navigateTo({
-					url: `/pages/confirm/order/order?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}&datas=${datas}`
+					url: `/pages/confirm/order/order?id=${_this.id}&type=homestay&child=${_this.child}&isDis=${_this.isDis}&uid=${_this.uid}&isShare=${
+						_this.isShare
+					}&datas=${datas}`
 				});
 			}
 		},
 		CheckboxChange(e) {
 			this.child = JSON.stringify(e.detail.value);
 		}
+	},
+	// 转发
+	onShareAppMessage(res) {
+		console.log(res);
+		if (res.from === 'button') {
+			// 来自页面内转发按钮
+			this.isShare = 3;
+			this.uid = this.usemyid;
+		}
+		return {
+			title: '特产详情',
+			path: `/pages/details/otherDetail/otherDetail?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`,
+			success: function(res) {
+				console.log(res);
+			},
+			fail: function(res) {
+				this.uid = this.myid;
+				this.isShare = this.useisShare;
+				// 转发失败
+				console.log('用户点击了取消', res);
+				console.log('uid', this.uid);
+				console.log('isShare', this.isShare);
+			}
+		};
 	}
 };
 </script>

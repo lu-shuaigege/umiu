@@ -1,0 +1,111 @@
+.my-wallet-withdraw{
+	width: 750upx;
+	height: 100vh;
+	background-color: #F8F8F8;
+	padding: 0upx 30upx;
+}
+.my-wallet-withdraw .flex-horizontal-between{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.my-wallet-withdraw .flex-horizontal-start{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.my-wallet-withdraw .my-wallet-withdraw-card{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	background-color: #FFFFFF;
+	border-radius: 8upx;
+	padding: 15upx 30upx 0upx 30upx;	
+	margin-top: 20upx;
+}
+.my-wallet-withdraw-card .card-item,
+.my-wallet-withdraw-card .card-item-bank{
+	width: 100%;
+}
+.my-wallet-withdraw-card .card-item-bank{
+	border-bottom: 1upx solid #e1e1e1;
+}
+.my-wallet-withdraw-card .item-operate{
+	border-top: 1upx solid  #e1e1e1;
+}
+
+.my-wallet-withdraw-card .item-money{
+	font-size: 30upx;
+	color: #666666;
+	padding-top: 35upx;
+}
+.my-wallet-withdraw-card .item-money:last-child{
+	font-size: 26upx;
+	color: #999999;
+}
+.my-wallet-withdraw-card .item-input{
+	font-size: 80upx;
+	color: #28282C;
+	height: 80upx;
+	margin-top: 38upx;
+	margin-bottom: 30upx;
+}
+.my-wallet-withdraw-card .item-input input{
+	display: block;
+	padding-left: 30upx;
+	height: 100%;
+}
+
+.my-wallet-withdraw-card .money-operate-text{
+	font-size: 24upx;
+	color: #999999;
+	line-height: 74upx;
+}
+.my-wallet-withdraw-card .mr20{
+	padding-right: 20upx;
+}
+
+.my-wallet-withdraw-card .money-operate-btn{
+	font-family: PingFang-SC-Medium;
+	font-size: 28upx;
+	color: #FF6600;
+	line-height: 74upx;
+}
+
+.my-wallet-withdraw-card .card-item-bank:last-child{
+	border-bottom: none;
+}
+
+.my-wallet-withdraw-card .bank-item-label{
+	font-family: PingFang-SC-Bold;
+	font-size: 28upx;
+	color:#28282C;
+	line-height: 100upx;
+}
+
+.my-wallet-withdraw-card .bank-item-value{
+	width: calc(100% - 140upx);
+	text-align: right;
+	font-size: 28upx;
+	font-family: PingFang-SC-Medium;
+	color: #666666;
+	line-height: 100upx;
+}
+
+.my-wallet-withdraw-card .bank-item-value.bold{
+	color: #28282C;
+}
+
+.my-wallet-withdraw .my-wallet-withdraw-btn{
+	width: 100%;
+	color: #FFFFFF;
+	font-size: 34upx;
+	font-family: PingFang-SC-Medium;
+	line-height: 80upx;
+	text-align: center;
+	border-radius: 8upx;
+	background-color: #ff6600;
+	margin-top: 70upx;
+}

@@ -543,3 +543,32 @@ export function ordersCancel(data) {
 		method: 'PUT',
 	})
 }
+//我的钱包
+export function getWallet() {
+	return http({
+		url: "/api/users/wallet"
+	})
+}
+//分佣记录
+export function getCommissionRecord(data) {
+	return http({
+		url: "/api/users/commission_record",
+		data: data
+	})
+}
+//提现记录
+export function getWithDrawals(data) {
+	return http({
+		url: "/api/users/withdrawals",
+		data: data
+	})
+}
+
+//申请提现
+export function applyForWithdrawal(data) {
+	return http({
+		url: '/api/withdrawals',
+		method: 'POST',
+		data: data
+	})
+}

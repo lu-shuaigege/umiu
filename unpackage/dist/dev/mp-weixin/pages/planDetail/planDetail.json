@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "方案详情",
-  "usingComponents": {
-    "lu-bar-tab-nav": "/plugins/lu-bar-tab-nav/lu-bar-tab-nav",
-    "tui-collapse": "/plugins/thorui/components/tui-collapse/tui-collapse"
-  }
-}

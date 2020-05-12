@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "weixin-parse-template": "/plugins/gaoyia-parse/components/wxParseTemplate0"
-  }
-}

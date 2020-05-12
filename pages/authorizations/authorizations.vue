@@ -36,6 +36,7 @@ export default {
 			isDis: '',
 			uid: '',
 			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+			useisShare: 1, // 1:普通分享   2:普通分销   3:我要分销
 			needUserInfo_active: 0,
 			needToken_active: 0,
 			data: '',
@@ -84,6 +85,9 @@ export default {
 		}
 		if (currPage.data.isShare) {
 			this.isShare = currPage.data.isShare;
+		}
+		if (currPage.data.useisShare) {
+			this.useisShare = currPage.data.useisShare;
 		}
 		wx.getSetting({
 			success: res => {

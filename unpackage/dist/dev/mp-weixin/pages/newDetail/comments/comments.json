@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "全部评论",
-  "usingComponents": {
-    "tui-loadmore": "/plugins/thorui/components/loadmore/loadmore",
-    "tui-nomore": "/plugins/thorui/components/nomore/nomore"
-  }
-}

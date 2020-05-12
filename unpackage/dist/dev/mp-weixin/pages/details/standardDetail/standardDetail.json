@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "跟团游详情",
-  "navigationBarBackgroundColor": "#FFFFFF",
-  "usingComponents": {
-    "lu-bar-tab-nav": "/plugins/lu-bar-tab-nav/lu-bar-tab-nav",
-    "u-parse": "/plugins/gaoyia-parse/parse",
-    "tui-modal": "/plugins/thorui/components/modal/modal"
-  }
-}

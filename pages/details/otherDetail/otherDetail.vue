@@ -59,9 +59,9 @@
 		<view class="otherDetailHtml" v-if="list.body" v-html="body"></view>
 		<!-- <view class="otherDetailHtml"><u-parse :content="body" /></view> -->
 		<view class="tobuy">
-			<view class="tobuyleft" v-if="isShare == 3" @click="tobuy()">立即购买</view>
-			<button class="tobuyright" v-if="isShare == 3" open-type="share">我要分销</button>
-			<view class="nowbuy" v-if="isShare != 3" @click="tobuy()">立即购买</view>
+			<view class="tobuyleft" v-show="isShare != 1" @click="tobuy()">立即购买</view>
+			<button class="tobuyright" v-show="isShare != 1" open-type="share">我要分销</button>
+			<view class="nowbuy" v-show="isShare == 1" @click="tobuy()">立即购买</view>
 		</view>
 	</view>
 </template>
@@ -78,8 +78,8 @@ export default {
 			list: [],
 			body: '',
 			id: '',
-			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
-			useisShare: 1, // 1:普通分享   2:普通分销   3:我要分销
+			isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
+			useisShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			isDis: 0,
 			uid: '', //分享过来的用户id
 			user_id: '', //现在的用户id
@@ -95,7 +95,7 @@ export default {
 		wx.hideHomeButton();
 		const pages = getCurrentPages();
 		const currPage = pages[pages.length - 1]; // 当前页
-		console.log(currPage.data)
+		console.log(currPage.data);
 		if (currPage.data.id != '') {
 			this.id = currPage.data.id;
 			this.isDis = currPage.data.isDis;
@@ -108,6 +108,10 @@ export default {
 		}
 		if (currPage.data.isShare) {
 			this.isShare = currPage.data.isShare;
+			console.log(this.isShare);
+		}
+		if (currPage.data.useisShare) {
+			this.useisShare = currPage.data.useisShare;
 		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
@@ -135,7 +139,7 @@ export default {
 		if (options.isShare) {
 			this.isShare = options.isShare;
 			this.useisShare = options.isShare;
-			console.log(this.isShare);
+			console.log('isShare', this.isShare);
 		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');

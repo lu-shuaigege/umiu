@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "特产详情",
-  "navigationBarBackgroundColor": "#FFFFFF",
-  "usingComponents": {
-    "u-parse": "/plugins/gaoyia-parse/parse"
-  }
-}

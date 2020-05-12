@@ -207,9 +207,9 @@
 			</tui-modal>
 		</view> -->
 		<view class="tobuy">
-			<view class="tobuyleft" v-if="isShare == 3" @click="tobuy()">立即购买</view>
-			<button class="tobuyright" v-if="isShare == 3" open-type="share">我要分销</button>
-			<view class="nowbuy" v-if="isShare != 3" @click="tobuy()">立即购买</view>
+			<view class="tobuyleft" v-if="isShare != 1" @click="tobuy()">立即购买</view>
+			<button class="tobuyright" v-if="isShare != 1" open-type="share">我要分销</button>
+			<view class="nowbuy" v-if="isShare == 1" @click="tobuy()">立即购买</view>
 		</view>
 	</view>
 </template>
@@ -286,7 +286,8 @@ export default {
 			team: '',
 			//微信号弹框
 			modal1: false,
-			isShare: 0, // 1:普通分享   2:我要分销
+			isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
+			useisShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			isDis: 0,
 			uid: '', //分享过来的用户id
 			user_id: '', //现在的用户id
@@ -311,6 +312,13 @@ export default {
 		if (currPage.data.isShare) {
 			this.isShare = currPage.data.isShare;
 		}
+		if (currPage.data.useisShare) {
+			this.useisShare = currPage.data.useisShare;
+		}
+		if (currPage.data.uid) {
+			this.uid = currPage.data.uid;
+			this.bindfans();
+		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
 		}
@@ -319,10 +327,6 @@ export default {
 		}
 		if (uni.getStorageSync('userInfo')) {
 			this.userInfo = uni.getStorageSync('userInfo');
-		}
-		if (currPage.data.uid) {
-			this.uid = currPage.data.uid;
-			this.bindfans();
 		}
 		if (uni.getStorageSync('token')) {
 			this.userInfofn();
@@ -340,7 +344,8 @@ export default {
 		}
 		if (options.isShare) {
 			this.isShare = options.isShare;
-			console.log(this.isShare);
+			this.useisShare = options.isShare;
+			console.log('isShare', this.isShare);
 		}
 		// console.log('detail' + this.uid);
 		if (uni.getStorageSync('code')) {

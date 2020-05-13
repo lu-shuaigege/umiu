@@ -108,6 +108,10 @@
 				<view class="orderOtherInformation_list_left">地址</view>
 				<input type="text" value="" placeholder="请填写联系人地址" v-model="contact_address" class="orderOtherInformation_list_right" />
 			</view>
+			<view class="orderOtherInformation_list">
+				<view class="orderOtherInformation_list_left">备注</view>
+				<input type="text" value="" placeholder="请填写备注" v-model="remarks" class="orderOtherInformation_list_right" />
+			</view>
 		</view>
 		<!-- 酒店订单明细 -->
 		<view class="detailed" v-if="islook">
@@ -149,35 +153,26 @@ export default {
 		return {
 			islook: false, //查看明细
 			amount: '', //传到支付成功页面的总价
-			list: {},
-			id: '',
-			type: '',
-			child: [],
+			list: {}, //订单产品的信息
+			id: '', //订单产品的id
+			type: '', //订单产品的类型
+			child: [], //
 			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
-			isDis: 0,
-			uid: '',
+			isDis: 0, //是否是店铺里面的商品
+			uid: '', //分享人id
 			user_id: '', //现在的用户id
-			isbuy: 0,
 			code: '',
 			openid: '',
 			userInfo: {},
 			downbtn: false,
-			quantity: 1,
-			totle: 0,
-			contact: '',
-			contact_phone: '',
-			contact_address: '',
-			detailed: [
-				{
-					date: '03月01日'
-				},
-				{
-					date: '03月01日'
-				}
-			],
+			quantity: 1, //购买资源的数量
+			contact: '', //特产订单联系人姓名
+			contact_phone: '', //特产订单手机号
+			contact_address: '', //特产订单地址
+			remarks: '', //特产订单备注
 			start_date: '', //开始时间
 			end_date: '', //结束时间
-			daysArr: [],
+			daysArr: [], //酒店民宿选择的日期的列表
 			// quantity: 0, //房间数量
 			number_of_adults: 0, //成人数量
 			number_of_children: 0, //儿童数量
@@ -340,6 +335,7 @@ export default {
 					contact: this.contact,
 					contact_phone: this.contact_phone,
 					contact_address: this.contact_address,
+					remarks: this.remarks,
 					sharer_id: this.uid
 				};
 				if (this.isShare != 3) {

@@ -186,7 +186,7 @@
 
 .orderOtherInformation {
 	width: 690rpx;
-	height: 360rpx;
+	/* height: 360rpx; */
 	background-color: #ffffff;
 	border-radius: 8rpx;
 	margin: 20upx auto;
@@ -205,7 +205,7 @@
 	margin: 28upx 0upx 4upx;
 }
 
-.orderOtherInformation_list:nth-child(4) {
+.orderOtherInformation_list:last-child {
 	border: 0upx;
 }
 

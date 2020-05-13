@@ -31,9 +31,9 @@
 						:class="{ sbgFF6600: chooseStart == 'start' + item.id, ebgFF6600: chooseEnd == 'end' + item.id, bgFFEFE5: chooseMid.indexOf(item.id) !== -1 }"
 					>
 						<!-- <view class="day" :class="item.status !== 1 ? 'colorc1' : 'color6'">{{ item.traveldate }}</view> -->
-						<view class="day" :class="item.quantity == 0 || item.checkin_date <= thisdate ? 'colorc1' : 'color6'">{{ item.traveldate }}</view>
+						<view class="day" :class="item.quantity == 0 || item.checkin_date < thisdate ? 'colorc1' : 'color6'">{{ item.traveldate }}</view>
 						<!-- <view class="price" v-if="item.status === 1"> -->
-						<view class="price" v-if="item.quantity > 0">
+						<view class="price" v-if="item.quantity > 0 && item.checkin_date >= thisdate">
 							<text v-if="item.price !== undefined">¥</text>
 							{{ item.price }}
 						</view>
@@ -59,6 +59,7 @@ export default {
 			id: '',
 			list: [],
 			thisdate: dayjs().format('YYYY-MM-DD'), //今天的日期
+			nowdate: '', //选中的日期
 			//日历
 			daysList: [],
 			modal: false,
@@ -100,6 +101,16 @@ export default {
 	methods: {
 		// 跳转到详情页
 		okcalendar() {
+			//从当天的日期开始选择的话日期数组里面会多出来4个没用的对象，目前没找到什么问题（待处理）
+			this.daysArr = this.daysArr.filter(e => e.checkin_date);
+			//如果没有选择后面的日期手动添加后一天的结束日期
+			if (this.endDate == '') {
+				this.endDate = dayjs(this.startDate)
+					.add(1, 'day')
+					.format('YYYY-MM-DD');
+				this.daysArr.push(this.nowdate);
+			}
+			console.log(this.daysArr);
 			if (this.daysArr.length == 0) {
 				wx.navigateBack({
 					//返回
@@ -184,6 +195,7 @@ export default {
 		// 点击日历
 		chooseItem(item) {
 			console.log(item);
+			this.nowdate = item;
 			if (!item.checkin_date) {
 				return;
 			}
@@ -191,7 +203,7 @@ export default {
 			this.daysArr = [];
 			// if (item.status !== 1) {
 			// 没有房间
-			if (item.quantity == 0 || item.checkin_date <= dayjs().format('YYYY-MM-DD')) {
+			if (item.quantity == 0 || item.checkin_date < dayjs().format('YYYY-MM-DD')) {
 				return;
 			}
 
@@ -320,6 +332,9 @@ export default {
 					}
 				}
 			}
+			console.log(this.daysArr);
+			console.log(this.startDate);
+			console.log(this.endDate);
 		},
 		checkstyle(item) {
 			// if (item.travel_date == this.startDate) {

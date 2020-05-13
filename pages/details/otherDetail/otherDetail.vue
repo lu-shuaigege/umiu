@@ -25,7 +25,7 @@
 			</view>
 			<view class="con">
 				<image src="/static/img/yinhao.png" mode=""></image>
-				{{ list.description }}
+				{{ list.description || '' }}
 			</view>
 			<view class="tip">
 				<text v-for="item in list.tags" :key="item">#{{ item }}#</text>
@@ -80,7 +80,7 @@ export default {
 			id: '',
 			isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			useisShare: 0, // 1:普通分享   2:普通分销   3:我要分销
-			isDis: 0,
+			isDis: 0, //是否是店铺里面的商品
 			uid: '', //分享过来的用户id
 			user_id: '', //现在的用户id
 			myid: '', //自己的id
@@ -204,12 +204,16 @@ export default {
 			if (this.isDis == 1) {
 				distributionDetail(id, 'specialty').then(res => {
 					this.list = res.data;
-					this.body = this.list.body.replace(/\<img/gi, '<img class="rich-img"');
+					if (this.list.body) {
+						this.body = this.list.body.replace(/\<img/gi, '<img class="rich-img"');
+					}
 				});
 			} else {
 				sourcesDetail(id, 'specialty').then(res => {
 					this.list = res.data;
-					this.body = this.list.body.replace(/\<img/gi, '<img class="rich-img"');
+					if (this.list.body) {
+						this.body = this.list.body.replace(/\<img/gi, '<img class="rich-img"');
+					}
 				});
 			}
 		},

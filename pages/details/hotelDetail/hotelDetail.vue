@@ -169,7 +169,6 @@ export default {
 		// 入住条件
 		if (currPage.data.check) {
 			this.check = currPage.data.check;
-			console.log(this.check);
 			this.quantity = currPage.data.check[0].num;
 			this.number_of_adults = currPage.data.check[1].num;
 			this.number_of_children = currPage.data.check[2].num;

@@ -22,6 +22,24 @@ export function getcustomDesignerselct() {
 		url: "/api/customizers/configs"
 	})
 }
+//获取全部省份
+export function provinces() {
+	return http({
+		url: "/api/provinces"
+	})
+}
+//获取省份的全部城市
+export function citys(data) {
+	return http({
+		url: `/api/provinces/${data.id}/citys`
+	})
+}
+//获取城市的全部区县
+export function districts(data) {
+	return http({
+		url: `/api/citys/${data.id}/districts`
+	})
+}
 //热门城市
 export function citysHot() {
 	return http({

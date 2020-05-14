@@ -76,8 +76,23 @@ page {
 .detail_intro .top .second .l {
 	font-size: 24upx;
 	color: #28282c;
-	width: 500upx;
+	max-width: 500upx;
 	white-space: normal;
+}
+
+.moneytip {
+	height: 44upx;
+	background-color: #FFEFE5;
+	border-radius: 22upx;
+	padding: 0upx 18upx;
+	width: max-content;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 44upx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
 }
 
 .detail_intro .top .second .r {

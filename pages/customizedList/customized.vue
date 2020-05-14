@@ -37,7 +37,7 @@
 							<image v-if="item.sex == 2" class="sex" src="/static/img/customized_womanicon.png" mode=""></image>
 						</view>
 					</view>
-					<view class="service_people">已服务{{ item.service_people }}次</view>
+					<view class="service_people" v-if="item.service_people">已服务{{ item.service_people }}次</view>
 					<view class="service_area">擅长：{{ item.service_area }}</view>
 				</view>
 			</view>

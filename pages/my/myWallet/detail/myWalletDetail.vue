@@ -27,7 +27,7 @@
 					<view class="item-text">
 						<view class="flex-horizontal-between">
 							<view class="item-name">{{ cr.order_title }}</view>
-							<view class="item-money">+{{ cr.order_amount }}</view>
+							<view class="item-money">+{{ cr.secondary_distribution_actual_amount }}</view>
 						</view>
 						<view class="flex-horizontal-between item-text-bottom">
 							<view class="item-num">订单号：{{ cr.order_number }}</view>

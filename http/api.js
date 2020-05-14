@@ -73,6 +73,12 @@ export function usersStudio(id, openid) {
 		url: "/api/users/" + id + "/studio?openid=" + openid
 	})
 }
+//获取(其他用户)-详情
+export function usersDetail(data) {
+	return http({
+		url: `/api/users/${data.userid}`
+	})
+}
 //短视频-列表
 export function videos(page, id) {
 	return http({
@@ -153,7 +159,7 @@ export function hotelCalendar(id, month) {
 }
 
 //获取资源列表
-export function getResources(id, page, type, keywords, city_code, destination_code, client) {
+export function getResources(id, page, type, keywords, city_code, destination_code, client, price_sort) {
 	let data = {}
 	// if (id) {
 	// 	data["id"] = id
@@ -178,6 +184,9 @@ export function getResources(id, page, type, keywords, city_code, destination_co
 	}
 	if (client) {
 		data["client"] = client
+	}
+	if (price_sort) {
+		data["price_sort"] = price_sort
 	}
 	return http({
 		url: `/api/users/${id}/distributions`,

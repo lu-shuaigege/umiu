@@ -106,6 +106,55 @@ page {
 	text-align: center;
 }
 
+.hoteldate_left {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	width: 140upx;
+}
+
+.hoteldate_left_top {
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24rpx;
+	letter-spacing: 0rpx;
+	color: #ffffff;
+	margin-bottom: 20upx;
+}
+
+.hoteldate_left_bottom {
+	font-family: PingFang-SC-Heavy;
+	font-size: 30rpx;
+	font-weight: bold;
+	font-stretch: normal;
+	line-height: 30rpx;
+	letter-spacing: 0rpx;
+	color: #ffffff;
+}
+
+.hoteldate_center_shu {
+	width: 5rpx;
+	height: 15rpx;
+	border: solid 2rpx #ffffff;
+	margin: 0upx auto;
+}
+
+.hoteldate_center_con {
+	font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 28rpx;
+	letter-spacing: 0rpx;
+	color: #ffffff;
+	margin: 6upx 0upx;
+	width: max-content;
+}
+
+/* 酒店日期选择结束 */
 .detail_intro .top .second .l {
 	font-size: 24upx;
 	color: #28282c;

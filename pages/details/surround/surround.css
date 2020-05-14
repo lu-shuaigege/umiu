@@ -84,6 +84,7 @@ page {
 	margin-top: 20upx;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .standardDetail_top .price .l {
@@ -119,6 +120,21 @@ page {
 	color: #999999;
 	font-weight: 500;
 	margin-left: 30upx;
+}
+
+.moneytip {
+	height: 44upx;
+	background-color: #FFEFE5;
+	border-radius: 22upx;
+	padding: 0upx 18upx;
+	width: max-content;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 44upx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
 }
 
 .setmeal {

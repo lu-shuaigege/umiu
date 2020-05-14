@@ -1,5 +1,6 @@
 page {
-	background: #f8f8f8;
+	/* background: #f8f8f8; */
+	background: #FFFFFF;
 }
 
 .search-form {}
@@ -47,7 +48,9 @@ textarea::-webkit-input-placeholder {
 .list {
 	width: 690upx;
 	margin: 0 auto;
+	/* padding-top: 294upx; */
 	padding-top: 214upx;
+	background: #FFFFFF;
 }
 
 .list_one {
@@ -192,4 +195,66 @@ textarea::-webkit-input-placeholder {
 .nav_selected {
 	background-image: linear-gradient(235deg, #ff7112 0%, #ff8532 100%) !important;
 	color: #ffffff !important;
+}
+
+/* 筛选 */
+.topsel {
+	width: 100%;
+	position: fixed;
+	left: 0upx;
+	top: 214upx;
+	z-index: 999;
+}
+
+.topsel_list {
+	width: 100%;
+	height: 80upx;
+	background: #F1F1F1;
+	padding: 0upx 30upx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.topsel_list_item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.topsel_list_item_left {
+	font-family: PingFang-SC-Medium;
+	font-size: 28upx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0upx;
+	color: #28282c;
+	margin-right: 13upx;
+}
+
+.topsel_list_item_right {
+	width: 21upx;
+	height: 14upx;
+}
+
+.topsel_list_item_rightmoney {
+	width: 17upx;
+	height: 24upx;
+}
+
+.topsel_list_itemcolor {
+	color: #ff6600;
+}
+
+/* 下拉内容 */
+.sel_con {
+	background: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 100vh;
+}
+
+.sel_content {
+	width: 100%;
+	height: 500upx;
+	background: #FFFFFF;
 }

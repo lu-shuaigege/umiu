@@ -78,10 +78,10 @@
 				<view class="hotelitem_list_left">离店日期</view>
 				<view class="hotelitem_list_right">{{ data.end_date.slice(5, 7) }}月{{ data.end_date.slice(8, 10) }}日</view>
 			</view>
-			<view class="hotelitem_list">
+			<!-- <view class="hotelitem_list">
 				<view class="hotelitem_list_left">酒店数量</view>
 				<view class="hotelitem_list_right">{{ data.quantity }}间 | {{ data.product.child.length }}晚</view>
-			</view>
+			</view> -->
 		</view>
 		<!-- 入住人信息 -->
 		<view class="checkDetail" v-if="data.type == 'hotel' || data.type == 'homestay'">
@@ -93,6 +93,18 @@
 			<view class="checkDetail_list">
 				<view class="checkDetail_list_left">手机号</view>
 				<view class="checkDetail_list_right">{{ data.contact_phone }}</view>
+			</view>
+			<view class="checkDetail_list">
+				<view class="checkDetail_list_left">房间数</view>
+				<view class="checkDetail_list_right">{{ data.quantity }}间</view>
+			</view>
+			<view class="checkDetail_list">
+				<view class="checkDetail_list_left">成人数</view>
+				<view class="checkDetail_list_right">{{ data.supplement.number_of_adults }}人</view>
+			</view>
+			<view class="checkDetail_list">
+				<view class="checkDetail_list_left">儿童数</view>
+				<view class="checkDetail_list_right">{{ data.supplement.number_of_children }}人</view>
 			</view>
 		</view>
 		<!-- 订单详情 -->

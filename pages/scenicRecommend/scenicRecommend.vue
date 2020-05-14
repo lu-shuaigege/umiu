@@ -3,7 +3,7 @@
 		<navigator url="../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="cu-bar search fixed" style="background: #ff8532;">
 			<view class="search-form round" style="background: rgba(255,255,255,0.2);">
-				<!-- 				<text class="cuIcon-search" style="color: #7A7A7A;"></text> -->
+				<!-- <text class="cuIcon-search" style="color: #FFFFFF;"></text> -->
 				<!-- <view class="address" @click="gotocity()">{{ cityName }}</view>
 				<image class="address-img" src="../../static/img/citydown.png" mode=""></image>
 				<view class="shu"></view> -->
@@ -31,7 +31,28 @@
 				<view class="nav" :class="isSelected === 4 ? 'nav_selected' : ''" @click="navSelect(4)">民宿</view>
 			</view>
 		</view>
-
+		<!-- 筛选条件 -->
+		<!-- <view class="topsel">
+			<view class="topsel_list">
+				<view class="topsel_list_item" @click="isdownafn()">
+					<view class="topsel_list_item_left" :class="!isdowna ? 'topsel_list_itemcolor' : ''">区域推荐</view>
+					<image src="../../static/img/guide_ud.png" v-if="isdowna" class="topsel_list_item_right" mode=""></image>
+					<image src="../../static/img/guide_up.png" v-if="!isdowna" class="topsel_list_item_right" mode=""></image>
+				</view>
+				<view class="topsel_list_item" @click="price_sortfn()">
+					<view class="topsel_list_item_left">价格</view>
+					<image src="../../static/img/moneyno.png" v-if="price_sort == ''" class="topsel_list_item_rightmoney" mode=""></image>
+					<image src="../../static/img/moneyup.png" v-if="price_sort == 'asc'" class="topsel_list_item_rightmoney" mode=""></image>
+					<image src="../../static/img/moneydown.png" v-if="price_sort == 'desc'" class="topsel_list_item_rightmoney" mode=""></image>
+				</view>
+				<view class="topsel_list_item" @click="isdownbfn()">
+					<view class="topsel_list_item_left" :class="!isdownb ? 'topsel_list_itemcolor' : ''">品类</view>
+					<image src="../../static/img/guide_ud.png" v-if="isdownb" class="topsel_list_item_right" mode=""></image>
+					<image src="../../static/img/guide_up.png" v-if="!isdownb" class="topsel_list_item_right" mode=""></image>
+				</view>
+			</view>
+			<view class="sel_con" v-if="(!isdowna && isprice_sort) || (!isdownb && isprice_sort)"><view class="sel_content"></view></view>
+		</view> -->
 		<view class="list">
 			<view class="list_one" v-for="item in list" :key="item" @click="toDetail(item.id, item.type)">
 				<image v-if="item.cover_image" :src="item.cover_image" mode=""></image>
@@ -56,7 +77,7 @@
 		</view>
 		<!--加载loadding-->
 		<tui-loadmore :visible="loadding"></tui-loadmore>
-		<tui-nomore :visible="!pullUpOn"></tui-nomore>
+		<tui-nomore :visible="!pullUpOn" :bgcolor="'#FFFFFF'"></tui-nomore>
 		<!--加载loadding-->
 	</view>
 </template>
@@ -74,16 +95,20 @@ export default {
 	},
 	data() {
 		return {
-			list: [],
-			inputVal: '',
-			keywords: '',
-			page: 1,
-			cityName: '区域',
-			cityCode: '',
+			list: [], //列表拿到的所有的数据
+			inputVal: '', //搜索的内容
+			keywords: '', //接口里面用到的搜索内容
+			page: 1, //页码
+			cityName: '全部', //城市地址
+			cityCode: '', //城市code
 			loadding: false,
 			pullUpOn: true,
-			isSelected: 5,
-			type: 'specialty'
+			isSelected: 5, //选择的资源类型
+			type: 'specialty', //选择的资源类型的类型
+			isdowna: true, //左边区域选择
+			price_sort: '', //中间价格图片展示
+			isprice_sort: false, //中间价格点击状态
+			isdownb: true //右边类型选择
 		};
 	},
 	onShow() {
@@ -104,6 +129,47 @@ export default {
 		this.getList();
 	},
 	methods: {
+		//点击区域推荐
+		isdownafn() {
+			this.isdowna = !this.isdowna;
+			this.isprice_sort = true;
+		},
+		//点击价格排序
+		price_sortfn() {
+			this.isdowna = true;
+			this.isdownb = true;
+			this.isprice_sort = false;
+			if (this.price_sort == '') {
+				this.price_sort = 'asc';
+				this.pullUpOn = true;
+				this.page = 1;
+				this.list = [];
+				this.getList();
+				return;
+			}
+			if (this.price_sort == 'asc') {
+				this.price_sort = 'desc';
+				this.pullUpOn = true;
+				this.page = 1;
+				this.list = [];
+				this.getList();
+				return;
+			}
+			if (this.price_sort == 'desc') {
+				this.price_sort = 'asc';
+				this.pullUpOn = true;
+				this.page = 1;
+				this.list = [];
+				this.getList();
+				return;
+			}
+			console.log(this.price_sort);
+		},
+		//点击类型选择
+		isdownbfn() {
+			this.isdownb = !this.isdownb;
+			this.isprice_sort = true;
+		},
 		gotocity() {
 			uni.navigateTo({
 				url: '/pages/selectCity/selectCity'
@@ -129,13 +195,14 @@ export default {
 				city_Code = this.cityCode;
 				destination_code = '';
 			}
+			//当时为了处理特产上架审核过不去问题
 			let client = '';
 			if (this.type == 'specialty') {
 				client = 'wx-mini-program-0320-1';
 			} else {
 				client = '';
 			}
-			getResources(this.id, this.page, this.type, this.keywords, city_Code, destination_code, client).then(res => {
+			getResources(this.id, this.page, this.type, this.keywords, city_Code, destination_code, client, this.price_sort).then(res => {
 				if (!this.pullUpOn) return;
 				this.loadding = true;
 				if (res.data.data.length == 0) {

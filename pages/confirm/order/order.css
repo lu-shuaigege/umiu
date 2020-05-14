@@ -1,6 +1,6 @@
 .order {
 	width: 750upx;
-	padding: 1upx 0upx;
+	padding: 1upx 0upx 100upx;
 	box-sizing: border-box;
 }
 
@@ -379,6 +379,46 @@
 	color: #666666;
 	text-align: right
 } */
+.checkcon_item {
+	width: 100%;
+	height: 100upx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.checkcon_item_left {
+	font-family: MicrosoftYaHei;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 100rpx;
+	letter-spacing: 2rpx;
+	color: #333333;
+}
+
+.checkcon_item_right {
+	display: flex;
+	align-items: center;
+}
+
+.checkcon_item_right_left {
+	width: 49rpx;
+	height: 49rpx;
+	border-radius: 7rpx;
+}
+
+.checkcon_item_right_center {
+	margin: 0upx 30upx;
+	font-family: MicrosoftYaHei;
+	font-size: 30rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 30rpx;
+	letter-spacing: 2rpx;
+	color: #333333;
+}
 
 /* 页面下方金额及按钮 */
 .orderBottom {

@@ -84,6 +84,20 @@ export default {
 	width: 100%;
 	margin-top: 18upx;
 }
+/* 产品详情里面的底部按钮 */
+.tobuyover {
+	width: 100%;
+	height: 100upx;
+	line-height: 100upx;
+	font-size: 30upx;
+	color: #ffffff;
+	background-color: #e1e1e1;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	z-index: 9;
+	text-align: center;
+}
 
 .tobuy {
 	width: 100%;
@@ -100,12 +114,54 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 }
+.tobuyleft_nomyid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 15upx 0upx;
+	box-sizing: border-box;
+}
+.tobuyleft_nomyidtop {
+	width: 100%;
+	font-family: PingFang-SC-Medium;
+	font-size: 30rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 30rpx;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	text-align: center;
+}
+.tobuyleft_nomyiddown {
+	width: 100%;
+	font-family: PingFang-SC-Bold;
+	font-size: 24rpx;
+	line-height: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0rpx;
+	color: #ff6600;
+	text-align: center;
+}
 .tobuyleft {
 	width: 50%;
 	height: 100%;
+	font-size: 30upx;
 	color: #ff6600;
 	line-height: 100upx;
 	text-align: center;
+	background: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 15upx 0upx;
+	box-sizing: border-box;
+}
+.tobuyleft::after {
+	border: 0upx;
+	border-radius: 0upx;
 }
 .tobuyright {
 	font-size: 30upx;
@@ -126,6 +182,7 @@ export default {
 	line-height: 100upx;
 	text-align: center;
 }
+/* 产品详情里面的底部按钮结束 */
 .confirm_bottom {
 	width: 100%;
 	height: 100upx;
@@ -174,5 +231,34 @@ export default {
 	/* bottom: 200upx; */
 	top: 680upx;
 	right: 0upx;
+}
+/* 分享商品详情的标题提示 */
+.sharetitle {
+	width: max-content;
+	height: 54upx;
+	border-radius: 27upx;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: absolute;
+	top: 20upx;
+	left: 30upx;
+	z-index: 999;
+}
+.sharetitleimg {
+	width: 54upx;
+	height: 54upx;
+	border-radius: 50%;
+}
+.sharetitletext {
+	padding: 0upx 18upx 0upx 8upx;
+	box-sizing: border-box;
+	font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0rpx;
+	color: #ffffff;
 }
 </style>

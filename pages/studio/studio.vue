@@ -4,8 +4,8 @@
 		<!-- 上面信息 -->
 		<view class="studioTop">
 			<view class="studioTop-topimg">
-				<image v-show="!data.user.cover_image" class="studioTop-topimg-img" src="../../static/img/shopbg.png" mode=""></image>
-				<image v-show="data.user.cover_image" class="studioTop-topimg-img" :src="data.user.cover_image" mode=""></image>
+				<image v-if="!data.user.cover_image" class="studioTop-topimg-img" src="../../static/img/shopbg.png" mode=""></image>
+				<image v-if="data.user.cover_image" class="studioTop-topimg-img" :src="data.user.cover_image" mode=""></image>
 			</view>
 			<view class="studioTop-bottom">
 				<view class="studioTop-bottom-top">
@@ -239,7 +239,7 @@ import tuiNomore from '@/plugins/thorui/components/nomore/nomore';
 export default {
 	components: {
 		tuiLoadmore,
-		tuiNomore,
+		tuiNomore
 		// dragball
 	},
 	data() {

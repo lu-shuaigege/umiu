@@ -20,7 +20,7 @@
 				</view>
 			</view>
 		</view>
-		<!-- 酒店信息 -->
+		<!-- 酒店信息明细弹框 -->
 		<view class="hotelitem" v-if="list.type == 'hotel' || list.type == 'homestay'">
 			<view class="hotelitem_top">
 				<view class="hotelitem_top_left" v-if="list.type == 'hotel'">酒店信息</view>
@@ -46,15 +46,25 @@
 		<!-- 入住人信息 -->
 		<view class="checkDetail" v-if="list.type == 'hotel' || list.type == 'homestay'">
 			<view class="checkDetail_top">入住人信息</view>
-			<view class="checkDetail_list" v-for="(item, index) in nameslist" :key="index">
-				<view class="checkDetail_list_left">房间{{ index + 1 }}</view>
+			<!-- <view class="checkDetail_list" v-for="(item, index) in nameslist" :key="index">
+				<view class="checkDetail_list_left">房间{{ index + 1 }}</view> -->
+			<view class="checkDetail_list">
+				<view class="checkDetail_list_left">联系人</view>
 				<!-- <view class="checkDetail_list_right">{{ item.name }}</view> -->
-				<input type="text" value="" class="checkDetail_list_right" v-model="item.name" placeholder="请填写入住人姓名" />
+				<input type="text" value="" class="checkDetail_list_right" v-model="contact" placeholder="请填写联系人姓名" />
 			</view>
 			<view class="checkDetail_list">
 				<view class="checkDetail_list_left">手机号</view>
 				<!-- <view class="checkDetail_list_right">18756895484</view> -->
 				<input type="tel" value="" class="checkDetail_list_right" v-model="contact_phone" maxlength="11" placeholder="请填写联系人手机号" />
+			</view>
+			<view class="checkcon_item" v-for="(item, index) in check" :key="index">
+				<view class="checkcon_item_left">{{ item.name }}</view>
+				<view class="checkcon_item_right">
+					<image src="../../../static/img/reduce_icon.png" class="checkcon_item_right_left" @click="reducecheck(index, item.num)" mode=""></image>
+					<view class="checkcon_item_right_center">{{ item.num }}</view>
+					<image src="../../../static/img/add_icon.png" class="checkcon_item_right_left" @click="addcheck(index, item.num)" mode=""></image>
+				</view>
 			</view>
 		</view>
 		<!-- 特产数量 -->
@@ -174,6 +184,23 @@ export default {
 			end_date: '', //结束时间
 			daysArr: [], //酒店民宿选择的日期的列表
 			// quantity: 0, //房间数量
+			check: [
+				{
+					id: 1,
+					name: '房间数',
+					num: 1
+				},
+				{
+					id: 2,
+					name: '成人数',
+					num: 1
+				},
+				{
+					id: 3,
+					name: '儿童数',
+					num: 0
+				}
+			],
 			number_of_adults: 0, //成人数量
 			number_of_children: 0, //儿童数量
 			nameslist: [] //酒店入住人名字
@@ -185,15 +212,15 @@ export default {
 		const currPage = pages[pages.length - 1]; // 当前页
 		if (currPage.data.id != '') {
 			let datas = JSON.parse(options.datas);
-			for (let i = 0; i < datas.quantity; i++) {
-				this.nameslist.push({ name: '' });
-			}
+			// for (let i = 0; i < datas.quantity; i++) {
+			// 	this.nameslist.push({ name: '' });
+			// }
 			// this.datalist = options.datas;
 			console.log(datas);
 			this.start_date = datas.start_date;
 			this.end_date = datas.end_date;
 			this.daysArr = datas.daysArr;
-			this.quantity = datas.quantity;
+			// this.quantity = datas.quantity;
 			this.number_of_adults = datas.number_of_adults;
 			this.number_of_children = datas.number_of_children;
 			this.getDetail(this.id);
@@ -214,15 +241,15 @@ export default {
 		}
 		if (options.datas) {
 			let datas = JSON.parse(options.datas);
-			for (let i = 0; i < datas.quantity; i++) {
-				this.nameslist.push({ name: '' });
-			}
+			// for (let i = 0; i < datas.quantity; i++) {
+			// 	this.nameslist.push({ name: '' });
+			// }
 			// this.datalist = options.datas;
 			console.log(datas);
 			this.start_date = datas.start_date;
 			this.end_date = datas.end_date;
 			this.daysArr = datas.daysArr;
-			this.quantity = datas.quantity;
+			// this.quantity = datas.quantity;
 			this.number_of_adults = datas.number_of_adults;
 			this.number_of_children = datas.number_of_children;
 		}
@@ -261,6 +288,18 @@ export default {
 					this.list = res.data;
 				});
 			}
+		},
+		reducecheck(index, num) {
+			if ((index != 2 && num == 1) || (index == 2 && num == 0)) {
+				return;
+			} else {
+				this.check[index].num--;
+				this.quantity = this.check[0].num;
+			}
+		},
+		addcheck(index, num) {
+			this.check[index].num++;
+			this.quantity = this.check[0].num;
 		},
 		reduce() {
 			if (this.quantity == 1) {
@@ -321,6 +360,9 @@ export default {
 			for (let i = 0; i < this.nameslist.length; i++) {
 				check_in_names.push(this.nameslist[i].name);
 			}
+			if (this.list.type == 'hotel' || this.list.type == 'homestay') {
+				this.quantity = this.check[0].num;
+			}
 			if (this.isDis == 1) {
 				this.downbtn = true;
 				let data = {
@@ -328,8 +370,10 @@ export default {
 					start_date: this.start_date,
 					end_date: this.end_date,
 					quantity: this.quantity,
-					number_of_adults: this.number_of_adults,
-					number_of_children: this.number_of_children,
+					// number_of_adults: this.number_of_adults,
+					// number_of_children: this.number_of_children,
+					number_of_adults: this.check[1].num,
+					number_of_children: this.check[2].num,
 					check_in_names: check_in_names,
 					type: type,
 					contact: this.contact,

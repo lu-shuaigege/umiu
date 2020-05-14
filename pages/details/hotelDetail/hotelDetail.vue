@@ -2,6 +2,10 @@
 	<view class="hotelDetail">
 		<navigator url="../../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="hotelDetail_banner">
+			<view class="sharetitle" v-if="uid">
+				<image :src="shareDetail.avatar" class="sharetitleimg" mode=""></image>
+				<view class="sharetitletext">{{ shareDetail.truename || shareDetail.nickname }}给您分享了一个酒店资源商品</view>
+			</view>
 			<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000" duration="500">
 				<swiper-item v-for="(item, index) in list.images" :key="index"><image :src="item" mode="aspectFill"></image></swiper-item>
 			</swiper>
@@ -20,9 +24,25 @@
 				</view>
 				<view class="second">
 					<view class="labela">{{ list.room.title }}</view>
+					<view class="labela">预估收益:￥{{ list.commission }}</view>
 					<!-- <view class="labelb">库存：20</view> -->
 					<!-- <view class="l">{{ list.address }}</view> -->
 					<!-- <view class="r">门市价:￥{{list.price}}</view> -->
+				</view>
+			</view>
+			<view class="hoteldate" @click="calendar(list.room.id)">
+				<view class="hoteldate_left">
+					<view class="hoteldate_left_top">入住日期</view>
+					<view class="hoteldate_left_bottom">{{ start_date.slice(5, 7) }}月{{ start_date.slice(8, 10) }}日</view>
+				</view>
+				<view class="hoteldate_center">
+					<view class="hoteldate_center_shu"></view>
+					<view class="hoteldate_center_con">{{ daysLength }}晚</view>
+					<view class="hoteldate_center_shu"></view>
+				</view>
+				<view class="hoteldate_left">
+					<view class="hoteldate_left_top">离店日期</view>
+					<view class="hoteldate_left_bottom">{{ end_date.slice(5, 7) }}月{{ end_date.slice(8, 10) }}日</view>
 				</view>
 			</view>
 			<view class="con">
@@ -59,7 +79,7 @@
 			</view>
 		</view>
 		<view class="house_type">
-			<view class="orderDetail">
+			<!-- <view class="orderDetail">
 				<view class="orderDetail_left" @click="calendar(list.room.id)">
 					<view class="orderDetail_left_left">{{ start_date.slice(5, 7) }}月{{ start_date.slice(8, 10) }}日</view>
 					<view class="orderDetail_left_heng">——</view>
@@ -71,7 +91,7 @@
 					<view class="orderDetail_right_center">{{ check[1].num }}成人</view>
 					<view class="orderDetail_right_right">{{ check[2].num }}儿童</view>
 				</view>
-			</view>
+			</view> -->
 			<view class="type_title" v-show="list.hotel_amenities.length">
 				<text class="dot"></text>
 				<text>房型描述</text>
@@ -100,16 +120,24 @@
 			</view>
 			<view class="house_policy">{{ list.hotel_policy }}</view>
 		</view>
-		<view class="tobuy">
-			<view class="tobuyleft" v-if="isShare != 1" @click="tobuy()">立即购买</view>
-			<button class="tobuyright" v-if="isShare != 1" open-type="share">我要分销</button>
-			<view class="nowbuy" v-if="isShare == 1" @click="tobuy()">立即购买</view>
+		<view class="tobuyover" v-if="list.offlined_status == 1">产品已下架</view>
+		<view class="tobuy" v-if="list.offlined_status != 1">
+			<view class="tobuyleft_nomyid" v-if="!myid" @click="nomyid()">
+				<view class="tobuyleft_nomyidtop">分享</view>
+				<view class="tobuyleft_nomyiddown">收益￥{{ list.commission }}</view>
+			</view>
+			<button class="tobuyleft" v-if="myid" v-show="isShare != 1" open-type="share">
+				<view class="tobuyleft_nomyidtop">分享</view>
+				<view class="tobuyleft_nomyiddown">收益￥{{ list.commission }}</view>
+			</button>
+			<view class="tobuyright" v-show="isShare != 1" @click="tobuy()">立即采购</view>
+			<view class="nowbuy" v-show="isShare == 1" @click="tobuy()">立即采购</view>
 		</view>
 	</view>
 </template>
 
 <script>
-import { userInfo, sourcesDetail, distributionDetail, bindfans, hotelCalendar } from '@/http/api.js';
+import { userInfo, usersDetail, sourcesDetail, distributionDetail, bindfans, hotelCalendar } from '@/http/api.js';
 import dayjs from '@/plugins/dayjs/index.js';
 export default {
 	data() {
@@ -122,8 +150,12 @@ export default {
 			quantity: 0, //房间数量
 			number_of_adults: 0, //成人数量
 			number_of_children: 0, //儿童数量
-			list: [], //页面总数居
+			list: { commission: '' }, //页面总数居
 			id: '',
+			shareDetail: {
+				truename: '',
+				nickname: ''
+			}, //分享人的信息
 			child: [],
 			isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			useisShare: 0, // 1:普通分享   2:普通分销   3:我要分销
@@ -136,23 +168,23 @@ export default {
 			code: '',
 			openid: '',
 			userInfo: {},
-			check: [
-				{
-					id: 1,
-					name: '房间数',
-					num: 0
-				},
-				{
-					id: 2,
-					name: '成人数',
-					num: 0
-				},
-				{
-					id: 3,
-					name: '儿童数',
-					num: 0
-				}
-			],
+			// check: [//选择的房间数量
+			// 	{
+			// 		id: 1,
+			// 		name: '房间数',
+			// 		num: 0
+			// 	},
+			// 	{
+			// 		id: 2,
+			// 		name: '成人数',
+			// 		num: 0
+			// 	},
+			// 	{
+			// 		id: 3,
+			// 		name: '儿童数',
+			// 		num: 0
+			// 	}
+			// ],
 			isOne: false
 		};
 	},
@@ -198,6 +230,7 @@ export default {
 		if (currPage.data.uid) {
 			this.uid = currPage.data.uid;
 			this.bindfans();
+			this.shareDetailfn();
 		}
 		if (uni.getStorageSync('token')) {
 			this.userInfofn();
@@ -255,6 +288,8 @@ export default {
 			}
 		}
 		this.getDetail(options.id);
+		this.shareDetailfn();
+		console.log(this.uid);
 	},
 	// computed: {
 	// 	// 计算属性的 getter
@@ -268,12 +303,26 @@ export default {
 	// 	}
 	// },
 	methods: {
+		// 接口没有获取到个人信息
+		nomyid() {
+			uni.showToast({
+				icon: 'none',
+				title: '网络有点慢呢，请稍等一下再试'
+			});
+		},
 		//获取个人信息
 		userInfofn() {
 			userInfo().then(res => {
 				console.log(res.data);
 				this.myid = res.data.id;
 				this.usemyid = res.data.id;
+			});
+		},
+		// 获取分享人的信息
+		shareDetailfn() {
+			usersDetail({ userid: this.uid }).then(res => {
+				console.log(res);
+				this.shareDetail = res.data;
 			});
 		},
 		//点击查看简介详情
@@ -376,20 +425,20 @@ export default {
 				});
 				return;
 			}
-			if (_this.check[0].num == 0) {
-				uni.showToast({
-					icon: 'none',
-					title: '请选择房间数量'
-				});
-				return;
-			}
-			if (_this.check[1].num == 0) {
-				uni.showToast({
-					icon: 'none',
-					title: '请选择成人数量'
-				});
-				return;
-			}
+			// if (_this.check[0].num == 0) {
+			// 	uni.showToast({
+			// 		icon: 'none',
+			// 		title: '请选择房间数量'
+			// 	});
+			// 	return;
+			// }
+			// if (_this.check[1].num == 0) {
+			// 	uni.showToast({
+			// 		icon: 'none',
+			// 		title: '请选择成人数量'
+			// 	});
+			// 	return;
+			// }
 			let data = {
 				start_date: _this.start_date, //开始时间
 				end_date: _this.end_date, //结束时间
@@ -429,8 +478,8 @@ export default {
 			this.uid = this.usemyid;
 		}
 		return {
-			title: '特产详情',
-			path: `/pages/details/otherDetail/otherDetail?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`,
+			title: this.list.title,
+			path: `/pages/details/hotelDetail/hotelDetail?id=${this.id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`,
 			success: function(res) {
 				console.log(res);
 			},

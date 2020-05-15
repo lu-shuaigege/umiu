@@ -26,10 +26,9 @@ var $http = function(options) {
 					uni.setStorageSync('token', res.token);
 				}
 				if (res.data.code == 3001) {
-					// uni.navigateTo({
-					// 	url: '/pages/login/login'
-					// });
-					// reject(res.data);
+					uni.navigateTo({
+						url: `/pages/authorizations/authorizations?needUserInfo=0&needToken=1`
+					});
 				}
 				if (res.data.code == 3003) {
 					uni.navigateTo({

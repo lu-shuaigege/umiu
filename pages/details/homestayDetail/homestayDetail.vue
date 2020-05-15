@@ -2,7 +2,7 @@
 	<view class="homestayDetail">
 		<navigator url="../../my/myIndex/myIndex" class="gotomyCenterbtn"></navigator>
 		<view class="homestayDetail_banner">
-			<view class="sharetitle" v-if="uid">
+			<view class="sharetitle" v-if="sharetitle">
 				<image :src="shareDetail.avatar" class="sharetitleimg" mode=""></image>
 				<view class="sharetitletext">{{ shareDetail.truename || shareDetail.nickname }}给您分享了一个民宿资源商品</view>
 			</view>
@@ -154,12 +154,17 @@ export default {
 			number_of_children: 0, //儿童数量
 			list: { commission: '' }, //页面总数居
 			id: '',
-			shareDetail: '', //分享人的信息
+			shareDetail: {
+				truename: '',
+				nickname: ''
+			}, //分享人的信息
+			sharetitle: false, //没有分享人
 			child: [],
 			isShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			useisShare: 0, // 1:普通分享   2:普通分销   3:我要分销
 			isDis: 0, //是否是分销过来的用于获取详情 0:普通分享  1：分销
 			uid: '', //分享过来的用户id
+			uidb: '', //分享过来的用户id备用
 			user_id: '', //现在的用户id
 			myid: '', //自己的id
 			usemyid: '', //要使用的自己id
@@ -229,11 +234,15 @@ export default {
 		}
 		if (currPage.data.uid) {
 			this.uid = currPage.data.uid;
+			if (this.sharetitle) {
+				this.uid = currPage.data.uidb;
+			}
 			this.bindfans();
 			this.shareDetailfn();
 		}
 		if (uni.getStorageSync('token')) {
 			this.userInfofn();
+			this.shareDetailfn();
 		}
 	},
 	onLoad(options) {
@@ -244,6 +253,11 @@ export default {
 		}
 		if (options.uid) {
 			this.uid = options.uid;
+			this.uidb = options.uid;
+			this.shareDetailfn();
+			this.sharetitle = true;
+		} else {
+			this.sharetitle = false;
 		}
 		if (options.isShare) {
 			this.isShare = options.isShare;
@@ -304,6 +318,11 @@ export default {
 	methods: {
 		// 接口没有获取到个人信息
 		nomyid() {
+			if (!uni.getStorageSync('token')) {
+				this.userInfofn();
+				return;
+			}
+
 			uni.showToast({
 				icon: 'none',
 				title: '网络有点慢呢，请稍等一下再试'
@@ -486,7 +505,7 @@ export default {
 				console.log(res);
 			},
 			fail: function(res) {
-				this.uid = this.myid;
+				this.uid = this.uidb;
 				this.isShare = this.useisShare;
 				// 转发失败
 				console.log('用户点击了取消', res);

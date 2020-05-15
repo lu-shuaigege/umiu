@@ -46,6 +46,12 @@ export function citysHot() {
 		url: "/api/citys/hot"
 	})
 }
+//获取城市的全部区县
+export function specialties(data) {
+	return http({
+		url: `/api/specialties/configs`
+	})
+}
 //预约导游-列表
 export function getCustomizers(page, city_code, sex, goodat_type, sort) {
 	return http({

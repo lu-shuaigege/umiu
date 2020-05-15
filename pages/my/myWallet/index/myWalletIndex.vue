@@ -8,18 +8,18 @@
 						<view class="small">(元)</view>
 					</view>
 				</view>
-				<view class="my-wallet-money-sum">{{ wallet.total }}</view>
-				<view class="my-wallet-money-forze">冻结账户金额：{{ wallet.forze }}</view>
+				<view class="my-wallet-money-sum">{{ wallet.balance.toFixed(2) }}</view>
+				<view class="my-wallet-money-forze">冻结账户金额：{{ wallet.frozen_balance.toFixed(2) }}</view>
 			</view>
 		</view>
 		<view class="my-wallet-center">
 			<view class="center-item border">
 				<view class="title">累计分佣总收益</view>
-				<view class="num">{{ wallet.trevenue }}</view>
+				<view class="num">{{ wallet.total_commission.toFixed(2) }}</view>
 			</view>
 			<view class="center-item">
 				<view class="title">已提现总金额</view>
-				<view class="num">{{ wallet.withdrawn }}</view>
+				<view class="num">{{ wallet.total_withdrawal.toFixed(2) }}</view>
 			</view>
 		</view>
 		<view class="my-wallet-list">
@@ -29,7 +29,7 @@
 					<view class="item-left-text">提现</view>
 				</view>
 				<view class="item-right">
-					<view class="item-right-text">{{ wallet.withdrawable }}可提现</view>
+					<view class="item-right-text">{{ wallet.can_withdrawal.toFixed(2) }}可提现</view>
 					<image class="item-right-image" src="../../../../static/img/my_wallet_ic_more.png"></image>
 				</view>
 			</view>
@@ -57,7 +57,8 @@ export default {
 				forze: '00.00',
 				trevenue: '00.00',
 				withdrawn: '00.00',
-				withdrawable: '00.00'
+				withdrawable: '00.00',
+				frozen_balance: '00.00'
 			},
 			refresh: false
 		};
@@ -71,18 +72,19 @@ export default {
 	methods: {
 		getWalletInfo() {
 			getWallet().then(res => {
-				console.log(res)
+				console.log(res);
 				if (this.refresh) {
 					this.refresh = !this.refresh;
 					uni.stopPullDownRefresh();
 				}
 				if (res.data != null) {
 					let data = res.data;
-					this.wallet.total = parseFloat(data.balance).toFixed(2);
-					this.wallet.forze = parseFloat(data.frozen_commission).toFixed(2);
-					this.wallet.trevenue = parseFloat(data.total_commission).toFixed(2);
-					this.wallet.withdrawn = parseFloat(data.total_withdrawal).toFixed(2);
-					this.wallet.withdrawable = parseFloat(data.can_withdrawal).toFixed(2);
+					this.wallet = res.data;
+					// this.wallet.total = parseFloat(data.balance).toFixed(2);
+					// this.wallet.forze = parseFloat(data.frozen_commission).toFixed(2);
+					// this.wallet.trevenue = parseFloat(data.total_commission).toFixed(2);
+					// this.wallet.withdrawn = parseFloat(data.total_withdrawal).toFixed(2);
+					// this.wallet.withdrawable = parseFloat(data.can_withdrawal).toFixed(2);
 				} else {
 					uni.showToast({
 						title: '金额获取有点儿问题，下拉刷新试试'

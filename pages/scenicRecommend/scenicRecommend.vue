@@ -86,7 +86,7 @@
 import uniIcons from '@/plugins/components/uni-icons/uni-icons.vue';
 import tuiLoadmore from '@/plugins/thorui/components/loadmore/loadmore.vue';
 import tuiNomore from '@/plugins/thorui/components/nomore/nomore';
-import { getResources } from '@/http/api.js';
+import { getResources, specialties } from '@/http/api.js';
 export default {
 	components: {
 		uniIcons,
@@ -108,7 +108,8 @@ export default {
 			isdowna: true, //左边区域选择
 			price_sort: '', //中间价格图片展示
 			isprice_sort: false, //中间价格点击状态
-			isdownb: true //右边类型选择
+			isdownb: true, //右边类型选择
+			specialtylist: [] //特产城市列表
 		};
 	},
 	onShow() {
@@ -127,6 +128,7 @@ export default {
 	onLoad(options) {
 		this.id = options.id;
 		this.getList();
+		this.specialties();
 	},
 	methods: {
 		//点击区域推荐
@@ -169,6 +171,11 @@ export default {
 		isdownbfn() {
 			this.isdownb = !this.isdownb;
 			this.isprice_sort = true;
+		},
+		specialties() {
+			specialties().then(res => {
+				console.log(res);
+			});
 		},
 		gotocity() {
 			uni.navigateTo({

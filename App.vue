@@ -5,6 +5,7 @@ export default {
 		console.log('App Launch');
 	},
 	onShow: function() {
+		wx.hideHomeButton();
 		console.log('App Show');
 	},
 	onHide: function() {
@@ -115,6 +116,7 @@ export default {
 	justify-content: space-between;
 }
 .tobuyleft_nomyid {
+	width: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;

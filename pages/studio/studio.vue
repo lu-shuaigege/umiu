@@ -263,11 +263,11 @@ export default {
 					img: '../../static/img/video.png',
 					title: '短视频'
 				},
-				// {
-				// 	id: 2,
-				// 	img: '../../static/img/camera.png',
-				// 	title: '直播'
-				// },
+				{
+					id: 2,
+					img: '../../static/img/camera.png',
+					title: '直播'
+				},
 				{
 					id: 3,
 					img: '../../static/img/people.png',
@@ -345,7 +345,8 @@ export default {
 				uid: '',
 				code: '',
 				openid: '',
-				userInfo: {}
+				userInfo: {},
+				isShare: 1 // 1:普通分享   2:普通分销   3:我要分销
 			}
 		};
 	},
@@ -388,6 +389,12 @@ export default {
 		if (options.uid) {
 			this.uid = options.uid;
 		}
+		if (options.isShare) {
+			this.isShare = options.isShare;
+			console.log(options.isShare);
+		} else {
+			this.isShare = 1;
+		}
 		if (uni.getStorageSync('code')) {
 			this.code = uni.getStorageSync('code');
 		}
@@ -419,25 +426,6 @@ export default {
 			} else {
 				this.visitorsfn();
 			}
-
-			// wx.getSetting({
-			// 	success: res => {
-			// 		//判断是否授权，如果授权成功
-			// 		if (res.authSetting['scope.userInfo']) {
-			// 			//获取用户信息
-			// 			wx.getUserInfo({
-			// 				success: res => {
-			// 					this.userInfo = res.userInfo;
-			// 					uni.setStorageSync('userInfo', res.userInfo);
-			// 					this.getDetail();
-			// 				}
-			// 			});
-			// 		} else {
-			// 			this.authorizations();
-			// 			return;
-			// 		}
-			// 	}
-			// });
 		}
 
 		this.getDetail();
@@ -638,9 +626,10 @@ export default {
 					break;
 			}
 		},
+		//进入我的小店
 		gotoscenicRecommend() {
 			uni.navigateTo({
-				url: '/pages/scenicRecommend/scenicRecommend?id=' + this.id
+				url: `/pages/scenicRecommend/scenicRecommend?id=${this.id}&isShare=${this.isShare}`
 			});
 		},
 		//短视频详情

@@ -757,8 +757,6 @@
 /* 直播 */
 .studioBottom-bottom-live {
 	width: 100%;
-	/* 	padding: 39upx 30upx;
-	box-sizing: border-box; */
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;

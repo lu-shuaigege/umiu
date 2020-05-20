@@ -95,6 +95,7 @@ export default {
 	},
 	data() {
 		return {
+			isShare: 1, // 1:普通分享   2:普通分销   3:我要分销
 			list: [], //列表拿到的所有的数据
 			inputVal: '', //搜索的内容
 			keywords: '', //接口里面用到的搜索内容
@@ -127,6 +128,12 @@ export default {
 	},
 	onLoad(options) {
 		this.id = options.id;
+		if (options.isShare) {
+			this.isShare = options.isShare;
+		} else {
+			this.isShare = '1';
+		}
+		console.log(this.isShare);
 		this.getList();
 		this.specialties();
 	},
@@ -239,40 +246,42 @@ export default {
 			this.getList(this.keywords);
 		},
 		toDetail(id, type) {
+			let that = this;
+			console.log(that.id);
 			switch (type) {
 				case 'hotel':
 					uni.navigateTo({
-						url: `/pages/details/hotelDetail/hotelDetail?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/hotelDetail/hotelDetail?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				case 'repast':
 					uni.navigateTo({
-						url: `/pages/details/restaurantDetail/restaurantDetail?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/restaurantDetail/restaurantDetail?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				case 'sight':
 					uni.navigateTo({
-						url: `/pages/details/scenicSpotDetail/scenicSpotDetail?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/scenicSpotDetail/scenicSpotDetail?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				case 'homestay':
 					uni.navigateTo({
-						url: `/pages/details/homestayDetail/homestayDetail?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/homestayDetail/homestayDetail?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				case 'specialty':
 					uni.navigateTo({
-						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/otherDetail/otherDetail?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				case 'tour-group':
 					uni.navigateTo({
-						url: `/pages/details/standardDetail/standardDetail?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/standardDetail/standardDetail?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				case 'tour-surround':
 					uni.navigateTo({
-						url: `/pages/details/surround/surround?id=${id}&isDis=1&isShare=3`
+						url: `/pages/details/surround/surround?id=${id}&isDis=1&isShare=${this.isShare}`
 					});
 					break;
 				// case 'specialty':

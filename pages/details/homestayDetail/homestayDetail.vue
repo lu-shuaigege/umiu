@@ -24,7 +24,7 @@
 				</view>
 				<view class="second">
 					<view class="labela">{{ list.room.title }}</view>
-					<view class="labela">预估收益:￥{{ list.commission }}</view>
+					<!-- <view class="labela">预估收益:￥{{ list.commission }}</view> -->
 					<!-- <view class="labelb">库存：20</view> -->
 					<!-- <view class="l">{{ list.address }}</view> -->
 					<!-- <view class="r">门市价:￥{{list.price}}</view> -->
@@ -425,7 +425,7 @@ export default {
 			// }
 			this.user_id = id;
 			uni.navigateTo({
-				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`
 			});
 		},
 		tobuy() {

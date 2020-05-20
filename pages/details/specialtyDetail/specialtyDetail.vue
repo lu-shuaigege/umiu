@@ -260,7 +260,7 @@ export default {
 			// }
 			this.user_id = id;
 			uni.navigateTo({
-				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`
 			});
 		},
 		tobuy() {

@@ -24,7 +24,7 @@
 				</view>
 				<view class="second">
 					<view class="l">{{ list.address }}</view>
-					<view class="moneytip">预估收益:￥{{ list.commission }}</view>
+					<!-- <view class="moneytip">预估收益:￥{{ list.commission }}</view> -->
 					<!-- <view class="r">门市价:￥{{list.price}}</view> -->
 				</view>
 			</view>
@@ -280,7 +280,7 @@ export default {
 			// }
 			this.user_id = id;
 			uni.navigateTo({
-				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`
 			});
 		},
 		tobuy() {

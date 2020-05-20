@@ -34,7 +34,7 @@
 				<!-- <view class="r">
 					同行价:￥{{list.price}}
 				</view> -->
-				<view class="moneytip">预估收益:￥{{ list.commission }}</view>
+				<!-- <view class="moneytip">预估收益:￥{{ list.commission }}</view> -->
 			</view>
 			<view class="setmeal">
 				<view class="setmeal_l">
@@ -479,7 +479,7 @@ export default {
 			// }
 			this.user_id = id;
 			uni.navigateTo({
-				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}`
+				url: `/pages/studio/studio?id=${this.user_id}&isDis=${this.isDis}&uid=${this.uid}&isShare=${this.isShare}`
 			});
 		},
 		// //关闭微信号弹框
